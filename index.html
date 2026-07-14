@@ -9,94 +9,144 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260714-16">
+    <link rel="stylesheet" href="styles.css?v=20260714-17">
 </head>
-<body>
+<body class="title-screen">
   <div class="presentation" id="presentation">
     <aside class="sidebar" id="sidebar" aria-label="Presentation sections">
       <div class="brand-lockup">
         <img src="assets/logos/rooch.png" alt="ROOCH Holding Inc.">
-        <div><strong>ROOCH</strong><span>O!Save Partnership</span></div>
+        <div><strong>ROOCH</strong></div>
         <button class="icon-button sidebar-close" id="sidebarClose" type="button" aria-label="Close navigation">&times;</button>
       </div>
       <ol class="slide-index" id="slideIndex"></ol>
-      <div class="sidebar-meta"><span>Confidential</span><span>16 July 2026</span></div>
+      <div class="sidebar-meta" aria-hidden="true"></div>
     </aside>
 
     <main class="stage">
       <header class="topbar">
-        <button class="icon-button" id="menuButton" type="button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="true">&#9776;</button>
+        <button class="icon-button menu-toggle" id="menuButton" type="button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="true"><span></span><span></span><span></span></button>
         <p id="sectionLabel">ROOCH HOLDING INC. / O!SAVE PARTNERSHIP</p>
+        <div class="title-shortcuts" aria-hidden="true">Use Keyboard <strong>&larr;</strong> <strong>&rarr;</strong> or <strong>Space</strong></div>
         <div class="topbar-actions">
           <span id="slideCounter">01 / 11</span>
-          <button class="command-button" id="fullscreenButton" type="button" aria-label="Enter presentation mode">Present</button>
+          <button class="command-button" id="fullscreenButton" type="button" aria-label="Enter presentation mode">Present Fullscreen</button>
         </div>
       </header>
 
       <div class="slides" id="slides" aria-live="polite">
         <section class="slide title-slide is-active" data-title="Title" data-section="ROOCH HOLDING INC. / TITLE SLIDE">
-          <div class="title-copy">
-            <p class="eyebrow">ROOCH Holding Inc.</p>
-            <h1><span class="title-primary">Corporate Structure &amp;</span><span>Subsidiary Operations</span></h1>
-            <p class="lead">A Comprehensive Review of Operational Efficiencies, Asset Capital Requests, and Expanded Digital Platform Sync.</p>
-            <div class="title-insights">
-              <div><span>01</span><p><strong>Synergized Ecosystem</strong><small>End-to-end integration across FMCG distribution, enterprise software, and scalable infrastructure.</small></p></div>
-              <div><span>02</span><p><strong>Data-Driven Logistics</strong><small>Optimized supply chains and multi-region operations powered by Vertex ERP systems.</small></p></div>
-              <div><span>03</span><p><strong>Sustainable Expansion</strong><small>Future-ready physical structures powered by high-capacity solar and energy-efficient facilities.</small></p></div>
+          <div class="title-content-seamless">
+            <div>
+              <span class="title-badge">ROOCH HOLDING INC.</span>
+              <h1>Corporate Structure &amp;<br><span>Subsidiary Operations</span></h1>
+              <p class="title-subtitle">A Comprehensive Review of Operational Efficiencies, Asset Capital Requests, and Expanded Digital Platform Sync.</p>
+              <div class="title-insight-panel">
+                <div><i class="insight-icon insight-blue" aria-hidden="true">&#9881;</i><p><strong>Synergized Ecosystem</strong><span>End-to-end integration across FMCG distribution, enterprise software, and scalable infrastructure.</span></p></div>
+                <div><i class="insight-icon insight-purple" aria-hidden="true">&#128202;</i><p><strong>Data-Driven Logistics</strong><span>Optimized supply chains and multi-region operations powered by Vertex ERP systems.</span></p></div>
+                <div><i class="insight-icon insight-green" aria-hidden="true">&#9889;</i><p><strong>Sustainable Expansion</strong><span>Future-ready physical structures powered by high-capacity solar and energy-efficient facilities.</span></p></div>
+              </div>
             </div>
-            <p class="date-line">16 July 2026</p>
+            <div class="title-end-divider" aria-hidden="true"></div>
           </div>
-          <div class="ecosystem" aria-label="ROOCH corporate ecosystem">
-            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-            <div class="ecosystem-core"><img src="assets/logos/rooch.png" alt="ROOCH"></div>
-            <div class="orbit-nodes">
-              <div class="orbit-node node-vertex"><img src="assets/logos/vertex.png" alt="Vertex"><span>Technology</span></div>
-              <div class="orbit-node node-men2"><img src="assets/logos/men2.png" alt="MEN2"><span>Distribution</span></div>
-              <div class="orbit-node node-mama"><img src="assets/logos/mama-pina.png" alt="Mama Pina's"><span>Manufacturing</span></div>
-              <div class="orbit-node node-hanvin"><img src="assets/logos/hanvin.png" alt="Hanvin"><span>Infrastructure</span></div>
-            </div>
+          <div class="solar-system-container-seamless" id="solarSystemContainer" aria-label="Animated ROOCH corporate ecosystem">
+            <div class="three-sun-overlay" id="threeSunOverlay" title="ROOCH Holding"><img src="assets/logos/rooch.png" alt="ROOCH Logo"></div>
+            <div class="three-planet-card planet-hanvin" id="lbl-hanvins" title="Hanvins Construction"><img src="assets/logos/hanvin.png" alt="Hanvins Logo"></div>
+            <div class="three-planet-card planet-vertex" id="lbl-vertex" title="Vertex Technologies"><img src="assets/logos/vertex.png" alt="Vertex Logo"></div>
+            <div class="three-planet-card planet-men2-solutions" id="lbl-men2solutions" title="MEN2 Solutions (Manpower)" aria-label="MEN2 Solutions">&#128101;</div>
+            <div class="three-planet-card planet-men2-parent" id="lbl-men2parent" title="MEN2 Enterprise Corp."><img src="assets/logos/men2.png" alt="MEN2 Logo"></div>
+            <div class="three-planet-card planet-dagupan" id="lbl-men2dagupan" title="MEN2 Dagupan (North Division)">DGP</div>
+            <div class="three-planet-card planet-marikina" id="lbl-men2marikina" title="MEN2 Marikina (South Division)">MRK</div>
+            <div class="three-planet-card planet-jcbs" id="lbl-jcbs" title="JCBS (MEN2 Industrial)"><img src="assets/logos/jcbs.png" alt="JCBS Logo"></div>
+            <div class="three-planet-card planet-mama" id="lbl-mamapina" title="Mama Pina's Food Brand"><img src="assets/logos/mama-pina.png" alt="Mama Pina Logo"></div>
           </div>
-          <div class="mobile-title-mark" aria-hidden="true"><img src="assets/logos/rooch.png" alt=""><span>ROOCH Holding Inc.</span></div>
         </section>
 
         <section class="slide structure-slide" data-title="Corporate Structure" data-section="ROOCH HOLDING INC. / CORPORATE STRUCTURE">
-          <div class="slide-heading"><div><p class="eyebrow">One coordinated operating group</p><h2>Corporate Structure</h2></div><p>Select a company to review its role in the O!Save supply program.</p></div>
+          <div class="slide-heading"><div><h2>Corporate Structure Chart</h2></div><p>Hover or click any company node to explore subsidiary operations and group papers</p></div>
           <div class="structure-map">
-            <button class="company-node root-node" data-company="rooch"><img src="assets/logos/rooch.png" alt=""><span><strong>ROOCH Holding Inc.</strong><small>Strategy, capital and governance</small></span></button>
-            <div class="structure-line"></div>
-            <div class="company-grid">
-              <button class="company-node" data-company="vertex"><img src="assets/logos/vertex.png" alt=""><span><strong>Vertex Technologies</strong><small>ERP and operational systems</small></span></button>
-              <button class="company-node" data-company="hanvin"><img src="assets/logos/hanvin.png" alt=""><span><strong>Hanvin Construction</strong><small>Facilities and solar infrastructure</small></span></button>
-              <button class="company-node" data-company="men2"><img src="assets/logos/men2.png" alt=""><span><strong>MEN2 Enterprise</strong><small>FMCG distribution and logistics</small></span></button>
-              <button class="company-node" data-company="mama"><img src="assets/logos/mama-pina.png" alt=""><span><strong>Mama Pina's</strong><small>Food manufacturing and product supply</small></span></button>
-              <button class="company-node" data-company="jcbs"><img src="assets/logos/jcbs.png" alt=""><span><strong>JCBS Industrial</strong><small>Edible-oil manufacturing</small></span></button>
+            <div class="structure-chart">
+              <button class="company-node root-node" data-company="rooch" title="ROOCH Holding Inc.">
+                <img src="assets/logos/rooch.png" alt="ROOCH Holding Inc. logo">
+              </button>
+              <div class="structure-stem" aria-hidden="true"></div>
+              <div class="structure-branches" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="structure-groups">
+                <section class="structure-group tech-group" aria-labelledby="techGroupTitle">
+                  <h3 id="techGroupTitle">Tech &amp; Solutions</h3>
+                  <div class="group-rule" aria-hidden="true"></div>
+                  <div class="company-stack">
+                    <button class="company-node subsidiary-node" data-company="vertex">
+                      <img src="assets/logos/vertex.png" alt="Vertex Technologies logo">
+                      <span><strong>Vertex Tech</strong><small>Software &amp; Digitization</small></span>
+                    </button>
+                    <button class="company-node subsidiary-node" data-company="men2solutions">
+                      <span class="company-icon company-icon-tool" aria-hidden="true">&#128295;</span>
+                      <span><strong>MEN2 Solutions</strong><small>Manpower Sourcing</small></span>
+                    </button>
+                  </div>
+                </section>
+                <section class="structure-group energy-group" aria-labelledby="energyGroupTitle">
+                  <h3 id="energyGroupTitle">Infra &amp; Energy</h3>
+                  <div class="group-rule" aria-hidden="true"></div>
+                  <div class="company-stack">
+                    <button class="company-node subsidiary-node" data-company="hanvins">
+                      <img src="assets/logos/hanvin.png" alt="Hanvin Construction logo">
+                      <span><strong>Hanvin (Solar Installations)</strong><small>Solar Installations</small></span>
+                    </button>
+                  </div>
+                </section>
+                <section class="structure-group fmcg-group" aria-labelledby="fmcgGroupTitle">
+                  <h3 id="fmcgGroupTitle">FMCG &amp; Logistics</h3>
+                  <div class="group-rule" aria-hidden="true"></div>
+                  <div class="company-stack">
+                    <button class="company-node subsidiary-node compact-node" data-company="men2dagupan">
+                      <span class="company-icon company-icon-men2" aria-hidden="true">MEN2</span>
+                      <span><strong>MEN2 Dagupan</strong><small>North Logistics</small></span>
+                    </button>
+                    <button class="company-node subsidiary-node compact-node" data-company="men2marikina">
+                      <span class="company-icon company-icon-men2 company-icon-south" aria-hidden="true">MEN2</span>
+                      <span><strong>MEN2 Marikina</strong><small>South Logistics</small></span>
+                    </button>
+                    <button class="company-node subsidiary-node compact-node" data-company="mamapina">
+                      <img src="assets/logos/mama-pina.png" alt="Mama Pina's logo">
+                      <span><strong>Mama Pina's</strong><small>Consumer Foods</small></span>
+                    </button>
+                    <button class="company-node subsidiary-node compact-node" data-company="jcbs">
+                      <img src="assets/logos/jcbs.png" alt="JCBS Industrial logo">
+                      <span><strong>JCBS (MEN2 Industrial)</strong><small>Industrial</small></span>
+                    </button>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
-          <div class="structure-note"><strong>Integrated execution</strong><span>Manufacturing, distribution, infrastructure and technology operate under one coordinated delivery model.</span></div>
         </section>
 
         <section class="slide achievements-slide" data-title="Key Achievements" data-section="ROOCH HOLDING INC. / KEY ACHIEVEMENTS">
-          <div class="slide-heading"><div><p class="eyebrow">Execution evidence</p><h2>Key Achievements</h2></div><p>Operational milestones across technology, infrastructure and FMCG distribution.</p></div>
+          <div class="slide-heading"><div><h2>Key Achievements</h2></div><p>Operational milestones, contracts, and structural accomplishments across our divisions</p></div>
           <div class="achievement-layout">
-            <div class="achievement-list" id="achievementList" role="tablist" aria-label="Achievements"></div>
+            <div class="achievement-groups" id="achievementList" role="tablist" aria-label="Key achievements by division"></div>
             <figure class="achievement-media" id="achievementPanel">
-              <img id="achievementImage" src="assets/achievements/vos-erp.png" alt="VOS ERP dashboard">
-              <figcaption><span id="achievementCategory">Technology</span><h3 id="achievementTitle">VOS ERP Suite</h3><p id="achievementDescription">Consolidated accounting, inventory and operational control across the group.</p></figcaption>
+              <span class="achievement-preview-label">PREVIEW</span>
+              <img id="achievementImage" src="" alt="Achievement detail">
+              <div class="achievement-unavailable" id="achievementUnavailable" hidden>MEDIA NOT AVAILABLE</div>
+              <figcaption><span id="achievementCategory">Tech &amp; Solutions</span><h3 id="achievementTitle">VOS ERP Suite</h3><p id="achievementDescription">Select an achievement from the list to view its details.</p></figcaption>
             </figure>
           </div>
         </section>
 
         <section class="slide video-slide" data-title="Video Presentation" data-section="O!SAVE PARTNERSHIP / VIDEO PRESENTATION">
-          <div class="video-copy"><p class="eyebrow">Operating partnership</p><h2>From production floor to O!Save shelf</h2><p>A short presentation will introduce the integrated manufacturing, logistics and technology workflow.</p><div class="video-status" id="videoStatus"><span></span><strong id="videoStatusTitle">Video asset pending</strong><small id="videoStatusDetail">Final media will be added when the supplied video is ready.</small><a id="videoOpenLink" class="video-open-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Open video in Google Drive</a></div></div>
+          <div class="video-copy"><p class="eyebrow">Operating partnership</p><h2>ROOCH Holding Inc. Operations</h2><p>A short presentation will introduce the integrated manufacturing, logistics and technology workflow.</p><div class="video-status" id="videoStatus"><span></span><strong id="videoStatusTitle">Video asset pending</strong><small id="videoStatusDetail">Final media will be added when the supplied video is ready.</small><a id="videoOpenLink" class="video-open-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Open video in Google Drive</a></div></div>
           <div class="video-frame" id="videoFrame">
             <video id="presentationVideo" controls playsinline preload="metadata" hidden></video>
-            <iframe id="presentationVideoEmbed" class="video-embed" title="O!Save partnership presentation video" allow="autoplay; fullscreen" loading="lazy" hidden></iframe>
+            <iframe id="presentationVideoEmbed" class="video-embed" title="ROOCH Holding Inc. operations presentation video" allow="autoplay; fullscreen" loading="lazy" hidden></iframe>
             <div class="video-placeholder" id="videoPlaceholder"><div class="play-mark" aria-hidden="true">&#9654;</div><strong>Presentation video</strong><span>Final media to be supplied</span></div>
           </div>
         </section>
 
-        <section class="slide demand-slide" data-title="Demand Impact: Oil" data-section="O!SAVE DEMAND IMPACT / EDIBLE OILS">
-          <div class="slide-heading"><div><p class="eyebrow">Retail demand integration</p><h2>O!Save Demand Impact <span>Edible Oils</span></h2></div><div class="headline-metric"><strong>27,636</strong><span>cases / month</span></div></div>
+        <section class="slide demand-slide" data-title="Demand Impact: Oil" data-section="O!SAVE DEMAND IMPACT / OILS">
+          <div class="slide-heading"><div><p class="eyebrow">Retail demand integration</p><h2>O!Save Demand Impact <span>Oils</span></h2></div><div class="headline-metric"><strong>27,636</strong><span>cases / month</span></div></div>
           <div class="demand-grid">
             <div class="data-panel"><h3>Cases per month by region</h3><div class="region-bars" id="oilDemandBars"></div></div>
             <div class="demand-summary">
@@ -118,8 +168,8 @@
           </div>
         </section>
 
-        <section class="slide capacity-slide" data-title="Capacity: Oil" data-section="MANUFACTURING CAPACITY / EDIBLE OILS">
-          <div class="slide-heading"><div><p class="eyebrow">Capacity optimization</p><h2>Manufacturing Capacity <span>Edible Oils</span></h2></div><div class="capacity-controls" id="oilCapacityTabs" role="tablist"></div></div>
+        <section class="slide capacity-slide" data-title="Capacity: Oil" data-section="MANUFACTURING CAPACITY / OILS">
+          <div class="slide-heading"><div><p class="eyebrow">Capacity optimization</p><h2>Manufacturing Capacity <span>Oils</span></h2></div><div class="capacity-controls" id="oilCapacityTabs" role="tablist"></div></div>
           <div class="capacity-focus" id="oilCapacityContent">
             <div class="capacity-product"><span id="capacityProductLabel">Palm Oil 350mL</span><strong id="capacityGrowth">+336%</strong><small>production capacity</small></div>
             <div class="comparison-block current"><p>Current capacity</p><div><span>Day shift</span><strong id="currentDay">12,600</strong></div><div><span>Night shift</span><strong id="currentNight">7,200</strong></div><div><span>Daily</span><strong id="currentDaily">19,800</strong></div><div class="total"><span>Monthly potential</span><strong id="currentMonthly">594,000</strong></div></div>
@@ -139,7 +189,7 @@
           <div class="capacity-footer"><div><strong>40,400</strong><span>Produced pieces / cycle</span></div><div><strong>20%</strong><span>Production buffer</span></div><div><strong>Day + night</strong><span>Shift coverage</span></div><div><strong>Full flexibility</strong><span>Simultaneous production</span></div></div>
         </section>
 
-        <section class="slide capital-slide" data-title="Trade Cycle: Oil" data-section="WORKING CAPITAL TRADE CYCLE / EDIBLE OILS">
+        <section class="slide capital-slide" data-title="Trade Cycle: Oil" data-section="WORKING CAPITAL TRADE CYCLE / OILS">
           <div class="slide-heading"><div><p class="eyebrow">Weekly import and collection cycle</p><h2>Working Capital Trade Cycle <span>Edible Oils</span></h2></div><div class="headline-metric"><strong>PHP 201.07M</strong><span>3-month requirement</span></div></div>
           <div class="capital-kpis"><div><span>Weekly purchase</span><strong>USD 270,255</strong></div><div><span>Monthly purchase</span><strong>USD 1.081M</strong></div><div><span>Weekly units</span><strong>219,893</strong></div><div><span>Fixed DSO</span><strong>45 days</strong></div></div>
           <div class="cycle-layout">
@@ -173,9 +223,9 @@
       </div>
 
       <footer class="controls">
-        <button class="nav-button" id="previousButton" type="button" aria-label="Previous slide">&#8592; <span>Previous</span></button>
+        <button class="nav-button" id="previousButton" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg><span>Previous</span></button>
         <div class="progress-track" role="progressbar" aria-label="Presentation progress" aria-valuemin="1" aria-valuemax="11" aria-valuenow="1"><i id="progressBar"></i></div>
-        <button class="nav-button" id="nextButton" type="button" aria-label="Next slide"><span>Next</span> &#8594;</button>
+        <button class="nav-button" id="nextButton" type="button" aria-label="Next slide"><span>Next</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6-1.41 1.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
       </footer>
     </main>
   </div>
@@ -186,7 +236,8 @@
     <p class="eyebrow" id="dialogCategory"></p><h2 id="dialogTitle"></h2><p id="dialogDescription"></p><ul id="dialogPoints"></ul>
   </dialog>
 
+  <script src="three.min.js"></script>
   <script src="presentation-data.js"></script>
-    <script src="app.js?v=20260714-12"></script>
+  <script src="app.js?v=20260714-13"></script>
 </body>
 </html>

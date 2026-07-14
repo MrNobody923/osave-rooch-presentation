@@ -24,6 +24,8 @@
   let touchStartY = 0;
   let desktopSidebarOpen = true;
   let lastDialogTrigger = null;
+  let titleSolarInitialized = false;
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const pad = (value) => String(value).padStart(2, "0");
   const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
@@ -103,6 +105,8 @@
     });
 
     const activeSlide = slides[currentSlide];
+    document.body.classList.toggle("title-screen", currentSlide === 0);
+    if (currentSlide === 0) requestAnimationFrame(ensureTitleSolarSystem);
     counter.textContent = `${pad(currentSlide + 1)} / ${pad(slides.length)}`;
     sectionLabel.textContent = activeSlide.dataset.section;
     progressBar.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
@@ -110,6 +114,7 @@
     previousButton.disabled = currentSlide === 0;
     nextButton.disabled = currentSlide === slides.length - 1;
     document.title = `${activeSlide.dataset.title} | ROOCH x O!Save`;
+    updateFullscreenButton(Boolean(document.fullscreenElement));
 
     if (updateHash) history.replaceState(null, "", `#slide-${currentSlide + 1}`);
     updateVideoPlayback(currentSlide);
@@ -168,6 +173,12 @@
     showSlide(currentSlide + (deltaX < 0 ? 1 : -1), true);
   }, { passive: true });
 
+  function updateFullscreenButton(presenting) {
+    const idleLabel = "Present Fullscreen";
+    fullscreenButton.textContent = presenting ? "Exit" : idleLabel;
+    fullscreenButton.setAttribute("aria-label", presenting ? "Exit presentation mode" : "Enter presentation mode");
+  }
+
   async function togglePresentationMode() {
     try {
       if (!document.fullscreenElement) {
@@ -178,8 +189,7 @@
       }
     } catch (_error) {
       const presenting = document.body.classList.toggle("present-mode");
-      fullscreenButton.textContent = presenting ? "Exit" : "Present";
-      fullscreenButton.setAttribute("aria-label", presenting ? "Exit presentation mode" : "Enter presentation mode");
+      updateFullscreenButton(presenting);
     }
   }
 
@@ -187,8 +197,7 @@
   document.addEventListener("fullscreenchange", () => {
     const presenting = Boolean(document.fullscreenElement);
     document.body.classList.toggle("present-mode", presenting);
-    fullscreenButton.textContent = presenting ? "Exit" : "Present";
-    fullscreenButton.setAttribute("aria-label", presenting ? "Exit presentation mode" : "Enter presentation mode");
+    updateFullscreenButton(presenting);
   });
 
   const companyDialog = document.getElementById("companyDialog");
@@ -204,7 +213,9 @@
       document.getElementById("dialogCategory").textContent = company.category;
       document.getElementById("dialogTitle").textContent = company.title;
       document.getElementById("dialogDescription").textContent = company.description;
-      document.getElementById("dialogPoints").innerHTML = company.points.map((point) => `<li>${point}</li>`).join("");
+      document.getElementById("dialogPoints").innerHTML = company.highlights
+        ? company.highlights.map((highlight) => `<li class="dialog-highlight"><span class="dialog-highlight-icon" aria-hidden="true">${highlight.icon}</span><span><strong>${highlight.title}</strong><small>${highlight.text}</small></span></li>`).join("")
+        : company.points.map((point) => `<li>${point}</li>`).join("");
       companyDialog.showModal();
       dialogClose.focus();
     });
@@ -221,6 +232,10 @@
   const achievementList = document.getElementById("achievementList");
   const achievementImage = document.getElementById("achievementImage");
   const achievementMedia = document.getElementById("achievementPanel");
+  const achievementUnavailable = document.getElementById("achievementUnavailable");
+  const achievementCategory = document.getElementById("achievementCategory");
+  const achievementTitle = document.getElementById("achievementTitle");
+  const achievementDescription = document.getElementById("achievementDescription");
   const achievementTabs = [];
   function moveTab(event, buttons, index, select) {
     const direction = event.key === "ArrowRight" || event.key === "ArrowDown" ? 1
@@ -233,30 +248,56 @@
   }
   function selectAchievement(index) {
     const achievement = data.achievements[index];
+    if (!achievement) return;
     achievementMedia.classList.add("is-changing");
-    achievementImage.src = achievement.image;
     achievementImage.alt = achievement.title;
-    achievementImage.addEventListener("load", () => achievementMedia.classList.remove("is-changing"), { once: true });
-    if (achievementImage.complete) requestAnimationFrame(() => achievementMedia.classList.remove("is-changing"));
-    document.getElementById("achievementCategory").textContent = achievement.category;
-    document.getElementById("achievementTitle").textContent = achievement.title;
-    document.getElementById("achievementDescription").textContent = achievement.description;
+    achievementCategory.textContent = achievement.group;
+    achievementTitle.textContent = achievement.title;
+    const captionSeparator = achievement.caption.indexOf(": ");
+    const captionLead = captionSeparator >= 0 ? achievement.caption.slice(0, captionSeparator + 1) : "";
+    const captionBody = captionSeparator >= 0 ? achievement.caption.slice(captionSeparator + 2) : achievement.caption;
+    achievementDescription.innerHTML = captionLead
+      ? `<strong>${captionLead}</strong> ${captionBody}`
+      : captionBody;
+    achievementImage.hidden = !achievement.image;
+    achievementUnavailable.hidden = Boolean(achievement.image);
+    if (achievement.image) {
+      achievementImage.addEventListener("load", () => achievementMedia.classList.remove("is-changing"), { once: true });
+      achievementImage.src = achievement.image;
+      if (achievementImage.complete) requestAnimationFrame(() => achievementMedia.classList.remove("is-changing"));
+    } else {
+      achievementImage.removeAttribute("src");
+      requestAnimationFrame(() => achievementMedia.classList.remove("is-changing"));
+    }
     achievementTabs.forEach((button, buttonIndex) => {
       button.classList.toggle("is-active", buttonIndex === index);
       button.setAttribute("aria-selected", String(buttonIndex === index));
       button.setAttribute("tabindex", buttonIndex === index ? "0" : "-1");
     });
   }
-  data.achievements.forEach((achievement, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.role = "tab";
-    button.setAttribute("aria-controls", "achievementPanel");
-    button.innerHTML = `<span>${pad(index + 1)}</span><strong>${achievement.title}</strong><small>${achievement.category}</small>`;
-    button.addEventListener("click", () => selectAchievement(index));
-    button.addEventListener("keydown", (event) => moveTab(event, achievementTabs, index, selectAchievement));
-    achievementList.appendChild(button);
-    achievementTabs.push(button);
+  const achievementGroups = ["Tech & Solutions", "Infra & Energy", "FMCG & Logistics"];
+  const achievementGroupClasses = ["achievement-group-tech", "achievement-group-infra", "achievement-group-fmcg"];
+  achievementGroups.forEach((group, groupIndex) => {
+    const groupSection = document.createElement("section");
+    groupSection.className = `achievement-group ${achievementGroupClasses[groupIndex]}`;
+    groupSection.innerHTML = `<h3>${group}</h3><div class="achievement-items"></div>`;
+    const groupItems = groupSection.querySelector(".achievement-items");
+    data.achievements.forEach((achievement, index) => {
+      if (achievement.group !== group) return;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.role = "tab";
+      button.className = "achievement-item";
+      button.setAttribute("aria-controls", "achievementPanel");
+      button.setAttribute("aria-label", `${achievement.title}: ${achievement.subtitle}`);
+      button.innerHTML = `<strong>${achievement.title}</strong><small>${achievement.subtitle}</small>`;
+      const achievementIndex = achievementTabs.length;
+      button.addEventListener("click", () => selectAchievement(index));
+      button.addEventListener("keydown", (event) => moveTab(event, achievementTabs, achievementIndex, selectAchievement));
+      groupItems.appendChild(button);
+      achievementTabs.push(button);
+    });
+    achievementList.appendChild(groupSection);
   });
   selectAchievement(0);
 
@@ -314,6 +355,170 @@
   }
   renderCycle("oilCycleFlow", data.oilCycle);
   renderCycle("pancitCycleFlow", data.pancitCycle);
+
+  function ensureTitleSolarSystem() {
+    if (titleSolarInitialized || currentSlide !== 0) return;
+    if (typeof THREE === "undefined") {
+      window.setTimeout(ensureTitleSolarSystem, 100);
+      return;
+    }
+
+    const container = document.getElementById("solarSystemContainer");
+    if (!container || !container.clientWidth || !container.clientHeight) {
+      window.setTimeout(ensureTitleSolarSystem, 100);
+      return;
+    }
+    titleSolarInitialized = true;
+
+    let width = container.clientWidth;
+    let height = container.clientHeight;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+    camera.position.set(0, 7.5, 13);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: "low-power" });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(1);
+    renderer.domElement.setAttribute("aria-hidden", "true");
+    container.prepend(renderer.domElement);
+
+    const solarGroup = new THREE.Group();
+    scene.add(solarGroup);
+
+    const sunGeometry = new THREE.SphereGeometry(1.1, 16, 16);
+    const sunMaterial = new THREE.MeshBasicMaterial({ color: 0x0284c7, wireframe: true, transparent: true, opacity: 0.18 });
+    const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
+    solarGroup.add(sunMesh);
+
+    const glowGeometry = new THREE.RingGeometry(1.2, 1.25, 32);
+    const glowMaterial = new THREE.MeshBasicMaterial({ color: 0x0284c7, side: THREE.DoubleSide, transparent: true, opacity: 0.3 });
+    const glowRing = new THREE.Mesh(glowGeometry, glowMaterial);
+    glowRing.rotation.x = Math.PI / 2;
+    solarGroup.add(glowRing);
+
+    function createOrbit(radius) {
+      const points = [];
+      for (let index = 0; index <= 64; index += 1) {
+        const angle = (index / 64) * Math.PI * 2;
+        points.push(new THREE.Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius));
+      }
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      const material = new THREE.LineBasicMaterial({ color: 0x0284c7, transparent: true, opacity: 0.12 });
+      solarGroup.add(new THREE.Line(geometry, material));
+    }
+    [3.2, 5, 6.8].forEach(createOrbit);
+
+    const planets = [
+      { id: "lbl-hanvins", radius: 3.2, angle: 0, speed: 0.007, size: 0.22 },
+      { id: "lbl-vertex", radius: 5, angle: 0, speed: 0.005, size: 0.22 },
+      { id: "lbl-men2solutions", radius: 5, angle: Math.PI, speed: 0.005, size: 0.2 },
+      { id: "lbl-men2parent", radius: 6.8, angle: 0, speed: 0.0035, size: 0.24 },
+      { id: "lbl-mamapina", radius: 6.8, angle: Math.PI, speed: 0.0035, size: 0.18 }
+    ];
+    planets.forEach((planet) => {
+      planet.mesh = new THREE.Mesh(
+        new THREE.SphereGeometry(planet.size, 8, 8),
+        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 })
+      );
+      solarGroup.add(planet.mesh);
+    });
+
+    const men2Group = new THREE.Group();
+    solarGroup.add(men2Group);
+    const moons = [
+      { id: "lbl-men2dagupan", radius: 1.15, angle: 0, speed: 0.022, size: 0.15 },
+      { id: "lbl-men2marikina", radius: 1.15, angle: (Math.PI * 2) / 3, speed: 0.022, size: 0.15 },
+      { id: "lbl-jcbs", radius: 1.15, angle: (Math.PI * 4) / 3, speed: 0.022, size: 0.15 }
+    ];
+    moons.forEach((moon) => {
+      moon.mesh = new THREE.Mesh(
+        new THREE.SphereGeometry(moon.size, 8, 8),
+        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 })
+      );
+      men2Group.add(moon.mesh);
+    });
+
+    const moonOrbitPoints = [];
+    for (let index = 0; index <= 32; index += 1) {
+      const angle = (index / 32) * Math.PI * 2;
+      moonOrbitPoints.push(new THREE.Vector3(Math.cos(angle) * 1.15, 0, Math.sin(angle) * 1.15));
+    }
+    const moonOrbit = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(moonOrbitPoints),
+      new THREE.LineBasicMaterial({ color: 0xea580c, transparent: true, opacity: 0.12 })
+    );
+    men2Group.add(moonOrbit);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+    const pointLight = new THREE.PointLight(0x0284c7, 2, 40);
+    pointLight.position.set(0, 0, 0);
+    scene.add(pointLight);
+
+    const sunOverlay = document.getElementById("threeSunOverlay");
+    function updateOverlayPosition(mesh, element, radius) {
+      if (!element) return;
+      const position = new THREE.Vector3();
+      mesh.getWorldPosition(position);
+      let scale = 1;
+      let zIndex = 10;
+      if (radius) {
+        const depthFactor = (position.z + radius) / (2 * radius);
+        scale = 0.7 + depthFactor * 0.45;
+        zIndex = position.z > 0 ? 20 : 8;
+      }
+      position.project(camera);
+      element.style.left = `${(position.x * 0.5 + 0.5) * width}px`;
+      element.style.top = `${(position.y * -0.5 + 0.5) * height}px`;
+      element.style.transform = `translate(-50%, -50%) scale(${scale})`;
+      element.style.zIndex = String(zIndex);
+    }
+
+    function renderFrame(advance, timestamp) {
+      planets.forEach((planet) => {
+        if (advance) planet.angle += planet.speed;
+        planet.mesh.position.x = Math.cos(planet.angle) * planet.radius;
+        planet.mesh.position.z = Math.sin(planet.angle) * planet.radius;
+        if (planet.id === "lbl-men2parent") men2Group.position.copy(planet.mesh.position);
+      });
+      moons.forEach((moon) => {
+        if (advance) moon.angle += moon.speed;
+        moon.mesh.position.x = Math.cos(moon.angle) * moon.radius;
+        moon.mesh.position.z = Math.sin(moon.angle) * moon.radius;
+      });
+
+      const time = reducedMotionQuery.matches ? 0 : timestamp;
+      solarGroup.rotation.y = time * 0.0001;
+      camera.position.x = Math.sin(time * 0.00035) * 1.8;
+      camera.position.y = 7 + Math.cos(time * 0.0002625) * 0.5;
+      camera.position.z = 13 + Math.sin(time * 0.0001575);
+      camera.lookAt(0, 0, 0);
+      renderer.render(scene, camera);
+      updateOverlayPosition(sunMesh, sunOverlay);
+      planets.forEach((planet) => updateOverlayPosition(planet.mesh, document.getElementById(planet.id), planet.radius));
+      moons.forEach((moon) => updateOverlayPosition(moon.mesh, document.getElementById(moon.id), 6.8));
+    }
+
+    let lastRenderTime = 0;
+    function animate(timestamp) {
+      requestAnimationFrame(animate);
+      if (currentSlide !== 0 || reducedMotionQuery.matches || timestamp - lastRenderTime < 1000 / 30) return;
+      lastRenderTime = timestamp;
+      renderFrame(true, Date.now());
+    }
+    renderFrame(false, 0);
+    requestAnimationFrame(animate);
+
+    window.addEventListener("resize", () => {
+      width = container.clientWidth;
+      height = container.clientHeight;
+      if (!width || !height) return;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+      renderFrame(false, reducedMotionQuery.matches ? 0 : Date.now());
+    });
+    reducedMotionQuery.addEventListener("change", () => renderFrame(false, reducedMotionQuery.matches ? 0 : Date.now()));
+  }
 
   const videoPlaceholder = document.getElementById("videoPlaceholder");
   configuredEmbedUrl = normalizeVideoEmbedUrl(data.videoEmbedUrl);
