@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#061426">
+  <meta name="theme-color" content="#edf4f9">
   <title>O!Save Growth Partnership | ROOCH Holding Inc.</title>
   <link rel="icon" href="assets/logos/rooch.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260714-2">
+    <link rel="stylesheet" href="styles.css?v=20260714-9">
 </head>
 <body>
   <div class="presentation" id="presentation">
@@ -84,19 +84,20 @@
         </section>
 
         <section class="slide video-slide" data-title="Video Presentation" data-section="O!SAVE PARTNERSHIP / VIDEO PRESENTATION">
-          <div class="video-copy"><p class="eyebrow">Operating partnership</p><h2>From production floor to O!Save shelf</h2><p>A short presentation will introduce the integrated manufacturing, logistics and technology workflow.</p><div class="video-status"><span></span><strong>Video asset pending</strong><small>Set <code>videoSrc</code> in presentation-data.js when supplied.</small></div></div>
+          <div class="video-copy"><p class="eyebrow">Operating partnership</p><h2>From production floor to O!Save shelf</h2><p>A short presentation will introduce the integrated manufacturing, logistics and technology workflow.</p><div class="video-status" id="videoStatus"><span></span><strong id="videoStatusTitle">Video asset pending</strong><small id="videoStatusDetail">Final media will be added when the supplied video is ready.</small><a id="videoOpenLink" class="video-open-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Open video in Google Drive</a></div></div>
           <div class="video-frame" id="videoFrame">
-            <video id="presentationVideo" controls playsinline preload="metadata"></video>
-            <div class="video-placeholder" id="videoPlaceholder"><div class="play-mark">&#9654;</div><strong>Presentation video</strong><span>Final media to be supplied</span></div>
+            <video id="presentationVideo" controls playsinline preload="metadata" hidden></video>
+            <iframe id="presentationVideoEmbed" class="video-embed" title="O!Save partnership presentation video" allow="autoplay; fullscreen" loading="lazy" hidden></iframe>
+            <div class="video-placeholder" id="videoPlaceholder"><div class="play-mark" aria-hidden="true">&#9654;</div><strong>Presentation video</strong><span>Final media to be supplied</span></div>
           </div>
         </section>
 
         <section class="slide demand-slide" data-title="Demand Impact: Oil" data-section="O!SAVE DEMAND IMPACT / EDIBLE OILS">
           <div class="slide-heading"><div><p class="eyebrow">Retail demand integration</p><h2>O!Save Demand Impact <span>Edible Oils</span></h2></div><div class="headline-metric"><strong>27,636</strong><span>cases / month</span></div></div>
           <div class="demand-grid">
-            <div class="data-panel"><h3>Regional volume demand</h3><div class="region-bars" id="oilDemandBars"></div></div>
+            <div class="data-panel"><h3>Cases per month by region</h3><div class="region-bars" id="oilDemandBars"></div></div>
             <div class="demand-summary">
-              <div class="share-ring" style="--value:55"><div><strong>55%</strong><span>Nationwide supply share</span></div></div>
+              <div class="share-ring" role="img" aria-label="55 percent nationwide supply share" style="--value:55"><div><strong>55%</strong><span>Nationwide supply share</span></div></div>
               <div class="trajectory"><h3>Store expansion trajectory</h3><div><span>Current</span><strong>900</strong><small>stores</small></div><div><span>Year 1</span><strong>2,000</strong><small>stores</small></div><div><span>Year 2</span><strong>4,000</strong><small>stores</small></div></div>
             </div>
           </div>
@@ -106,11 +107,11 @@
           <div class="slide-heading"><div><p class="eyebrow">Proposed monthly supply allocation</p><h2>O!Save Demand Impact <span>Pancit</span></h2></div><div class="headline-metric"><strong>250,000</strong><span>recurring cases / month</span></div></div>
           <div class="pancit-demand-layout">
             <div class="product-demand">
-              <div class="product-row"><div><strong>Bihon</strong><span>454g</span></div><strong>150,000 cases</strong><span>3,600,000 pcs</span><i style="--mix:60%"></i></div>
-              <div class="product-row"><div><strong>Canton</strong><span>300g</span></div><strong>100,000 cases</strong><span>2,160,000 pcs</span><i style="--mix:40%"></i></div>
-              <div class="product-row sample"><div><strong>Canton</strong><span>100g</span></div><strong>1,000 cases</strong><span>8,000 pcs</span><em>Initial sampling</em></div>
+              <div class="product-row"><div class="product-name"><strong>Bihon</strong><span>454g</span></div><div class="product-stat"><strong>150,000</strong><span>cases / month</span></div><div class="product-stat product-stat-secondary"><strong>3,600,000</strong><span>pieces / month</span></div><i style="--mix:60%"></i></div>
+              <div class="product-row"><div class="product-name"><strong>Canton</strong><span>300g</span></div><div class="product-stat"><strong>100,000</strong><span>cases / month</span></div><div class="product-stat product-stat-secondary"><strong>2,160,000</strong><span>pieces / month</span></div><i style="--mix:40%"></i></div>
+              <div class="product-row sample"><div class="product-name"><strong>Canton</strong><span>100g</span></div><div class="product-stat"><strong>1,000</strong><span>cases / month</span></div><div class="product-stat product-stat-secondary"><strong>8,000</strong><span>pieces / month</span></div><em>Initial sampling</em></div>
             </div>
-            <div class="allocation-panel"><h3>Seven-warehouse allocation</h3><div class="warehouse-grid" id="pancitWarehouses"></div><p><strong>5,760,000 pieces</strong> recurring monthly production volume</p></div>
+            <div class="allocation-panel"><h3>Seven-warehouse allocation</h3><div class="warehouse-grid" id="pancitWarehouses"></div><p><strong>5,760,000 pieces / month</strong> recurring production volume</p></div>
           </div>
         </section>
 
@@ -139,7 +140,7 @@
           <div class="slide-heading"><div><p class="eyebrow">Weekly import and collection cycle</p><h2>Working Capital Trade Cycle <span>Edible Oils</span></h2></div><div class="headline-metric"><strong>PHP 201.07M</strong><span>3-month requirement</span></div></div>
           <div class="capital-kpis"><div><span>Weekly purchase</span><strong>USD 270,255</strong></div><div><span>Monthly purchase</span><strong>USD 1.081M</strong></div><div><span>Weekly units</span><strong>219,893</strong></div><div><span>Fixed DSO</span><strong>45 days</strong></div></div>
           <div class="cycle-layout">
-            <div class="cycle-flow" id="oilCycleFlow"></div>
+            <div class="cycle-flow" id="oilCycleFlow" role="list" aria-label="Edible oil trade cycle"></div>
             <div class="capital-side"><h3>Weekly purchase</h3><div><span>Palm oil</span><strong>6 containers</strong><small>USD 168,990</small></div><div><span>Canola oil</span><strong>3 containers</strong><small>USD 101,265</small></div><p>Monthly PHP requirement <strong>PHP 67.02M</strong></p></div>
           </div>
         </section>
@@ -148,7 +149,7 @@
           <div class="slide-heading"><div><p class="eyebrow">Post-expansion operating cycle</p><h2>Working Capital Trade Cycle <span>Pancit</span></h2></div><div class="headline-metric"><strong>PHP 24.5M</strong><span>operating cash requirement</span></div></div>
           <div class="capital-kpis"><div><span>Quarterly materials</span><strong>PHP 73.5M</strong></div><div><span>Monthly materials</span><strong>PHP 24.5M</strong></div><div><span>Weekly output</span><strong>335.9K pcs</strong></div><div><span>Collection</span><strong>45 days</strong></div></div>
           <div class="pancit-cycle">
-            <div class="cycle-flow" id="pancitCycleFlow"></div>
+            <div class="cycle-flow" id="pancitCycleFlow" role="list" aria-label="Pancit trade cycle"></div>
             <div class="mix-panel"><h3>Monthly production mix</h3><div class="mix-bar"><i style="--size:55.4%;--tone:#24a9e8"></i><i style="--size:26.7%;--tone:#f2c14e"></i><i style="--size:17.9%;--tone:#45c486"></i></div><div class="mix-legend"><span><i style="--tone:#24a9e8"></i>Bihon 55.4%</span><span><i style="--tone:#f2c14e"></i>Canton 300g 26.7%</span><span><i style="--tone:#45c486"></i>Canton small 17.8%</span></div><p>45-day cash cycle requirement <strong>PHP 36.8M</strong></p></div>
           </div>
         </section>
@@ -183,6 +184,6 @@
   </dialog>
 
   <script src="presentation-data.js"></script>
-  <script src="app.js?v=20260714-2"></script>
+    <script src="app.js?v=20260714-9"></script>
 </body>
 </html>

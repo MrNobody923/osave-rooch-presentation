@@ -13,17 +13,50 @@
   const nextButton = document.getElementById("nextButton");
   const fullscreenButton = document.getElementById("fullscreenButton");
   const video = document.getElementById("presentationVideo");
+  const videoEmbed = document.getElementById("presentationVideoEmbed");
+  const videoStatusTitle = document.getElementById("videoStatusTitle");
+  const videoStatusDetail = document.getElementById("videoStatusDetail");
+  const videoOpenLink = document.getElementById("videoOpenLink");
   const mobileSidebarQuery = window.matchMedia("(max-width: 820px)");
   let currentSlide = 0;
+  let configuredEmbedUrl = "";
   let touchStartX = 0;
   let touchStartY = 0;
   let desktopSidebarOpen = true;
 
   const pad = (value) => String(value).padStart(2, "0");
   const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
+  const formatDuration = (value) => value.replace(/^(\d+)d$/, "$1 days");
 
   function isInteractiveTarget(target) {
-    return Boolean(target.closest("button, a, input, select, textarea, video, dialog"));
+    return Boolean(target.closest("button, a, input, select, textarea, video, iframe, dialog"));
+  }
+
+  function normalizeVideoEmbedUrl(url) {
+    if (!url) return "";
+    const trimmed = String(url).trim();
+    if (!trimmed) return "";
+    const driveMatch = trimmed.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+    if (driveMatch) return `https://drive.google.com/file/d/${driveMatch[1]}/preview`;
+    return trimmed;
+  }
+
+  function isVideoSlide(index) {
+    return slides[index]?.classList.contains("video-slide") ?? false;
+  }
+
+  function updateVideoPlayback(activeIndex) {
+    const onVideoSlide = isVideoSlide(activeIndex);
+
+    if (video) {
+      if (!onVideoSlide && !video.paused) video.pause();
+      video.hidden = !onVideoSlide || !video.src;
+    }
+
+    if (videoEmbed && configuredEmbedUrl) {
+      videoEmbed.src = onVideoSlide ? configuredEmbedUrl : "about:blank";
+      videoEmbed.hidden = !onVideoSlide;
+    }
   }
 
   function setSidebarOpen(open) {
@@ -54,7 +87,6 @@
 
   function showSlide(index, updateHash) {
     const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
-    if (nextIndex !== currentSlide && video && !video.paused) video.pause();
     currentSlide = nextIndex;
 
     slides.forEach((slide, slideNumber) => {
@@ -78,6 +110,7 @@
     document.title = `${activeSlide.dataset.title} | ROOCH x O!Save`;
 
     if (updateHash) history.replaceState(null, "", `#slide-${currentSlide + 1}`);
+    updateVideoPlayback(currentSlide);
     closeSidebar();
   }
 
@@ -105,7 +138,7 @@
       setSidebarOpen(false);
       return;
     }
-    if (event.target.closest("input, select, textarea, video, dialog, [contenteditable='true']")) return;
+    if (event.target.closest("input, select, textarea, video, iframe, dialog, [contenteditable='true']")) return;
     if (event.target.closest("button, a") && [" ", "Enter"].includes(event.key)) return;
     if (["ArrowRight", "PageDown", " ", "Enter"].includes(event.key)) {
       event.preventDefault();
@@ -195,14 +228,14 @@
 
   const maxOilDemand = Math.max(...data.oilDemand.map((item) => item[1]));
   document.getElementById("oilDemandBars").innerHTML = data.oilDemand.map(([region, cases]) => `
-    <div class="region-row">
+    <div class="region-row" role="img" aria-label="${region}: ${formatNumber(cases)} cases per month">
       <span>${region}</span>
-      <i><b style="width:${(cases / maxOilDemand) * 100}%"></b></i>
+      <i class="bar-track"><b class="bar-fill" style="width:${(cases / maxOilDemand) * 100}%"></b></i>
       <strong>${formatNumber(cases)}</strong>
     </div>`).join("");
 
   document.getElementById("pancitWarehouses").innerHTML = data.pancitWarehouses.map(([code, name, cases]) => `
-    <div class="warehouse-cell"><strong>${code}</strong><span>${name}</span><small>${formatNumber(cases)} cases</small></div>`).join("");
+    <div class="warehouse-cell" role="img" aria-label="${name}: ${formatNumber(cases)} cases per month"><strong>${code}</strong><span>${name}</span><small>${formatNumber(cases)} cases / month</small></div>`).join("");
 
   const capacityFields = ["Day", "Night", "Daily", "Monthly"];
   function selectCapacity(index) {
@@ -229,20 +262,52 @@
   selectCapacity(0);
 
   function renderCycle(targetId, steps) {
-    document.getElementById(targetId).innerHTML = steps.map(([label, duration], index) => `
-      <div class="cycle-step"><i>${pad(index + 1)}</i><strong>${label}</strong><span>${duration}</span></div>`).join("");
+    const radius = 33;
+    const stepMarkup = steps.map(([label, duration], index) => {
+      const angle = -90 + (index * 360) / steps.length;
+      const radians = angle * Math.PI / 180;
+      const x = 50 + radius * Math.cos(radians);
+      const y = 50 + radius * Math.sin(radians);
+      const readableDuration = formatDuration(duration);
+      return `<div class="cycle-step" role="listitem" aria-label="${label}, ${readableDuration}" style="--step-x:${x.toFixed(3)}%;--step-y:${y.toFixed(3)}%"><i>${pad(index + 1)}</i><strong>${label}</strong><span>${readableDuration}</span></div>`;
+    }).join("");
+    document.getElementById(targetId).innerHTML = `<div class="cycle-track" aria-hidden="true"></div><div class="cycle-center" aria-hidden="true"><strong>&#8635;</strong><span>Trade cycle</span></div>${stepMarkup}`;
   }
   renderCycle("oilCycleFlow", data.oilCycle);
   renderCycle("pancitCycleFlow", data.pancitCycle);
 
   const videoPlaceholder = document.getElementById("videoPlaceholder");
+  configuredEmbedUrl = normalizeVideoEmbedUrl(data.videoEmbedUrl);
+
   if (data.videoSrc) {
     video.src = data.videoSrc;
-    video.hidden = false;
+    video.hidden = true;
+    videoEmbed.hidden = true;
     videoPlaceholder.hidden = true;
+    if (videoOpenLink) {
+      videoOpenLink.hidden = true;
+      videoOpenLink.removeAttribute("href");
+    }
+    if (videoStatusTitle) videoStatusTitle.textContent = "Presentation video ready";
+    if (videoStatusDetail) videoStatusDetail.textContent = "Loaded from local media file.";
+  } else if (configuredEmbedUrl) {
+    video.hidden = true;
+    videoEmbed.hidden = true;
+    videoPlaceholder.hidden = true;
+    if (videoOpenLink) {
+      videoOpenLink.href = configuredEmbedUrl;
+      videoOpenLink.hidden = false;
+    }
+    if (videoStatusTitle) videoStatusTitle.textContent = "Presentation video ready";
+    if (videoStatusDetail) videoStatusDetail.textContent = "Use the player controls, or open the video in Google Drive if playback is blocked.";
   } else {
     video.hidden = true;
+    videoEmbed.hidden = true;
     videoPlaceholder.hidden = false;
+    if (videoOpenLink) {
+      videoOpenLink.hidden = true;
+      videoOpenLink.removeAttribute("href");
+    }
   }
 
   const hashMatch = window.location.hash.match(/^#slide-(\d+)$/);

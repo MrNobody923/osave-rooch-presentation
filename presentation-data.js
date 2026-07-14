@@ -1,6 +1,7 @@
 window.OSavePresentation = {
   presentationDate: "16 July 2026",
   videoSrc: "",
+  videoEmbedUrl: "https://drive.google.com/file/d/1qkeE5kPh6L4RRLE-_LyiFysJ5LogNIo7/preview",
   companies: {
     rooch: { title: "ROOCH Holding Inc.", category: "Holding company", logo: "assets/logos/rooch.png", description: "The strategic center coordinating capital, governance and cross-company execution for the O!Save partnership.", points: ["Group strategy and capital stewardship", "Integrated operating governance", "Commercial partnership management"] },
     vertex: { title: "Vertex Technologies", category: "Technology and solutions", logo: "assets/logos/vertex.png", description: "Enterprise systems connecting procurement, inventory, manufacturing, logistics and financial reporting.", points: ["VOS ERP and consolidated reporting", "Sales-force and distribution visibility", "Workflow automation and controls"] },
