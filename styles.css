@@ -512,3 +512,52 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
   .cycle-step strong { font-size: 11px; line-height: 1.2; }
   .cycle-step span { margin-top: 3px; font-size: 10px; text-align: center; }
 }
+
+/* Presentation polish */
+.slide:not(.is-active) .orbit,
+.slide:not(.is-active) .orbit-nodes { animation-play-state: paused; }
+.mobile-title-mark { display: none; }
+.data-panel { display: flex; flex-direction: column; }
+.region-bars { flex: 1; align-content: center; }
+.achievement-list button,
+.capacity-controls button,
+.company-node { transition: transform .2s ease, border-color .2s ease, background-color .2s ease, box-shadow .2s ease; }
+.achievement-list button:hover,
+.capacity-controls button:hover,
+.company-node:hover { box-shadow: 0 8px 20px rgba(16,42,67,.08); }
+.achievement-list button:focus-visible,
+.capacity-controls button:focus-visible,
+.company-node:focus-visible { position: relative; z-index: 2; }
+.achievement-list button { position: relative; }
+.achievement-list button.is-active::after { content: ""; position: absolute; left: 11px; right: 11px; bottom: 6px; height: 2px; background: var(--blue); }
+.achievement-media img { transition: opacity .22s ease; }
+.achievement-media.is-changing img { opacity: .18; }
+.video-placeholder { color: var(--ink); background: linear-gradient(145deg, rgba(8,127,189,.12), rgba(255,255,255,.72) 58%), repeating-linear-gradient(135deg, rgba(16,42,67,.025) 0 1px, transparent 1px 12px); }
+.play-mark { box-shadow: 0 8px 22px rgba(8,127,189,.12); }
+.company-dialog { max-height: min(720px, calc(100vh - 40px)); overflow-y: auto; }
+.progress-track { min-width: 0; }
+
+@media (min-width: 821px) and (max-width: 1500px) {
+  .title-copy { width: min(58%, 660px); }
+  .title-copy h1 { font-size: 44px; }
+}
+
+@media (max-width: 820px) {
+  .slide { padding-bottom: calc(20px + var(--controls)); scroll-padding-bottom: calc(20px + var(--controls)); }
+}
+
+@media (max-width: 600px) {
+  .mobile-title-mark { position: absolute; right: 20px; bottom: 24px; display: flex; align-items: center; gap: 9px; color: var(--muted); font: 700 11px var(--heading); text-transform: uppercase; }
+  .mobile-title-mark img { width: 42px; height: 42px; object-fit: contain; border: 1px solid rgba(8,127,189,.35); border-radius: 50%; background: var(--surface); }
+  .title-slide { padding-bottom: calc(20px + var(--controls) + 16px); }
+  .date-line { width: max-content; }
+  .title-copy h1 { line-height: 1.02; }
+  .title-insights small { font-size: 11px; line-height: 1.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achievement-list button,
+  .capacity-controls button,
+  .company-node,
+  .achievement-media img { transition: none; }
+}

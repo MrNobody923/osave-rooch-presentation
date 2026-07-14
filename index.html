@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260714-13">
+    <link rel="stylesheet" href="styles.css?v=20260714-16">
 </head>
 <body>
   <div class="presentation" id="presentation">
@@ -29,7 +29,7 @@
         <p id="sectionLabel">ROOCH HOLDING INC. / O!SAVE PARTNERSHIP</p>
         <div class="topbar-actions">
           <span id="slideCounter">01 / 11</span>
-          <button class="command-button" id="fullscreenButton" type="button">Present</button>
+          <button class="command-button" id="fullscreenButton" type="button" aria-label="Enter presentation mode">Present</button>
         </div>
       </header>
 
@@ -56,6 +56,7 @@
               <div class="orbit-node node-hanvin"><img src="assets/logos/hanvin.png" alt="Hanvin"><span>Infrastructure</span></div>
             </div>
           </div>
+          <div class="mobile-title-mark" aria-hidden="true"><img src="assets/logos/rooch.png" alt=""><span>ROOCH Holding Inc.</span></div>
         </section>
 
         <section class="slide structure-slide" data-title="Corporate Structure" data-section="ROOCH HOLDING INC. / CORPORATE STRUCTURE">
@@ -78,7 +79,7 @@
           <div class="slide-heading"><div><p class="eyebrow">Execution evidence</p><h2>Key Achievements</h2></div><p>Operational milestones across technology, infrastructure and FMCG distribution.</p></div>
           <div class="achievement-layout">
             <div class="achievement-list" id="achievementList" role="tablist" aria-label="Achievements"></div>
-            <figure class="achievement-media">
+            <figure class="achievement-media" id="achievementPanel">
               <img id="achievementImage" src="assets/achievements/vos-erp.png" alt="VOS ERP dashboard">
               <figcaption><span id="achievementCategory">Technology</span><h3 id="achievementTitle">VOS ERP Suite</h3><p id="achievementDescription">Consolidated accounting, inventory and operational control across the group.</p></figcaption>
             </figure>
@@ -119,7 +120,7 @@
 
         <section class="slide capacity-slide" data-title="Capacity: Oil" data-section="MANUFACTURING CAPACITY / EDIBLE OILS">
           <div class="slide-heading"><div><p class="eyebrow">Capacity optimization</p><h2>Manufacturing Capacity <span>Edible Oils</span></h2></div><div class="capacity-controls" id="oilCapacityTabs" role="tablist"></div></div>
-          <div class="capacity-focus">
+          <div class="capacity-focus" id="oilCapacityContent">
             <div class="capacity-product"><span id="capacityProductLabel">Palm Oil 350mL</span><strong id="capacityGrowth">+336%</strong><small>production capacity</small></div>
             <div class="comparison-block current"><p>Current capacity</p><div><span>Day shift</span><strong id="currentDay">12,600</strong></div><div><span>Night shift</span><strong id="currentNight">7,200</strong></div><div><span>Daily</span><strong id="currentDaily">19,800</strong></div><div class="total"><span>Monthly potential</span><strong id="currentMonthly">594,000</strong></div></div>
             <div class="capacity-arrow">&#8594;</div>
@@ -173,7 +174,7 @@
 
       <footer class="controls">
         <button class="nav-button" id="previousButton" type="button" aria-label="Previous slide">&#8592; <span>Previous</span></button>
-        <div class="progress-track"><i id="progressBar"></i></div>
+        <div class="progress-track" role="progressbar" aria-label="Presentation progress" aria-valuemin="1" aria-valuemax="11" aria-valuenow="1"><i id="progressBar"></i></div>
         <button class="nav-button" id="nextButton" type="button" aria-label="Next slide"><span>Next</span> &#8594;</button>
       </footer>
     </main>
@@ -186,6 +187,6 @@
   </dialog>
 
   <script src="presentation-data.js"></script>
-    <script src="app.js?v=20260714-10"></script>
+    <script src="app.js?v=20260714-12"></script>
 </body>
 </html>

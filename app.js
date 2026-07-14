@@ -23,6 +23,7 @@
   let touchStartX = 0;
   let touchStartY = 0;
   let desktopSidebarOpen = true;
+  let lastDialogTrigger = null;
 
   const pad = (value) => String(value).padStart(2, "0");
   const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
@@ -105,6 +106,7 @@
     counter.textContent = `${pad(currentSlide + 1)} / ${pad(slides.length)}`;
     sectionLabel.textContent = activeSlide.dataset.section;
     progressBar.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+    progressBar.parentElement.setAttribute("aria-valuenow", String(currentSlide + 1));
     previousButton.disabled = currentSlide === 0;
     nextButton.disabled = currentSlide === slides.length - 1;
     document.title = `${activeSlide.dataset.title} | ROOCH x O!Save`;
@@ -139,6 +141,7 @@
       return;
     }
     if (event.target.closest("input, select, textarea, video, iframe, dialog, [contenteditable='true']")) return;
+    if (event.target.closest("[role='tab']")) return;
     if (event.target.closest("button, a") && [" ", "Enter"].includes(event.key)) return;
     if (["ArrowRight", "PageDown", " ", "Enter"].includes(event.key)) {
       event.preventDefault();
@@ -174,20 +177,28 @@
         await document.exitFullscreen();
       }
     } catch (_error) {
-      document.body.classList.toggle("present-mode");
+      const presenting = document.body.classList.toggle("present-mode");
+      fullscreenButton.textContent = presenting ? "Exit" : "Present";
+      fullscreenButton.setAttribute("aria-label", presenting ? "Exit presentation mode" : "Enter presentation mode");
     }
   }
 
   fullscreenButton.addEventListener("click", togglePresentationMode);
   document.addEventListener("fullscreenchange", () => {
-    document.body.classList.toggle("present-mode", Boolean(document.fullscreenElement));
-    fullscreenButton.textContent = document.fullscreenElement ? "Exit" : "Present";
+    const presenting = Boolean(document.fullscreenElement);
+    document.body.classList.toggle("present-mode", presenting);
+    fullscreenButton.textContent = presenting ? "Exit" : "Present";
+    fullscreenButton.setAttribute("aria-label", presenting ? "Exit presentation mode" : "Enter presentation mode");
   });
 
   const companyDialog = document.getElementById("companyDialog");
+  const dialogClose = document.getElementById("dialogClose");
   document.querySelectorAll("[data-company]").forEach((button) => {
+    button.setAttribute("aria-haspopup", "dialog");
+    button.setAttribute("aria-controls", "companyDialog");
     button.addEventListener("click", () => {
       const company = data.companies[button.dataset.company];
+      lastDialogTrigger = button;
       document.getElementById("dialogLogo").src = company.logo;
       document.getElementById("dialogLogo").alt = `${company.title} logo`;
       document.getElementById("dialogCategory").textContent = company.category;
@@ -195,34 +206,57 @@
       document.getElementById("dialogDescription").textContent = company.description;
       document.getElementById("dialogPoints").innerHTML = company.points.map((point) => `<li>${point}</li>`).join("");
       companyDialog.showModal();
+      dialogClose.focus();
     });
   });
-  document.getElementById("dialogClose").addEventListener("click", () => companyDialog.close());
+  dialogClose.addEventListener("click", () => companyDialog.close());
+  companyDialog.addEventListener("close", () => {
+    if (lastDialogTrigger) lastDialogTrigger.focus();
+    lastDialogTrigger = null;
+  });
   companyDialog.addEventListener("click", (event) => {
     if (event.target === companyDialog) companyDialog.close();
   });
 
   const achievementList = document.getElementById("achievementList");
   const achievementImage = document.getElementById("achievementImage");
+  const achievementMedia = document.getElementById("achievementPanel");
+  const achievementTabs = [];
+  function moveTab(event, buttons, index, select) {
+    const direction = event.key === "ArrowRight" || event.key === "ArrowDown" ? 1
+      : event.key === "ArrowLeft" || event.key === "ArrowUp" ? -1 : 0;
+    if (!direction) return;
+    event.preventDefault();
+    const nextIndex = (index + direction + buttons.length) % buttons.length;
+    buttons[nextIndex].focus();
+    select(nextIndex);
+  }
   function selectAchievement(index) {
     const achievement = data.achievements[index];
+    achievementMedia.classList.add("is-changing");
     achievementImage.src = achievement.image;
     achievementImage.alt = achievement.title;
+    achievementImage.addEventListener("load", () => achievementMedia.classList.remove("is-changing"), { once: true });
+    if (achievementImage.complete) requestAnimationFrame(() => achievementMedia.classList.remove("is-changing"));
     document.getElementById("achievementCategory").textContent = achievement.category;
     document.getElementById("achievementTitle").textContent = achievement.title;
     document.getElementById("achievementDescription").textContent = achievement.description;
-    Array.from(achievementList.children).forEach((button, buttonIndex) => {
+    achievementTabs.forEach((button, buttonIndex) => {
       button.classList.toggle("is-active", buttonIndex === index);
       button.setAttribute("aria-selected", String(buttonIndex === index));
+      button.setAttribute("tabindex", buttonIndex === index ? "0" : "-1");
     });
   }
   data.achievements.forEach((achievement, index) => {
     const button = document.createElement("button");
     button.type = "button";
     button.role = "tab";
+    button.setAttribute("aria-controls", "achievementPanel");
     button.innerHTML = `<span>${pad(index + 1)}</span><strong>${achievement.title}</strong><small>${achievement.category}</small>`;
     button.addEventListener("click", () => selectAchievement(index));
+    button.addEventListener("keydown", (event) => moveTab(event, achievementTabs, index, selectAchievement));
     achievementList.appendChild(button);
+    achievementTabs.push(button);
   });
   selectAchievement(0);
 
@@ -238,6 +272,7 @@
     <div class="warehouse-cell" role="img" aria-label="${name}: ${formatNumber(cases)} cases per month"><strong>${code}</strong><span>${name}</span><small>${formatNumber(cases)} cases / month</small></div>`).join("");
 
   const capacityFields = ["Day", "Night", "Daily", "Monthly"];
+  const capacityTabs = [];
   function selectCapacity(index) {
     const capacity = data.oilCapacity[index];
     document.getElementById("capacityProductLabel").textContent = capacity.label;
@@ -246,18 +281,22 @@
       document.getElementById(`current${field}`).textContent = formatNumber(capacity.current[fieldIndex]);
       document.getElementById(`expanded${field}`).textContent = formatNumber(capacity.expanded[fieldIndex]);
     });
-    Array.from(document.getElementById("oilCapacityTabs").children).forEach((button, buttonIndex) => {
+    capacityTabs.forEach((button, buttonIndex) => {
       button.classList.toggle("is-active", buttonIndex === index);
       button.setAttribute("aria-selected", String(buttonIndex === index));
+      button.setAttribute("tabindex", buttonIndex === index ? "0" : "-1");
     });
   }
   data.oilCapacity.forEach((capacity, index) => {
     const button = document.createElement("button");
     button.type = "button";
     button.role = "tab";
+    button.setAttribute("aria-controls", "oilCapacityContent");
     button.textContent = capacity.label;
     button.addEventListener("click", () => selectCapacity(index));
+    button.addEventListener("keydown", (event) => moveTab(event, capacityTabs, index, selectCapacity));
     document.getElementById("oilCapacityTabs").appendChild(button);
+    capacityTabs.push(button);
   });
   selectCapacity(0);
 
