@@ -145,26 +145,75 @@
           </div>
         </section>
 
-        <section class="slide demand-slide" data-title="Demand Impact: Oil" data-section="O!SAVE DEMAND IMPACT / OILS">
-          <div class="slide-heading"><div><p class="eyebrow">Retail demand integration</p><h2>O!Save Demand Impact <span>Oils</span></h2></div><div class="headline-metric"><strong>27,636</strong><span>cases / month</span></div></div>
-          <div class="demand-grid">
-            <div class="data-panel"><h3>Cases per month by region</h3><div class="region-bars" id="oilDemandBars"></div></div>
-            <div class="demand-summary">
-              <div class="share-ring" role="img" aria-label="55 percent nationwide supply share" style="--value:55"><div><strong>55%</strong><span>Nationwide supply share</span></div></div>
-              <div class="trajectory"><h3>Store expansion trajectory</h3><div><span>Current</span><strong>900</strong><small>stores</small></div><div><span>Year 1</span><strong>2,000</strong><small>stores</small></div><div><span>Year 2</span><strong>4,000</strong><small>stores</small></div></div>
-            </div>
+        <section class="slide demand-slide" data-title="Demand Impact: Oil" data-section="O!SAVE CREDIT PLAN / RETAIL STORES DEMAND IMPACT">
+          <div class="slide-heading"><div><p class="eyebrow">RETAIL DEMAND INTEGRATION</p><h2>O!Save Demand Impact</h2></div><p>Supplying the rapid regional expansion of nationwide discount retail channels</p></div>
+          <div class="demand-reference-layout">
+            <section class="demand-column demand-table-column" aria-labelledby="oilRegionalDemandTitle">
+              <h3 id="oilRegionalDemandTitle">Regional Volume Demand</h3>
+              <p class="demand-column-description">Breakdown of monthly cases requested by regional distribution hubs</p>
+              <div class="demand-table-wrap">
+                <table class="oil-demand-table">
+                  <thead><tr><th scope="col">Warehouse Location</th><th scope="col">Quantity</th></tr></thead>
+                  <tbody id="oilDemandTable"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="demand-column demand-chart-column" aria-labelledby="oilDemandDistributionTitle">
+              <h3 id="oilDemandDistributionTitle">Demand Distribution</h3>
+              <p class="demand-column-description">Visual scaling of regional hub retail distribution volume</p>
+              <div class="oil-demand-chart" id="oilDemandChart" aria-label="Monthly oil demand distribution by regional hub"></div>
+            </section>
+
+            <section class="demand-column demand-impact-column" aria-labelledby="oilSupplyShareTitle">
+              <h3 id="oilSupplyShareTitle">O!Save Supply Share</h3>
+              <p class="demand-column-description">Production upgrade capacity impact on nationwide supply chain</p>
+              <div class="supply-gauge-box" role="img" aria-label="55 percent nationwide supply share">
+                <svg class="supply-gauge" viewBox="0 0 36 36" aria-hidden="true">
+                  <path class="supply-gauge-track" d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"></path>
+                  <path class="supply-gauge-value" d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"></path>
+                </svg>
+                <div><strong>55%</strong><span>Nationwide Share</span></div>
+              </div>
+              <div class="store-growth-tracker">
+                <h4>Store Expansion Trajectory</h4>
+                <div class="growth-timeline-vertical">
+                  <div class="growth-timeline-line" aria-hidden="true"></div>
+                  <div class="growth-timeline-item is-current"><i aria-hidden="true"></i><div><span>Current Staging</span><strong>900 Stores</strong></div></div>
+                  <div class="growth-timeline-item is-year-one"><i aria-hidden="true"></i><div><span>Year 1 Target</span><strong>2,000 Stores</strong></div></div>
+                  <div class="growth-timeline-item is-year-two"><i aria-hidden="true"></i><div><span>Year 2 Target</span><strong>4,000 Stores</strong></div></div>
+                </div>
+              </div>
+            </section>
           </div>
         </section>
 
-        <section class="slide demand-slide pancit" data-title="Demand Impact: Pancit" data-section="O!SAVE DEMAND IMPACT / PANCIT">
-          <div class="slide-heading"><div><p class="eyebrow">Proposed monthly supply allocation</p><h2>O!Save Demand Impact <span>Pancit</span></h2></div><div class="headline-metric"><strong>250,000</strong><span>recurring cases / month</span></div></div>
-          <div class="pancit-demand-layout">
-            <div class="product-demand">
-              <div class="product-row"><div class="product-name"><strong>Bihon</strong><span>454g</span></div><div class="product-stat"><strong>150,000</strong><span>cases / month</span></div><div class="product-stat product-stat-secondary"><strong>3,600,000</strong><span>pieces / month</span></div><i style="--mix:60%"></i></div>
-              <div class="product-row"><div class="product-name"><strong>Canton</strong><span>300g</span></div><div class="product-stat"><strong>100,000</strong><span>cases / month</span></div><div class="product-stat product-stat-secondary"><strong>2,160,000</strong><span>pieces / month</span></div><i style="--mix:40%"></i></div>
-              <div class="product-row sample"><div class="product-name"><strong>Canton</strong><span>100g</span></div><div class="product-stat"><strong>1,000</strong><span>cases / month</span></div><div class="product-stat product-stat-secondary"><strong>8,000</strong><span>pieces / month</span></div><em>Initial sampling</em></div>
-            </div>
-            <div class="allocation-panel"><h3>Seven-warehouse allocation</h3><div class="warehouse-grid" id="pancitWarehouses"></div><p><strong>5,760,000 pieces / month</strong> recurring production volume</p></div>
+        <section class="slide demand-slide pancit" data-title="Demand Impact: Pancit" data-section="O!SAVE CREDIT PLAN / PANCIT DEMAND IMPACT">
+          <div class="slide-heading"><div><p class="eyebrow">PROPOSED MONTHLY SUPPLY ALLOCATION</p><h2>O!Save Demand Impact <span>Pancit</span></h2></div><p>Recurring Bihon and Canton supply allocation across seven regional distribution hubs</p></div>
+          <div class="demand-reference-layout pancit-demand-reference">
+            <section class="demand-column demand-table-column" aria-labelledby="pancitVolumeDemandTitle">
+              <h3 id="pancitVolumeDemandTitle">Product Volume Demand</h3>
+              <p class="demand-column-description">Recurring production volume by Pancit product and pack size</p>
+              <div class="demand-table-wrap">
+                <table class="oil-demand-table pancit-demand-table">
+                  <thead><tr><th scope="col">Product</th><th scope="col">Cases / Month</th><th scope="col">Pieces / Month</th></tr></thead>
+                  <tbody id="pancitDemandTable"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="demand-column demand-chart-column" aria-labelledby="pancitDemandDistributionTitle">
+              <h3 id="pancitDemandDistributionTitle">Demand Distribution</h3>
+              <p class="demand-column-description">Monthly case mix across Bihon and Canton product lines</p>
+              <div class="oil-demand-chart pancit-demand-chart" id="pancitDemandChart" aria-label="Monthly Pancit demand distribution by product"></div>
+            </section>
+
+            <section class="demand-column pancit-allocation-column" aria-labelledby="pancitWarehouseAllocationTitle">
+              <h3 id="pancitWarehouseAllocationTitle">Seven-Warehouse Allocation</h3>
+              <p class="demand-column-description">Recurring case allocation across regional distribution hubs</p>
+              <div class="warehouse-grid pancit-warehouse-grid" id="pancitWarehouses"></div>
+              <div class="pancit-recurring-total"><strong id="pancitRecurringPieces">5,760,000</strong><span>pieces / month recurring production volume</span></div>
+            </section>
           </div>
         </section>
 
@@ -180,13 +229,14 @@
         </section>
 
         <section class="slide capacity-slide pancit" data-title="Capacity: Pancit" data-section="MANUFACTURING CAPACITY / PANCIT">
-          <div class="slide-heading"><div><p class="eyebrow">Current versus expanded output</p><h2>Manufacturing Capacity <span>Pancit</span></h2></div><div class="headline-metric"><strong>+362%</strong><span>monthly production</span></div></div>
-          <div class="capacity-compare">
-            <div class="production-state"><p>Current</p><strong>314,640</strong><span>pieces / month</span><div class="production-track"><i style="width:21.6%"></i></div><ul><li>Single production line</li><li>Day shift operation</li><li>One SKU at a time</li></ul></div>
-            <div class="expansion-bridge"><span>New line</span><span>Night shift</span><span>Parallel SKUs</span></div>
-            <div class="production-state future"><p>After expansion</p><strong>1,454,400</strong><span>pieces / month</span><div class="production-track"><i style="width:100%"></i></div><ul><li>Bihon: 806,400 pcs</li><li>Canton 300g: 388,800 pcs</li><li>Canton small: 259,200 pcs</li></ul></div>
+          <div class="slide-heading"><div><p class="eyebrow">Capacity optimization</p><h2>Manufacturing Capacity <span>Pancit</span></h2></div></div>
+          <div class="capacity-focus pancit-capacity-focus" id="pancitCapacityContent">
+            <div class="capacity-product"><span id="pancitCapacityLabel">Pancit Bihon &amp; Canton Lines</span><strong id="pancitCapacityGrowth">+362%</strong><small>production capacity</small></div>
+            <div class="comparison-block current"><p>Current capacity</p><div><span>Production line</span><strong class="capacity-descriptor" id="pancitCurrentLine">Single production line</strong></div><div><span>Shift coverage</span><strong class="capacity-descriptor" id="pancitCurrentShifts">Day shift operation</strong></div><div class="total"><span>Monthly output</span><strong id="pancitCurrentMonthly">314,640</strong></div><div><span>SKU mode</span><strong class="capacity-descriptor" id="pancitCurrentSkuMode">One SKU at a time</strong></div></div>
+            <div class="capacity-arrow" aria-hidden="true">&#8594;</div>
+            <div class="comparison-block expanded"><p>After expansion</p><div><span>Production line</span><strong class="capacity-descriptor" id="pancitExpandedLine">New production line</strong></div><div><span>Shift coverage</span><strong class="capacity-descriptor" id="pancitExpandedShifts">Day + night shifts</strong></div><div class="total"><span>Monthly output</span><strong id="pancitExpandedMonthly">1,454,400</strong></div><div><span>SKU mode</span><strong class="capacity-descriptor" id="pancitExpandedSkuMode">Parallel SKUs</strong></div><div class="capacity-breakdown" id="pancitProductBreakdown"><span>Expanded product output</span><ul></ul></div></div>
           </div>
-          <div class="capacity-footer"><div><strong>40,400</strong><span>Produced pieces / cycle</span></div><div><strong>20%</strong><span>Production buffer</span></div><div><strong>Day + night</strong><span>Shift coverage</span></div><div><strong>Full flexibility</strong><span>Simultaneous production</span></div></div>
+          <div class="capacity-footer" id="pancitCapacityFooter"></div>
         </section>
 
         <section class="slide capital-slide" data-title="Trade Cycle: Oil" data-section="WORKING CAPITAL TRADE CYCLE / OILS">

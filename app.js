@@ -301,14 +301,69 @@
   });
   selectAchievement(0);
 
-  const maxOilDemand = Math.max(...data.oilDemand.map((item) => item[1]));
-  document.getElementById("oilDemandBars").innerHTML = data.oilDemand.map(([region, cases]) => `
-    <div class="region-row" role="img" aria-label="${region}: ${formatNumber(cases)} cases per month">
-      <span>${region}</span>
-      <i class="bar-track"><b class="bar-fill" style="width:${(cases / maxOilDemand) * 100}%"></b></i>
-      <strong>${formatNumber(cases)}</strong>
-    </div>`).join("");
+  const maxOilDemand = Math.max(...data.oilDemand.map((item) => item.cases));
+  const totalOilDemand = data.oilDemand.reduce((total, item) => total + item.cases, 0);
+  document.getElementById("oilDemandTable").innerHTML = `${data.oilDemand.map((item) => `
+    <tr>
+      <td>${item.region}</td>
+      <td>${formatNumber(item.cases)} cases</td>
+    </tr>`).join("")}
+    <tr class="oil-demand-total">
+      <th scope="row">Total Monthly Demand</th>
+      <th>${formatNumber(totalOilDemand)} cases</th>
+    </tr>`;
 
+  document.getElementById("oilDemandChart").innerHTML = `
+    <div class="demand-chart-plot">
+      <span class="demand-chart-gridline demand-chart-gridline-top" aria-hidden="true"></span>
+      <span class="demand-chart-gridline demand-chart-gridline-quarter" aria-hidden="true"></span>
+      <span class="demand-chart-gridline demand-chart-gridline-half" aria-hidden="true"></span>
+      <span class="demand-chart-gridline demand-chart-gridline-three-quarter" aria-hidden="true"></span>
+      <div class="demand-bars">
+        ${data.oilDemand.map((item) => `
+          <div class="demand-bar-column" role="img" aria-label="${item.region}: ${formatNumber(item.cases)} cases per month" style="--bar-height:${(item.cases / maxOilDemand) * 100}%;--bar-color:${item.color}">
+            <span class="demand-bar-value">${item.cases >= 1000 ? `${(item.cases / 1000).toFixed(1)}K` : formatNumber(item.cases)}</span>
+            <i class="demand-bar-fill"></i>
+            <span class="demand-bar-label">${item.code}</span>
+          </div>`).join("")}
+      </div>
+    </div>
+    <p class="demand-chart-legend"><strong>Legend:</strong> ${data.oilDemand.map((item) => `${item.code}: ${item.region.split(",")[0]}`).join(" | ")}</p>`;
+
+  const pancitRecurringDemand = data.pancitDemand.filter((item) => !item.isSample);
+  const pancitRecurringCases = pancitRecurringDemand.reduce((total, item) => total + item.cases, 0);
+  const pancitRecurringPieces = pancitRecurringDemand.reduce((total, item) => total + item.pieces, 0);
+  const maxPancitDemand = Math.max(...pancitRecurringDemand.map((item) => item.cases));
+  document.getElementById("pancitDemandTable").innerHTML = `${data.pancitDemand.map((item) => `
+    <tr class="${item.isSample ? "pancit-sample-row" : ""}">
+      <td><span class="pancit-product-name">${item.product}</span><small>${item.size}</small>${item.isSample ? "<em>Initial sampling</em>" : ""}</td>
+      <td>${formatNumber(item.cases)}</td>
+      <td>${formatNumber(item.pieces)}</td>
+    </tr>`).join("")}
+    <tr class="oil-demand-total">
+      <th scope="row">Recurring total</th>
+      <th>${formatNumber(pancitRecurringCases)}</th>
+      <th>${formatNumber(pancitRecurringPieces)}</th>
+    </tr>`;
+
+  document.getElementById("pancitDemandChart").innerHTML = `
+    <div class="demand-chart-plot">
+      <span class="demand-chart-gridline demand-chart-gridline-top" aria-hidden="true"></span>
+      <span class="demand-chart-gridline demand-chart-gridline-quarter" aria-hidden="true"></span>
+      <span class="demand-chart-gridline demand-chart-gridline-half" aria-hidden="true"></span>
+      <span class="demand-chart-gridline demand-chart-gridline-three-quarter" aria-hidden="true"></span>
+      <div class="demand-bars">
+        ${data.pancitDemand.map((item) => `
+          <div class="demand-bar-column ${item.isSample ? "is-sample" : ""}" role="img" aria-label="${item.product} ${item.size}: ${formatNumber(item.cases)} cases per month" style="--bar-height:${Math.max(item.isSample ? 1 : (item.cases / maxPancitDemand) * 100, 1)}%;--bar-color:${item.color}">
+            <span class="demand-bar-value">${item.cases >= 1000 ? `${Math.round(item.cases / 1000)}K` : formatNumber(item.cases)}</span>
+            <i class="demand-bar-fill"></i>
+            <span class="demand-bar-label">${item.product} ${item.size}</span>
+          </div>`).join("")}
+      </div>
+    </div>
+    <p class="demand-chart-legend"><strong>Legend:</strong> Bihon 454g: 150K | Canton 300g: 100K | Canton 100g: 1K sample</p>`;
+
+  document.getElementById("pancitRecurringPieces").textContent = `${formatNumber(pancitRecurringPieces)}`;
   document.getElementById("pancitWarehouses").innerHTML = data.pancitWarehouses.map(([code, name, cases]) => `
     <div class="warehouse-cell" role="img" aria-label="${name}: ${formatNumber(cases)} cases per month"><strong>${code}</strong><span>${name}</span><small>${formatNumber(cases)} cases / month</small></div>`).join("");
 
@@ -340,6 +395,20 @@
     capacityTabs.push(button);
   });
   selectCapacity(0);
+
+  const pancitCapacity = data.pancitCapacity;
+  document.getElementById("pancitCapacityLabel").textContent = pancitCapacity.label;
+  document.getElementById("pancitCapacityGrowth").textContent = pancitCapacity.growth;
+  document.getElementById("pancitCurrentLine").textContent = pancitCapacity.current.line;
+  document.getElementById("pancitCurrentShifts").textContent = pancitCapacity.current.shifts;
+  document.getElementById("pancitCurrentMonthly").textContent = formatNumber(pancitCapacity.current.monthly);
+  document.getElementById("pancitCurrentSkuMode").textContent = pancitCapacity.current.skuMode;
+  document.getElementById("pancitExpandedLine").textContent = pancitCapacity.expanded.line;
+  document.getElementById("pancitExpandedShifts").textContent = pancitCapacity.expanded.shifts;
+  document.getElementById("pancitExpandedMonthly").textContent = formatNumber(pancitCapacity.expanded.monthly);
+  document.getElementById("pancitExpandedSkuMode").textContent = pancitCapacity.expanded.skuMode;
+  document.querySelector("#pancitProductBreakdown ul").innerHTML = pancitCapacity.products.map(([label, value]) => `<li><span>${label}</span><strong>${value}</strong></li>`).join("");
+  document.getElementById("pancitCapacityFooter").innerHTML = pancitCapacity.footer.map(([value, label]) => `<div><strong>${value}</strong><span>${label}</span></div>`).join("");
 
   function renderCycle(targetId, steps) {
     const radius = 33;

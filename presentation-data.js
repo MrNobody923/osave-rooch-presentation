@@ -32,8 +32,18 @@ window.OSavePresentation = {
     { group: "FMCG & Logistics", title: "Dever Energy", subtitle: "MEN2 Manila - Commenced Jun 2026", image: "assets/achievements/dever-source.jpg", caption: "MEN2 Manila (Dever Energy): Commenced brand distribution and logistics operations for Dever Energy Products in June 2026." }
   ],
   oilDemand: [
-    ["Plaridel, Bulacan", 6888], ["Pampanga Province", 4980], ["Naga & Kawit, Cavite", 4320],
-    ["Villasis, Pangasinan", 3840], ["Meycauayan, Bulacan", 3408], ["Nueva Ecija", 3360], ["Taytay, Rizal", 840]
+    { region: "Plaridel, Bulacan", code: "PLR", cases: 6888, color: "#0284c7" },
+    { region: "Pampanga Province", code: "PMP", cases: 4980, color: "#6366f1" },
+    { region: "Naga & Kawit, Cavite", code: "NAG", cases: 4320, color: "#9333ea" },
+    { region: "Villasis, Pangasinan", code: "VIL", cases: 3840, color: "#c026d3" },
+    { region: "Meycauayan, Bulacan", code: "MEY", cases: 3408, color: "#e11d48" },
+    { region: "Nueva Ecija", code: "NVE", cases: 3360, color: "#ea580c" },
+    { region: "Taytay, Rizal", code: "TAY", cases: 840, color: "#059669" }
+  ],
+  pancitDemand: [
+    { product: "Bihon", size: "454g", cases: 150000, pieces: 3600000, isSample: false, color: "#0284c7" },
+    { product: "Canton", size: "300g", cases: 100000, pieces: 2160000, isSample: false, color: "#d97706" },
+    { product: "Canton", size: "100g", cases: 1000, pieces: 8000, isSample: true, color: "#059669" }
   ],
   pancitWarehouses: [
     ["PLR", "Plaridel", 35714], ["PMP", "Pampanga", 35714], ["NAG", "Naga & Kawit", 35714],
@@ -44,6 +54,18 @@ window.OSavePresentation = {
     { label: "Palm Oil 1L", growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] },
     { label: "Canola Oil 1L", growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] }
   ],
+  pancitCapacity: {
+    label: "Pancit Bihon & Canton Lines",
+    growth: "+362%",
+    current: { line: "Single production line", shifts: "Day shift operation", monthly: 314640, skuMode: "One SKU at a time" },
+    expanded: { line: "New production line", shifts: "Day + night shifts", monthly: 1454400, skuMode: "Parallel SKUs" },
+    products: [
+      ["Bihon", "806,400 pcs"],
+      ["Canton 300g", "388,800 pcs"],
+      ["Canton small", "259,200 pcs"]
+    ],
+    footer: [["40,400", "Produced pieces / cycle"], ["20%", "Production buffer"], ["Day + night", "Shift coverage"], ["Full flexibility", "Simultaneous production"]]
+  },
   oilCycle: [["Purchase order", "5d"], ["Weekly shipment", "7d"], ["Warehouse", "8d"], ["Production", "1d"], ["Delivery to O!Save", "3d"], ["Collection", "45d"]],
   pancitCycle: [["Bulk purchase", "Quarterly"], ["Warehouse", "Materials"], ["Production", "Daily"], ["Delivery", "Daily"], ["O!Save sales", "Retail"], ["Collection", "45d"], ["Reinvestment", "Repeat"]]
 };
