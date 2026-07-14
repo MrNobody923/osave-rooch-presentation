@@ -271,7 +271,7 @@
       const readableDuration = formatDuration(duration);
       return `<div class="cycle-step" role="listitem" aria-label="${label}, ${readableDuration}" style="--step-x:${x.toFixed(3)}%;--step-y:${y.toFixed(3)}%"><i>${pad(index + 1)}</i><strong>${label}</strong><span>${readableDuration}</span></div>`;
     }).join("");
-    document.getElementById(targetId).innerHTML = `<div class="cycle-track" aria-hidden="true"></div><div class="cycle-center" aria-hidden="true"><strong>&#8635;</strong><span>Trade cycle</span></div>${stepMarkup}`;
+    document.getElementById(targetId).innerHTML = `<div class="cycle-track" aria-hidden="true"></div>${stepMarkup}`;
   }
   renderCycle("oilCycleFlow", data.oilCycle);
   renderCycle("pancitCycleFlow", data.pancitCycle);

@@ -88,11 +88,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
 .orbit { position: absolute; inset: 16%; border: 1px solid rgba(123,211,250,.28); border-radius: 50%; animation: rotate 36s linear infinite; }
 .orbit-two { inset: 4%; border-color: rgba(69,196,134,.2); animation-direction: reverse; animation-duration: 46s; }
 @keyframes rotate { to { transform: rotate(360deg); } }
+.orbit-nodes { position: absolute; inset: 0; z-index: 3; transform-origin: 50% 50%; animation: orbitNodes 90s linear infinite; will-change: transform; }
+@keyframes orbitNodes { to { transform: rotate(360deg); } }
 .ecosystem-core, .orbit-node { position: absolute; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.96); border: 2px solid rgba(8,127,189,.45); box-shadow: 0 12px 40px rgba(16,42,67,.13); }
 .ecosystem-core { width: 22%; aspect-ratio: 1; left: 39%; top: 39%; }
 .ecosystem-core img { width: 88%; height: 88%; object-fit: contain; border-radius: 50%; }
-.orbit-node { width: 13%; aspect-ratio: 1; }
-.orbit-node img { width: 78%; height: 78%; object-fit: contain; border-radius: 50%; }
+.orbit-node { width: 13%; height: 13%; min-width: 0; min-height: 0; aspect-ratio: 1; overflow: hidden; animation: orbitNodeCounter 90s linear infinite; will-change: transform; }
+@keyframes orbitNodeCounter { to { transform: rotate(-360deg); } }
+.orbit-node img { width: 78%; height: 78%; max-width: 100%; max-height: 100%; min-width: 0; min-height: 0; display: block; object-fit: contain; border-radius: 50%; }
 .orbit-node span { position: absolute; top: calc(100% + 7px); color: var(--muted); font-size: 9px; white-space: nowrap; }
 .node-vertex { left: 44%; top: 5%; }.node-men2 { right: 4%; top: 43%; }.node-mama { left: 43%; bottom: 3%; }.node-hanvin { left: 5%; top: 43%; }
 
@@ -266,7 +269,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
   .title-copy h1 { font-size: 48px; }
   .title-copy .lead { max-width: 540px; }
   .title-insights { max-width: 580px; }
-  .ecosystem { width: 44vw; right: -5vw; }
+  .ecosystem { width: 44vw; right: 0; }
 }
 
 @media (max-width: 600px) {
@@ -285,6 +288,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .orbit-nodes, .orbit-node { animation: none !important; }
 }
 
 /* Readability and figure clarity */
@@ -456,12 +460,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
 }
 .cycle-track {
   position: absolute;
-  inset: 23%;
+  z-index: 0;
+  inset: 27%;
   border: 2px solid rgba(8,127,189,.28);
   border-right-color: var(--blue);
   border-bottom-color: rgba(22,131,87,.55);
   border-radius: 50%;
   transform: rotate(-18deg);
+  pointer-events: none;
 }
 .cycle-track::after {
   content: "";
@@ -475,21 +481,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
   border-left: 9px solid var(--blue);
   transform: translateX(-20%);
 }
-.cycle-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 110px;
-  display: grid;
-  justify-items: center;
-  gap: 2px;
-  color: var(--muted);
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
-.cycle-center strong { color: var(--green); font: 700 34px/1 var(--heading); }
-.cycle-center span { font: 700 11px var(--heading); text-transform: uppercase; }
 .cycle-step {
   position: absolute;
   left: var(--step-x);
@@ -516,10 +507,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
 @media (max-width: 600px) {
   .cycle-layout, .pancit-cycle { flex: 0 0 auto; min-height: 0; }
   .cycle-flow { width: min(100%, 360px); height: min(360px, calc(100vw - 40px)); min-height: 0; }
-  .cycle-track { inset: 17%; }
-  .cycle-center { width: 90px; }
-  .cycle-center strong { font-size: 29px; }
-  .cycle-center span { font-size: 10px; }
   .cycle-step { width: 88px; grid-template-columns: 1fr; gap: 0; text-align: center; }
   .cycle-step i { width: 32px; height: 32px; margin-bottom: 6px; }
   .cycle-step strong { font-size: 11px; line-height: 1.2; }
