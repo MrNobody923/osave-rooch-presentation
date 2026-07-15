@@ -219,13 +219,131 @@
 
         <section class="slide capacity-slide" data-title="Capacity: Oil" data-section="MANUFACTURING CAPACITY / OILS">
           <div class="slide-heading"><div><p class="eyebrow">Capacity optimization</p><h2>Manufacturing Capacity <span>Oils</span></h2></div><div class="capacity-controls" id="oilCapacityTabs" role="tablist"></div></div>
-          <div class="capacity-focus" id="oilCapacityContent">
-            <div class="capacity-product"><span id="capacityProductLabel">Palm Oil 350mL</span><strong id="capacityGrowth">+336%</strong><small>production capacity</small></div>
-            <div class="comparison-block current"><p>Current capacity</p><div><span>Day shift</span><strong id="currentDay">12,600</strong></div><div><span>Night shift</span><strong id="currentNight">7,200</strong></div><div><span>Daily</span><strong id="currentDaily">19,800</strong></div><div class="total"><span>Monthly potential</span><strong id="currentMonthly">594,000</strong></div></div>
-            <div class="capacity-arrow">&#8594;</div>
-            <div class="comparison-block expanded"><p>After expansion</p><div><span>Day shift</span><strong id="expandedDay">43,200</strong></div><div><span>Night shift</span><strong id="expandedNight">43,200</strong></div><div><span>Daily</span><strong id="expandedDaily">86,400</strong></div><div class="total"><span>Monthly potential</span><strong id="expandedMonthly">2,592,000</strong></div></div>
+          <div class="capacity-workspace">
+            <aside class="capacity-sidebar" id="oilSidebar">
+              <h4>⚙️ Operational Controls</h4>
+
+              <div class="control-group">
+                <label for="oil-input-hours">
+                  Daily Operating Hours
+                  <span class="val-display" id="oil-val-hours">12 Hrs</span>
+                </label>
+                <input type="range" id="oil-input-hours" class="slider-input" min="6" max="24" step="1" value="12" />
+              </div>
+
+              <div class="control-group">
+                <label for="oil-input-days">
+                  Monthly Schedule Limit
+                  <span class="val-display" id="oil-val-days">30 Days</span>
+                </label>
+                <input type="range" id="oil-input-days" class="slider-input" min="10" max="31" step="1" value="30" />
+              </div>
+
+              <div class="mix-planner">
+                <h4>
+                  📅 Monthly Production Mix
+                  <span class="days-left" id="oil-days-status">Allocated: 30/30d</span>
+                </h4>
+                <div id="oil-mix-warning" class="mix-warning" hidden>⚠️ Allocations adjusted to match total production schedule.</div>
+
+                <div class="mix-slider-row">
+                  <label for="oil-mix-p350">
+                    Palm Oil 350mL
+                    <span class="val-display" id="oil-val-mix-p350">10 Days</span>
+                  </label>
+                  <input type="range" id="oil-mix-p350" class="slider-input" min="0" max="30" value="10" />
+                </div>
+
+                <div class="mix-slider-row">
+                  <label for="oil-mix-p1L">
+                    Palm Oil 1L
+                    <span class="val-display" id="oil-val-mix-p1L">10 Days</span>
+                  </label>
+                  <input type="range" id="oil-mix-p1L" class="slider-input" min="0" max="30" value="10" />
+                </div>
+
+                <div class="mix-slider-row">
+                  <label for="oil-mix-c1L">
+                    Canola Oil 1L
+                    <span class="val-display" id="oil-val-mix-c1L">10 Days</span>
+                  </label>
+                  <input type="range" id="oil-mix-c1L" class="slider-input" min="0" max="30" value="10" />
+                </div>
+              </div>
+            </aside>
+
+            <div class="capacity-main" id="oilCapacityScroll">
+              <!-- KPI row -->
+              <div class="oil-kpi-row">
+                <div class="kpi-card"><span class="kpi-icon vis-hidden">🕒</span><div class="kpi-label">Daily Run Hours</div><div class="kpi-value" id="oil-kpi-hours">12 Hours</div></div>
+                <div class="kpi-card"><span class="kpi-icon vis-hidden">👷</span><div class="kpi-label">Active Shifts</div><div class="kpi-value" id="oil-kpi-shifts">2 Shifts</div></div>
+                <div class="kpi-card"><span class="kpi-icon vis-hidden">📅</span><div class="kpi-label">Work Schedule</div><div class="kpi-value" id="oil-kpi-days">30 Days / Mo</div></div>
+                <div class="kpi-card"><span class="kpi-icon vis-hidden">⚙️</span><div class="kpi-label">Line Constraints</div><div class="kpi-value">1 SKU per Run</div></div>
+              </div>
+
+              <!-- Single comparison card (switched by tabs) -->
+              <div class="comparison-section">
+                <h2><span id="oilProdIcon">🟦</span><span id="oilProdLabel">Palm Oil</span><span class="product-tag" id="oilProdTag">350mL</span></h2>
+                <div class="comparison-grid">
+                  <div class="col current">
+                    <div class="col-header"><span class="icon-small">📉</span> Current Manufacturing Capacity</div>
+                    <div class="stat-row"><span class="stat-label">Day Shift Rate</span><span class="stat-value" id="currentDay">12,600</span></div>
+                    <div class="stat-row"><span class="stat-label">Night Shift Rate</span><span class="stat-value" id="currentNight">7,200</span></div>
+                    <div class="stat-row"><span class="stat-label">Daily Capacity</span><span class="stat-value" id="currentDaily">19,800</span></div>
+                    <div class="stat-row"><span class="stat-label">Potential Monthly</span><span class="stat-value" id="currentMonthly">594,000</span></div>
+                  </div>
+                  <div class="arrow-col"><span>➡️</span></div>
+                  <div class="col expanded">
+                    <div class="col-header"><span class="icon-small">📈</span> Expected Capacity after Expansion</div>
+                    <div class="stat-row"><span class="stat-label">Day Shift Rate</span><span class="stat-value" id="expandedDay">43,200</span></div>
+                    <div class="stat-row"><span class="stat-label">Night Shift Rate</span><span class="stat-value" id="expandedNight">43,200</span></div>
+                    <div class="stat-row"><span class="stat-label">Daily Capacity</span><span class="stat-value" id="expandedDaily">86,400</span></div>
+                    <div class="stat-row"><span class="stat-label">Potential Monthly</span><span class="stat-value" id="expandedMonthly">2,592,000</span></div>
+                    <div class="badge-percent" id="growthBadge">+336% Production Capacity</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chart -->
+              <div class="oil-chart-row">
+                <h4>📊 Combined Monthly Output Chart</h4>
+                <div class="chart-container">
+                  <div class="chart-bar-wrapper">
+                    <div class="chart-bar-group">
+                      <div class="chart-bar current" id="oil-bar-p350-curr" style="height:30%"></div>
+                      <div class="chart-bar expanded" id="oil-bar-p350-exp" style="height:90%"></div>
+                    </div>
+                    <div class="chart-label">Palm 350mL</div>
+                  </div>
+                  <div class="chart-bar-wrapper">
+                    <div class="chart-bar-group">
+                      <div class="chart-bar current" id="oil-bar-p1L-curr" style="height:20%"></div>
+                      <div class="chart-bar expanded" id="oil-bar-p1L-exp" style="height:50%"></div>
+                    </div>
+                    <div class="chart-label">Palm 1L</div>
+                  </div>
+                  <div class="chart-bar-wrapper">
+                    <div class="chart-bar-group">
+                      <div class="chart-bar current" id="oil-bar-c1L-curr" style="height:20%"></div>
+                      <div class="chart-bar expanded" id="oil-bar-c1L-exp" style="height:50%"></div>
+                    </div>
+                    <div class="chart-label">Canola 1L</div>
+                  </div>
+                </div>
+                <div class="chart-legend">
+                  <div class="legend-item"><div class="legend-color" style="background:#0B1F3A"></div><span>Current</span></div>
+                  <div class="legend-item"><div class="legend-color" style="background:#2E8B57"></div><span>After Expansion</span></div>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <div class="capacity-footer"><div><strong>12 hours</strong><span>Daily operation</span></div><div><strong>2 shifts</strong><span>Active schedule</span></div><div><strong>30 days</strong><span>Monthly schedule</span></div><div><strong>1 SKU</strong><span>Per production run</span></div></div>
+          <div class="capacity-footer oil-summary-footer">
+            <div><strong class="hl-number" id="exec-total-curr">120,000 btl</strong><span>Monthly Combined (Current)</span></div>
+            <div><strong class="hl-number" id="exec-total-exp">400,000 btl</strong><span>Monthly Combined (Expanded)</span></div>
+            <div><strong class="hl-number text-green" id="exec-vol-gain">+280,000 btl</strong><span>Net Monthly Volume Gain</span></div>
+            <div><strong class="hl-number" id="exec-pct-gain">+233%</strong><span>Overall Capacity Increase</span></div>
+          </div>
         </section>
 
         <section class="slide capacity-slide pancit" data-title="Capacity: Pancit" data-section="MANUFACTURING CAPACITY / PANCIT">

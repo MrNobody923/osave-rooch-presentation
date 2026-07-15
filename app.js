@@ -367,34 +367,150 @@
   document.getElementById("pancitWarehouses").innerHTML = data.pancitWarehouses.map(([code, name, cases]) => `
     <div class="warehouse-cell" role="img" aria-label="${name}: ${formatNumber(cases)} cases per month"><strong>${code}</strong><span>${name}</span><small>${formatNumber(cases)} cases / month</small></div>`).join("");
 
-  const capacityFields = ["Day", "Night", "Daily", "Monthly"];
+  const OIL_RATES = {
+    p350: { fixedCurrDay: 12600, fixedCurrNight: 7200, expHourly: 7200 },
+    p1L:  { fixedCurrDay: 4800,  fixedCurrNight: 3600, expHourly: 1800 },
+    c1L:  { fixedCurrDay: 4800,  fixedCurrNight: 3600, expHourly: 1800 }
+  };
+  const OIL_KEYS = ["p350","p1L","c1L"];
   const capacityTabs = [];
-  function selectCapacity(index) {
-    const capacity = data.oilCapacity[index];
-    document.getElementById("capacityProductLabel").textContent = capacity.label;
-    document.getElementById("capacityGrowth").textContent = capacity.growth;
-    capacityFields.forEach((field, fieldIndex) => {
-      document.getElementById(`current${field}`).textContent = formatNumber(capacity.current[fieldIndex]);
-      document.getElementById(`expanded${field}`).textContent = formatNumber(capacity.expanded[fieldIndex]);
+  let selectedOilIndex = 0;
+
+  function computeScenario(ratesObj, skuDays, hours, totalDays) {
+    const dayHrs = Math.ceil(hours / 2);
+    const nightHrs = Math.floor(hours / 2);
+
+    const currDay = ratesObj.fixedCurrDay;
+    const currNight = ratesObj.fixedCurrNight;
+    const currDaily = currDay + currNight;
+    const currMonthlyPotential = currDaily * 30;
+    const currActualMixed = currDaily * skuDays;
+
+    const expDay = ratesObj.expHourly * dayHrs;
+    const expNight = ratesObj.expHourly * nightHrs;
+    const expDaily = expDay + expNight;
+    const expMonthlyPotential = expDaily * totalDays;
+    const expActualMixed = expDaily * skuDays;
+
+    return { currDay, currNight, currDaily, currMonthlyPotential, currActualMixed, expDay, expNight, expDaily, expMonthlyPotential, expActualMixed };
+  }
+
+  function updateOilSimulation(selectedIndex) {
+    const hours = parseInt(document.getElementById("oil-input-hours").value);
+    const totalDays = parseInt(document.getElementById("oil-input-days").value);
+
+    document.getElementById("oil-val-hours").textContent = `${hours} Hrs`;
+    document.getElementById("oil-val-days").textContent = `${totalDays} Days`;
+    document.getElementById("oil-kpi-hours").textContent = `${hours} Hours`;
+    document.getElementById("oil-kpi-days").textContent = `${totalDays} Days / Mo`;
+    if (hours >= 16) document.getElementById("oil-kpi-shifts").textContent = "3 Shifts (Full)";
+    else if (hours >= 10) document.getElementById("oil-kpi-shifts").textContent = "2 Shifts (Double)";
+    else document.getElementById("oil-kpi-shifts").textContent = "1 Shift (Single)";
+
+    document.getElementById("oil-mix-p350").max = totalDays;
+    document.getElementById("oil-mix-p1L").max = totalDays;
+    document.getElementById("oil-mix-c1L").max = totalDays;
+
+    let d_p350 = parseInt(document.getElementById("oil-mix-p350").value);
+    let d_p1L  = parseInt(document.getElementById("oil-mix-p1L").value);
+    let d_c1L  = parseInt(document.getElementById("oil-mix-c1L").value);
+    let sum = d_p350 + d_p1L + d_c1L;
+    const warning = document.getElementById("oil-mix-warning");
+    if (sum !== totalDays) {
+      warning.hidden = false;
+      if (sum === 0) { d_p350 = Math.floor(totalDays/3); d_p1L = Math.floor(totalDays/3); d_c1L = totalDays - d_p350 - d_p1L; }
+      else { const f = totalDays / sum; d_p350 = Math.round(d_p350*f); d_p1L = Math.round(d_p1L*f); d_c1L = totalDays - d_p350 - d_p1L; }
+      document.getElementById("oil-mix-p350").value = d_p350;
+      document.getElementById("oil-mix-p1L").value = d_p1L;
+      document.getElementById("oil-mix-c1L").value = d_c1L;
+    } else warning.hidden = true;
+
+    document.getElementById("oil-days-status").textContent = `Allocated: ${totalDays}/${totalDays}d`;
+    document.getElementById("oil-val-mix-p350").textContent = `${d_p350} Days`;
+    document.getElementById("oil-val-mix-p1L").textContent = `${d_p1L} Days`;
+    document.getElementById("oil-val-mix-c1L").textContent = `${d_c1L} Days`;
+
+    const skuDays = [d_p350, d_p1L, d_c1L];
+    const calcs = OIL_KEYS.map((k, i) => computeScenario(OIL_RATES[k], skuDays[i], hours, totalDays));
+
+    // Chart bars — dark blue bar stays at fixed baseline, green bar scales relative to it
+    const BASELINE_PCT = 30;
+    calcs.forEach((calc, i) => {
+      const p = OIL_KEYS[i];
+      const currBar = document.getElementById(`oil-bar-${p}-curr`);
+      const expBar = document.getElementById(`oil-bar-${p}-exp`);
+      if (currBar) currBar.style.height = `${BASELINE_PCT}%`;
+      if (expBar) {
+        const ratio = calc.currActualMixed > 0 ? calc.expActualMixed / calc.currActualMixed : 1;
+        const expPct = Math.max(BASELINE_PCT, Math.min(100, BASELINE_PCT * ratio));
+        expBar.style.height = `${expPct}%`;
+      }
     });
+
+    // Summary
+    const totalMixedCurr = calcs.reduce((a, c) => a + c.currActualMixed, 0);
+    const totalMixedExp = calcs.reduce((a, c) => a + c.expActualMixed, 0);
+    const netVolGain = totalMixedExp - totalMixedCurr;
+    const percentageGain = totalMixedCurr > 0 ? Math.round((netVolGain / totalMixedCurr) * 100) : 0;
+
+    document.getElementById("exec-total-curr").textContent = `${totalMixedCurr.toLocaleString()} btl`;
+    document.getElementById("exec-total-exp").textContent = `${totalMixedExp.toLocaleString()} btl`;
+    document.getElementById("exec-vol-gain").textContent = `+${netVolGain.toLocaleString()} btl`;
+    document.getElementById("exec-pct-gain").textContent = `+${percentageGain}%`;
+
+    // Update selected comparison card (single pass, no re-computation)
+    const c = calcs[selectedIndex];
+    const fmt = (v) => `${v.toLocaleString()} btl`;
+    document.getElementById("currentDay").textContent = fmt(c.currDay);
+    document.getElementById("currentNight").textContent = fmt(c.currNight);
+    document.getElementById("currentDaily").textContent = fmt(c.currDaily);
+    document.getElementById("currentMonthly").textContent = fmt(c.currMonthlyPotential);
+    document.getElementById("expandedDay").textContent = fmt(c.expDay);
+    document.getElementById("expandedNight").textContent = fmt(c.expNight);
+    document.getElementById("expandedDaily").textContent = fmt(c.expDaily);
+    document.getElementById("expandedMonthly").textContent = fmt(c.expMonthlyPotential);
+
+    const growth = c.expMonthlyPotential > c.currMonthlyPotential ? Math.round((c.expMonthlyPotential - c.currMonthlyPotential) / c.currMonthlyPotential * 100) : 0;
+    document.getElementById("growthBadge").textContent = `+${growth}% Production Capacity`;
+
+    const cap = data.oilCapacity[selectedIndex];
+    const icons = ["🟦", "🟦", "🟩"];
+    const parts = cap.label.split(" ");
+    const product = parts.slice(0, 2).join(" ");
+    const tag = parts.slice(2).join(" ") || cap.label;
+    document.getElementById("oilProdIcon").textContent = icons[selectedIndex] || "🟦";
+    document.getElementById("oilProdLabel").textContent = product;
+    document.getElementById("oilProdTag").textContent = tag;
+
     capacityTabs.forEach((button, buttonIndex) => {
-      button.classList.toggle("is-active", buttonIndex === index);
-      button.setAttribute("aria-selected", String(buttonIndex === index));
-      button.setAttribute("tabindex", buttonIndex === index ? "0" : "-1");
+      button.classList.toggle("is-active", buttonIndex === selectedIndex);
+      button.setAttribute("aria-selected", String(buttonIndex === selectedIndex));
+      button.setAttribute("tabindex", buttonIndex === selectedIndex ? "0" : "-1");
     });
   }
+
+  function selectCapacity(index) {
+    selectedOilIndex = index;
+    updateOilSimulation(index);
+  }
+
+  // Build tabs
   data.oilCapacity.forEach((capacity, index) => {
     const button = document.createElement("button");
     button.type = "button";
     button.role = "tab";
-    button.setAttribute("aria-controls", "oilCapacityContent");
     button.textContent = capacity.label;
     button.addEventListener("click", () => selectCapacity(index));
     button.addEventListener("keydown", (event) => moveTab(event, capacityTabs, index, selectCapacity));
     document.getElementById("oilCapacityTabs").appendChild(button);
     capacityTabs.push(button);
   });
-  selectCapacity(0);
+
+  ["oil-input-hours","oil-input-days","oil-mix-p350","oil-mix-p1L","oil-mix-c1L"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", () => updateOilSimulation(selectedOilIndex));
+  });
+  updateOilSimulation(0);
 
   const pancitCapacity = data.pancitCapacity;
   document.getElementById("pancitCapacityLabel").textContent = pancitCapacity.label;
