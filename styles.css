@@ -1085,3 +1085,89 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
   .chart-bar-group { height: 85px; }
   .chart-bar { width: 16px; }
 }
+
+/* Capacity Oil readability polish: existing layout and sizing model are preserved. */
+.capacity-slide[data-title="Capacity: Oil"] .capacity-controls button {
+  min-height: 36px; padding-inline: 13px; font-size: 11px; font-weight: 700;
+  color: var(--muted); transition: border-color .18s, background-color .18s, color .18s;
+}
+.capacity-slide[data-title="Capacity: Oil"] .capacity-controls button:hover {
+  border-color: rgba(8,127,189,.48); color: var(--ink);
+}
+.capacity-slide[data-title="Capacity: Oil"] .capacity-controls button.is-active {
+  border-color: var(--blue); background: rgba(8,127,189,.12); color: #075f91;
+  box-shadow: inset 0 -2px 0 var(--blue);
+}
+.capacity-slide[data-title="Capacity: Oil"] .capacity-controls button:focus-visible,
+.capacity-slide[data-title="Capacity: Oil"] .slider-input:focus-visible {
+  outline: 3px solid rgba(8,127,189,.24); outline-offset: 2px;
+}
+.capacity-slide[data-title="Capacity: Oil"] .capacity-sidebar {
+  border-color: rgba(16,42,67,.16); border-radius: 8px; box-shadow: 0 8px 22px rgba(16,42,67,.06);
+}
+.capacity-slide[data-title="Capacity: Oil"] .capacity-sidebar > h4 {
+  font-size: 13px; line-height: 1.3;
+}
+.capacity-slide[data-title="Capacity: Oil"] .section-symbol {
+  color: var(--blue); font-family: Arial, sans-serif; font-weight: 700;
+}
+.capacity-slide[data-title="Capacity: Oil"] .control-group label,
+.capacity-slide[data-title="Capacity: Oil"] .mix-slider-row label {
+  gap: 8px; font-size: 11px; line-height: 1.35;
+}
+.capacity-slide[data-title="Capacity: Oil"] .val-display { white-space: nowrap; }
+.capacity-slide[data-title="Capacity: Oil"] .slider-input { height: 6px; background: rgba(16,42,67,.14); }
+.capacity-slide[data-title="Capacity: Oil"] .slider-input::-webkit-slider-thumb {
+  border: 2px solid #fff; box-shadow: 0 0 0 1px var(--blue), 0 2px 5px rgba(16,42,67,.2);
+}
+.capacity-slide[data-title="Capacity: Oil"] .mix-planner { border-radius: 8px; }
+.capacity-slide[data-title="Capacity: Oil"] .mix-planner h4 { gap: 8px; font-size: 11px; line-height: 1.3; }
+.capacity-slide[data-title="Capacity: Oil"] .mix-planner h4 > span:first-child { min-width: 0; }
+.capacity-slide[data-title="Capacity: Oil"] .mix-planner h4 .days-left {
+  flex: 0 0 auto; border: 1px solid rgba(8,127,189,.18); border-radius: 4px; font-size: 9px;
+}
+.capacity-slide[data-title="Capacity: Oil"] .mix-warning { line-height: 1.35; }
+.capacity-slide[data-title="Capacity: Oil"] .oil-kpi-row .kpi-card {
+  border-color: rgba(16,42,67,.14); border-radius: 6px; padding: 9px 10px;
+}
+.capacity-slide[data-title="Capacity: Oil"] .oil-kpi-row .kpi-label {
+  font-size: 9px; line-height: 1.25; color: #52677a;
+}
+.capacity-slide[data-title="Capacity: Oil"] .oil-kpi-row .kpi-value {
+  margin-top: 3px; font-size: 13px; line-height: 1.25;
+}
+.capacity-slide[data-title="Capacity: Oil"] .comparison-section h2 { font-size: 13px; line-height: 1.3; }
+.capacity-slide[data-title="Capacity: Oil"] .product-swatch {
+  width: 10px; height: 10px; flex: 0 0 10px; border-radius: 2px; background: var(--blue);
+}
+.capacity-slide[data-title="Capacity: Oil"] .product-swatch.is-canola { background: var(--green); }
+.capacity-slide[data-title="Capacity: Oil"] .comparison-grid .col { padding: 9px 10px; }
+.capacity-slide[data-title="Capacity: Oil"] .col-header { font-size: 11px; line-height: 1.25; }
+.capacity-slide[data-title="Capacity: Oil"] .capacity-state-mark {
+  width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: #8fcbff;
+}
+.capacity-slide[data-title="Capacity: Oil"] .col.expanded .capacity-state-mark { background: #45c486; }
+.capacity-slide[data-title="Capacity: Oil"] .stat-row { gap: 10px; padding-block: 3px; font-size: 11px; }
+.capacity-slide[data-title="Capacity: Oil"] .stat-row:last-of-type { font-size: 12px; }
+.capacity-slide[data-title="Capacity: Oil"] .stat-value { text-align: right; white-space: nowrap; }
+.capacity-slide[data-title="Capacity: Oil"] .badge-percent { border-radius: 4px; line-height: 1.25; }
+.capacity-slide[data-title="Capacity: Oil"] .comparison-grid .arrow-col span {
+  width: 27px; height: 27px; padding: 0; border-radius: 50%; font: 700 17px/1 Arial, sans-serif;
+}
+.capacity-slide[data-title="Capacity: Oil"] .oil-chart-row { border-color: rgba(16,42,67,.14); }
+.capacity-slide[data-title="Capacity: Oil"] .oil-chart-row h4 { font-size: 11px; color: var(--ink); }
+.capacity-slide[data-title="Capacity: Oil"] .chart-bar-group { gap: 7px; }
+.capacity-slide[data-title="Capacity: Oil"] .chart-series {
+  height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+}
+.capacity-slide[data-title="Capacity: Oil"] .chart-bar-value {
+  margin-bottom: 3px; color: var(--ink); font-size: 8px; font-weight: 700; line-height: 1;
+}
+.capacity-slide[data-title="Capacity: Oil"] .chart-bar { width: 22px; min-height: 4px; }
+.capacity-slide[data-title="Capacity: Oil"] .chart-label { font-size: 10px; color: #52677a; }
+.capacity-slide[data-title="Capacity: Oil"] .chart-legend { margin-top: 6px; font-size: 10px; color: #52677a; }
+.capacity-slide[data-title="Capacity: Oil"] .legend-color { width: 10px; height: 10px; }
+.capacity-slide[data-title="Capacity: Oil"] .capacity-footer.oil-summary-footer .hl-number { font-size: 15px; }
+.capacity-slide[data-title="Capacity: Oil"] .capacity-footer.oil-summary-footer span {
+  font-size: 9px; line-height: 1.3; color: rgba(255,255,255,.74);
+}

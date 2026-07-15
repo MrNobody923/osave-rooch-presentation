@@ -399,13 +399,13 @@
     const hours = parseInt(document.getElementById("oil-input-hours").value);
     const totalDays = parseInt(document.getElementById("oil-input-days").value);
 
-    document.getElementById("oil-val-hours").textContent = `${hours} Hrs`;
-    document.getElementById("oil-val-days").textContent = `${totalDays} Days`;
-    document.getElementById("oil-kpi-hours").textContent = `${hours} Hours`;
-    document.getElementById("oil-kpi-days").textContent = `${totalDays} Days / Mo`;
-    if (hours >= 16) document.getElementById("oil-kpi-shifts").textContent = "3 Shifts (Full)";
-    else if (hours >= 10) document.getElementById("oil-kpi-shifts").textContent = "2 Shifts (Double)";
-    else document.getElementById("oil-kpi-shifts").textContent = "1 Shift (Single)";
+    document.getElementById("oil-val-hours").textContent = `${hours} hours`;
+    document.getElementById("oil-val-days").textContent = `${totalDays} days`;
+    document.getElementById("oil-kpi-hours").textContent = `${hours} hours`;
+    document.getElementById("oil-kpi-days").textContent = `${totalDays} days/month`;
+    if (hours >= 16) document.getElementById("oil-kpi-shifts").textContent = "3 shifts (full)";
+    else if (hours >= 10) document.getElementById("oil-kpi-shifts").textContent = "2 shifts (double)";
+    else document.getElementById("oil-kpi-shifts").textContent = "1 shift (single)";
 
     document.getElementById("oil-mix-p350").max = totalDays;
     document.getElementById("oil-mix-p1L").max = totalDays;
@@ -425,13 +425,14 @@
       document.getElementById("oil-mix-c1L").value = d_c1L;
     } else warning.hidden = true;
 
-    document.getElementById("oil-days-status").textContent = `Allocated: ${totalDays}/${totalDays}d`;
-    document.getElementById("oil-val-mix-p350").textContent = `${d_p350} Days`;
-    document.getElementById("oil-val-mix-p1L").textContent = `${d_p1L} Days`;
-    document.getElementById("oil-val-mix-c1L").textContent = `${d_c1L} Days`;
+    document.getElementById("oil-days-status").textContent = `${totalDays} of ${totalDays} days`;
+    document.getElementById("oil-val-mix-p350").textContent = `${d_p350} days`;
+    document.getElementById("oil-val-mix-p1L").textContent = `${d_p1L} days`;
+    document.getElementById("oil-val-mix-c1L").textContent = `${d_c1L} days`;
 
     const skuDays = [d_p350, d_p1L, d_c1L];
     const calcs = OIL_KEYS.map((k, i) => computeScenario(OIL_RATES[k], skuDays[i], hours, totalDays));
+    const compactNumber = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
 
     // Chart bars — dark blue bar stays at fixed baseline, green bar scales relative to it
     const BASELINE_PCT = 30;
@@ -439,12 +440,20 @@
       const p = OIL_KEYS[i];
       const currBar = document.getElementById(`oil-bar-${p}-curr`);
       const expBar = document.getElementById(`oil-bar-${p}-exp`);
-      if (currBar) currBar.style.height = `${BASELINE_PCT}%`;
+      const currValue = document.getElementById(`oil-value-${p}-curr`);
+      const expValue = document.getElementById(`oil-value-${p}-exp`);
+      if (currBar) {
+        currBar.style.height = `${BASELINE_PCT}%`;
+        currBar.setAttribute("aria-label", `Current allocated output: ${calc.currActualMixed.toLocaleString()} bottles`);
+      }
       if (expBar) {
         const ratio = calc.currActualMixed > 0 ? calc.expActualMixed / calc.currActualMixed : 1;
         const expPct = Math.max(BASELINE_PCT, Math.min(100, BASELINE_PCT * ratio));
         expBar.style.height = `${expPct}%`;
+        expBar.setAttribute("aria-label", `Expanded allocated output: ${calc.expActualMixed.toLocaleString()} bottles`);
       }
+      if (currValue) currValue.textContent = compactNumber.format(calc.currActualMixed);
+      if (expValue) expValue.textContent = compactNumber.format(calc.expActualMixed);
     });
 
     // Summary
@@ -453,14 +462,14 @@
     const netVolGain = totalMixedExp - totalMixedCurr;
     const percentageGain = totalMixedCurr > 0 ? Math.round((netVolGain / totalMixedCurr) * 100) : 0;
 
-    document.getElementById("exec-total-curr").textContent = `${totalMixedCurr.toLocaleString()} btl`;
-    document.getElementById("exec-total-exp").textContent = `${totalMixedExp.toLocaleString()} btl`;
-    document.getElementById("exec-vol-gain").textContent = `+${netVolGain.toLocaleString()} btl`;
+    document.getElementById("exec-total-curr").textContent = `${totalMixedCurr.toLocaleString()} bottles`;
+    document.getElementById("exec-total-exp").textContent = `${totalMixedExp.toLocaleString()} bottles`;
+    document.getElementById("exec-vol-gain").textContent = `+${netVolGain.toLocaleString()} bottles`;
     document.getElementById("exec-pct-gain").textContent = `+${percentageGain}%`;
 
     // Update selected comparison card (single pass, no re-computation)
     const c = calcs[selectedIndex];
-    const fmt = (v) => `${v.toLocaleString()} btl`;
+    const fmt = (v) => `${v.toLocaleString()} bottles`;
     document.getElementById("currentDay").textContent = fmt(c.currDay);
     document.getElementById("currentNight").textContent = fmt(c.currNight);
     document.getElementById("currentDaily").textContent = fmt(c.currDaily);
@@ -474,11 +483,11 @@
     document.getElementById("growthBadge").textContent = `+${growth}% Production Capacity`;
 
     const cap = data.oilCapacity[selectedIndex];
-    const icons = ["🟦", "🟦", "🟩"];
     const parts = cap.label.split(" ");
     const product = parts.slice(0, 2).join(" ");
     const tag = parts.slice(2).join(" ") || cap.label;
-    document.getElementById("oilProdIcon").textContent = icons[selectedIndex] || "🟦";
+    document.getElementById("oilProdIcon").classList.toggle("is-canola", selectedIndex === 2);
+    document.getElementById("oilProdIcon").classList.toggle("is-palm", selectedIndex !== 2);
     document.getElementById("oilProdLabel").textContent = product;
     document.getElementById("oilProdTag").textContent = tag;
 
