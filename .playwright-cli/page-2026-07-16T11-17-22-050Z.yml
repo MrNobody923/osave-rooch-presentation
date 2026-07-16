@@ -1,0 +1,309 @@
+- generic [ref=f1e2]:
+  - complementary "Presentation sections" [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - img "ROOCH Holding Inc." [ref=f1e5]
+      - strong [ref=f1e7]: ROOCH
+    - list [ref=f1e8]:
+      - listitem [ref=f1e9]:
+        - button "01 Title" [ref=f1e10] [cursor=pointer]:
+          - generic [ref=f1e11]: "01"
+          - strong [ref=f1e12]: Title
+      - listitem [ref=f1e13]:
+        - button "02 Corporate Structure" [ref=f1e14] [cursor=pointer]:
+          - generic [ref=f1e15]: "02"
+          - strong [ref=f1e16]: Corporate Structure
+      - listitem [ref=f1e17]:
+        - button "03 Key Achievements" [active] [ref=f1e18] [cursor=pointer]:
+          - generic [ref=f1e19]: "03"
+          - strong [ref=f1e20]: Key Achievements
+      - listitem [ref=f1e21]:
+        - button "04 Video Presentation" [ref=f1e22] [cursor=pointer]:
+          - generic [ref=f1e23]: "04"
+          - strong [ref=f1e24]: Video Presentation
+      - listitem [ref=f1e25]:
+        - button "05 Manufacturing Expansion Dashboard" [ref=f1e26] [cursor=pointer]:
+          - generic [ref=f1e27]: "05"
+          - strong [ref=f1e28]: Manufacturing Expansion Dashboard
+      - listitem [ref=f1e29]:
+        - button "06 Current Manufacturing Expansion Status" [ref=f1e30] [cursor=pointer]:
+          - generic [ref=f1e31]: "06"
+          - strong [ref=f1e32]: Current Manufacturing Expansion Status
+      - listitem [ref=f1e33]:
+        - button "07 O!Save Demand Impact for Palm Oil" [ref=f1e34] [cursor=pointer]:
+          - generic [ref=f1e35]: "07"
+          - strong [ref=f1e36]: O!Save Demand Impact for Palm Oil
+      - listitem [ref=f1e37]:
+        - button "08 O!Save Demand Impact Pancit" [ref=f1e38] [cursor=pointer]:
+          - generic [ref=f1e39]: "08"
+          - strong [ref=f1e40]: O!Save Demand Impact Pancit
+      - listitem [ref=f1e41]:
+        - button "09 Manufacturing Capacity Oils" [ref=f1e42] [cursor=pointer]:
+          - generic [ref=f1e43]: "09"
+          - strong [ref=f1e44]: Manufacturing Capacity Oils
+      - listitem [ref=f1e45]:
+        - button "10 Manufacturing Capacity Expansion" [ref=f1e46] [cursor=pointer]:
+          - generic [ref=f1e47]: "10"
+          - strong [ref=f1e48]: Manufacturing Capacity Expansion
+      - listitem [ref=f1e49]:
+        - button "11 Working Capital Trade Cycle Oils" [ref=f1e50] [cursor=pointer]:
+          - generic [ref=f1e51]: "11"
+          - strong [ref=f1e52]: Working Capital Trade Cycle Oils
+      - listitem [ref=f1e53]:
+        - button "12 Working Capital Trade Cycle Pancit" [ref=f1e54] [cursor=pointer]:
+          - generic [ref=f1e55]: "12"
+          - strong [ref=f1e56]: Working Capital Trade Cycle Pancit
+      - listitem [ref=f1e57]:
+        - button "13 Q&A" [ref=f1e58] [cursor=pointer]:
+          - generic [ref=f1e59]: "13"
+          - strong [ref=f1e60]: Q&A
+  - main [ref=f1e62]:
+    - generic [ref=f1e63]:
+      - button "Toggle navigation" [expanded] [ref=f1e64] [cursor=pointer]
+      - paragraph [ref=f1e68]: ROOCH HOLDING INC. / KEY ACHIEVEMENTS
+      - generic [ref=f1e69]:
+        - generic [ref=f1e70]: 03 / 13
+        - button "Enter presentation mode" [ref=f1e71] [cursor=pointer]: Present Fullscreen
+    - generic [ref=f1e72]:
+      - generic [ref=f1e296]:
+        - generic [ref=f1e297]:
+          - heading "Key Achievements" [level=2] [ref=f1e299]
+          - paragraph [ref=f1e300]: Operational milestones, contracts, and structural accomplishments across our divisions
+        - generic [ref=f1e301]:
+          - tablist "Key achievements by division" [ref=f1e302]:
+            - generic [ref=f1e303]:
+              - heading "Tech & Solutions" [level=3] [ref=f1e304]
+              - generic [ref=f1e305]:
+                - 'tab "VOS ERP Suite: VERTEX - Consolidated Accounting & Inventory" [selected] [ref=f1e306] [cursor=pointer]':
+                  - strong [ref=f1e307]: VOS ERP Suite
+                  - generic [ref=f1e308]: VERTEX - Consolidated Accounting & Inventory
+                - 'tab "Dealerover Sync: VERTEX - Stock Matching & Dispatch" [ref=f1e309] [cursor=pointer]':
+                  - strong [ref=f1e310]: Dealerover Sync
+                  - generic [ref=f1e311]: VERTEX - Stock Matching & Dispatch
+                - 'tab "eLGU Digitalization: VERTEX - Municipal Treasury Tax & Permits" [ref=f1e312] [cursor=pointer]':
+                  - strong [ref=f1e313]: eLGU Digitalization
+                  - generic [ref=f1e314]: VERTEX - Municipal Treasury Tax & Permits
+                - 'tab "SFA & Core Systems: VERTEX - Mobile Sales, HRIS, & Custom ERP" [ref=f1e315] [cursor=pointer]':
+                  - strong [ref=f1e316]: SFA & Core Systems
+                  - generic [ref=f1e317]: VERTEX - Mobile Sales, HRIS, & Custom ERP
+            - generic [ref=f1e318]:
+              - heading "Infra & Energy" [level=3] [ref=f1e319]
+              - generic [ref=f1e320]:
+                - 'tab "LGU Mapandan Solar: Hanvin - Solar grid deployment" [ref=f1e321] [cursor=pointer]':
+                  - strong [ref=f1e322]: LGU Mapandan Solar
+                  - generic [ref=f1e323]: Hanvin - Solar grid deployment
+                - 'tab "La Sallette Solar: Hanvin - Campus solar offset" [ref=f1e324] [cursor=pointer]':
+                  - strong [ref=f1e325]: La Sallette Solar
+                  - generic [ref=f1e326]: Hanvin - Campus solar offset
+                - 'tab "Men2 Dagupan Warehouse: Hanvin - Logistics facility shell" [ref=f1e327] [cursor=pointer]':
+                  - strong [ref=f1e328]: Men2 Dagupan Warehouse
+                  - generic [ref=f1e329]: Hanvin - Logistics facility shell
+                - 'tab "Men2 Dagupan Offices: Hanvin - Office interior & facade" [ref=f1e330] [cursor=pointer]':
+                  - strong [ref=f1e331]: Men2 Dagupan Offices
+                  - generic [ref=f1e332]: Hanvin - Office interior & facade
+            - generic [ref=f1e333]:
+              - heading "FMCG & Logistics" [level=3] [ref=f1e334]
+              - generic [ref=f1e335]:
+                - 'tab "Foodsphere Frozen: MEN2 Dagupan - La Union" [ref=f1e336] [cursor=pointer]':
+                  - strong [ref=f1e337]: Foodsphere Frozen
+                  - generic [ref=f1e338]: MEN2 Dagupan - La Union
+                - 'tab "Dealerover Opening: MEN2 Dagupan - San Carlos" [ref=f1e339] [cursor=pointer]':
+                  - strong [ref=f1e340]: Dealerover Opening
+                  - generic [ref=f1e341]: MEN2 Dagupan - San Carlos
+                - 'tab "Kopiko Engagement: MEN2 Dagupan - Pangasinan" [ref=f1e342] [cursor=pointer]':
+                  - strong [ref=f1e343]: Kopiko Engagement
+                  - generic [ref=f1e344]: MEN2 Dagupan - Pangasinan
+                - 'tab "Sea Oil Engagement: JCBS Industrial - Industrial Business" [ref=f1e345] [cursor=pointer]':
+                  - strong [ref=f1e346]: Sea Oil Engagement
+                  - generic [ref=f1e347]: JCBS Industrial - Industrial Business
+                - 'tab "Federated Onboarding: MEN2 Manila - Commenced Mar 2026" [ref=f1e348] [cursor=pointer]':
+                  - strong [ref=f1e349]: Federated Onboarding
+                  - generic [ref=f1e350]: MEN2 Manila - Commenced Mar 2026
+                - 'tab "Fitrite Integration: MEN2 Manila - Commenced Mar 2026" [ref=f1e351] [cursor=pointer]':
+                  - strong [ref=f1e352]: Fitrite Integration
+                  - generic [ref=f1e353]: MEN2 Manila - Commenced Mar 2026
+                - 'tab "Indomie Mi Goreng: MEN2 Manila - Commenced Feb 2026" [ref=f1e354] [cursor=pointer]':
+                  - strong [ref=f1e355]: Indomie Mi Goreng
+                  - generic [ref=f1e356]: MEN2 Manila - Commenced Feb 2026
+                - 'tab "Prime Flavors (Primo): MEN2 Manila - NCR Rollout" [ref=f1e357] [cursor=pointer]':
+                  - strong [ref=f1e358]: Prime Flavors (Primo)
+                  - generic [ref=f1e359]: MEN2 Manila - NCR Rollout
+                - 'tab "Dever Energy: MEN2 Manila - Commenced Jun 2026" [ref=f1e360] [cursor=pointer]':
+                  - strong [ref=f1e361]: Dever Energy
+                  - generic [ref=f1e362]: MEN2 Manila - Commenced Jun 2026
+          - figure [ref=f1e363]:
+            - generic [ref=f1e364]: PREVIEW
+            - img "VOS ERP Suite" [ref=f1e365]
+            - generic [ref=f1e366]:
+              - text: Tech & Solutions
+              - heading "VOS ERP Suite" [level=3] [ref=f1e367]
+              - paragraph [ref=f1e368]:
+                - strong [ref=f1e369]: "VERTEX (VOS ERP Suite):"
+                - text: Active in corporate subsidiaries. Handles over Php 250M of consolidated transactions annually. Projected annual profit is Php 52M.
+      - generic [ref=f1e112]:
+        - generic [ref=f1e114]:
+          - heading [level=2] [ref=f1e115]: Manufacturing Capacity Expansion
+          - paragraph [ref=f1e116]: Current Production Capacity vs. Expected Capacity After Expansion
+        - generic [ref=f1e130]:
+          - generic [ref=f1e131]:
+            - generic [ref=f1e132]:
+              - generic [ref=f1e133]: 🏭
+              - text: Expanded Monthly Capacity
+            - strong [ref=f1e134]: 1,454,400
+            - generic [ref=f1e135]: pcs / month
+          - generic [ref=f1e136]:
+            - generic [ref=f1e137]:
+              - generic [ref=f1e138]: 📈
+              - text: Production Increase
+            - strong [ref=f1e139]: +1,139,760
+            - generic [ref=f1e140]: ↑ pcs / month
+          - generic [ref=f1e141]:
+            - generic [ref=f1e142]:
+              - generic [ref=f1e143]: ⚡
+              - text: Growth
+            - strong [ref=f1e144]: 362%
+            - generic [ref=f1e145]: ↑ Increase
+        - generic [ref=f1e146]:
+          - generic [ref=f1e147]:
+            - generic [ref=f1e148]:
+              - strong [ref=f1e149]: Current Capacity
+              - generic [ref=f1e150]: Single Production Line • Day Shift
+            - table [ref=f1e152]:
+              - rowgroup [ref=f1e153]:
+                - row [ref=f1e154]:
+                  - columnheader [ref=f1e155]: Product
+                  - columnheader [ref=f1e156]: Size
+                  - columnheader [ref=f1e157]: Shift
+                  - columnheader [ref=f1e158]: Produced Cases
+                  - columnheader [ref=f1e159]: Produced Pieces
+                  - columnheader [ref=f1e160]: 20% Buffer
+                  - columnheader [ref=f1e161]: Monthly Produced
+              - rowgroup [ref=f1e162]:
+                - row [ref=f1e163]:
+                  - cell [ref=f1e164]: Bihon
+                  - cell [ref=f1e165]: 454G
+                  - cell [ref=f1e166]:
+                    - emphasis [ref=f1e167]: Day Shift
+                  - cell [ref=f1e168]: "280"
+                  - cell [ref=f1e169]: 5,600
+                  - cell [ref=f1e170]: 6,720
+                  - cell [ref=f1e171]: 201,600
+                - row [ref=f1e172]:
+                  - cell [ref=f1e173]: Canton
+                  - cell [ref=f1e174]: 300G
+                  - cell [ref=f1e175]:
+                    - emphasis [ref=f1e176]: Day Shift
+                  - cell [ref=f1e177]: "130"
+                  - cell [ref=f1e178]: 2,340
+                  - cell [ref=f1e179]: 2,808
+                  - cell [ref=f1e180]: 84,240
+                - row [ref=f1e181]:
+                  - cell [ref=f1e182]: Canton
+                  - cell [ref=f1e183]: 100G
+                  - cell [ref=f1e184]: —
+                  - cell [ref=f1e185]: "100"
+                  - cell [ref=f1e186]: "800"
+                  - cell [ref=f1e187]: "960"
+                  - cell [ref=f1e188]: 28,800
+            - generic [ref=f1e189]:
+              - generic [ref=f1e190]: ⚠
+              - paragraph [ref=f1e191]:
+                - strong [ref=f1e192]: Current Limitation
+                - text: — Only one SKU at a time, reducing flexibility and capacity. Single shift operation.
+          - generic [ref=f1e193]:
+            - generic [ref=f1e194]: Current
+            - generic [ref=f1e195]: ↓
+            - generic [ref=f1e196]: Expansion
+            - generic [ref=f1e197]: ↓
+            - generic [ref=f1e198]: Future
+            - generic [ref=f1e199]:
+              - generic [ref=f1e200]: 🏭 New Production Line
+              - generic [ref=f1e201]: 🌙 Night Shift Added
+              - generic [ref=f1e202]: 📦 Simultaneous SKU Production
+          - generic [ref=f1e203]:
+            - generic [ref=f1e204]:
+              - strong [ref=f1e205]: After Expansion
+              - generic [ref=f1e206]: ✓ Future State
+            - table [ref=f1e208]:
+              - rowgroup [ref=f1e209]:
+                - row [ref=f1e210]:
+                  - columnheader [ref=f1e211]: Product
+                  - columnheader [ref=f1e212]: Size
+                  - columnheader [ref=f1e213]: Shift
+                  - columnheader [ref=f1e214]: Produced Cases
+                  - columnheader [ref=f1e215]: Produced Pieces
+                  - columnheader [ref=f1e216]: 20% Buffer
+                  - columnheader [ref=f1e217]: Monthly Produced
+              - rowgroup [ref=f1e218]:
+                - row [ref=f1e219]:
+                  - cell [ref=f1e220]: Bihon
+                  - cell [ref=f1e221]: 454G
+                  - cell [ref=f1e222]:
+                    - emphasis [ref=f1e223]: Day Shift
+                  - cell [ref=f1e224]: "560"
+                  - cell [ref=f1e225]: 11,200
+                  - cell [ref=f1e226]: 13,440
+                  - cell [ref=f1e227]: 403,200
+                - row [ref=f1e228]:
+                  - cell [ref=f1e229]: Bihon
+                  - cell [ref=f1e230]: 454G
+                  - cell [ref=f1e231]:
+                    - emphasis [ref=f1e232]: Night Shift
+                  - cell [ref=f1e233]: "560"
+                  - cell [ref=f1e234]: 11,200
+                  - cell [ref=f1e235]: 13,440
+                  - cell [ref=f1e236]: 403,200
+                - row [ref=f1e237]:
+                  - cell [ref=f1e238]: Canton
+                  - cell [ref=f1e239]: 300G
+                  - cell [ref=f1e240]:
+                    - emphasis [ref=f1e241]: Day Shift
+                  - cell [ref=f1e242]: "300"
+                  - cell [ref=f1e243]: 5,400
+                  - cell [ref=f1e244]: 6,480
+                  - cell [ref=f1e245]: 194,400
+                - row [ref=f1e246]:
+                  - cell [ref=f1e247]: Canton
+                  - cell [ref=f1e248]: 100G
+                  - cell [ref=f1e249]:
+                    - emphasis [ref=f1e250]: Day Shift
+                  - cell [ref=f1e251]: "200"
+                  - cell [ref=f1e252]: 3,600
+                  - cell [ref=f1e253]: 4,320
+                  - cell [ref=f1e254]: 129,600
+                - row [ref=f1e255]:
+                  - cell [ref=f1e256]: Canton
+                  - cell [ref=f1e257]: 300G
+                  - cell [ref=f1e258]:
+                    - emphasis [ref=f1e259]: Night Shift
+                  - cell [ref=f1e260]: "300"
+                  - cell [ref=f1e261]: 5,400
+                  - cell [ref=f1e262]: 6,480
+                  - cell [ref=f1e263]: 194,400
+                - row [ref=f1e264]:
+                  - cell [ref=f1e265]: Canton
+                  - cell [ref=f1e266]: 100G
+                  - cell [ref=f1e267]:
+                    - emphasis [ref=f1e268]: Night Shift
+                  - cell [ref=f1e269]: "200"
+                  - cell [ref=f1e270]: 3,600
+                  - cell [ref=f1e271]: 4,320
+                  - cell [ref=f1e272]: 129,600
+              - rowgroup [ref=f1e273]:
+                - row [ref=f1e274]:
+                  - cell [ref=f1e275]:
+                    - strong [ref=f1e276]: Total
+                  - cell [ref=f1e277]: 2,120
+                  - cell [ref=f1e278]: 40,400
+                  - cell [ref=f1e279]: 48,480
+                  - cell [ref=f1e280]: 1,454,400
+            - generic [ref=f1e281]:
+              - generic [ref=f1e282]: ✅
+              - paragraph [ref=f1e283]:
+                - strong [ref=f1e284]: Expansion Advantage
+                - text: — Bihon and Canton produced simultaneously across Day & Night shifts, tripling efficiency and output.
+    - generic [ref=f1e285]:
+      - button "Previous slide" [ref=f1e286] [cursor=pointer]:
+        - generic [ref=f1e289]: Previous
+      - progressbar "Presentation progress" [ref=f1e290]
+      - button "Next slide" [ref=f1e292] [cursor=pointer]:
+        - generic [ref=f1e293]: Next

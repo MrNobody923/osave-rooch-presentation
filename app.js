@@ -106,6 +106,7 @@
       const active = slideNumber === currentSlide;
       slide.classList.toggle("is-active", active);
       slide.setAttribute("aria-hidden", String(!active));
+      slide.toggleAttribute("inert", !active);
     });
 
     Array.from(slideIndex.children).forEach((item, itemIndex) => {
@@ -898,7 +899,7 @@
     if (videoStatusDetail) videoStatusDetail.textContent = "Loaded from local media file.";
   } else if (configuredEmbedUrl) {
     video.hidden = true;
-    videoEmbed.hidden = true;
+    videoEmbed.hidden = false;
     videoPlaceholder.hidden = true;
     if (videoOpenLink) {
       videoOpenLink.href = configuredEmbedUrl;
