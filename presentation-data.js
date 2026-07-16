@@ -9,13 +9,11 @@ window.OSavePresentation = {
       photos: [
         { src: "assets/manufacturing-status/oil-refilling-1.jpg", title: "Oil Refilling 1" },
         { src: "assets/manufacturing-status/oil-machines.jpg", title: "Oil Machines" },
-        { src: "assets/manufacturing-status/oil-new-machine.jpg", title: "New Oil Machine" },
         { src: "assets/manufacturing-status/oil-tank.jpg", title: "Oil Tank" },
         { src: "assets/manufacturing-status/oil-label-heating.jpg", title: "Label Heating Area" },
         { src: "assets/manufacturing-status/oil-machine-1.jpg", title: "Oil Machine 1" },
         { src: "assets/manufacturing-status/oil-machine-2.jpg", title: "Oil Machine 2" },
-        { src: "assets/manufacturing-status/oil-machine-3.jpg", title: "Oil Machine 3" },
-        { src: "assets/manufacturing-status/oil-machine-4.jpg", title: "Oil Machine 4" }
+        { src: "assets/manufacturing-status/oil-machine-3.jpg", title: "Oil Machine 3" }
       ]
     },
     {
@@ -35,12 +33,10 @@ window.OSavePresentation = {
       photos: [
         { src: "assets/manufacturing-status/logistics-cold-storage-1.jpg", title: "Cold Storage 1" },
         { src: "assets/manufacturing-status/logistics-cold-storage-2.jpg", title: "Cold Storage 2" },
-        { src: "assets/manufacturing-status/logistics-new-storage.jpg", title: "New Storage" },
-        { src: "assets/manufacturing-status/logistics-construction-2.jpg", title: "Cold Storage Construction 2" },
+        { src: "assets/manufacturing-status/logistics-construction-6.jpg", title: "Cold Storage Construction 6" },
         { src: "assets/manufacturing-status/logistics-construction-3.jpg", title: "Cold Storage Construction 3" },
         { src: "assets/manufacturing-status/logistics-construction-4.jpg", title: "Cold Storage Construction 4" },
         { src: "assets/manufacturing-status/logistics-construction-5.jpg", title: "Cold Storage Construction 5" },
-        { src: "assets/manufacturing-status/logistics-construction-6.jpg", title: "Cold Storage Construction 6" },
         { src: "assets/manufacturing-status/logistics-driveway-1.jpg", title: "Facility Driveway 1" },
         { src: "assets/manufacturing-status/logistics-driveway-2.jpg", title: "Facility Driveway 2" },
         { src: "assets/manufacturing-status/logistics-driveway-3.jpg", title: "Facility Driveway 3" },
