@@ -386,12 +386,26 @@
           <div class="capacity-footer" id="pancitCapacityFooter"></div>
         </section>
 
-        <section class="slide capital-slide" data-title="Trade Cycle: Oil" data-section="WORKING CAPITAL TRADE CYCLE / OILS">
-          <div class="slide-heading"><div><p class="eyebrow">Weekly import and collection cycle</p><h2>Working Capital Trade Cycle <span>Oils</span></h2></div><div class="headline-metric"><strong>PHP 201.07M</strong><span>3-month requirement</span></div></div>
-          <div class="capital-kpis"><div><span>Weekly purchase</span><strong>USD 270,255</strong></div><div><span>Monthly purchase</span><strong>USD 1.081M</strong></div><div><span>Weekly units</span><strong>219,893</strong></div><div><span>Fixed DSO</span><strong>45 days</strong></div></div>
-          <div class="cycle-layout">
-            <div class="cycle-flow" id="oilCycleFlow" role="list" aria-label="Edible oil trade cycle"></div>
-            <div class="capital-side"><h3>Weekly purchase</h3><div><span>Palm oil</span><strong>6 containers</strong><small>USD 168,990</small></div><div><span>Canola oil</span><strong>3 containers</strong><small>USD 101,265</small></div><p>Monthly PHP requirement <strong>PHP 67.02M</strong></p></div>
+        <section class="slide capital-slide oil-capital-slide" data-title="Trade Cycle: Oil" data-section="WORKING CAPITAL TRADE CYCLE / OILS">
+          <div class="slide-heading"><div><p class="eyebrow">Weekly purchase &rarr; import &rarr; production &rarr; O!Save &rarr; collection</p><h2>Working Capital Trade Cycle <span>Oils</span></h2></div><div class="headline-metric"><strong id="oilCapitalHeadline">PHP 201.07M</strong><span id="oilCapitalHeadlineLabel">3-month working capital</span></div></div>
+          <div class="oil-capital-kpis" id="oilCapitalKpis" aria-label="Working capital summary"></div>
+          <div class="oil-capital-dashboard">
+            <section class="oil-cycle-panel" aria-labelledby="oilCyclePanelTitle">
+              <div class="oil-panel-heading"><div><h3 id="oilCyclePanelTitle">Trade cycle process flow</h3><p>Select a stage to review its operating detail</p></div><div class="oil-cycle-legend"><span class="procurement">Procurement</span><span class="revenue">Revenue</span></div></div>
+              <div class="cycle-flow oil-cycle-flow" id="oilCycleFlow" role="list" aria-label="Edible oil trade cycle"></div>
+              <div class="oil-cycle-detail" id="oilCycleDetail" aria-live="polite"></div>
+            </section>
+            <aside class="oil-summary-stack" aria-label="Oil working capital details">
+              <section class="oil-summary-card requirement-card"><span>Working capital requirement</span><strong>PHP 201.07M</strong><small>3-month rolling edible-oils import</small><div><span>Monthly PHP</span><b>PHP 67.02M</b></div></section>
+              <section class="oil-summary-card"><div class="oil-card-title"><h3>Weekly purchase</h3><span>Every 7 days</span></div><div id="oilPurchaseRows"></div></section>
+              <section class="oil-summary-card"><div class="oil-card-title"><h3>Weekly available for sale</h3><span>O!Save</span></div><div id="oilProductRows"></div><p class="oil-card-total"><span>Total / week</span><strong>219,893.40 units</strong></p></section>
+              <section class="oil-summary-card"><div class="oil-card-title"><h3>Warehouse inventory</h3><span>1,225,555 L</span></div><div class="oil-inventory-grid" id="oilInventoryRows"></div></section>
+            </aside>
+          </div>
+          <div class="oil-insight-grid">
+            <section class="oil-insight-card"><div class="oil-card-title"><h3>Weekly container shipments</h3><span>Palm 6 + Canola 3</span></div><div class="shipment-chart" id="oilShipmentChart" aria-label="Six weeks of nine-container shipments"></div></section>
+            <section class="oil-insight-card"><div class="oil-card-title"><h3>SKU output</h3><span>Daily / weekly units</span></div><div class="oil-output-table" id="oilOutputTable"></div></section>
+            <section class="oil-insight-card cash-cycle-card"><div class="oil-card-title"><h3>Cash conversion cycle</h3><span>69 days total</span></div><div class="cash-cycle-bars" id="oilCashCycle"></div><p><strong>45-day DSO</strong> accounts for 65% of the cycle.</p></section>
           </div>
         </section>
 

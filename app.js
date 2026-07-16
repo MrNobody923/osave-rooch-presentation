@@ -614,19 +614,55 @@
   document.querySelector("#pancitProductBreakdown ul").innerHTML = pancitCapacity.products.map(([label, value]) => `<li><span>${label}</span><strong>${value}</strong></li>`).join("");
   document.getElementById("pancitCapacityFooter").innerHTML = pancitCapacity.footer.map(([value, label]) => `<div><strong>${value}</strong><span>${label}</span></div>`).join("");
 
-  function renderCycle(targetId, steps) {
-    const radius = 33;
-    const stepMarkup = steps.map(([label, duration], index) => {
+  function renderCycle(targetId, steps, options = {}) {
+    const radius = options.radius || 33;
+    const stepMarkup = steps.map((step, index) => {
+      const isObjectStep = !Array.isArray(step);
+      const label = isObjectStep ? step.label : step[0];
+      const duration = isObjectStep ? step.duration : step[1];
+      const sublabel = isObjectStep ? step.sublabel : "";
+      const phase = isObjectStep ? step.phase : "";
       const angle = -90 + (index * 360) / steps.length;
       const radians = angle * Math.PI / 180;
       const x = 50 + radius * Math.cos(radians);
       const y = 50 + radius * Math.sin(radians);
       const readableDuration = formatDuration(duration);
-      return `<div class="cycle-step" role="listitem" aria-label="${label}, ${readableDuration}" style="--step-x:${x.toFixed(3)}%;--step-y:${y.toFixed(3)}%"><i>${pad(index + 1)}</i><strong>${label}</strong><span>${readableDuration}</span></div>`;
+      const content = `<i>${pad(index + 1)}</i><strong>${label}</strong>${sublabel ? `<small>${sublabel}</small>` : ""}<span>${readableDuration}</span>`;
+      if (options.interactive) {
+        return `<button type="button" class="cycle-step ${phase}" role="listitem" aria-label="${label}, ${sublabel}, ${readableDuration}" aria-pressed="${index === 0}" data-cycle-index="${index}" style="--step-x:${x.toFixed(3)}%;--step-y:${y.toFixed(3)}%">${content}</button>`;
+      }
+      return `<div class="cycle-step" role="listitem" aria-label="${label}, ${readableDuration}" style="--step-x:${x.toFixed(3)}%;--step-y:${y.toFixed(3)}%">${content}</div>`;
     }).join("");
     document.getElementById(targetId).innerHTML = `<div class="cycle-track" aria-hidden="true"></div>${stepMarkup}`;
   }
-  renderCycle("oilCycleFlow", data.oilCycle);
+
+  function renderOilWorkingCapital() {
+    const oil = data.oilWorkingCapital;
+    document.getElementById("oilCapitalHeadline").textContent = oil.headline.value;
+    document.getElementById("oilCapitalHeadlineLabel").textContent = oil.headline.label;
+    document.getElementById("oilCapitalKpis").innerHTML = oil.kpis.map(([label, value, note]) => `<div><span>${label}</span><strong>${value}</strong><small>${note}</small></div>`).join("");
+    document.getElementById("oilPurchaseRows").innerHTML = oil.purchases.map(item => `<div class="oil-purchase-row"><span>${item.label}<small>${item.monthly}</small></span><strong>${item.containers}<small>${item.weekly}</small></strong></div>`).join("");
+    document.getElementById("oilProductRows").innerHTML = oil.products.map(item => `<div class="oil-product-row ${item.tone}"><span>${item.label}<small>${item.daily} / day</small></span><strong>${item.weekly}<small>units / week</small></strong></div>`).join("");
+    document.getElementById("oilInventoryRows").innerHTML = oil.products.map(item => `<div class="${item.tone}"><span>${item.label}</span><strong>${item.inventory}</strong></div>`).join("");
+    document.getElementById("oilShipmentChart").innerHTML = oil.shipments.map(([week, palm, canola]) => `<div class="shipment-week"><div class="shipment-bars"><i class="palm" style="--bar:${palm}"></i><i class="canola" style="--bar:${canola}"></i></div><span>${week}</span><strong>${palm + canola}</strong></div>`).join("");
+    document.getElementById("oilOutputTable").innerHTML = oil.products.map(item => `<div class="${item.tone}"><span>${item.label}</span><strong>${item.daily}<small>/ day</small></strong><b>${item.weekly}<small>/ week</small></b></div>`).join("");
+    document.getElementById("oilCashCycle").innerHTML = oil.cashCycle.map(item => `<div class="${item.tone}"><span>${item.label}</span><i><b style="width:${item.share}%"></b></i><strong>${item.days}d</strong></div>`).join("");
+
+    const detail = document.getElementById("oilCycleDetail");
+    const selectStep = index => {
+      const step = oil.cycle[index];
+      detail.innerHTML = `<span>Step ${pad(index + 1)}</span><div><strong>${step.label} ${step.sublabel}</strong><p>${step.detail}</p></div>`;
+      document.querySelectorAll("#oilCycleFlow .cycle-step").forEach((button, buttonIndex) => {
+        button.classList.toggle("is-selected", buttonIndex === index);
+        button.setAttribute("aria-pressed", String(buttonIndex === index));
+      });
+    };
+    renderCycle("oilCycleFlow", oil.cycle, { interactive: true, radius: 38 });
+    document.querySelectorAll("#oilCycleFlow .cycle-step").forEach(button => button.addEventListener("click", () => selectStep(Number(button.dataset.cycleIndex))));
+    selectStep(0);
+  }
+
+  renderOilWorkingCapital();
   renderCycle("pancitCycleFlow", data.pancitCycle);
 
   function ensureTitleSolarSystem() {

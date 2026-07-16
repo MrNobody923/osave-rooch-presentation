@@ -110,6 +110,47 @@ window.OSavePresentation = {
     ],
     footer: [["40,400", "Produced pieces / cycle"], ["20%", "Production buffer"], ["Day + night", "Shift coverage"], ["Full flexibility", "Simultaneous production"]]
   },
+  oilWorkingCapital: {
+    headline: { value: "PHP 201.07M", label: "3-month working capital" },
+    kpis: [
+      ["Weekly purchase", "USD 270,255", "9 containers"],
+      ["Monthly purchase", "USD 1.081M", "36 containers"],
+      ["Monthly requirement", "PHP 67.02M", "at PHP 62 / USD"],
+      ["Weekly units", "219,893", "available for O!Save"],
+      ["Fixed DSO", "45 days", "from goods receipt"]
+    ],
+    purchases: [
+      { label: "Palm oil", containers: "6 containers / week", weekly: "USD 168,990", monthly: "24 containers / month" },
+      { label: "Canola oil", containers: "3 containers / week", weekly: "USD 101,265", monthly: "12 containers / month" }
+    ],
+    products: [
+      { label: "Palm Oil 350mL", daily: "8,548", weekly: "59,836.02", inventory: "569,867 L", tone: "blue" },
+      { label: "Palm Oil 1L", daily: "12,394", weekly: "86,759.58", inventory: "289,199 L", tone: "sky" },
+      { label: "Canola Oil 1L", daily: "10,471", weekly: "73,297.80", inventory: "366,489 L", tone: "green" }
+    ],
+    shipments: [
+      ["Wk 22", 6, 3], ["Wk 23", 6, 3], ["Wk 24", 6, 3],
+      ["Wk 25", 6, 3], ["Wk 26", 6, 3], ["Wk 27", 6, 3]
+    ],
+    cashCycle: [
+      { label: "Purchase order", days: 5, share: 7.2, tone: "blue" },
+      { label: "Weekly shipment", days: 7, share: 10.1, tone: "sky" },
+      { label: "Warehouse", days: 8, share: 11.6, tone: "mid" },
+      { label: "Daily production", days: 1, share: 1.4, tone: "mint" },
+      { label: "Delivery to O!Save", days: 3, share: 4.3, tone: "green" },
+      { label: "Collection (fixed DSO)", days: 45, share: 65.2, tone: "deep-green" }
+    ],
+    cycle: [
+      { label: "Purchase", sublabel: "Raw materials", duration: "5 days", phase: "procurement", detail: "Order 6 Palm and 3 Canola containers each week: USD 270,255 total." },
+      { label: "Weekly", sublabel: "Shipment", duration: "7 days", phase: "procurement", detail: "Nine containers move by sea freight on a weekly import cadence with an approximately 7-day lead time." },
+      { label: "Warehouse", sublabel: "Inventory", duration: "8 days", phase: "procurement", detail: "On-hand inventory totals 1,225,555 liters across Palm 350mL, Palm 1L, and Canola 1L." },
+      { label: "Daily", sublabel: "Production", duration: "1 day", phase: "procurement", detail: "Production begins on receipt and runs daily across all three edible-oil SKUs." },
+      { label: "Daily", sublabel: "Delivery to O!Save", duration: "3 days", phase: "revenue", detail: "Finished units are delivered to O!Save daily, totaling 219,893.40 units available each week." },
+      { label: "O!Save", sublabel: "Accounts receivable", duration: "45-day term", phase: "revenue", detail: "The receivable starts when O!Save confirms receipt of the finished goods." },
+      { label: "Collection", sublabel: "Fixed DSO", duration: "Day 45", phase: "revenue", detail: "Working capital is recovered on Day 45 when O!Save settles the receivable." },
+      { label: "Reinvestment", sublabel: "Next weekly cycle", duration: "Repeat", phase: "revenue", detail: "Recovered cash is recommitted to the next 6-Palm and 3-Canola container order." }
+    ]
+  },
   oilCycle: [["Purchase order", "5d"], ["Weekly shipment", "7d"], ["Warehouse", "8d"], ["Production", "1d"], ["Delivery to O!Save", "3d"], ["Collection", "45d"]],
   pancitCycle: [["Bulk purchase", "Quarterly"], ["Warehouse", "Materials"], ["Production", "Daily"], ["Delivery", "Daily"], ["O!Save sales", "Retail"], ["Collection", "45d"], ["Reinvestment", "Repeat"]]
 };
