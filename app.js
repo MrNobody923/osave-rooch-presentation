@@ -654,9 +654,6 @@
   }
 
   renderOilWorkingCapital();
-  renderCycle("pancitCycleFlow", data.pancitCycle, {
-    phases: ["procurement", "procurement", "procurement", "revenue", "revenue", "revenue", "revenue"]
-  });
 
   function ensureTitleSolarSystem() {
     if (titleSolarInitialized || currentSlide !== 0) return;
