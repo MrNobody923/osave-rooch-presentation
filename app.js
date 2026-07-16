@@ -25,6 +25,8 @@
   let desktopSidebarOpen = true;
   let lastDialogTrigger = null;
   let titleSolarInitialized = false;
+  let titleSolarFrame = null;
+  let titleSolarCleanup = null;
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const photoLightbox = document.getElementById("photoLightbox");
   const photoLightboxClose = document.getElementById("photoLightboxClose");
@@ -696,16 +698,17 @@
     scene.add(solarGroup);
 
     const sunGeometry = new THREE.SphereGeometry(1.1, 16, 16);
-    const sunMaterial = new THREE.MeshBasicMaterial({ color: 0x0284c7, wireframe: true, transparent: true, opacity: 0.18 });
+    const sunMaterial = new THREE.MeshBasicMaterial({ color: 0x0ea5e9, wireframe: true, transparent: true, opacity: 0.18 });
     const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
     solarGroup.add(sunMesh);
 
     const glowGeometry = new THREE.RingGeometry(1.2, 1.25, 32);
-    const glowMaterial = new THREE.MeshBasicMaterial({ color: 0x0284c7, side: THREE.DoubleSide, transparent: true, opacity: 0.3 });
+    const glowMaterial = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.3 });
     const glowRing = new THREE.Mesh(glowGeometry, glowMaterial);
     glowRing.rotation.x = Math.PI / 2;
     solarGroup.add(glowRing);
 
+    const orbitMaterials = [];
     function createOrbit(radius) {
       const points = [];
       for (let index = 0; index <= 64; index += 1) {
@@ -713,7 +716,8 @@
         points.push(new THREE.Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius));
       }
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      const material = new THREE.LineBasicMaterial({ color: 0x0284c7, transparent: true, opacity: 0.12 });
+      const material = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0 });
+      orbitMaterials.push(material);
       solarGroup.add(new THREE.Line(geometry, material));
     }
     [3.2, 5, 6.8].forEach(createOrbit);
@@ -755,15 +759,39 @@
     }
     const moonOrbit = new THREE.Line(
       new THREE.BufferGeometry().setFromPoints(moonOrbitPoints),
-      new THREE.LineBasicMaterial({ color: 0xea580c, transparent: true, opacity: 0.12 })
+      new THREE.LineBasicMaterial({ color: 0xf97316, transparent: true, opacity: 0 })
     );
+    const moonOrbitMaterial = moonOrbit.material;
     men2Group.add(moonOrbit);
     scene.add(new THREE.AmbientLight(0xffffff, 0.45));
-    const pointLight = new THREE.PointLight(0x0284c7, 2, 40);
+    const pointLight = new THREE.PointLight(0x0ea5e9, 2, 40);
     pointLight.position.set(0, 0, 0);
     scene.add(pointLight);
 
+    const updateTheme = () => {
+      const isLight = document.documentElement.getAttribute("data-theme") !== "dark";
+      const sky = isLight ? 0x0284c7 : 0x38bdf8;
+      const skyDark = isLight ? 0x0284c7 : 0x0ea5e9;
+      const orange = isLight ? 0xea580c : 0xf97316;
+      sunMaterial.color.setHex(skyDark);
+      glowMaterial.color.setHex(sky);
+      pointLight.color.setHex(skyDark);
+      moonOrbitMaterial.color.setHex(orange);
+      orbitMaterials.forEach((material) => material.color.setHex(sky));
+    };
+    const themeObserver = new MutationObserver(updateTheme);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    updateTheme();
+
     const sunOverlay = document.getElementById("threeSunOverlay");
+    let mouseX = 0;
+    let mouseY = 0;
+    const onMouseMove = (event) => {
+      mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+      mouseY = (event.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+    };
+    window.addEventListener("mousemove", onMouseMove);
+
     function updateOverlayPosition(mesh, element, radius) {
       if (!element) return;
       const position = new THREE.Vector3();
@@ -787,6 +815,7 @@
         if (advance) planet.angle += planet.speed;
         planet.mesh.position.x = Math.cos(planet.angle) * planet.radius;
         planet.mesh.position.z = Math.sin(planet.angle) * planet.radius;
+        if (advance) planet.mesh.rotation.y += 0.01;
         if (planet.id === "lbl-men2parent") men2Group.position.copy(planet.mesh.position);
       });
       moons.forEach((moon) => {
@@ -797,9 +826,12 @@
 
       const time = reducedMotionQuery.matches ? 0 : timestamp;
       solarGroup.rotation.y = time * 0.0001;
-      camera.position.x = Math.sin(time * 0.00035) * 1.8;
-      camera.position.y = 7 + Math.cos(time * 0.0002625) * 0.5;
-      camera.position.z = 13 + Math.sin(time * 0.0001575);
+      const targetX = Math.sin(time * 0.00035) * 1.8 + (reducedMotionQuery.matches ? 0 : mouseX * 2);
+      const targetY = 7 + Math.cos(time * 0.0002625) * 0.5 - (reducedMotionQuery.matches ? 0 : mouseY * 1.5);
+      const targetZ = 13 + Math.sin(time * 0.0001575);
+      camera.position.x += (targetX - camera.position.x) * 0.08;
+      camera.position.y += (targetY - camera.position.y) * 0.08;
+      camera.position.z += (targetZ - camera.position.z) * 0.08;
       camera.lookAt(0, 0, 0);
       renderer.render(scene, camera);
       updateOverlayPosition(sunMesh, sunOverlay);
@@ -809,24 +841,41 @@
 
     let lastRenderTime = 0;
     function animate(timestamp) {
-      requestAnimationFrame(animate);
+      titleSolarFrame = requestAnimationFrame(animate);
       if (currentSlide !== 0 || reducedMotionQuery.matches || timestamp - lastRenderTime < 1000 / 30) return;
       lastRenderTime = timestamp;
       renderFrame(true, Date.now());
     }
     renderFrame(false, 0);
-    requestAnimationFrame(animate);
+    titleSolarFrame = requestAnimationFrame(animate);
 
-    window.addEventListener("resize", () => {
+    const onResize = () => {
       width = container.clientWidth;
       height = container.clientHeight;
       if (!width || !height) return;
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
-      renderFrame(false, reducedMotionQuery.matches ? 0 : Date.now());
-    });
-    reducedMotionQuery.addEventListener("change", () => renderFrame(false, reducedMotionQuery.matches ? 0 : Date.now()));
+    };
+    window.addEventListener("resize", onResize);
+
+    const onReducedMotionChange = () => renderFrame(false, reducedMotionQuery.matches ? 0 : Date.now());
+    reducedMotionQuery.addEventListener("change", onReducedMotionChange);
+
+    titleSolarCleanup = () => {
+      themeObserver.disconnect();
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("mousemove", onMouseMove);
+      reducedMotionQuery.removeEventListener("change", onReducedMotionChange);
+      if (titleSolarFrame) cancelAnimationFrame(titleSolarFrame);
+      renderer.dispose();
+      renderer.domElement.remove();
+      titleSolarFrame = null;
+      titleSolarCleanup = null;
+    };
+    window.addEventListener("pagehide", () => {
+      if (titleSolarCleanup) titleSolarCleanup();
+    }, { once: true });
   }
 
   const videoPlaceholder = document.getElementById("videoPlaceholder");
