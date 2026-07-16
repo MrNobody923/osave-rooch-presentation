@@ -537,19 +537,9 @@
       if (expValue) expValue.textContent = compactNumber.format(calc.expActualMixed);
     });
 
-    // Summary
-    const totalMixedCurr = calcs.reduce((a, c) => a + c.currActualMixed, 0);
-    const totalMixedExp = calcs.reduce((a, c) => a + c.expActualMixed, 0);
-    const netVolGain = totalMixedExp - totalMixedCurr;
-    const percentageGain = totalMixedCurr > 0 ? Math.round((netVolGain / totalMixedCurr) * 100) : 0;
-
-    document.getElementById("exec-total-curr").textContent = `${totalMixedCurr.toLocaleString()} bottles`;
-    document.getElementById("exec-total-exp").textContent = `${totalMixedExp.toLocaleString()} bottles`;
-    document.getElementById("exec-vol-gain").textContent = `+${netVolGain.toLocaleString()} bottles`;
-    document.getElementById("exec-pct-gain").textContent = `+${percentageGain}%`;
-
     // Update selected comparison card (single pass, no re-computation)
     const c = calcs[selectedIndex];
+    const cap = data.oilCapacity[selectedIndex];
     const fmt = (v) => `${v.toLocaleString()} bottles`;
     document.getElementById("currentDay").textContent = fmt(c.currDay);
     document.getElementById("currentNight").textContent = fmt(c.currNight);
@@ -563,7 +553,6 @@
     const growth = c.expMonthlyPotential > c.currMonthlyPotential ? Math.round((c.expMonthlyPotential - c.currMonthlyPotential) / c.currMonthlyPotential * 100) : 0;
     document.getElementById("growthBadge").textContent = `+${growth}% Production Capacity`;
 
-    const cap = data.oilCapacity[selectedIndex];
     const parts = cap.label.split(" ");
     const product = parts.slice(0, 2).join(" ");
     const tag = parts.slice(2).join(" ") || cap.label;
@@ -623,7 +612,7 @@
       const label = isObjectStep ? step.label : step[0];
       const duration = isObjectStep ? step.duration : step[1];
       const sublabel = isObjectStep ? step.sublabel : "";
-      const phase = isObjectStep ? step.phase : "";
+      const phase = isObjectStep ? step.phase : (options.phases?.[index] || "");
       const angle = -90 + (index * 360) / steps.length;
       const radians = angle * Math.PI / 180;
       const x = 50 + radius * Math.cos(radians);
@@ -633,7 +622,7 @@
       if (options.interactive) {
         return `<button type="button" class="cycle-step ${phase}" role="listitem" aria-label="${label}, ${sublabel}, ${readableDuration}" aria-pressed="${index === 0}" data-cycle-index="${index}" style="--step-x:${x.toFixed(3)}%;--step-y:${y.toFixed(3)}%">${content}</button>`;
       }
-      return `<div class="cycle-step" role="listitem" aria-label="${label}, ${readableDuration}" style="--step-x:${x.toFixed(3)}%;--step-y:${y.toFixed(3)}%">${content}</div>`;
+      return `<div class="cycle-step ${phase}" role="listitem" aria-label="${label}, ${readableDuration}" style="--step-x:${x.toFixed(3)}%;--step-y:${y.toFixed(3)}%">${content}</div>`;
     }).join("");
     document.getElementById(targetId).innerHTML = `<div class="cycle-track" aria-hidden="true"></div>${stepMarkup}`;
   }
@@ -665,7 +654,9 @@
   }
 
   renderOilWorkingCapital();
-  renderCycle("pancitCycleFlow", data.pancitCycle);
+  renderCycle("pancitCycleFlow", data.pancitCycle, {
+    phases: ["procurement", "procurement", "procurement", "revenue", "revenue", "revenue", "revenue"]
+  });
 
   function ensureTitleSolarSystem() {
     if (titleSolarInitialized || currentSlide !== 0) return;

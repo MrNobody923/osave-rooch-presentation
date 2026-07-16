@@ -367,12 +367,6 @@
 
             </div>
           </div>
-          <div class="capacity-footer oil-summary-footer">
-            <div><strong class="hl-number" id="exec-total-curr">120,000 bottles</strong><span>Monthly Combined (Current)</span></div>
-            <div><strong class="hl-number" id="exec-total-exp">400,000 bottles</strong><span>Monthly Combined (Expanded)</span></div>
-            <div><strong class="hl-number text-green" id="exec-vol-gain">+280,000 bottles</strong><span>Net Monthly Volume Gain</span></div>
-            <div><strong class="hl-number" id="exec-pct-gain">+233%</strong><span>Overall Capacity Increase</span></div>
-          </div>
         </section>
 
         <section class="slide capacity-slide pancit" data-title="Capacity: Pancit" data-section="MANUFACTURING CAPACITY / PANCIT">
@@ -409,11 +403,14 @@
           </div>
         </section>
 
-        <section class="slide capital-slide pancit" data-title="Trade Cycle: Pancit" data-section="WORKING CAPITAL TRADE CYCLE / PANCIT">
+        <section class="slide capital-slide pancit pancit-capital-slide" data-title="Trade Cycle: Pancit" data-section="WORKING CAPITAL TRADE CYCLE / PANCIT">
           <div class="slide-heading"><div><p class="eyebrow">Post-expansion operating cycle</p><h2>Working Capital Trade Cycle <span>Pancit</span></h2></div><div class="headline-metric"><strong>PHP 24.5M</strong><span>operating cash requirement</span></div></div>
           <div class="capital-kpis"><div><span>Quarterly materials</span><strong>PHP 73.5M</strong></div><div><span>Monthly materials</span><strong>PHP 24.5M</strong></div><div><span>Weekly output</span><strong>335.9K pcs</strong></div><div><span>Collection</span><strong>45 days</strong></div></div>
           <div class="pancit-cycle">
-            <div class="cycle-flow" id="pancitCycleFlow" role="list" aria-label="Pancit trade cycle"></div>
+            <section class="pancit-cycle-panel" aria-labelledby="pancitCyclePanelTitle">
+              <div class="pancit-cycle-panel-heading"><div><h3 id="pancitCyclePanelTitle">Trade cycle process flow</h3><p>Working capital movement from materials to reinvestment</p></div><span class="pancit-cycle-tag">Pancit operations</span></div>
+              <div class="cycle-flow oil-cycle-flow" id="pancitCycleFlow" role="list" aria-label="Pancit trade cycle"></div>
+            </section>
             <div class="mix-panel"><h3>Monthly production mix</h3><div class="mix-bar"><i style="--size:55.4%;--tone:#24a9e8"></i><i style="--size:26.7%;--tone:#f2c14e"></i><i style="--size:17.9%;--tone:#45c486"></i></div><div class="mix-legend"><span><i style="--tone:#24a9e8"></i>Bihon 55.4%</span><span><i style="--tone:#f2c14e"></i>Canton 300g 26.7%</span><span><i style="--tone:#45c486"></i>Canton small 17.8%</span></div><p>45-day cash cycle requirement <strong>PHP 36.8M</strong></p></div>
           </div>
         </section>
