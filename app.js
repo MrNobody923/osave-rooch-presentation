@@ -26,6 +26,14 @@
   let lastDialogTrigger = null;
   let titleSolarInitialized = false;
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const photoLightbox = document.getElementById("photoLightbox");
+  const photoLightboxClose = document.getElementById("photoLightboxClose");
+  const photoLightboxImage = document.getElementById("photoLightboxImage");
+  const photoLightboxPrevious = document.getElementById("photoLightboxPrevious");
+  const photoLightboxNext = document.getElementById("photoLightboxNext");
+  let activePhotoGroup = 0;
+  let activePhotoIndex = 0;
+  let lastPhotoTrigger = null;
 
   const pad = (value) => String(value).padStart(2, "0");
   const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
@@ -130,6 +138,7 @@
     item.appendChild(button);
     slideIndex.appendChild(item);
   });
+  progressBar.parentElement.setAttribute("aria-valuemax", String(slides.length));
 
   previousButton.addEventListener("click", () => showSlide(currentSlide - 1, true));
   nextButton.addEventListener("click", () => showSlide(currentSlide + 1, true));
@@ -141,6 +150,7 @@
   setSidebarOpen(!mobileSidebarQuery.matches);
 
   document.addEventListener("keydown", (event) => {
+    if (photoLightbox.open) return;
     if (event.key === "Escape" && mobileSidebarQuery.matches && sidebar.classList.contains("is-open")) {
       setSidebarOpen(false);
       return;
@@ -227,6 +237,75 @@
   });
   companyDialog.addEventListener("click", (event) => {
     if (event.target === companyDialog) companyDialog.close();
+  });
+
+  const manufacturingStatus = Array.isArray(data.manufacturingStatus) ? data.manufacturingStatus : [];
+  const galleryTargets = {
+    oil: { gallery: "expansionOilGallery", count: "expansionOilCount" },
+    pancit: { gallery: "expansionPancitGallery", count: "expansionPancitCount" },
+    logistics: { gallery: "expansionLogisticsGallery", count: "expansionLogisticsCount" }
+  };
+
+  function renderActivePhoto() {
+    const group = manufacturingStatus[activePhotoGroup];
+    const photo = group.photos[activePhotoIndex];
+    photoLightboxImage.src = photo.src;
+    photoLightboxImage.alt = `${photo.title} - ${group.title}`;
+  }
+
+  function openPhoto(groupIndex, photoIndex, trigger) {
+    activePhotoGroup = groupIndex;
+    activePhotoIndex = photoIndex;
+    lastPhotoTrigger = trigger;
+    renderActivePhoto();
+    photoLightbox.showModal();
+    photoLightboxClose.focus();
+  }
+
+  function movePhoto(direction) {
+    const photos = manufacturingStatus[activePhotoGroup].photos;
+    activePhotoIndex = (activePhotoIndex + direction + photos.length) % photos.length;
+    renderActivePhoto();
+  }
+
+  manufacturingStatus.forEach((group, groupIndex) => {
+    const target = galleryTargets[group.id];
+    if (!target) return;
+    const gallery = document.getElementById(target.gallery);
+    document.getElementById(target.count).textContent = `${group.photos.length} photos`;
+    group.photos.forEach((photo, photoIndex) => {
+      const button = document.createElement("button");
+      const image = document.createElement("img");
+      button.type = "button";
+      button.className = "expansion-photo";
+      button.setAttribute("aria-label", `Expand ${photo.title}`);
+      button.setAttribute("aria-haspopup", "dialog");
+      button.setAttribute("aria-controls", "photoLightbox");
+      image.src = photo.src;
+      image.alt = photo.title;
+      image.loading = "lazy";
+      image.decoding = "async";
+      button.append(image);
+      button.addEventListener("click", () => openPhoto(groupIndex, photoIndex, button));
+      gallery.appendChild(button);
+    });
+  });
+
+  photoLightboxClose.addEventListener("click", () => photoLightbox.close());
+  photoLightboxPrevious.addEventListener("click", () => movePhoto(-1));
+  photoLightboxNext.addEventListener("click", () => movePhoto(1));
+  photoLightbox.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    movePhoto(event.key === "ArrowRight" ? 1 : -1);
+  });
+  photoLightbox.addEventListener("click", (event) => {
+    if (event.target === photoLightbox) photoLightbox.close();
+  });
+  photoLightbox.addEventListener("close", () => {
+    photoLightboxImage.removeAttribute("src");
+    if (lastPhotoTrigger) lastPhotoTrigger.focus();
+    lastPhotoTrigger = null;
   });
 
   const achievementList = document.getElementById("achievementList");

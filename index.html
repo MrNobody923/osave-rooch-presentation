@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260714-17">
+    <link rel="stylesheet" href="styles.css?v=20260716-1">
 </head>
 <body class="title-screen">
   <div class="presentation" id="presentation">
@@ -29,7 +29,7 @@
         <p id="sectionLabel">ROOCH HOLDING INC. / O!SAVE PARTNERSHIP</p>
         <div class="title-shortcuts" aria-hidden="true">Use Keyboard <strong>&larr;</strong> <strong>&rarr;</strong> or <strong>Space</strong></div>
         <div class="topbar-actions">
-          <span id="slideCounter">01 / 11</span>
+          <span id="slideCounter">01 / 12</span>
           <button class="command-button" id="fullscreenButton" type="button" aria-label="Enter presentation mode">Present Fullscreen</button>
         </div>
       </header>
@@ -151,6 +151,27 @@
             <a href="https://mp-expansion.netlify.app/" target="_blank" rel="noopener noreferrer" class="mp-open-link">Open in new tab ↗</a>
           </div>
           <iframe src="https://mp-expansion.netlify.app/" class="mp-embed-frame" title="Manufacturing Expansion Dashboard" allow="fullscreen" loading="lazy"></iframe>
+        </section>
+
+        <section class="slide expansion-status-slide" data-title="Current Expansion Status" data-section="MANUFACTURING EXPANSION / CURRENT STATUS">
+          <div class="slide-heading">
+            <div><p class="eyebrow">ON-SITE PROGRESS GALLERY</p><h2>Current Manufacturing <span>Expansion Status</span></h2></div>
+            <p>Current production, processing, and facility expansion areas</p>
+          </div>
+          <div class="expansion-gallery" aria-label="Current manufacturing expansion photos">
+            <section class="expansion-gallery-group is-oil" aria-labelledby="expansionOilTitle">
+              <header><h3 id="expansionOilTitle">Oil</h3><span id="expansionOilCount"></span></header>
+              <div class="expansion-photo-grid" id="expansionOilGallery"></div>
+            </section>
+            <section class="expansion-gallery-group is-pancit" aria-labelledby="expansionPancitTitle">
+              <header><h3 id="expansionPancitTitle">Pancit</h3><span id="expansionPancitCount"></span></header>
+              <div class="expansion-photo-grid" id="expansionPancitGallery"></div>
+            </section>
+            <section class="expansion-gallery-group is-logistics" aria-labelledby="expansionLogisticsTitle">
+              <header><h3 id="expansionLogisticsTitle">Logistics &amp; Warehouse</h3><span id="expansionLogisticsCount"></span></header>
+              <div class="expansion-photo-grid" id="expansionLogisticsGallery"></div>
+            </section>
+          </div>
         </section>
 
         <section class="slide demand-slide" data-title="Demand Impact: Oil" data-section="O!SAVE CREDIT PLAN / RETAIL STORES DEMAND IMPACT">
@@ -400,7 +421,7 @@
 
       <footer class="controls">
         <button class="nav-button" id="previousButton" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg><span>Previous</span></button>
-        <div class="progress-track" role="progressbar" aria-label="Presentation progress" aria-valuemin="1" aria-valuemax="11" aria-valuenow="1"><i id="progressBar"></i></div>
+        <div class="progress-track" role="progressbar" aria-label="Presentation progress" aria-valuemin="1" aria-valuemax="12" aria-valuenow="1"><i id="progressBar"></i></div>
         <button class="nav-button" id="nextButton" type="button" aria-label="Next slide"><span>Next</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6-1.41 1.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
       </footer>
     </main>
@@ -412,8 +433,19 @@
     <p class="eyebrow" id="dialogCategory"></p><h2 id="dialogTitle"></h2><p id="dialogDescription"></p><ul id="dialogPoints"></ul>
   </dialog>
 
+  <dialog class="photo-lightbox" id="photoLightbox" aria-label="Expanded manufacturing photo">
+    <div class="photo-lightbox-shell">
+      <button class="photo-lightbox-close" id="photoLightboxClose" type="button" aria-label="Close expanded photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <button class="photo-lightbox-nav is-previous" id="photoLightboxPrevious" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+      <figure>
+        <img id="photoLightboxImage" src="" alt="">
+      </figure>
+      <button class="photo-lightbox-nav is-next" id="photoLightboxNext" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+  </dialog>
+
   <script src="three.min.js"></script>
   <script src="presentation-data.js"></script>
-  <script src="app.js?v=20260714-13"></script>
+  <script src="app.js?v=20260716-1"></script>
 </body>
 </html>
