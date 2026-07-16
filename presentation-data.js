@@ -40,6 +40,7 @@ window.OSavePresentation = {
         { src: "assets/manufacturing-status/logistics-construction-3.jpg", title: "Cold Storage Construction 3" },
         { src: "assets/manufacturing-status/logistics-construction-4.jpg", title: "Cold Storage Construction 4" },
         { src: "assets/manufacturing-status/logistics-construction-5.jpg", title: "Cold Storage Construction 5" },
+        { src: "assets/manufacturing-status/logistics-construction-6.jpg", title: "Cold Storage Construction 6" },
         { src: "assets/manufacturing-status/logistics-driveway-1.jpg", title: "Facility Driveway 1" },
         { src: "assets/manufacturing-status/logistics-driveway-2.jpg", title: "Facility Driveway 2" },
         { src: "assets/manufacturing-status/logistics-driveway-3.jpg", title: "Facility Driveway 3" },
