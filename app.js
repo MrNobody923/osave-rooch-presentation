@@ -639,7 +639,37 @@
     selectStep(0);
   }
 
+  function renderPancitWorkingCapital() {
+    const pancit = data.pancitWorkingCapital;
+    document.getElementById("pancitCapitalHeadline").textContent = pancit.headline.value;
+    document.getElementById("pancitCapitalHeadlineLabel").textContent = pancit.headline.label;
+    document.getElementById("pancitCapitalKpis").innerHTML = pancit.kpis.map(([label, value, note]) => `<div><span>${label}</span><strong>${value}</strong><small>${note}</small></div>`).join("");
+    document.getElementById("pancitMonthlyRequirement").textContent = pancit.kpis[1][1];
+    document.getElementById("pancitWeeklyOutput").textContent = pancit.kpis[2][1];
+    document.getElementById("pancitCollectionDays").textContent = pancit.kpis[3][1];
+    document.getElementById("pancitMaterialsRows").innerHTML = pancit.materials.map(item => `<div class="oil-purchase-row"><span>${item.label}<small>${item.note}</small></span><strong>${item.value}</strong></div>`).join("");
+    document.getElementById("pancitMaterialsInsight").innerHTML = pancit.materials.map(item => `<div class="blue"><span>${item.label}</span><strong>${item.value}</strong></div>`).join("");
+
+    const mixColors = { blue: "#24a9e8", gold: "#f2c14e", green: "#45c486" };
+    document.getElementById("pancitMixBar").innerHTML = pancit.productionMix.map(item => `<i style="--size:${item.size};--tone:${mixColors[item.tone]}"></i>`).join("");
+    document.getElementById("pancitMixLegend").innerHTML = pancit.productionMix.map(item => `<span><i style="--tone:${mixColors[item.tone]}"></i>${item.label} ${item.share}</span>`).join("");
+
+    const detail = document.getElementById("pancitCycleDetail");
+    const selectStep = index => {
+      const step = pancit.cycle[index];
+      detail.innerHTML = `<span>Step ${pad(index + 1)}</span><div><strong>${step.label} ${step.sublabel}</strong><p>${step.detail}</p></div>`;
+      document.querySelectorAll("#pancitCycleFlow .cycle-step").forEach((button, buttonIndex) => {
+        button.classList.toggle("is-selected", buttonIndex === index);
+        button.setAttribute("aria-pressed", String(buttonIndex === index));
+      });
+    };
+    renderCycle("pancitCycleFlow", pancit.cycle, { interactive: true, radius: 38 });
+    document.querySelectorAll("#pancitCycleFlow .cycle-step").forEach(button => button.addEventListener("click", () => selectStep(Number(button.dataset.cycleIndex))));
+    selectStep(0);
+  }
+
   renderOilWorkingCapital();
+  renderPancitWorkingCapital();
 
   function ensureTitleSolarSystem() {
     if (titleSolarInitialized || currentSlide !== 0) return;

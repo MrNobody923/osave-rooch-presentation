@@ -139,6 +139,33 @@ window.OSavePresentation = {
       { label: "Reinvestment", sublabel: "Next weekly cycle", duration: "Repeat", phase: "revenue", detail: "Recovered cash is recommitted to the next 6-Palm and 3-Canola container order." }
     ]
   },
+  pancitWorkingCapital: {
+    headline: { value: "PHP 24.5M", label: "operating cash requirement" },
+    kpis: [
+      ["Quarterly materials", "PHP 73.5M", "post-expansion"],
+      ["Monthly materials", "PHP 24.5M", "materials cadence"],
+      ["Weekly output", "335.9K pcs", "post-expansion"],
+      ["Collection", "45 days", "cash conversion"]
+    ],
+    materials: [
+      { label: "Quarterly materials", value: "PHP 73.5M", note: "post-expansion" },
+      { label: "Monthly materials", value: "PHP 24.5M", note: "materials cadence" }
+    ],
+    productionMix: [
+      { label: "Bihon", share: "55.4%", size: "55.4%", tone: "blue" },
+      { label: "Canton 300g", share: "26.7%", size: "26.7%", tone: "gold" },
+      { label: "Canton small", share: "17.8%", size: "17.9%", tone: "green" }
+    ],
+    cycle: [
+      { label: "Bulk", sublabel: "Purchase", duration: "Quarterly", phase: "procurement", detail: "Quarterly materials purchasing starts the post-expansion Pancit operating cycle." },
+      { label: "Warehouse", sublabel: "Materials", duration: "Stored", phase: "procurement", detail: "Purchased Bihon and Canton materials are held for scheduled production runs." },
+      { label: "Daily", sublabel: "Production", duration: "Daily", phase: "procurement", detail: "Post-expansion production runs daily across the Bihon and Canton lines." },
+      { label: "Daily", sublabel: "Delivery", duration: "Daily", phase: "revenue", detail: "Finished Pancit products move to O!Save on the daily delivery cadence." },
+      { label: "O!Save", sublabel: "Sales", duration: "Retail", phase: "revenue", detail: "O!Save retail sales convert finished Pancit inventory into receivables." },
+      { label: "Collection", sublabel: "Receivable", duration: "45 days", phase: "revenue", detail: "Cash is collected on the existing 45-day collection cycle." },
+      { label: "Reinvestment", sublabel: "Repeat", duration: "Repeat", phase: "revenue", detail: "Collected cash is reinvested into the next Pancit materials cycle." }
+    ]
+  },
   oilCycle: [["Purchase order", "5d"], ["Weekly shipment", "7d"], ["Warehouse", "8d"], ["Production", "1d"], ["Delivery to O!Save", "3d"], ["Collection", "45d"]],
   pancitCycle: [["Bulk purchase", "Quarterly"], ["Warehouse", "Materials"], ["Production", "Daily"], ["Delivery", "Daily"], ["O!Save sales", "Retail"], ["Collection", "45d"], ["Reinvestment", "Repeat"]]
 };

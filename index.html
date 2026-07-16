@@ -441,65 +441,27 @@
           </div>
         </section>
 
-        <section class="slide pancit-capacity-expansion-slide" data-title="Trade Cycle: Pancit" data-section="MANUFACTURING CAPACITY / PANCIT">
-          <div class="pancit-capacity-header">
-            <div>
-              <p class="eyebrow">Current Production Capacity vs. Expected Capacity After Expansion</p>
-              <h2>Manufacturing <span>Capacity</span> Expansion</h2>
-            </div>
-            <div class="pancit-capacity-factory" aria-hidden="true">&#127981;</div>
-          </div>
-
-          <div class="pancit-capacity-kpis" aria-label="Pancit capacity summary">
-            <div class="pancit-capacity-kpi is-blue"><span>&#127981; Expanded Monthly Capacity</span><strong>1,454,400</strong><small>pcs / month</small></div>
-            <div class="pancit-capacity-kpi"><span>&#128200; Production Increase</span><strong>+1,139,760</strong><small>&#8593; pcs / month</small></div>
-            <div class="pancit-capacity-kpi"><span>&#9889; Growth</span><strong>362%</strong><small><b>&#8593; Increase</b></small></div>
-          </div>
-
-          <div class="pancit-capacity-comparison">
-            <section class="pancit-capacity-panel" aria-labelledby="pancitCurrentCapacityTitle">
-              <div class="pancit-capacity-panel-header"><h3 id="pancitCurrentCapacityTitle">Current Capacity</h3><span>Single Production Line &bull; Day Shift</span></div>
-              <div class="pancit-capacity-table-wrap">
-                <table class="pancit-capacity-table">
-                  <thead><tr><th>Product</th><th>Size</th><th>Shift</th><th>Produced Cases</th><th>Produced Pieces</th><th>20% Buffer</th><th>Monthly Produced</th></tr></thead>
-                  <tbody>
-                    <tr><td>Bihon</td><td>454G</td><td><em>Day Shift</em></td><td>280</td><td>5,600</td><td>6,720</td><td>201,600</td></tr>
-                    <tr><td>Canton</td><td>300G</td><td><em>Day Shift</em></td><td>130</td><td>2,340</td><td>2,808</td><td>84,240</td></tr>
-                    <tr><td>Canton</td><td>100G</td><td>&mdash;</td><td>100</td><td>800</td><td>960</td><td>28,800</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="pancit-capacity-callout is-warning"><span>&#9888;</span><p><strong>Current Limitation</strong> &mdash; Only one SKU at a time, reducing flexibility and capacity. Single shift operation.</p></div>
+        <section class="slide capital-slide pancit pancit-capital-slide oil-capital-slide" data-title="Trade Cycle: Pancit" data-section="WORKING CAPITAL TRADE CYCLE / PANCIT">
+          <div class="slide-heading"><div><p class="eyebrow">Post-expansion operating cycle &rarr; materials &rarr; production &rarr; O!Save &rarr; collection</p><h2>Working Capital Trade Cycle <span>Pancit</span></h2></div><div class="headline-metric"><strong id="pancitCapitalHeadline">PHP 24.5M</strong><span id="pancitCapitalHeadlineLabel">operating cash requirement</span></div></div>
+          <div class="oil-capital-kpis" id="pancitCapitalKpis" aria-label="Pancit working capital summary"></div>
+          <div class="oil-capital-dashboard">
+            <section class="oil-cycle-panel" aria-labelledby="pancitCyclePanelTitle">
+              <div class="oil-panel-heading"><div><h3 id="pancitCyclePanelTitle">Trade cycle process flow</h3><p>Select a stage to review its operating detail</p></div><div class="oil-cycle-legend"><span class="procurement">Procurement</span><span class="revenue">Revenue</span></div></div>
+              <div class="cycle-flow oil-cycle-flow" id="pancitCycleFlow" role="list" aria-label="Pancit trade cycle"></div>
+              <div class="oil-cycle-detail" id="pancitCycleDetail" aria-live="polite"></div>
             </section>
-
-            <div class="pancit-capacity-transition" aria-label="Expansion transition">
-              <span>Current</span><b>&#8595;</b><span>Expansion</span><b>&#8595;</b><span class="is-green">Future</span>
-              <div class="pancit-capacity-transition-list">
-                <span>&#127981; New Production Line</span>
-                <span>&#127769; Night Shift Added</span>
-                <span>&#128230; Simultaneous SKU Production</span>
-              </div>
-            </div>
-
-            <section class="pancit-capacity-panel is-expanded" aria-labelledby="pancitExpandedCapacityTitle">
-              <div class="pancit-capacity-panel-header"><h3 id="pancitExpandedCapacityTitle">After Expansion</h3><span class="is-green">&#10003; Future State</span></div>
-              <div class="pancit-capacity-table-wrap">
-                <table class="pancit-capacity-table">
-                  <thead><tr><th>Product</th><th>Size</th><th>Shift</th><th>Produced Cases</th><th>Produced Pieces</th><th>20% Buffer</th><th>Monthly Produced</th></tr></thead>
-                  <tbody>
-                    <tr><td>Bihon</td><td>454G</td><td><em>Day Shift</em></td><td>560</td><td>11,200</td><td>13,440</td><td class="is-green">403,200</td></tr>
-                    <tr><td>Bihon</td><td>454G</td><td><em>Night Shift</em></td><td>560</td><td>11,200</td><td>13,440</td><td class="is-green">403,200</td></tr>
-                    <tr><td>Canton</td><td>300G</td><td><em>Day Shift</em></td><td>300</td><td>5,400</td><td>6,480</td><td class="is-green">194,400</td></tr>
-                    <tr><td>Canton</td><td>100G</td><td>&mdash;</td><td>200</td><td>3,600</td><td>4,320</td><td class="is-green">129,600</td></tr>
-                    <tr><td>Canton</td><td>300G</td><td><em>Night Shift</em></td><td>300</td><td>5,400</td><td>6,480</td><td class="is-green">194,400</td></tr>
-                    <tr><td>Canton</td><td>100G</td><td>&mdash;</td><td>200</td><td>3,600</td><td>4,320</td><td class="is-green">129,600</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="pancit-capacity-callout is-success"><span>&#9989;</span><p><strong>Expansion Advantage</strong> &mdash; Bihon and Canton produced simultaneously across Day &amp; Night shifts, tripling efficiency and output.</p></div>
-            </section>
+            <aside class="oil-summary-stack" aria-label="Pancit working capital details">
+              <section class="oil-summary-card requirement-card"><span>Working capital requirement</span><strong>PHP 36.8M</strong><small>45-day cash cycle requirement</small><div><span>Monthly PHP</span><b id="pancitMonthlyRequirement">PHP 24.5M</b></div></section>
+              <section class="oil-summary-card"><div class="oil-card-title"><h3>Materials cadence</h3><span>Post-expansion</span></div><div id="pancitMaterialsRows"></div></section>
+              <section class="oil-summary-card"><div class="oil-card-title"><h3>Weekly output</h3><span>Production</span></div><div class="pancit-summary-value"><strong id="pancitWeeklyOutput">335.9K pcs</strong><span>available for O!Save</span></div></section>
+              <section class="oil-summary-card"><div class="oil-card-title"><h3>Collection cycle</h3><span>Receivable</span></div><div class="pancit-summary-value"><strong id="pancitCollectionDays">45 days</strong><span>cash conversion</span></div></section>
+            </aside>
           </div>
-
+          <div class="oil-insight-grid">
+            <section class="oil-insight-card"><div class="oil-card-title"><h3>Monthly production mix</h3><span>335.9K pcs / week</span></div><div class="mix-bar pancit-mix-bar" id="pancitMixBar" aria-label="Pancit monthly production mix"></div><div class="mix-legend pancit-mix-legend" id="pancitMixLegend"></div></section>
+            <section class="oil-insight-card"><div class="oil-card-title"><h3>Materials cadence</h3><span>Quarterly / monthly</span></div><div class="oil-output-table" id="pancitMaterialsInsight"></div></section>
+            <section class="oil-insight-card cash-cycle-card"><div class="oil-card-title"><h3>Cash conversion cycle</h3><span>45 days total</span></div><div class="pancit-cash-cycle"><strong>45 days</strong><i><b></b></i><span>Collection</span></div><p><strong>PHP 36.8M</strong> requirement supports the Pancit operating cycle.</p></section>
+          </div>
         </section>
 
         <section class="slide qa-slide" data-title="Q&amp;A" data-section="ROOCH HOLDING INC. / Q&amp;A SESSION">
