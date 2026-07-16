@@ -369,15 +369,53 @@
           </div>
         </section>
 
-        <section class="slide capacity-slide pancit" data-title="Capacity: Pancit" data-section="MANUFACTURING CAPACITY / PANCIT">
-          <div class="slide-heading"><div><p class="eyebrow">Capacity optimization</p><h2>Manufacturing Capacity <span>Pancit</span></h2></div></div>
-          <div class="capacity-focus pancit-capacity-focus" id="pancitCapacityContent">
-            <div class="capacity-product"><span id="pancitCapacityLabel">Pancit Bihon &amp; Canton Lines</span><strong id="pancitCapacityGrowth">+362%</strong><small>production capacity</small></div>
-            <div class="comparison-block current"><p>Current capacity</p><div><span>Production line</span><strong class="capacity-descriptor" id="pancitCurrentLine">Single production line</strong></div><div><span>Shift coverage</span><strong class="capacity-descriptor" id="pancitCurrentShifts">Day shift operation</strong></div><div class="total"><span>Monthly output</span><strong id="pancitCurrentMonthly">314,640</strong></div><div><span>SKU mode</span><strong class="capacity-descriptor" id="pancitCurrentSkuMode">One SKU at a time</strong></div></div>
-            <div class="capacity-arrow" aria-hidden="true">&#8594;</div>
-            <div class="comparison-block expanded"><p>After expansion</p><div><span>Production line</span><strong class="capacity-descriptor" id="pancitExpandedLine">New production line</strong></div><div><span>Shift coverage</span><strong class="capacity-descriptor" id="pancitExpandedShifts">Day + night shifts</strong></div><div class="total"><span>Monthly output</span><strong id="pancitExpandedMonthly">1,454,400</strong></div><div><span>SKU mode</span><strong class="capacity-descriptor" id="pancitExpandedSkuMode">Parallel SKUs</strong></div><div class="capacity-breakdown" id="pancitProductBreakdown"><span>Expanded product output</span><ul></ul></div></div>
+        <section class="slide pancit-source-slide" data-title="Capacity: Pancit" data-section="MANUFACTURING CAPACITY / PANCIT">
+          <div class="pancit-source-header">
+            <div class="pancit-source-header-copy">
+              <h2>Manufacturing <span>Capacity</span> Expansion</h2>
+              <p>Current Production Capacity vs. Expected Capacity After Expansion</p>
+            </div>
+            <svg class="pancit-source-factory" viewBox="0 0 64 64" aria-hidden="true">
+              <rect x="4" y="28" width="56" height="28" rx="3"></rect><rect x="10" y="34" width="10" height="14" rx="1.5"></rect><rect x="24" y="34" width="10" height="14" rx="1.5"></rect><rect x="38" y="34" width="10" height="14" rx="1.5"></rect><rect x="8" y="22" width="48" height="8" rx="2"></rect><rect x="14" y="14" width="8" height="10" rx="1.5"></rect><rect x="28" y="14" width="8" height="10" rx="1.5"></rect><rect x="42" y="14" width="8" height="10" rx="1.5"></rect><circle cx="32" cy="8" r="4"></circle><path d="M30 8 L34 8 M32 6 L32 10"></path><rect x="48" y="36" width="10" height="10" rx="1"></rect><circle cx="53" cy="41" r="2"></circle>
+            </svg>
           </div>
-          <div class="capacity-footer" id="pancitCapacityFooter"></div>
+
+          <div class="pancit-source-kpis">
+            <div class="primary"><span><i>&#127981;</i> Expanded Monthly Capacity</span><strong>1,454,400</strong><small>pcs / month</small></div>
+            <div><span><i>&#128200;</i> Production Increase</span><strong>+1,139,760</strong><small><b>&uarr;</b> pcs / month</small></div>
+            <div><span><i>&#9889;</i> Growth</span><strong>362%</strong><small class="source-badge">&uarr; Increase</small></div>
+          </div>
+
+          <div class="pancit-source-comparison">
+            <section class="pancit-source-panel">
+              <div class="pancit-source-panel-header"><strong>Current Capacity</strong><span>Single Production Line &bull; Day Shift</span></div>
+              <div class="pancit-source-table-wrap"><table class="pancit-source-table"><thead><tr><th>Product</th><th>Size</th><th>Shift</th><th>Produced Cases</th><th>Produced Pieces</th><th>20% Buffer</th><th>Monthly Produced</th></tr></thead><tbody>
+                <tr><td>Bihon</td><td>454G</td><td><em>Day Shift</em></td><td>280</td><td>5,600</td><td>6,720</td><td>201,600</td></tr>
+                <tr><td>Canton</td><td>300G</td><td><em>Day Shift</em></td><td>130</td><td>2,340</td><td>2,808</td><td>84,240</td></tr>
+                <tr><td>Canton</td><td>100G</td><td>&mdash;</td><td>100</td><td>800</td><td>960</td><td>28,800</td></tr>
+              </tbody></table></div>
+              <div class="pancit-source-callout warning"><span>&#9888;</span><p><strong>Current Limitation</strong> &mdash; Only one SKU at a time, reducing flexibility and capacity. Single shift operation.</p></div>
+            </section>
+
+            <div class="pancit-source-transition">
+              <span class="active">Current</span><b>&darr;</b><span>Expansion</span><b>&darr;</b><span class="future">Future</span>
+              <div><span>&#127981; New Production Line</span><span>&#127769; Night Shift Added</span><span>&#128230; Simultaneous SKU Production</span></div>
+            </div>
+
+            <section class="pancit-source-panel expanded">
+              <div class="pancit-source-panel-header"><strong>After Expansion</strong><span class="future">&#10003; Future State</span></div>
+              <div class="pancit-source-table-wrap"><table class="pancit-source-table"><thead><tr><th>Product</th><th>Size</th><th>Shift</th><th>Produced Cases</th><th>Produced Pieces</th><th>20% Buffer</th><th>Monthly Produced</th></tr></thead><tbody>
+                <tr><td>Bihon</td><td>454G</td><td><em>Day Shift</em></td><td>560</td><td>11,200</td><td>13,440</td><td class="future-value">403,200</td></tr>
+                <tr><td>Bihon</td><td>454G</td><td><em>Night Shift</em></td><td>560</td><td>11,200</td><td>13,440</td><td class="future-value">403,200</td></tr>
+                <tr><td>Canton</td><td>300G</td><td><em>Day Shift</em></td><td>300</td><td>5,400</td><td>6,480</td><td class="future-value">194,400</td></tr>
+                <tr><td>Canton</td><td>100G</td><td>&mdash;</td><td>200</td><td>3,600</td><td>4,320</td><td class="future-value">129,600</td></tr>
+                <tr><td>Canton</td><td>300G</td><td><em>Night Shift</em></td><td>300</td><td>5,400</td><td>6,480</td><td class="future-value">194,400</td></tr>
+                <tr><td>Canton</td><td>100G</td><td>&mdash;</td><td>200</td><td>3,600</td><td>4,320</td><td class="future-value">129,600</td></tr>
+              </tbody></table></div>
+              <div class="pancit-source-callout success"><span>&#9989;</span><p><strong>Expansion Advantage</strong> &mdash; Bihon and Canton produced simultaneously across Day &amp; Night shifts, tripling efficiency and output.</p></div>
+            </section>
+          </div>
+
         </section>
 
         <section class="slide capital-slide oil-capital-slide" data-title="Trade Cycle: Oil" data-section="WORKING CAPITAL TRADE CYCLE / OILS">

@@ -98,18 +98,6 @@ window.OSavePresentation = {
     { label: "Palm Oil 1L", growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] },
     { label: "Canola Oil 1L", growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] }
   ],
-  pancitCapacity: {
-    label: "Pancit Bihon & Canton Lines",
-    growth: "+362%",
-    current: { line: "Single production line", shifts: "Day shift operation", monthly: 314640, skuMode: "One SKU at a time" },
-    expanded: { line: "New production line", shifts: "Day + night shifts", monthly: 1454400, skuMode: "Parallel SKUs" },
-    products: [
-      ["Bihon", "806,400 pcs"],
-      ["Canton 300g", "388,800 pcs"],
-      ["Canton small", "259,200 pcs"]
-    ],
-    footer: [["40,400", "Produced pieces / cycle"], ["20%", "Production buffer"], ["Day + night", "Shift coverage"], ["Full flexibility", "Simultaneous production"]]
-  },
   oilWorkingCapital: {
     headline: { value: "PHP 201.07M", label: "3-month working capital" },
     kpis: [

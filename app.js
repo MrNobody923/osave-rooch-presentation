@@ -591,20 +591,6 @@
   });
   updateOilSimulation(0);
 
-  const pancitCapacity = data.pancitCapacity;
-  document.getElementById("pancitCapacityLabel").textContent = pancitCapacity.label;
-  document.getElementById("pancitCapacityGrowth").textContent = pancitCapacity.growth;
-  document.getElementById("pancitCurrentLine").textContent = pancitCapacity.current.line;
-  document.getElementById("pancitCurrentShifts").textContent = pancitCapacity.current.shifts;
-  document.getElementById("pancitCurrentMonthly").textContent = formatNumber(pancitCapacity.current.monthly);
-  document.getElementById("pancitCurrentSkuMode").textContent = pancitCapacity.current.skuMode;
-  document.getElementById("pancitExpandedLine").textContent = pancitCapacity.expanded.line;
-  document.getElementById("pancitExpandedShifts").textContent = pancitCapacity.expanded.shifts;
-  document.getElementById("pancitExpandedMonthly").textContent = formatNumber(pancitCapacity.expanded.monthly);
-  document.getElementById("pancitExpandedSkuMode").textContent = pancitCapacity.expanded.skuMode;
-  document.querySelector("#pancitProductBreakdown ul").innerHTML = pancitCapacity.products.map(([label, value]) => `<li><span>${label}</span><strong>${value}</strong></li>`).join("");
-  document.getElementById("pancitCapacityFooter").innerHTML = pancitCapacity.footer.map(([value, label]) => `<div><strong>${value}</strong><span>${label}</span></div>`).join("");
-
   function renderCycle(targetId, steps, options = {}) {
     const radius = options.radius || 33;
     const stepMarkup = steps.map((step, index) => {
