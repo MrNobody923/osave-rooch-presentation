@@ -98,6 +98,16 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
 .orbit-node span { position: absolute; top: calc(100% + 7px); color: var(--muted); font-size: 9px; white-space: nowrap; }
 .node-vertex { left: 44%; top: 5%; }.node-men2 { right: 4%; top: 43%; }.node-mama { left: 43%; bottom: 3%; }.node-hanvin { left: 5%; top: 43%; }
 
+/* ── Manufacturing Expansion embed slide ── */
+.mp-embed-slide { flex-direction: column !important; overflow: hidden; }
+.mp-embed-header { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; padding-bottom: 12px; border-bottom: 1px solid var(--line); gap: 16px; }
+.mp-embed-header h2 { font: 700 clamp(20px,2.4vw,36px)/1 var(--heading); margin: 0; }
+.mp-embed-header h2 span { color: var(--blue-soft); }
+.mp-embed-header .eyebrow { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.mp-open-link { font-size: 11px; color: var(--blue-soft); text-decoration: none; border: 1px solid var(--line); padding: 5px 14px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; }
+.mp-open-link:hover { background: rgba(36,169,232,.08); border-color: var(--blue-soft); }
+.mp-embed-frame { flex: 1; width: 100%; border: 0; border-radius: 10px; min-height: 0; }
+
 .structure-slide, .achievements-slide, .demand-slide, .capacity-slide, .capital-slide { flex-direction: column; }
 .structure-map { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: auto; }
 .structure-chart { width: min(100%, 1120px); display: flex; flex-direction: column; align-items: center; }
