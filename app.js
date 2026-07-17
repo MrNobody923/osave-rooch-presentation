@@ -443,7 +443,7 @@
           </div>`).join("")}
       </div>
     </div>
-    <p class="demand-chart-legend"><strong>Legend:</strong> Bihon 454g: 150K | Canton 300g: 100K | Canton 100g: 1K sample</p>`;
+    <p class="demand-chart-legend"><strong>Legend:</strong> Bihon 454g: 50K | Canton 300g: 30K | Canton 100g: 1K sample</p>`;
 
   document.getElementById("pancitRecurringPieces").textContent = `${formatNumber(pancitRecurringPieces)}`;
   document.getElementById("pancitWarehouses").innerHTML = data.pancitWarehouses.map(([code, name, cases]) => `
