@@ -142,7 +142,7 @@ window.OSavePresentation = {
     kpis: [
       ["Quarterly materials", "PHP 73.5M", "post-expansion"],
       ["Monthly materials", "PHP 24.5M", "materials cadence"],
-      ["Weekly output", "335.9K pcs", "post-expansion"],
+      ["Weekly output", "363,600 pcs", "post-expansion"],
       ["Collection", "45 days", "cash conversion"]
     ],
     materials: [
