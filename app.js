@@ -745,8 +745,7 @@
     solarGroup.add(men2Group);
     const moons = [
       { id: "lbl-men2dagupan", radius: 1.15, angle: 0, speed: 0.022, size: 0.15 },
-      { id: "lbl-men2marikina", radius: 1.15, angle: (Math.PI * 2) / 3, speed: 0.022, size: 0.15 },
-      { id: "lbl-jcbs", radius: 1.15, angle: (Math.PI * 4) / 3, speed: 0.022, size: 0.15 }
+      { id: "lbl-men2marikina", radius: 1.15, angle: Math.PI, speed: 0.022, size: 0.15 }
     ];
     moons.forEach((moon) => {
       moon.mesh = new THREE.Mesh(
