@@ -85,13 +85,13 @@ window.OSavePresentation = {
     { region: "Taytay, Rizal", code: "TAY", cases: 840, color: "#059669" }
   ],
   pancitDemand: [
-    { product: "Bihon", size: "454g", cases: 50000, pieces: 1200000, isSample: false, color: "#0284c7" },
-    { product: "Canton", size: "300g", cases: 30000, pieces: 540000, isSample: false, color: "#d97706" },
+    { product: "Bihon", size: "454g", cases: 40000, pieces: 960000, isSample: false, color: "#0284c7" },
+    { product: "Canton", size: "300g", cases: 20000, pieces: 360000, isSample: false, color: "#d97706" },
     { product: "Canton", size: "100g", cases: 1000, pieces: 8000, isSample: true, color: "#059669" }
   ],
   pancitWarehouses: [
-    ["PLR", "Plaridel", 11429], ["PMP", "Pampanga", 11429], ["NAG", "Naga & Kawit", 11429],
-    ["VIL", "Villasis", 11429], ["MEY", "Meycauayan", 11428], ["NVE", "Nueva Ecija", 11428], ["TAY", "Taytay", 11428]
+    ["PLR", "Plaridel", 8572], ["PMP", "Pampanga", 8572], ["NAG", "Naga & Kawit", 8572],
+    ["VIL", "Villasis", 8571], ["MEY", "Meycauayan", 8571], ["NVE", "Nueva Ecija", 8571], ["TAY", "Taytay", 8571]
   ],
   oilCapacity: [
     { label: "Palm Oil 350mL", growth: "+336%", current: [12600, 7200, 19800, 594000], expanded: [43200, 43200, 86400, 2592000] },

@@ -443,7 +443,7 @@
           </div>`).join("")}
       </div>
     </div>
-    <p class="demand-chart-legend"><strong>Legend:</strong> Bihon 454g: 50K | Canton 300g: 30K | Canton 100g: 1K sample</p>`;
+    <p class="demand-chart-legend"><strong>Legend:</strong> Bihon 454g: 40K | Canton 300g: 20K | Canton 100g: 1K sample</p>`;
 
   document.getElementById("pancitRecurringPieces").textContent = `${formatNumber(pancitRecurringPieces)}`;
   document.getElementById("pancitWarehouses").innerHTML = data.pancitWarehouses.map(([code, name, cases]) => `
@@ -645,7 +645,6 @@
     document.getElementById("pancitCapitalHeadline").textContent = pancit.headline.value;
     document.getElementById("pancitCapitalHeadlineLabel").textContent = pancit.headline.label;
     document.getElementById("pancitCapitalKpis").innerHTML = pancit.kpis.map(([label, value, note]) => `<div><span>${label}</span><strong>${value}</strong><small>${note}</small></div>`).join("");
-    document.getElementById("pancitMonthlyRequirement").textContent = pancit.kpis[1][1];
     document.getElementById("pancitWeeklyOutput").textContent = pancit.kpis[2][1];
     document.getElementById("pancitCollectionDays").textContent = pancit.kpis[3][1];
     document.getElementById("pancitMaterialsRows").innerHTML = pancit.materials.map(item => `<div class="oil-purchase-row"><span>${item.label}<small>${item.note}</small></span><strong>${item.value}</strong></div>`).join("");
