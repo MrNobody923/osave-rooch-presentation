@@ -102,7 +102,7 @@ window.OSavePresentation = {
       ["Weekly purchase", "USD 270,255", "9 containers"],
       ["Monthly purchase", "USD 1.081M", "36 containers"],
       ["Monthly requirement", "PHP 67.02M", "at PHP 62 / USD"],
-      ["Weekly units", "219,893", "available for O!Save"],
+      ["Weekly units", "331,007", "available for O!Save"],
       ["Fixed DSO", "45 days", "from goods receipt"]
     ],
     purchases: [
@@ -110,7 +110,7 @@ window.OSavePresentation = {
       { label: "Canola oil", containers: "3 containers / week", weekly: "USD 101,265", monthly: "12 containers / month" }
     ],
     products: [
-      { label: "Palm Oil 350mL", daily: "8,548", weekly: "59,836.02", inventory: "569,867 L", tone: "blue" },
+      { label: "Palm Oil 350mL", daily: "24,421.44", weekly: "170,950.06", inventory: "569,867 L", tone: "blue" },
       { label: "Palm Oil 1L", daily: "12,394", weekly: "86,759.58", inventory: "289,199 L", tone: "sky" },
       { label: "Canola Oil 1L", daily: "10,471", weekly: "73,297.80", inventory: "366,489 L", tone: "green" }
     ],
@@ -131,7 +131,7 @@ window.OSavePresentation = {
       { label: "Weekly", sublabel: "Shipment", duration: "7 days", phase: "procurement", detail: "Nine containers move by sea freight on a weekly import cadence with an approximately 7-day lead time." },
       { label: "Warehouse", sublabel: "Inventory", duration: "8 days", phase: "procurement", detail: "On-hand inventory totals 1,225,555 liters across Palm 350mL, Palm 1L, and Canola 1L." },
       { label: "Daily", sublabel: "Production", duration: "1 day", phase: "procurement", detail: "Production begins on receipt and runs daily across all three edible-oil SKUs." },
-      { label: "Daily", sublabel: "Delivery to O!Save", duration: "3 days", phase: "revenue", detail: "Finished units are delivered to O!Save daily, totaling 219,893.40 units available each week." },
+      { label: "Daily", sublabel: "Delivery to O!Save", duration: "3 days", phase: "revenue", detail: "Finished units are delivered to O!Save daily, totaling 331,007.44 units available each week." },
       { label: "O!Save", sublabel: "Accounts receivable", duration: "45-day term", phase: "revenue", detail: "The receivable starts when O!Save confirms receipt of the finished goods." },
       { label: "Collection", sublabel: "Fixed DSO", duration: "Day 45", phase: "revenue", detail: "Working capital is recovered on Day 45 when O!Save settles the receivable." },
       { label: "Reinvestment", sublabel: "Next weekly cycle", duration: "Repeat", phase: "revenue", detail: "Recovered cash is recommitted to the next 6-Palm and 3-Canola container order." }

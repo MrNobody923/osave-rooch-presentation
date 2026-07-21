@@ -430,10 +430,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
 .shipment-week span { color: var(--muted); font-size: 7px; }
 .shipment-week strong { position: absolute; top: 0; right: 1px; color: var(--muted); font-size: 6px; }
 .oil-output-table { display: grid; gap: 3px; margin-top: 5px; }
-.oil-output-table > div { display: grid; grid-template-columns: 1fr 58px 74px; gap: 6px; align-items: center; padding: 3px 5px; background: rgba(36,169,232,.06); }
+.oil-output-table > div { display: grid; grid-template-columns: minmax(0, 1fr) max-content max-content; gap: 6px; align-items: center; padding: 3px 5px; background: rgba(36,169,232,.06); }
 .oil-output-table span { color: var(--muted); font-size: 7px; }
-.oil-output-table strong, .oil-output-table b { font: 700 8px var(--heading); text-align: right; }
-.oil-output-table small { color: var(--muted); font: 400 6px var(--body); }
+.oil-output-table strong, .oil-output-table b { font: 700 8px var(--heading); text-align: right; white-space: nowrap; }
+.oil-output-table small { color: var(--muted); font: 400 6px var(--body); white-space: nowrap; }
 .cash-cycle-bars { display: grid; gap: 2px; margin-top: 5px; }
 .cash-cycle-bars > div { display: grid; grid-template-columns: 95px 1fr 22px; gap: 6px; align-items: center; }
 .cash-cycle-bars span, .cash-cycle-bars strong { font-size: 6.5px; }
@@ -534,7 +534,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
   .oil-cycle-flow .cycle-step span { margin-top: 3px; text-align: center; }
   .oil-cycle-legend { display: none; }
   .oil-inventory-grid { grid-template-columns: 1fr; }
-  .oil-output-table > div { grid-template-columns: 1fr 64px 78px; }
+  .oil-output-table > div { grid-template-columns: minmax(0, 1fr) max-content max-content; }
   .qa-slide { padding-inline: 20px; }.qa-content h2 { font-size: 76px; }.qa-subtitle { font-size: 16px; }.qa-prompt { font-size: 12px; }.qa-contact { flex-direction: column; gap: 12px; }
 }
 
