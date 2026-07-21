@@ -400,7 +400,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
 .oil-cycle-detail > span { width: 44px; padding: 4px 5px; color: var(--blue); background: rgba(36,169,232,.12); font-size: 8px; font-weight: 700; text-align: center; text-transform: uppercase; }
 .oil-cycle-detail strong { display: block; font: 700 10px var(--heading); }
 .oil-cycle-detail p { margin: 3px 0 0; color: var(--muted); font-size: 8px; line-height: 1.35; }
-.oil-summary-stack { min-height: 0; display: grid; grid-template-rows: auto auto auto 1fr; gap: 7px; }
+.oil-summary-stack { min-height: 0; display: grid; grid-template-rows: auto auto 1fr; gap: 7px; }
 .pancit-capital-slide .oil-summary-stack { grid-template-rows: repeat(3, minmax(0, 1fr)); }
 .oil-summary-card { padding: 9px 11px; }
 .requirement-card { color: white; border-color: transparent; background: linear-gradient(145deg, var(--navy-700), var(--navy-900)); }
@@ -416,10 +416,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
 .oil-purchase-row small, .oil-product-row small { display: block; margin-top: 2px; color: var(--muted); font-size: 7px; font-weight: 400; }
 .oil-card-total { margin: 5px 0 0; display: flex; justify-content: space-between; color: var(--muted); font-size: 8px; }
 .oil-card-total strong { color: var(--green); font-family: var(--heading); }
-.oil-inventory-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 6px; }
-.oil-inventory-grid > div { min-width: 0; padding: 5px; background: rgba(36,169,232,.07); text-align: center; }
-.oil-inventory-grid span { display: block; min-height: 20px; color: var(--muted); font-size: 7px; line-height: 1.2; }
-.oil-inventory-grid strong { display: block; margin-top: 2px; font: 700 8px var(--heading); }
 .oil-insight-grid { flex: 0 0 auto; display: grid; grid-template-columns: .82fr 1.05fr 1.3fr; gap: 10px; }
 .oil-insight-card { min-height: 105px; padding: 9px 11px; }
 .shipment-chart { height: 65px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; align-items: end; margin-top: 4px; }
@@ -533,7 +529,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
   .oil-cycle-flow .cycle-step i { margin: 0 auto 6px; }
   .oil-cycle-flow .cycle-step span { margin-top: 3px; text-align: center; }
   .oil-cycle-legend { display: none; }
-  .oil-inventory-grid { grid-template-columns: 1fr; }
   .oil-output-table > div { grid-template-columns: minmax(0, 1fr) max-content max-content; }
   .qa-slide { padding-inline: 20px; }.qa-content h2 { font-size: 76px; }.qa-subtitle { font-size: 16px; }.qa-prompt { font-size: 12px; }.qa-contact { flex-direction: column; gap: 12px; }
 }
@@ -1366,10 +1361,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--blue-soft); out
 .oil-purchase-row strong, .oil-product-row strong { font-size: 10px; line-height: 1.25; }
 .oil-purchase-row small, .oil-product-row small { font-size: 9px; line-height: 1.25; }
 .oil-card-total { margin-top: 8px; font-size: 10px; }
-.oil-inventory-grid { gap: 7px; margin-top: 8px; }
-.oil-inventory-grid > div { padding: 7px 5px; }
-.oil-inventory-grid span { min-height: 24px; font-size: 9px; line-height: 1.25; }
-.oil-inventory-grid strong { font-size: 10px; line-height: 1.2; }
 .oil-insight-grid { gap: 12px; }
 .oil-insight-card { min-height: 126px; padding: 12px 14px; }
 .shipment-chart { height: 76px; gap: 7px; }

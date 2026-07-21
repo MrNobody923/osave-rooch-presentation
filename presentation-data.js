@@ -110,9 +110,9 @@ window.OSavePresentation = {
       { label: "Canola oil", containers: "3 containers / week", weekly: "USD 101,265", monthly: "12 containers / month" }
     ],
     products: [
-      { label: "Palm Oil 350mL", daily: "24,421.44", weekly: "170,950.06", inventory: "569,867 L", tone: "blue" },
-      { label: "Palm Oil 1L", daily: "12,394", weekly: "86,759.58", inventory: "289,199 L", tone: "sky" },
-      { label: "Canola Oil 1L", daily: "10,471", weekly: "73,297.80", inventory: "366,489 L", tone: "green" }
+      { label: "Palm Oil 350mL", daily: "24,421.44", weekly: "170,950.06", tone: "blue" },
+      { label: "Palm Oil 1L", daily: "12,394", weekly: "86,759.58", tone: "sky" },
+      { label: "Canola Oil 1L", daily: "10,471", weekly: "73,297.80", tone: "green" }
     ],
     shipments: [
       ["Wk 22", 6, 3], ["Wk 23", 6, 3], ["Wk 24", 6, 3],
