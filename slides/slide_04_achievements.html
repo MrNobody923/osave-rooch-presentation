@@ -1,0 +1,397 @@
+<style>
+/* Achievements Interactive Bullets styling */
+.achievement-bullet {
+  transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+.achievement-bullet:hover {
+  transform: translateX(4px);
+  background: rgba(var(--rgb-glass), 0.035) !important;
+  border-color: rgba(var(--rgb-glass), 0.15) !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.achievement-bullet:active {
+  transform: translateX(1px);
+}
+
+/* Division-specific active states */
+.achievement-bullet.active-tech {
+  background: rgba(168, 85, 247, 0.08) !important;
+  border-color: #c084fc !important;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.22) !important;
+}
+.achievement-bullet.active-infra {
+  background: rgba(52, 211, 153, 0.08) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.22) !important;
+}
+.achievement-bullet.active-fmcg {
+  background: rgba(249, 115, 22, 0.08) !important;
+  border-color: #fb923c !important;
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.22) !important;
+}
+
+/* Image reveal transitions */
+@keyframes img-reveal-flow {
+  0% {
+    opacity: 0;
+    filter: blur(10px) brightness(0.85);
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+    transform: scale(1);
+  }
+}
+.img-reveal-active {
+  animation: img-reveal-flow 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Accent frame transition */
+.image-preview-frame {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+#achievementPreviewCaption {
+  transition: border-left-color 0.4s ease;
+}
+</style>
+
+<section class="slide">
+  <div class="slide-header">
+    <h2>Key Achievements</h2>
+    <p>Operational milestones, contracts, and structural accomplishments across our divisions</p>
+  </div>
+  
+  <!-- Main Content Grid: 3-Columns for Bullets on the Left, 1 Preview Panel on the Right -->
+  <div class="slide-content grid-2-1" style="grid-template-columns: 2.15fr 1fr; gap: 20px; align-items: stretch;">
+    
+    <!-- Left Container: 3 Columns side-by-side -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; align-items: stretch; height: 100%;">
+      
+      <!-- Column 1: Tech & Solutions (Purple) -->
+      <div style="background: rgba(168, 85, 247, 0.02); border: 1.5px solid rgba(168, 85, 247, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">Tech & Solutions</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding-right: 6px;">
+          <!-- Bullet 1 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/VOS ERP.png" 
+               data-caption="{{slide_04_achievements_caption_0}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view VOS ERP Details">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">VOS ERP Suite</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">VERTEX - Consolidated Accounting & Inventory</span>
+          </div>
+
+          <!-- Bullet 2 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Dealerover Sync.jpg" 
+               data-caption="{{slide_04_achievements_caption_1}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Dealerover Details">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">Dealerover Sync</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">VERTEX - Stock Matching & Dispatch</span>
+          </div>
+
+          <!-- Bullet 3 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/eLGU Deployment.jpg" 
+               data-caption="{{slide_04_achievements_caption_2}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view eLGU Details">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">eLGU Digitalization</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">VERTEX - Municipal Treasury Tax & Permits</span>
+          </div>
+
+          <!-- Bullet 4 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/SFA Booking.jpg" 
+               data-caption="{{slide_04_achievements_caption_3}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view SFA & Core Systems Details">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">SFA & Core Systems</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">VERTEX - Mobile Sales, HRIS, & Custom ERP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Infrastructure & Energy (Green) -->
+      <div style="background: rgba(52, 211, 153, 0.02); border: 1.5px solid rgba(52, 211, 153, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">Infra & Energy</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding-right: 6px;">
+          <!-- Bullet 1 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Hanvin_Constructions/LGU_Mapandan_1.jpeg" 
+               data-caption="{{slide_04_achievements_caption_4}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view LGU Mapandan">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">LGU Mapandan Solar</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">Hanvin - Solar grid deployment</span>
+          </div>
+
+          <!-- Bullet 2 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Hanvin_Constructions/La_Sallette_School_1.png" 
+               data-caption="{{slide_04_achievements_caption_5}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view La Sallete School">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">La Sallette Solar</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">Hanvin - Campus solar offset</span>
+          </div>
+
+          <!-- Bullet 3 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Hanvin_Constructions/MEN2_Warehouse_1.png" 
+               data-caption="{{slide_04_achievements_caption_6}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view MEN2 Warehouse">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">Men2 Dagupan Warehouse</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">Hanvin - Logistics facility shell</span>
+          </div>
+
+          <!-- Bullet 4 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Hanvin_Constructions/MEN2_Offices_1.png" 
+               data-caption="{{slide_04_achievements_caption_7}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view MEN2 Offices">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">Men2 Dagupan Offices</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">Hanvin - Office interior & facade</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 3: FMCG & Logistics (Orange) -->
+      <div style="background: rgba(249, 115, 22, 0.02); border: 1.5px solid rgba(249, 115, 22, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #fb923c; background: rgba(249, 115, 22, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">FMCG & Logistics</span>
+        <div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding-right: 6px;">
+          <!-- Bullet 1 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Foodsphere Frozen.jpg" 
+               data-caption="{{slide_04_achievements_caption_9}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Foodsphere contract">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Foodsphere Frozen</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Dagupan - La Union</span>
+          </div>
+
+          <!-- Bullet 2 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/DEALEROVER.jpg" 
+               data-caption="{{slide_04_achievements_caption_10}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view San Carlos launch details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Dealerover Opening</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Dagupan - San Carlos</span>
+          </div>
+
+          <!-- Bullet 3 -->
+          <div class="achievement-bullet" 
+               data-image="N/A" 
+               data-caption="{{slide_04_achievements_caption_8}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Ecoessentials (Kopiko) contract">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Kopiko Engagement</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Dagupan - Pangasinan</span>
+          </div>
+
+          <!-- Bullet 4 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Sea Oil.jpg" 
+               data-caption="{{slide_04_achievements_caption_11}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Sea Oil contract">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Sea Oil Engagement</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Industrial - Industrial Business</span>
+          </div>
+
+          <!-- Bullet 5 -->
+          <div class="achievement-bullet" 
+               data-image="N/A" 
+               data-caption="{{slide_04_achievements_caption_12}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Federated details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Federated Onboarding</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - Commenced Mar 2026</span>
+          </div>
+
+          <!-- Bullet 6 -->
+          <div class="achievement-bullet" 
+               data-image="N/A" 
+               data-caption="{{slide_04_achievements_caption_13}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Fitrite details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Fitrite Integration</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - Commenced Mar 2026</span>
+          </div>
+
+          <!-- Bullet 7 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Indomie.jpg" 
+               data-caption="{{slide_04_achievements_caption_14}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Indomie details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Indomie Mi Goreng</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - Commenced Feb 2026</span>
+          </div>
+
+          <!-- Bullet 8 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Primo.jpg" 
+               data-caption="{{slide_04_achievements_caption_15}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Prime Flavors details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Prime Flavors (Primo)</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - NCR Rollout</span>
+          </div>
+
+          <!-- Bullet 9 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Dever.jpg" 
+               data-caption="{{slide_04_achievements_caption_16}}"
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Dever Energy details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Dever Energy</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - Commenced Jun 2026</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Right Container: Premium Image/Video Preview Display Panel -->
+    <div class="glass-card image-preview-frame" style="display: flex; flex-direction: column; height: 100%; padding: 16px; border: 1.5px solid rgba(14, 165, 233, 0.25); border-radius: 14px; position: relative; overflow: hidden; background: rgba(var(--rgb-dark-bg),0.3); text-align: left; justify-content: space-between;">
+      
+      <!-- Video Element -->
+      <video id="achievementPreviewVideo" autoplay loop muted playsinline style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; z-index: 0; filter: brightness(0.9); opacity: 0.9;"></video>
+      
+      <!-- Image Element -->
+      <img id="achievementPreviewImg" src="" alt="Achievement Detail" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; z-index: 0; filter: brightness(0.9); opacity: 0.9; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);">
+      
+      <!-- N/A View Element -->
+      <div id="achievementPreviewNA" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; align-items: center; justify-content: center; background: rgba(var(--rgb-glass),0.05);">
+         <span style="color: var(--text-muted); font-size: 14px; letter-spacing: 1px; font-weight: 500;">MEDIA NOT AVAILABLE</span>
+      </div>
+
+      <div style="position: relative; z-index: 1;">
+        <span style="background: rgba(var(--rgb-dark-bg), 0.6); padding: 4px 10px; border-radius: 20px; font-size: 9px; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(var(--rgb-glass),0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">PREVIEW</span>
+      </div>
+      
+      <div style="position: relative; z-index: 1; background: rgba(var(--rgb-dark-bg), 0.65); padding: 12px 14px; border-radius: 10px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(var(--rgb-glass),0.1); display: flex; align-items: center;">
+        <p id="achievementPreviewCaption" style="font-size: 11px; color: var(--text-primary); margin: 0; line-height: 1.4; border-left: 3px solid #0ea5e9; padding-left: 10px;">Select an achievement from the list to view its details.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const initAchievementsTab = () => {
+    const bullets = document.querySelectorAll('.achievement-bullet');
+    const previewImg = document.getElementById('achievementPreviewImg');
+    const previewVideo = document.getElementById('achievementPreviewVideo');
+    const captionText = document.getElementById('achievementPreviewCaption');
+    
+    if (!bullets.length || !previewImg || !previewVideo || !captionText) {
+      setTimeout(initAchievementsTab, 100);
+      return;
+    }
+    
+    bullets.forEach(b => {
+      b.addEventListener('click', () => {
+        // Remove active class styling from all bullets
+        bullets.forEach(x => {
+          x.classList.remove('active-tech', 'active-infra', 'active-fmcg');
+        });
+        
+        // Find division color accent based on its parent container context
+        let activeColor = '#0ea5e9'; // fallback cyan
+        let activeClass = 'active-tech';
+        const parentBg = b.parentElement.parentElement.style.background;
+        if (parentBg.includes('168')) {
+          activeColor = '#c084fc'; // purple (Tech)
+          activeClass = 'active-tech';
+        } else if (parentBg.includes('52')) {
+          activeColor = '#34d399'; // green (Infra)
+          activeClass = 'active-infra';
+        } else if (parentBg.includes('249')) {
+          activeColor = '#fb923c'; // orange (FMCG)
+          activeClass = 'active-fmcg';
+        }
+        
+        // Apply active accent class
+        b.classList.add(activeClass);
+        
+        const imgSrc = b.getAttribute('data-image');
+        const videoSrc = b.getAttribute('data-video');
+        const caption = b.getAttribute('data-caption');
+        
+        // Apply clean border tint to the right display frame
+        const frame = document.querySelector('.image-preview-frame');
+        if (frame) {
+          frame.style.borderColor = `${activeColor}40`;
+          frame.style.boxShadow = `0 0 15px ${activeColor}15`;
+        }
+        
+        // Update display border accent line
+        captionText.style.borderLeftColor = activeColor;
+        
+        const naEl = document.getElementById('achievementPreviewNA');
+        
+        if (imgSrc === 'N/A' || !imgSrc) {
+          // Switch to N/A mode
+          previewVideo.pause();
+          previewVideo.style.display = 'none';
+          previewVideo.src = '';
+          previewImg.style.display = 'none';
+          previewImg.src = '';
+          if (naEl) naEl.style.display = 'flex';
+          captionText.innerHTML = caption;
+        } else if (videoSrc) {
+          // Switch to video mode
+          if (naEl) naEl.style.display = 'none';
+          previewImg.style.display = 'none';
+          previewVideo.style.display = 'block';
+          previewVideo.src = videoSrc;
+          previewVideo.load();
+          // Programmatic play call to guarantee autoplay on card selection click
+          const playPromise = previewVideo.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              console.log("Autoplay prevented by browser security policy:", error);
+            });
+          }
+          captionText.innerHTML = caption;
+        } else {
+          // Switch to image mode
+          if (naEl) naEl.style.display = 'none';
+          previewVideo.pause();
+          previewVideo.style.display = 'none';
+          previewVideo.src = ''; // Instantly clear video src to free memory
+          previewImg.style.display = 'block';
+          
+          // Smooth transition image swap with reveal animation
+          previewImg.classList.remove('img-reveal-active');
+          void previewImg.offsetWidth; // Force layout reflow
+          previewImg.src = imgSrc;
+          captionText.innerHTML = caption;
+          previewImg.classList.add('img-reveal-active');
+        }
+      });
+    });
+    
+    // Auto-click the first bullet to initialize the slide display state
+    if (bullets[0]) {
+      bullets[0].click();
+    }
+  };
+  
+  // Launch once DOM loaded/injected
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initAchievementsTab();
+  } else {
+    document.addEventListener('DOMContentLoaded', initAchievementsTab);
+  }
+})();
+</script>

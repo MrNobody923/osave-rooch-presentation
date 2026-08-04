@@ -1,0 +1,195 @@
+<section class="slide">
+  <div class="slide-header">
+    <h2>Corporate Structure Chart</h2>
+    <p>Hover or click any company node to explore subsidiary operations and group papers</p>
+  </div>
+  <div class="slide-content" style="width: 100%;">
+    
+    <!-- Flowchart Visualizer (Full Width Layout) -->
+    <div class="glass-card chart-visualization" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; position: relative; overflow: visible; width: 100%; height: 100%; box-sizing: border-box;">
+      
+      <!-- Flowchart Container -->
+      <div class="flowchart-container" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        
+        <!-- Root Node: ROOCH Parent -->
+        <div class="flowchart-root" style="position: relative; z-index: 10;">
+          <div class="root-card interactive-flow-card" data-company="rooch" style="display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; background: transparent; border: none; box-shadow: none; padding: 0;" title="ROOCH Holding Inc.">
+            <div style="width: 90px; height: 90px; background: transparent; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 0; filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.5)); transition: transform 0.3s ease;">
+              <img src="Presentation_Assets/Logos/rooch_logo.png" alt="ROOCH Holding Logo" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Vertical stem -->
+        <div class="flowchart-vertical-line" style="width: 3px; height: 18px; background: linear-gradient(to bottom, #0ea5e9, #a855f7); margin-bottom: 0;"></div>
+        
+        <!-- 3-Column Branching Connectors -->
+        <div class="flowchart-connectors" style="position: relative; width: 75%; height: 18px; margin-bottom: 8px;">
+          <!-- Horizontal spanning line -->
+          <div style="position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, #c084fc, #0ea5e9 50%, #fb923c); box-shadow: 0 0 6px rgba(14, 165, 233, 0.35);"></div>
+          <!-- Left branch drop line -->
+          <div style="position: absolute; left: 0; top: 0; width: 2px; height: 18px; background: #c084fc;"></div>
+          <!-- Center branch drop line -->
+          <div style="position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 2px; height: 18px; background: #0ea5e9;"></div>
+          <!-- Right branch drop line -->
+          <div style="position: absolute; right: 0; top: 0; width: 2px; height: 18px; background: #fb923c;"></div>
+        </div>
+        
+        <!-- Divisions & Subsidiary Groups (3-Column grid) -->
+        <div class="flowchart-groups" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; width: 100%; position: relative;">
+          
+          <!-- Column 1: Tech & Solutions (Purple) -->
+          <div class="flowchart-group tech-group" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="group-title-node" style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); color: #c084fc; margin-bottom: 12px; box-shadow: 0 0 6px rgba(168,85,247,0.15);">
+              Tech & Solutions
+            </div>
+            <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3) 50%, transparent); margin-bottom: 12px;"></div>
+            
+            <div class="subsidiary-cards" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+              <!-- Vertex Card -->
+              <div class="sub-flow-card interactive-flow-card" data-company="vertex" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: transparent; overflow: hidden; padding: 2px; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/vertex_logo.png" alt="Vertex Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin: 0;">Vertex Tech</h4>
+                  <span class="sub-field" style="font-size: 8.5px; font-weight: 600; color: #a855f7; text-transform: uppercase;">Software & Digitization</span>
+                </div>
+              </div>
+              
+              <!-- MEN2 Solutions Card -->
+              <div class="sub-flow-card interactive-flow-card" data-company="men2solutions" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: rgba(var(--rgb-glass),0.03); width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; color: #c084fc;">
+                  🛠️
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2 Solutions</h4>
+                  <span class="sub-field" style="font-size: 8.5px; font-weight: 600; color: #c084fc; text-transform: uppercase;">Manpower Sourcing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Column 2: Infrastructure & Energy (Emerald/Green) -->
+          <div class="flowchart-group energy-group" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="group-title-node" style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); color: #34d399; margin-bottom: 12px; box-shadow: 0 0 6px rgba(52,211,153,0.15);">
+              Infra & Energy
+            </div>
+            <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.3) 50%, transparent); margin-bottom: 12px;"></div>
+            
+            <div class="subsidiary-cards" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+              <!-- Hanvins Card -->
+              <div class="sub-flow-card interactive-flow-card" data-company="hanvins" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: transparent; overflow: hidden; padding: 2px; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/hanvin_logo.png" alt="Hanvins Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">Hanvin (Solar Installations)</h4>
+                  <span class="sub-field" style="font-size: 8.5px; font-weight: 600; color: #34d399; text-transform: uppercase;">Solar Installations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 3: FMCG & Logistics (Orange) -->
+          <div class="flowchart-group fmcg-group" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="group-title-node" style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.3); color: #fb923c; margin-bottom: 12px; box-shadow: 0 0 6px rgba(249,115,22,0.1);">
+              FMCG & Logistics
+            </div>
+            <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3) 50%, transparent); margin-bottom: 12px;"></div>
+            
+            <div class="subsidiary-cards" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+              <!-- MEN2 Dagupan -->
+              <div class="sub-flow-card interactive-flow-card" data-company="men2dagupan" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: rgba(var(--rgb-glass),0.03); overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/logo_1.png" alt="MEN2 Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2 Dagupan</h4>
+                  <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">North Logistics</span>
+                </div>
+              </div>
+              
+              <!-- MEN2 Marikina -->
+              <div class="sub-flow-card interactive-flow-card" data-company="men2marikina" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: rgba(var(--rgb-glass),0.03); overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/logo_1.png" alt="MEN2 Logo" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: hue-rotate(180deg);">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2 Marikina</h4>
+                  <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">South Logistics</span>
+                </div>
+              </div>
+
+              <!-- Mama Pina's -->
+              <div class="sub-flow-card interactive-flow-card" data-company="mamapina" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: transparent; overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/mamapina_logo.png" alt="Mama Pina Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">Mama Pina's</h4>
+                  <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">Consumer Foods</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <!-- Custom Glassmorphic Pop-up Modal for Company Details & Papers -->
+  <div id="companyDetailsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(var(--rgb-dark-bg), 0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="glass-card modal-content-box" style="width: 480px; max-width: 90%; background: rgba(var(--rgb-dark-bg), 0.85); border: 1.5px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; text-align: left; transform: scale(0.9) translateY(20px); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); display: flex; flex-direction: column; gap: 15px;">
+      
+      <!-- Close Button -->
+      <span id="closeCompanyModal" style="position: absolute; top: 16px; right: 20px; font-size: 26px; color: var(--text-muted); cursor: pointer; transition: color 0.2s; line-height: 1;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">&times;</span>
+      
+      <!-- Header -->
+      <div>
+        <span id="modalCompanySubtitle" style="font-size: 10px; font-weight: 800; color: var(--color-sky); text-transform: uppercase; letter-spacing: 1.2px; display: block; margin-bottom: 4px;"></span>
+        <h3 id="modalCompanyTitle" style="font-size: 22px; font-weight: 800; color: var(--text-primary); margin: 0; text-shadow: var(--ts-override, 0 0 10px rgba(56,189,248,0.15));"></h3>
+      </div>
+      
+      <!-- Description -->
+      <p id="modalCompanyDesc" style="font-size: 13px; line-height: 1.55; color: var(--text-secondary); margin: 0;"></p>
+      
+      <!-- Operational Bullets -->
+      <div id="modalCompanyBullets" style="display: flex; flex-direction: column; gap: 12px; margin-top: 2px;"></div>
+      
+      <!-- Company Papers Container -->
+      <div id="modalCompanyPapersContainer" style="margin-top: 6px; border-top: 1px solid rgba(var(--rgb-glass),0.08); padding-top: 14px; display: flex; flex-direction: column;">
+        <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px;">📁 Company Papers</span>
+        <div id="modalCompanyPapersNote" style="font-size: 10.5px; color: var(--text-muted); margin-bottom: 6px; line-height: 1.35; font-style: italic; display: none;"></div>
+        <div id="modalCompanyPapersList" style="display: grid; grid-template-columns: 1fr; gap: 6px; max-height: 140px; overflow-y: auto; padding-right: 4px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF Viewer Modal -->
+  <div id="pdfViewerModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(var(--rgb-dark-bg), 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 10001; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="glass-card" style="width: 1000px; max-width: 95%; height: 88%; background: rgba(var(--rgb-dark-bg), 0.9); border: 1.5px solid rgba(56, 189, 248, 0.3); border-radius: 16px; padding: 16px; box-shadow: 0 30px 70px rgba(0,0,0,0.6); position: relative; display: flex; flex-direction: column; gap: 12px; transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-sizing: border-box;">
+      
+      <!-- Modal Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(var(--rgb-glass),0.08); padding-bottom: 10px; flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 18px; color: var(--color-sky);">📄</span>
+          <h4 id="pdfViewerTitle" style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0;">View Document</h4>
+        </div>
+        <span id="closePdfModal" style="font-size: 26px; color: var(--text-muted); cursor: pointer; transition: color 0.2s; line-height: 1;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">&times;</span>
+      </div>
+      
+      <!-- PDF Iframe Container -->
+      <div style="flex-grow: 1; width: 100%; border-radius: 8px; overflow: hidden; background: var(--bg-dark); border: 1px solid rgba(var(--rgb-glass),0.05);">
+        <iframe id="pdfViewerIframe" src="" style="width: 100%; height: 100%; border: none;">
+          <p style="color: var(--text-primary); padding: 20px; text-align: center;">Your browser does not support embedded PDFs. <a id="pdfFallbackLink" href="" target="_blank" style="color: var(--color-sky); text-decoration: underline;">Click here to download/view the PDF</a>.</p>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+</section>

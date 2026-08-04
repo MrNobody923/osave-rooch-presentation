@@ -1,135 +1,372 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#edf4f9">
-  <title>O!Save Growth Partnership | ROOCH Holding Inc.</title>
-  <link rel="icon" href="assets/logos/rooch.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROOCH Holding Inc. - Interactive Presentation</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260716-2">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="title-screen">
-  <div class="presentation" id="presentation">
-    <aside class="sidebar" id="sidebar" aria-label="Presentation sections">
-      <div class="brand-lockup">
-        <img src="assets/logos/rooch.png" alt="ROOCH Holding Inc.">
-        <div><strong>ROOCH</strong></div>
-        <button class="icon-button sidebar-close" id="sidebarClose" type="button" aria-label="Close navigation">&times;</button>
+<body>
+  
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header" style="display: flex; align-items: center; gap: 8px; justify-content: flex-start; padding: 16px 20px;">
+        <img src="Presentation_Assets/Logos/rooch_logo.png" alt="ROOCH Logo" style="width: 26px; height: 26px; object-fit: contain; margin-right: 4px;">
+        <span class="group-logo" style="margin: 0; font-size: 16px; font-weight: 800;">ROOCH</span>
+        <button class="close-sidebar" id="closeSidebarBtn" style="margin-left: auto;">&times;</button>
       </div>
-      <ol class="slide-index" id="slideIndex"></ol>
-      <div class="sidebar-meta" aria-hidden="true"></div>
-    </aside>
+      <ul class="nav-links">
+        <!-- Sidebar items are dynamically generated from config.js -->
+      </ul>
+      <div class="sidebar-footer">
+        <p></p>
+      </div>
+    </nav>
 
-    <main class="stage">
+    <!-- Main Content Area -->
+    <main class="presentation-viewport">
+      
+      <!-- Global Stars Background -->
+      <div class="stars-bg" style="opacity: 0.35; z-index: 1; pointer-events: none;"></div>
+
+      <!-- Edge Click Navigation Zones for Large Screens -->
+      <div class="edge-click-zone click-zone-left" id="clickZoneLeft" title="Previous Slide"></div>
+      <div class="edge-click-zone click-zone-right" id="clickZoneRight" title="Next Slide"></div>
+      
+      <!-- Floating Exit Present Button -->
+      <button id="exitPresentBtn" class="exit-present-btn" style="position: fixed; top: 15px; right: 15px; z-index: 9999; display: none; background: rgba(10,14,26,0.9); border: 1.5px solid rgba(255,255,255,0.25); color: white; padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; backdrop-filter: blur(4px); box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: var(--transition-smooth);">
+        ❌ Exit Present Mode (Esc)
+      </button>
+      
+      <!-- Top Bar Controls -->
       <header class="topbar">
-        <button class="icon-button menu-toggle" id="menuButton" type="button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="true"><span></span><span></span><span></span></button>
-        <p id="sectionLabel">ROOCH HOLDING INC. / O!SAVE PARTNERSHIP</p>
-        <div class="title-shortcuts" aria-hidden="true">Use Keyboard <strong>&larr;</strong> <strong>&rarr;</strong> or <strong>Space</strong></div>
-        <div class="topbar-actions">
-          <span id="slideCounter">01 / 12</span>
-          <button class="command-button" id="fullscreenButton" type="button" aria-label="Enter presentation mode">Present Fullscreen</button>
+        <button class="menu-toggle" id="menuToggleBtn">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="current-section-indicator" id="sectionIndicator">
+          ROOCH HOLDING INC. / INTRODUCTION
+        </div>
+        <div class="shortcuts-guide" style="display: flex; align-items: center; gap: 12px;">
+          <span>Use Keyboard <strong>←</strong> <strong>→</strong> or <strong>Space</strong></span>
+          <button class="theme-toggle-btn" id="themeToggleBtn" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: inherit; font-size: 16px; cursor: pointer; transition: var(--transition-smooth);" title="Toggle Light/Dark Mode">
+            🌓
+          </button>
+          <button class="present-btn" id="presentBtn" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; background: rgba(14, 165, 233, 0.2); border: 1px solid rgba(14, 165, 233, 0.4); color: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: var(--transition-smooth);">
+            📺 Present Fullscreen
+          </button>
         </div>
       </header>
 
-      <div class="slides" id="slides" aria-live="polite">
-        <section class="slide title-slide is-active" data-title="Title" data-section="ROOCH HOLDING INC. / TITLE SLIDE">
-          <div class="title-content-seamless">
-            <div>
-              <span class="title-badge">ROOCH HOLDING INC.</span>
-              <h1>Corporate Structure &amp;<br><span>Subsidiary Operations</span></h1>
-              <p class="title-subtitle">A Comprehensive Review of Operational Efficiencies, Asset Capital Requests, and Expanded Digital Platform Sync.</p>
-              <div class="title-insight-panel">
-                <div><i class="insight-icon insight-blue" aria-hidden="true">&#9881;</i><p><strong>Synergized Ecosystem</strong><span>End-to-end integration across FMCG distribution, enterprise software, and scalable infrastructure.</span></p></div>
-                <div><i class="insight-icon insight-purple" aria-hidden="true">&#128202;</i><p><strong>Data-Driven Logistics</strong><span>Optimized supply chains and multi-region operations powered by Vertex ERP systems.</span></p></div>
-                <div><i class="insight-icon insight-green" aria-hidden="true">&#9889;</i><p><strong>Sustainable Expansion</strong><span>Future-ready physical structures powered by high-capacity solar and energy-efficient facilities.</span></p></div>
+      <!-- Slides Wrapper -->
+      <div class="slides-container" id="slidesContainer">
+        <section class="slide title-slide active" style="position: relative; display: flex; align-items: center; justify-content: space-between; overflow: hidden; background: radial-gradient(circle at 70% 50%, var(--slide-grad-1) 0%, var(--slide-grad-2) 100%);">
+  
+  <!-- Left Side: Title Typography (Seamlessly floating) -->
+  <div class="title-content-seamless" style="position: relative; z-index: 10; width: 50%; max-width: 50%; margin-right: auto; margin-left: 5%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; height: 100%; text-align: left;">
+    <div>
+      <span class="badge" style="background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.4); color: var(--color-sky); font-size: 11px;">ROOCH HOLDING INC.</span>
+      <h1 style="font-size: 46px; line-height: 1.2; margin-top: 20px; margin-bottom: 15px; font-weight: 800; letter-spacing: -0.5px; text-shadow: var(--ts-override, 0 4px 12px rgba(0,0,0,0.5));">
+        Corporate Structure &<br><span class="gradient-text" style="background: linear-gradient(135deg, #7dd3fc 0%, #0ea5e9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Subsidiary Operations</span>
+      </h1>
+      
+      <p class="subtitle" style="font-size: 16px; margin-top: 20px; margin-bottom: 30px; line-height: 1.6; color: var(--text-secondary); max-width: 480px; text-shadow: var(--ts-override, 0 2px 4px rgba(0,0,0,0.4));">
+        A Comprehensive Review of Operational Efficiencies, Asset Capital Requests, and Expanded Digital Platform Sync.
+      </p>
+      
+      <!-- Added Substance -->
+      <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 16px; padding: 20px; background: rgba(var(--rgb-glass), 0.03); border: 1px solid rgba(var(--rgb-glass), 0.1); border-radius: 12px; max-width: 460px; backdrop-filter: blur(8px);">
+        
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="width: 28px; height: 28px; border-radius: 8px; background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; color: #0ea5e9;">&#x2699;</div>
+          <div>
+            <strong style="display: block; font-size: 12px; color: var(--text-primary); letter-spacing: 0.5px; margin-bottom: 3px;">Synergized Ecosystem</strong>
+            <span style="font-size: 11px; color: var(--text-secondary); line-height: 1.4; display: block;">End-to-end integration across FMCG distribution, enterprise software, and scalable infrastructure.</span>
+          </div>
+        </div>
+        
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="width: 28px; height: 28px; border-radius: 8px; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; color: #c084fc;">&#x1F4CA;</div>
+          <div>
+            <strong style="display: block; font-size: 12px; color: var(--text-primary); letter-spacing: 0.5px; margin-bottom: 3px;">Data-Driven Logistics</strong>
+            <span style="font-size: 11px; color: var(--text-secondary); line-height: 1.4; display: block;">Optimized supply chains and multi-region operations powered by Vertex ERP systems.</span>
+          </div>
+        </div>
+        
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="width: 28px; height: 28px; border-radius: 8px; background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.3); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; color: #34d399;">&#x26A1;</div>
+          <div>
+            <strong style="display: block; font-size: 12px; color: var(--text-primary); letter-spacing: 0.5px; margin-bottom: 3px;">Sustainable Expansion</strong>
+            <span style="font-size: 11px; color: var(--text-secondary); line-height: 1.4; display: block;">Future-ready physical structures powered by high-capacity solar and energy-efficient facilities.</span>
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+    
+    <div style="margin-top: auto;">
+      <div class="divider" style="background: linear-gradient(90deg, rgba(var(--rgb-glass),0.15) 0%, rgba(var(--rgb-glass),0) 100%); margin-bottom: 20px;"></div>
+      
+    </div>
+  </div>
+
+  <!-- Right Side: Three.js Interactive 3D Solar System (WebGL + HTML logo cards) -->
+  <div class="solar-system-container-seamless" id="solarSystemContainer" style="position: absolute; right: 4%; top: 50%; transform: translateY(-50%); width: 48%; height: 85%; z-index: 5; overflow: visible;">
+    <!-- Canvas inserted here by JS -->
+    
+    <!-- Central Sun HTML Overlay (ROOCH Logo) -->
+    <div id="threeSunOverlay" style="position: absolute; width: 110px; height: 110px; border-radius: 50%; border: 3.5px solid #0ea5e9; background: transparent; overflow: hidden; display: flex; align-items: center; justify-content: center; transform: translate(-50%, -50%); pointer-events: auto; z-index: 10; box-shadow: 0 0 40px rgba(14, 165, 233, 0.85); filter: drop-shadow(0 0 15px rgba(14,165,233,0.5));" title="ROOCH Holding">
+      <img src="Presentation_Assets/Logos/rooch_logo.png" alt="ROOCH Logo" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+
+    <!-- ORBIT 1 (INNER - radius 3.2) -->
+    <!-- Planet: Hanvins (Construction) -->
+    <div class="three-planet-card" id="lbl-hanvins" style="position: absolute; width: 60px; height: 60px; border-radius: 50%; border: 2.0px solid #0ea5e9; background: transparent; overflow: hidden; display: flex; align-items: center; justify-content: center; transform: translate(-50%, -50%); pointer-events: auto; z-index: 8; box-shadow: 0 0 15px rgba(14, 165, 233, 0.45); transition: border-color 0.3s;" title="Hanvins Construction">
+      <img src="Presentation_Assets/Logos/hanvin_logo.png" alt="Hanvins Logo" style="width: 82%; height: 82%; object-fit: contain;">
+    </div>
+
+
+    <!-- Planet: Vertex (Software) -->
+    <div class="three-planet-card" id="lbl-vertex" style="position: absolute; width: 60px; height: 60px; border-radius: 50%; border: 2.0px solid #38bdf8; background: transparent; overflow: hidden; display: flex; align-items: center; justify-content: center; transform: translate(-50%, -50%); pointer-events: auto; z-index: 8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.45); transition: border-color 0.3s;" title="Vertex Technologies">
+      <img src="Presentation_Assets/Logos/vertex_logo.png" alt="Vertex Logo" style="width: 82%; height: 82%; object-fit: contain;">
+    </div>
+
+
+
+    <!-- Planet: MEN2 Solutions (Manpower) -->
+    <div class="three-planet-card" id="lbl-men2solutions" style="position: absolute; width: 60px; height: 60px; border-radius: 50%; border: 2.0px solid #c084fc; background: var(--slide-grad-2); overflow: hidden; display: flex; align-items: center; justify-content: center; transform: translate(-50%, -50%); pointer-events: auto; z-index: 8; box-shadow: 0 0 15px rgba(168, 85, 247, 0.45); transition: border-color 0.3s; font-size: 24px;" title="MEN2 Solutions (Manpower)">
+      👥
+    </div>
+
+    <!-- ORBIT 3 (OUTER - radius 6.8) -->
+    <!-- Planet: MEN2 Parent Planet (FMCG Center) -->
+    <div class="three-planet-card" id="lbl-men2parent" style="position: absolute; width: 54px; height: 54px; border-radius: 50%; border: 2.0px solid #fb923c; background: var(--slide-grad-2); overflow: hidden; display: flex; align-items: center; justify-content: center; transform: translate(-50%, -50%); pointer-events: auto; z-index: 8; box-shadow: 0 0 15px rgba(249, 115, 22, 0.45); transition: border-color 0.3s;" title="MEN2 Enterprise Corp.">
+      <img src="Presentation_Assets/Logos/logo_1.png" alt="MEN2 Logo" style="width: 82%; height: 82%; object-fit: contain;">
+    </div>
+
+    <!-- Moon: MEN2 Dagupan (North Moons) -->
+    <div class="three-planet-card" id="lbl-men2dagupan" style="position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #fb923c; background: var(--slide-grad-2); overflow: hidden; display: flex; align-items: center; justify-content: center; transform: translate(-50%, -50%); pointer-events: auto; z-index: 9; box-shadow: 0 0 10px rgba(249, 115, 22, 0.35); font-size: 8.5px; font-weight: 800; color: var(--text-primary);" title="MEN2 Dagupan (North Division)">
+      DGP
+    </div>
+
+    <!-- Moon: MEN2 Marikina (South Moons) -->
+    <div class="three-planet-card" id="lbl-men2marikina" style="position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #38bdf8; background: var(--slide-grad-2); overflow: hidden; display: flex; align-items: center; justify-content: center; transform: translate(-50%, -50%); pointer-events: auto; z-index: 9; box-shadow: 0 0 10px rgba(56, 189, 248, 0.35); font-size: 8.5px; font-weight: 800; color: var(--text-primary);" title="MEN2 Marikina (South Division)">
+      MRK
+    </div>
+
+
+    <!-- Planet: Mama Pina's (Food Brand) -->
+    <div class="three-planet-card" id="lbl-mamapina" style="position: absolute; width: 60px; height: 60px; border-radius: 50%; border: 2.0px solid #7dd3fc; background: var(--slide-grad-2); overflow: hidden; display: flex; align-items: center; justify-content: center; transform: translate(-50%, -50%); pointer-events: auto; z-index: 8; box-shadow: 0 0 15px rgba(125, 211, 252, 0.45); transition: border-color 0.3s;" title="Mama Pina's Food Brand">
+      <img src="Presentation_Assets/Logos/mamapina_logo.png" alt="Mama Pina Logo" style="width: 82%; height: 82%; object-fit: contain;">
+    </div>
+
+
+  </div>
+
+</section>
+
+<section class="slide">
+  <div class="slide-header">
+    <h2>Corporate Structure Chart</h2>
+    <p>Hover or click any company node to explore subsidiary operations and group papers</p>
+  </div>
+  <div class="slide-content" style="width: 100%;">
+    
+    <!-- Flowchart Visualizer (Full Width Layout) -->
+    <div class="glass-card chart-visualization" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; position: relative; overflow: visible; width: 100%; height: 100%; box-sizing: border-box;">
+      
+      <!-- Flowchart Container -->
+      <div class="flowchart-container" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        
+        <!-- Root Node: ROOCH Parent -->
+        <div class="flowchart-root" style="position: relative; z-index: 10;">
+          <div class="root-card interactive-flow-card" data-company="rooch" style="display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; background: transparent; border: none; box-shadow: none; padding: 0;" title="ROOCH Holding Inc.">
+            <div style="width: 90px; height: 90px; background: transparent; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 0; filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.5)); transition: transform 0.3s ease;">
+              <img src="Presentation_Assets/Logos/rooch_logo.png" alt="ROOCH Holding Logo" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Vertical stem -->
+        <div class="flowchart-vertical-line" style="width: 3px; height: 18px; background: linear-gradient(to bottom, #0ea5e9, #a855f7); margin-bottom: 0;"></div>
+        
+        <!-- 3-Column Branching Connectors -->
+        <div class="flowchart-connectors" style="position: relative; width: 75%; height: 18px; margin-bottom: 8px;">
+          <!-- Horizontal spanning line -->
+          <div style="position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, #c084fc, #0ea5e9 50%, #fb923c); box-shadow: 0 0 6px rgba(14, 165, 233, 0.35);"></div>
+          <!-- Left branch drop line -->
+          <div style="position: absolute; left: 0; top: 0; width: 2px; height: 18px; background: #c084fc;"></div>
+          <!-- Center branch drop line -->
+          <div style="position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 2px; height: 18px; background: #0ea5e9;"></div>
+          <!-- Right branch drop line -->
+          <div style="position: absolute; right: 0; top: 0; width: 2px; height: 18px; background: #fb923c;"></div>
+        </div>
+        
+        <!-- Divisions & Subsidiary Groups (3-Column grid) -->
+        <div class="flowchart-groups" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; width: 100%; position: relative;">
+          
+          <!-- Column 1: Tech & Solutions (Purple) -->
+          <div class="flowchart-group tech-group" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="group-title-node" style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); color: #c084fc; margin-bottom: 12px; box-shadow: 0 0 6px rgba(168,85,247,0.15);">
+              Tech & Solutions
+            </div>
+            <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3) 50%, transparent); margin-bottom: 12px;"></div>
+            
+            <div class="subsidiary-cards" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+              <!-- Vertex Card -->
+              <div class="sub-flow-card interactive-flow-card" data-company="vertex" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: transparent; overflow: hidden; padding: 2px; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/vertex_logo.png" alt="Vertex Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin: 0;">Vertex Tech</h4>
+                  <span class="sub-field" style="font-size: 8.5px; font-weight: 600; color: #a855f7; text-transform: uppercase;">Software & Digitization</span>
+                </div>
+              </div>
+              
+              <!-- MEN2 Solutions Card -->
+              <div class="sub-flow-card interactive-flow-card" data-company="men2solutions" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: rgba(var(--rgb-glass),0.03); width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; color: #c084fc;">
+                  🛠️
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2 Solutions</h4>
+                  <span class="sub-field" style="font-size: 8.5px; font-weight: 600; color: #c084fc; text-transform: uppercase;">Manpower Sourcing</span>
+                </div>
               </div>
             </div>
-            <div class="title-end-divider" aria-hidden="true"></div>
           </div>
-          <div class="solar-system-container-seamless" id="solarSystemContainer" aria-label="Animated ROOCH corporate ecosystem">
-            <div class="three-sun-overlay" id="threeSunOverlay" title="ROOCH Holding"><img src="assets/logos/rooch.png" alt="ROOCH Logo"></div>
-            <div class="three-planet-card planet-hanvin" id="lbl-hanvins" title="Hanvins Construction"><img src="assets/logos/hanvin.png" alt="Hanvins Logo"></div>
-            <div class="three-planet-card planet-vertex" id="lbl-vertex" title="Vertex Technologies"><img src="assets/logos/vertex.png" alt="Vertex Logo"></div>
-            <div class="three-planet-card planet-men2-solutions" id="lbl-men2solutions" title="MEN2 Solutions (Manpower)" aria-label="MEN2 Solutions">&#128101;</div>
-            <div class="three-planet-card planet-men2-parent" id="lbl-men2parent" title="MEN2 Enterprise Corp."><img src="assets/logos/men2.png" alt="MEN2 Logo"></div>
-            <div class="three-planet-card planet-dagupan" id="lbl-men2dagupan" title="MEN2 Dagupan (North Division)">DGP</div>
-            <div class="three-planet-card planet-marikina" id="lbl-men2marikina" title="MEN2 Marikina (South Division)">MRK</div>
-            <div class="three-planet-card planet-mama" id="lbl-mamapina" title="Mama Pina's Food Brand"><img src="assets/logos/mama-pina.png" alt="Mama Pina Logo"></div>
-          </div>
-        </section>
-
-        <section class="slide structure-slide" data-title="Corporate Structure" data-section="ROOCH HOLDING INC. / CORPORATE STRUCTURE">
-          <div class="slide-heading"><div><h2>Corporate Structure Chart</h2></div><p>Hover or click any company node to explore subsidiary operations and group papers</p></div>
-          <div class="structure-map">
-            <div class="structure-chart">
-              <button class="company-node root-node" data-company="rooch" title="ROOCH Holding Inc.">
-                <img src="assets/logos/rooch.png" alt="ROOCH Holding Inc. logo">
-              </button>
-              <div class="structure-stem" aria-hidden="true"></div>
-              <div class="structure-branches" aria-hidden="true"><i></i><i></i><i></i></div>
-              <div class="structure-groups">
-                <section class="structure-group tech-group" aria-labelledby="techGroupTitle">
-                  <h3 id="techGroupTitle">Tech &amp; Solutions</h3>
-                  <div class="group-rule" aria-hidden="true"></div>
-                  <div class="company-stack">
-                    <button class="company-node subsidiary-node" data-company="vertex">
-                      <img src="assets/logos/vertex.png" alt="Vertex Technologies logo">
-                      <span><strong>Vertex Tech</strong><small>Software &amp; Digitization</small></span>
-                    </button>
-                    <button class="company-node subsidiary-node" data-company="men2solutions">
-                      <span class="company-icon company-icon-tool" aria-hidden="true">&#128295;</span>
-                      <span><strong>MEN2 Solutions</strong><small>Manpower Sourcing</small></span>
-                    </button>
-                  </div>
-                </section>
-                <section class="structure-group energy-group" aria-labelledby="energyGroupTitle">
-                  <h3 id="energyGroupTitle">Infra &amp; Energy</h3>
-                  <div class="group-rule" aria-hidden="true"></div>
-                  <div class="company-stack">
-                    <button class="company-node subsidiary-node" data-company="hanvins">
-                      <img src="assets/logos/hanvin.png" alt="Hanvin Construction logo">
-                      <span><strong>Hanvin (Solar Installations)</strong><small>Solar Installations</small></span>
-                    </button>
-                  </div>
-                </section>
-                <section class="structure-group fmcg-group" aria-labelledby="fmcgGroupTitle">
-                  <h3 id="fmcgGroupTitle">FMCG &amp; Logistics</h3>
-                  <div class="group-rule" aria-hidden="true"></div>
-                  <div class="company-stack">
-                    <button class="company-node subsidiary-node compact-node" data-company="men2dagupan">
-                      <span class="company-icon company-icon-men2" aria-hidden="true">MEN2</span>
-                      <span><strong>MEN2 Dagupan</strong><small>North Logistics</small></span>
-                    </button>
-                    <button class="company-node subsidiary-node compact-node" data-company="men2marikina">
-                      <span class="company-icon company-icon-men2 company-icon-south" aria-hidden="true">MEN2</span>
-                      <span><strong>MEN2 Marikina</strong><small>South Logistics</small></span>
-                    </button>
-                    <button class="company-node subsidiary-node compact-node" data-company="mamapina">
-                      <img src="assets/logos/mama-pina.png" alt="Mama Pina's logo">
-                      <span><strong>Mama Pina's</strong><small>Consumer Foods</small></span>
-                    </button>
-                  </div>
-                </section>
+          
+          <!-- Column 2: Infrastructure & Energy (Emerald/Green) -->
+          <div class="flowchart-group energy-group" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="group-title-node" style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); color: #34d399; margin-bottom: 12px; box-shadow: 0 0 6px rgba(52,211,153,0.15);">
+              Infra & Energy
+            </div>
+            <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.3) 50%, transparent); margin-bottom: 12px;"></div>
+            
+            <div class="subsidiary-cards" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+              <!-- Hanvins Card -->
+              <div class="sub-flow-card interactive-flow-card" data-company="hanvins" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: transparent; overflow: hidden; padding: 2px; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/hanvin_logo.png" alt="Hanvins Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">Hanvin (Solar Installations)</h4>
+                  <span class="sub-field" style="font-size: 8.5px; font-weight: 600; color: #34d399; text-transform: uppercase;">Solar Installations</span>
+                </div>
               </div>
             </div>
           </div>
-        </section>
 
-        <section class="slide achievements-slide" data-title="Key Achievements" data-section="ROOCH HOLDING INC. / KEY ACHIEVEMENTS">
-          <div class="slide-heading"><div><h2>Key Achievements</h2></div><p>Operational milestones, contracts, and structural accomplishments across our divisions</p></div>
-          <div class="achievement-layout">
-            <div class="achievement-groups" id="achievementList" role="tablist" aria-label="Key achievements by division"></div>
-            <figure class="achievement-media" id="achievementPanel">
-              <span class="achievement-preview-label">PREVIEW</span>
-              <img id="achievementImage" src="" alt="Achievement detail">
-              <div class="achievement-unavailable" id="achievementUnavailable" hidden>MEDIA NOT AVAILABLE</div>
-              <figcaption><span id="achievementCategory">Tech &amp; Solutions</span><h3 id="achievementTitle">VOS ERP Suite</h3><p id="achievementDescription">Select an achievement from the list to view its details.</p></figcaption>
-            </figure>
+          <!-- Column 3: FMCG & Logistics (Orange) -->
+          <div class="flowchart-group fmcg-group" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="group-title-node" style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.3); color: #fb923c; margin-bottom: 12px; box-shadow: 0 0 6px rgba(249,115,22,0.1);">
+              FMCG & Logistics
+            </div>
+            <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3) 50%, transparent); margin-bottom: 12px;"></div>
+            
+            <div class="subsidiary-cards" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+              <!-- MEN2 Dagupan -->
+              <div class="sub-flow-card interactive-flow-card" data-company="men2dagupan" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: rgba(var(--rgb-glass),0.03); overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/logo_1.png" alt="MEN2 Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2 Dagupan</h4>
+                  <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">North Logistics</span>
+                </div>
+              </div>
+              
+              <!-- MEN2 Marikina -->
+              <div class="sub-flow-card interactive-flow-card" data-company="men2marikina" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: rgba(var(--rgb-glass),0.03); overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/logo_1.png" alt="MEN2 Logo" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: hue-rotate(180deg);">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2 Marikina</h4>
+                  <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">South Logistics</span>
+                </div>
+              </div>
+
+              <!-- Mama Pina's -->
+              <div class="sub-flow-card interactive-flow-card" data-company="mamapina" style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
+                <div class="sub-icon-header" style="background: transparent; overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <img src="Presentation_Assets/Logos/mamapina_logo.png" alt="Mama Pina Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <div style="flex-grow: 1; text-align: left;">
+                  <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">Mama Pina's</h4>
+                  <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">Consumer Foods</span>
+                </div>
+              </div>
+
+            </div>
           </div>
-        </section>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <!-- Custom Glassmorphic Pop-up Modal for Company Details & Papers -->
+  <div id="companyDetailsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(var(--rgb-dark-bg), 0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="glass-card modal-content-box" style="width: 480px; max-width: 90%; background: rgba(var(--rgb-dark-bg), 0.85); border: 1.5px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; text-align: left; transform: scale(0.9) translateY(20px); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); display: flex; flex-direction: column; gap: 15px;">
+      
+      <!-- Close Button -->
+      <span id="closeCompanyModal" style="position: absolute; top: 16px; right: 20px; font-size: 26px; color: var(--text-muted); cursor: pointer; transition: color 0.2s; line-height: 1;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">&times;</span>
+      
+      <!-- Header -->
+      <div>
+        <span id="modalCompanySubtitle" style="font-size: 10px; font-weight: 800; color: var(--color-sky); text-transform: uppercase; letter-spacing: 1.2px; display: block; margin-bottom: 4px;"></span>
+        <h3 id="modalCompanyTitle" style="font-size: 22px; font-weight: 800; color: var(--text-primary); margin: 0; text-shadow: var(--ts-override, 0 0 10px rgba(56,189,248,0.15));"></h3>
+      </div>
+      
+      <!-- Description -->
+      <p id="modalCompanyDesc" style="font-size: 13px; line-height: 1.55; color: var(--text-secondary); margin: 0;"></p>
+      
+      <!-- Operational Bullets -->
+      <div id="modalCompanyBullets" style="display: flex; flex-direction: column; gap: 12px; margin-top: 2px;"></div>
+      
+      <!-- Company Papers Container -->
+      <div id="modalCompanyPapersContainer" style="margin-top: 6px; border-top: 1px solid rgba(var(--rgb-glass),0.08); padding-top: 14px; display: flex; flex-direction: column;">
+        <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px;">📁 Company Papers</span>
+        <div id="modalCompanyPapersNote" style="font-size: 10.5px; color: var(--text-muted); margin-bottom: 6px; line-height: 1.35; font-style: italic; display: none;"></div>
+        <div id="modalCompanyPapersList" style="display: grid; grid-template-columns: 1fr; gap: 6px; max-height: 140px; overflow-y: auto; padding-right: 4px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF Viewer Modal -->
+  <div id="pdfViewerModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(var(--rgb-dark-bg), 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 10001; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="glass-card" style="width: 1000px; max-width: 95%; height: 88%; background: rgba(var(--rgb-dark-bg), 0.9); border: 1.5px solid rgba(56, 189, 248, 0.3); border-radius: 16px; padding: 16px; box-shadow: 0 30px 70px rgba(0,0,0,0.6); position: relative; display: flex; flex-direction: column; gap: 12px; transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-sizing: border-box;">
+      
+      <!-- Modal Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(var(--rgb-glass),0.08); padding-bottom: 10px; flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 18px; color: var(--color-sky);">📄</span>
+          <h4 id="pdfViewerTitle" style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0;">View Document</h4>
+        </div>
+        <span id="closePdfModal" style="font-size: 26px; color: var(--text-muted); cursor: pointer; transition: color 0.2s; line-height: 1;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">&times;</span>
+      </div>
+      
+      <!-- PDF Iframe Container -->
+      <div style="flex-grow: 1; width: 100%; border-radius: 8px; overflow: hidden; background: var(--bg-dark); border: 1px solid rgba(var(--rgb-glass),0.05);">
+        <iframe id="pdfViewerIframe" src="" style="width: 100%; height: 100%; border: none;">
+          <p style="color: var(--text-primary); padding: 20px; text-align: center;">Your browser does not support embedded PDFs. <a id="pdfFallbackLink" href="" target="_blank" style="color: var(--color-sky); text-decoration: underline;">Click here to download/view the PDF</a>.</p>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+</section>
 
         <section class="slide video-slide" data-title="Video Presentation" data-section="O!SAVE PARTNERSHIP / VIDEO PRESENTATION">
           <div class="video-copy"><p class="eyebrow">Operating partnership</p><h2>ROOCH Holding Inc. Operations</h2><p>A short presentation will introduce the integrated manufacturing, logistics and technology workflow.</p><div class="video-status" id="videoStatus"><span></span><strong id="videoStatusTitle">Video asset pending</strong><small id="videoStatusDetail">Final media will be added when the supplied video is ready.</small><a id="videoOpenLink" class="video-open-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Open video in Google Drive</a></div></div>
@@ -137,6 +374,887 @@
             <video id="presentationVideo" controls playsinline preload="metadata" hidden></video>
             <iframe id="presentationVideoEmbed" class="video-embed" title="ROOCH Holding Inc. operations presentation video" allow="autoplay; fullscreen" loading="lazy" hidden></iframe>
             <div class="video-placeholder" id="videoPlaceholder"><div class="play-mark" aria-hidden="true">&#9654;</div><strong>Presentation video</strong><span>Final media to be supplied</span></div>
+          </div>
+        </section>
+<section class="slide">
+          <div class="slide-header">
+            <h2>FMCG & Food Brands Division</h2>
+            <p>Industrial scale manufacturing & regional supply chain infrastructure fueling commercial volume</p>
+          </div>
+          <div class="slide-content grid-2-1">
+            
+            <!-- Left Side: Core FMCG Brands -->
+            <div class="brands-column">
+              <div class="glass-card brand-card card-hover-effect">
+                <div>
+                  <span class="badge blue">Manufacturing Powerhouse</span>
+                  <h3>MEN2 Enterprise Corp.</h3>
+                  <p>The primary manufacturing and distribution powerhouse anchoring our FMCG operations, converting raw ingredients into high-demand consumer goods.</p>
+                </div>
+                <div class="divider"></div>
+                <div class="brand-stats-row">
+                  <div class="brand-stat-col">
+                    <span class="b-stat-num">24/7</span>
+                    <span class="b-stat-lbl">Output Cycles</span>
+                  </div>
+                  <div class="brand-stat-col">
+                    <span class="b-stat-num">Bulk</span>
+                    <span class="b-stat-lbl">Capacity Scaling</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="glass-card brand-card card-hover-effect">
+                <div>
+                  <span class="badge orange">Consumer Brand</span>
+                  <h3>Mama Pina's</h3>
+                  <p>Our authentic, premium food brand celebrated for traditional recipes, high-quality noodle production (Pancit Bihon & Canton), and rigorous quality compliance.</p>
+                </div>
+                <div class="divider"></div>
+                <div class="brand-stats-row">
+                  <div class="brand-stat-col">
+                    <span class="b-stat-num">#1</span>
+                    <span class="b-stat-lbl">Regional Brand Loyalty</span>
+                  </div>
+                  <div class="brand-stat-col">
+                    <span class="b-stat-num">Top-tier</span>
+                    <span class="b-stat-lbl">Quality Control</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side: Specialized Divisions -->
+            <div class="glass-card divisions-card">
+              <h3>Specialized Divisions</h3>
+              <p class="section-desc">Operating units optimized to streamline manufacturing workflows and regional logistics.</p>
+              
+              <div class="division-box">
+                <div class="div-icon">⚙️</div>
+                <div class="div-info">
+                  <h4>Production & Solutions</h4>
+                  <span class="div-sub">MEN2 Production & MEN2 Solutions</span>
+                  <p>Solely focused on maximizing machinery output, automating packaging lines, and streamlining operations.</p>
+                </div>
+              </div>
+
+              <div class="division-box">
+                <div class="div-icon">🏗️</div>
+                <div class="div-info">
+                  <h4>Industrial Scale</h4>
+                  <span class="div-sub">MEN2 Industrial Division</span>
+                  <p>Manages heavy manufacturing facilities, ensuring high-capacity boiler and extruder uptime.</p>
+                </div>
+              </div>
+
+              <div class="division-box">
+                <div class="div-icon">📍</div>
+                <div class="div-info">
+                  <h4>Regional Logistics Hubs</h4>
+                  <span class="div-sub">MEN2 Dagupan & MEN2 Marikina</span>
+                  <p>Strategic regional hubs that orchestrate wide-reaching retail supply chains and store distribution.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+<style>
+/* Achievements Interactive Bullets styling */
+.achievement-bullet {
+  transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+.achievement-bullet:hover {
+  transform: translateX(4px);
+  background: rgba(var(--rgb-glass), 0.035) !important;
+  border-color: rgba(var(--rgb-glass), 0.15) !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.achievement-bullet:active {
+  transform: translateX(1px);
+}
+
+/* Division-specific active states */
+.achievement-bullet.active-tech {
+  background: rgba(168, 85, 247, 0.08) !important;
+  border-color: #c084fc !important;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.22) !important;
+}
+.achievement-bullet.active-infra {
+  background: rgba(52, 211, 153, 0.08) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.22) !important;
+}
+.achievement-bullet.active-fmcg {
+  background: rgba(249, 115, 22, 0.08) !important;
+  border-color: #fb923c !important;
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.22) !important;
+}
+
+/* Image reveal transitions */
+@keyframes img-reveal-flow {
+  0% {
+    opacity: 0;
+    filter: blur(10px) brightness(0.85);
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+    transform: scale(1);
+  }
+}
+.img-reveal-active {
+  animation: img-reveal-flow 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Accent frame transition */
+.image-preview-frame {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+#achievementPreviewCaption {
+  transition: border-left-color 0.4s ease;
+}
+</style>
+
+<section class="slide">
+  <div class="slide-header">
+    <h2>Key Achievements</h2>
+    <p>Operational milestones, contracts, and structural accomplishments across our divisions</p>
+  </div>
+  
+  <!-- Main Content Grid: 3-Columns for Bullets on the Left, 1 Preview Panel on the Right -->
+  <div class="slide-content grid-2-1" style="grid-template-columns: 2.15fr 1fr; gap: 20px; align-items: stretch;">
+    
+    <!-- Left Container: 3 Columns side-by-side -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; align-items: stretch; height: 100%;">
+      
+      <!-- Column 1: Tech & Solutions (Purple) -->
+      <div style="background: rgba(168, 85, 247, 0.02); border: 1.5px solid rgba(168, 85, 247, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">Tech & Solutions</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding-right: 6px;">
+          <!-- Bullet 1 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/VOS ERP.png" 
+               data-caption="<strong>VERTEX (VOS ERP Suite):</strong> Active in corporate subsidiaries. Handles over Php 250M of consolidated transactions annually. Projected annual profit is Php 52M."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view VOS ERP Details">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">VOS ERP Suite</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">VERTEX - Consolidated Accounting & Inventory</span>
+          </div>
+
+          <!-- Bullet 2 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Dealerover Sync.jpg" 
+               data-caption="<strong>VERTEX (Dealerover Sync):</strong> Branch stock matching & dispatch. Scales monthly subscription rates across roving dealers in Pangasinan. Projected annual profit is Php 8.4M."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Dealerover Details">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">Dealerover Sync</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">VERTEX - Stock Matching & Dispatch</span>
+          </div>
+
+          <!-- Bullet 3 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/eLGU Deployment.jpg" 
+               data-caption="<strong>VERTEX (eLGU Digitalization):</strong> Deployed in Mapandan and municipal councils. Digitizes permits and local taxes. Projected profit is Php 15M per town deployment."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view eLGU Details">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">eLGU Digitalization</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">VERTEX - Municipal Treasury Tax & Permits</span>
+          </div>
+
+          <!-- Bullet 4 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/SFA Booking.jpg" 
+               data-caption="<strong>VERTEX (SFA & Core Systems):</strong> Deployed SFA mobile booking. HRIS (Php 2M per deployment) and Aircon ERP (Php 800k per deployment) custom installations."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view SFA & Core Systems Details">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">SFA & Core Systems</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">VERTEX - Mobile Sales, HRIS, & Custom ERP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Infrastructure & Energy (Green) -->
+      <div style="background: rgba(52, 211, 153, 0.02); border: 1.5px solid rgba(52, 211, 153, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">Infra & Energy</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding-right: 6px;">
+          <!-- Bullet 1 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Hanvin_Constructions/LGU_Mapandan_1.jpeg" 
+               data-caption="<strong>LGU Mapandan Solar:</strong> Completed high-capacity solar grid installation project, serving as the model site for group green energy integration."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view LGU Mapandan">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">LGU Mapandan Solar</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">Hanvin - Solar grid deployment</span>
+          </div>
+
+          <!-- Bullet 2 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Hanvin_Constructions/La_Sallette_School_1.png" 
+               data-caption="<strong>La Sallette Solar:</strong> High-throughput school campus solar deployment completed, delivering off-grid power offsets for academic classrooms."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view La Sallete School">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">La Sallette Solar</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">Hanvin - Campus solar offset</span>
+          </div>
+
+          <!-- Bullet 3 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Hanvin_Constructions/MEN2_Warehouse_1.png" 
+               data-caption="<strong>MEN2 Warehouse Manila:</strong> Completed logistics facility shell design and structural foundation engineering in Metro Manila."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view MEN2 Warehouse">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">Men2 Dagupan Warehouse</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">Hanvin - Logistics facility shell</span>
+          </div>
+
+          <!-- Bullet 4 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Hanvin_Constructions/MEN2_Offices_1.png" 
+               data-caption="<strong>MEN2 Offices Manila:</strong> Delivered completed corporate office interior fit-out and modern exterior building facade."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view MEN2 Offices">
+            <strong style="font-size: 11px; color: var(--text-primary); line-height: 1.25;">Men2 Dagupan Offices</strong>
+            <span style="font-size: 9.5px; color: var(--text-muted); line-height: 1.2;">Hanvin - Office interior & facade</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 3: FMCG & Logistics (Orange) -->
+      <div style="background: rgba(249, 115, 22, 0.02); border: 1.5px solid rgba(249, 115, 22, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #fb923c; background: rgba(249, 115, 22, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">FMCG & Logistics</span>
+        <div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding-right: 6px;">
+          <!-- Bullet 1 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Foodsphere Frozen.jpg" 
+               data-caption="<strong>MEN2 Dagupan:</strong> Successfully engaged with Foodsphere Inc. (Frozen) in La Union, securing storage and distribution operations."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Foodsphere contract">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Foodsphere Frozen</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Dagupan - La Union</span>
+          </div>
+
+          <!-- Bullet 2 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/DEALEROVER.jpg" 
+               data-caption="<strong>MEN2 Dagupan (Dealerover Launch):</strong> First live opening of Dealerover digital middleware tracking routines in San Carlos, syncing logistics."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view San Carlos launch details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Dealerover Opening</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Dagupan - San Carlos</span>
+          </div>
+
+          <!-- Bullet 3 -->
+          <div class="achievement-bullet" 
+               data-image="N/A" 
+               data-caption="<strong>MEN2 Dagupan:</strong> Successfully engaged with ECOSSENTIALS FOODS CORP (KOPIKO) in Pangasinan to handle regional food trade distribution."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Ecoessentials (Kopiko) contract">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Kopiko Engagement</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Dagupan - Pangasinan</span>
+          </div>
+
+          <!-- Bullet 4 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Sea Oil.jpg" 
+               data-caption="<strong>JCBS / MEN2 Industrial:</strong> Successfully engaged with Sea Oil Philippines Inc. for specialized fuel transport and storage integrations."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Sea Oil contract">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Sea Oil Engagement</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Industrial - Industrial Business</span>
+          </div>
+
+          <!-- Bullet 5 -->
+          <div class="achievement-bullet" 
+               data-image="N/A" 
+               data-caption="<strong>MEN2 Manila (Federated):</strong> Commenced regional distribution partnership in March 2026, targeting a potential volume of 6M."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Federated details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Federated Onboarding</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - Commenced Mar 2026</span>
+          </div>
+
+          <!-- Bullet 6 -->
+          <div class="achievement-bullet" 
+               data-image="N/A" 
+               data-caption="<strong>MEN2 Manila (Fitrite):</strong> Commenced brand distribution in March 2026, with an estimated potential volume of 3-5M."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Fitrite details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Fitrite Integration</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - Commenced Mar 2026</span>
+          </div>
+
+          <!-- Bullet 7 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Indomie.jpg" 
+               data-caption="<strong>MEN2 Manila (Indomie Mi Goreng):</strong> Commenced product logistics and regional supply distribution in February 2026, targeting a potential volume of 2M."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Indomie details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Indomie Mi Goreng</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - Commenced Feb 2026</span>
+          </div>
+
+          <!-- Bullet 8 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Primo.jpg" 
+               data-caption="<strong>MEN2 Manila (Prime Flavors):</strong> Secured distribution rights and commenced regional distribution rollouts for Primo Gulaman products in NCR."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Prime Flavors details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Prime Flavors (Primo)</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - NCR Rollout</span>
+          </div>
+
+          <!-- Bullet 9 -->
+          <div class="achievement-bullet" 
+               data-image="Presentation_Assets/Key Achievements Gallery/Dever.jpg" 
+               data-caption="<strong>MEN2 Manila (Dever Energy):</strong> Commenced brand distribution and logistics operations for Dever Energy Products in June 2026."
+               style="cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 6px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);"
+               title="Click to view Dever Energy details">
+             <strong style="font-size: 10.5px; color: var(--text-primary); line-height: 1.2;">Dever Energy</strong>
+             <span style="font-size: 9px; color: var(--text-muted); line-height: 1.1;">MEN2 Manila - Commenced Jun 2026</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Right Container: Premium Image/Video Preview Display Panel -->
+    <div class="glass-card image-preview-frame" style="display: flex; flex-direction: column; height: 100%; padding: 16px; border: 1.5px solid rgba(14, 165, 233, 0.25); border-radius: 14px; position: relative; overflow: hidden; background: rgba(var(--rgb-dark-bg),0.3); text-align: left; justify-content: space-between;">
+      
+      <!-- Video Element -->
+      <video id="achievementPreviewVideo" autoplay loop muted playsinline style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; z-index: 0; filter: brightness(0.9); opacity: 0.9;"></video>
+      
+      <!-- Image Element -->
+      <img id="achievementPreviewImg" src="" alt="Achievement Detail" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; z-index: 0; filter: brightness(0.9); opacity: 0.9; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);">
+      
+      <!-- N/A View Element -->
+      <div id="achievementPreviewNA" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; align-items: center; justify-content: center; background: rgba(var(--rgb-glass),0.05);">
+         <span style="color: var(--text-muted); font-size: 14px; letter-spacing: 1px; font-weight: 500;">MEDIA NOT AVAILABLE</span>
+      </div>
+
+      <div style="position: relative; z-index: 1;">
+        <span style="background: rgba(var(--rgb-dark-bg), 0.6); padding: 4px 10px; border-radius: 20px; font-size: 9px; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(var(--rgb-glass),0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">PREVIEW</span>
+      </div>
+      
+      <div style="position: relative; z-index: 1; background: rgba(var(--rgb-dark-bg), 0.65); padding: 12px 14px; border-radius: 10px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(var(--rgb-glass),0.1); display: flex; align-items: center;">
+        <p id="achievementPreviewCaption" style="font-size: 11px; color: var(--text-primary); margin: 0; line-height: 1.4; border-left: 3px solid #0ea5e9; padding-left: 10px;">Select an achievement from the list to view its details.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const initAchievementsTab = () => {
+    const bullets = document.querySelectorAll('.achievement-bullet');
+    const previewImg = document.getElementById('achievementPreviewImg');
+    const previewVideo = document.getElementById('achievementPreviewVideo');
+    const captionText = document.getElementById('achievementPreviewCaption');
+    
+    if (!bullets.length || !previewImg || !previewVideo || !captionText) {
+      setTimeout(initAchievementsTab, 100);
+      return;
+    }
+    
+    bullets.forEach(b => {
+      b.addEventListener('click', () => {
+        // Remove active class styling from all bullets
+        bullets.forEach(x => {
+          x.classList.remove('active-tech', 'active-infra', 'active-fmcg');
+        });
+        
+        // Find division color accent based on its parent container context
+        let activeColor = '#0ea5e9'; // fallback cyan
+        let activeClass = 'active-tech';
+        const parentBg = b.parentElement.parentElement.style.background;
+        if (parentBg.includes('168')) {
+          activeColor = '#c084fc'; // purple (Tech)
+          activeClass = 'active-tech';
+        } else if (parentBg.includes('52')) {
+          activeColor = '#34d399'; // green (Infra)
+          activeClass = 'active-infra';
+        } else if (parentBg.includes('249')) {
+          activeColor = '#fb923c'; // orange (FMCG)
+          activeClass = 'active-fmcg';
+        }
+        
+        // Apply active accent class
+        b.classList.add(activeClass);
+        
+        const imgSrc = b.getAttribute('data-image');
+        const videoSrc = b.getAttribute('data-video');
+        const caption = b.getAttribute('data-caption');
+        
+        // Apply clean border tint to the right display frame
+        const frame = document.querySelector('.image-preview-frame');
+        if (frame) {
+          frame.style.borderColor = `${activeColor}40`;
+          frame.style.boxShadow = `0 0 15px ${activeColor}15`;
+        }
+        
+        // Update display border accent line
+        captionText.style.borderLeftColor = activeColor;
+        
+        const naEl = document.getElementById('achievementPreviewNA');
+        
+        if (imgSrc === 'N/A' || !imgSrc) {
+          // Switch to N/A mode
+          previewVideo.pause();
+          previewVideo.style.display = 'none';
+          previewVideo.src = '';
+          previewImg.style.display = 'none';
+          previewImg.src = '';
+          if (naEl) naEl.style.display = 'flex';
+          captionText.innerHTML = caption;
+        } else if (videoSrc) {
+          // Switch to video mode
+          if (naEl) naEl.style.display = 'none';
+          previewImg.style.display = 'none';
+          previewVideo.style.display = 'block';
+          previewVideo.src = videoSrc;
+          previewVideo.load();
+          // Programmatic play call to guarantee autoplay on card selection click
+          const playPromise = previewVideo.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              console.log("Autoplay prevented by browser security policy:", error);
+            });
+          }
+          captionText.innerHTML = caption;
+        } else {
+          // Switch to image mode
+          if (naEl) naEl.style.display = 'none';
+          previewVideo.pause();
+          previewVideo.style.display = 'none';
+          previewVideo.src = ''; // Instantly clear video src to free memory
+          previewImg.style.display = 'block';
+          
+          // Smooth transition image swap with reveal animation
+          previewImg.classList.remove('img-reveal-active');
+          void previewImg.offsetWidth; // Force layout reflow
+          previewImg.src = imgSrc;
+          captionText.innerHTML = caption;
+          previewImg.classList.add('img-reveal-active');
+        }
+      });
+    });
+    
+    // Auto-click the first bullet to initialize the slide display state
+    if (bullets[0]) {
+      bullets[0].click();
+    }
+  };
+  
+  // Launch once DOM loaded/injected
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initAchievementsTab();
+  } else {
+    document.addEventListener('DOMContentLoaded', initAchievementsTab);
+  }
+})();
+</script>
+<style>
+/* Premium Glassmorphic Company Card Hover and Active states */
+.revenue-company-card {
+  transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.revenue-company-card:hover {
+  transform: translateY(-3px);
+  background: rgba(var(--rgb-glass), 0.035) !important;
+  border-color: rgba(var(--rgb-glass), 0.15) !important;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+.revenue-company-card:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Custom sector-based active highlights */
+.revenue-company-card.active-tech {
+  background: rgba(168, 85, 247, 0.08) !important;
+  border-color: #c084fc !important;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.22) !important;
+}
+.revenue-company-card.active-infra {
+  background: rgba(52, 211, 153, 0.08) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 0 15px rgba(52, 211, 153, 0.22) !important;
+}
+.revenue-company-card.active-fmcg {
+  background: rgba(249, 115, 22, 0.08) !important;
+  border-color: #fb923c !important;
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.22) !important;
+}
+
+/* Staggered spring slide-in animation for HUD items */
+@keyframes spring-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.97);
+  }
+  70% {
+    transform: translateX(-3px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+.hud-item-animated {
+  animation: spring-slide-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.revenue-hud-frame {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+#hudSectorLabel {
+  transition: color 0.4s ease, background-color 0.4s ease;
+}
+#hudCompanyTotal {
+  transition: text-shadow 0.4s ease;
+}
+</style>
+
+<section class="slide">
+  <div class="revenue-header-container" style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%; gap: 15px; margin-bottom: 15px;">
+    <div class="slide-header" style="margin-bottom: 0;">
+      <h2>Potential Revenue Projections</h2>
+      <p>Forward-looking revenue pipelines and project backlogs across group subsidiaries</p>
+    </div>
+    <div style="background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 12px; padding: 8px 16px; text-align: right; white-space: nowrap; flex-shrink: 0; margin-bottom: 5px;">
+      <span style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 2px;">Total ROOCH Potential Revenue</span>
+      <strong id="roochTotalRevenue" style="font-size: 18px; color: var(--color-sky-dark); text-shadow: var(--ts-override, 0 0 10px rgba(14,165,233,0.3));">₱2,026,886,674</strong>
+    </div>
+  </div>
+  
+  <!-- Content Layout: 3 Columns of Companies on Left, 1 Dynamic HUD breakdown on Right -->
+  <div class="slide-content grid-2-1" style="grid-template-columns: 2.15fr 1fr; gap: 20px; align-items: stretch;">
+    
+    <!-- Left Column: 3 Columns side-by-side for the 3 sectors -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; align-items: stretch; height: 100%;">
+      
+      <!-- Sector 1: Tech & Solutions (Purple) -->
+      <div style="background: rgba(168, 85, 247, 0.02); border: 1.5px solid rgba(168, 85, 247, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">Tech & Solutions</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow: visible;">
+          <!-- Vertex Card -->
+          <div class="revenue-company-card" 
+               data-company="vertex"
+               data-total="₱41,200,000"
+               data-items='[{"label":"VOS ERP Enterprise Suite Projected Profit","val":"₱15.0M"},{"label":"Dealerover Sync SaaS Projected Profit (Yearly)","val":"₱8.4M"},{"label":"eLGU Digitalization (Mapandan Town)","val":"₱15.0M"},{"label":"Human Resource Info System (HRIS)","val":"₱2.0M"},{"label":"Aircon ERP System (DIVI)","val":"₱800K"}]'
+               style="cursor: pointer; padding: 10px 12px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="font-size: 11.5px; color: var(--text-primary);">Vertex Tech</strong>
+              <span style="font-size: 11.5px; font-weight: 700; color: #c084fc;">₱41.2M</span>
+            </div>
+            <span style="font-size: 9.5px; color: var(--text-muted);">Software & Digitization</span>
+          </div>
+
+          <!-- MEN2 Solutions Card -->
+          <div class="revenue-company-card" 
+               data-company="men2solutions"
+               data-total="₱0"
+               data-items='[{"label":"N/A","val":"₱0"}]'
+               style="cursor: pointer; padding: 10px 12px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="font-size: 11.5px; color: var(--text-primary);">MEN2 Solutions</strong>
+              <span style="font-size: 11.5px; font-weight: 700; color: #c084fc;">₱0</span>
+            </div>
+            <span style="font-size: 9.5px; color: var(--text-muted);">Manpower Sourcing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sector 2: Infrastructure & Energy (Green) -->
+      <div style="background: rgba(52, 211, 153, 0.02); border: 1.5px solid rgba(52, 211, 153, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">Infra & Energy</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow: visible;">
+          <!-- Hanvins Card -->
+          <!-- Hanvins Card -->
+          <div class="revenue-company-card" 
+               data-company="hanvins"
+               data-total="₱70,500,000"
+               data-items='[{"label":"Men2 Warehouse Plant","val":"₱3.8M"},{"label":"Men2 Cold Storage","val":"₱3.8M"},{"label":"Men2 Office","val":"₱3.8M"},{"label":"La Salette Dagupan Campus","val":"₱3.8M"},{"label":"La Salette Lingayen Campus","val":"₱3.8M"},{"label":"LGU Mapandan","val":"₱21.5M"},{"label":"LGU Dagupan","val":"₱15.0M"},{"label":"LGU Malabon","val":"₱10.0M"},{"label":"BFAR","val":"₱5.0M"}]'
+               style="cursor: pointer; padding: 10px 12px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">Hanvin (Solar Installations)</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #34d399;">₱70.5M</span>
+            </div>
+            <span style="font-size: 9.5px; color: var(--text-muted);">Solar Installations</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Sector 3: FMCG & Logistics (Orange) -->
+      <div style="background: rgba(249, 115, 22, 0.02); border: 1.5px solid rgba(249, 115, 22, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #fb923c; background: rgba(249, 115, 22, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">FMCG & Logistics</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1; overflow: visible;">
+          <!-- MEN2 Dagupan -->
+          <div class="revenue-company-card" 
+               data-company="men2dagupan"
+               data-total="₱458,000,000"
+               data-items='[{"label":"Mama Pinas","val":"₱140.0M"},{"label":"Foodsphere GP","val":"₱48.0M"},{"label":"Foodsphere Frozen","val":"₱126.0M"},{"label":"Skintec","val":"₱72.0M"},{"label":"Ecossentials","val":"₱60.0M"},{"label":"Swedish Match","val":"₱6.0M"},{"label":"Master Chef","val":"₱6.0M"}]'
+               style="cursor: pointer; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">MEN2 Dagupan</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱458.0M</span>
+            </div>
+            <span style="font-size: 9px; color: var(--text-muted);">North Logistics Hub</span>
+          </div>
+
+          <!-- MEN2 Manila -->
+          <div class="revenue-company-card" 
+               data-company="men2manila"
+               data-total="₱90,000,000"
+               data-items='[{"label":"O!Save Discount Retail Primary logistics","val":"₱45.0M"},{"label":"Bulk cooking oil transport & warehouse leases","val":"₱33.0M"},{"label":"Federated (Commenced Mar 2026)","val":"₱6.0M"},{"label":"Fitrite (Commenced Mar 2026)","val":"₱3.0M-5.0M"},{"label":"Indomie Mi Goreng (Commenced Feb 2026)","val":"₱2.0M"},{"label":"Prime Flavors (Primo Gulaman)","val":"Pipeline"}]'
+               style="cursor: pointer; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">MEN2 Manila</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱90.0M</span>
+            </div>
+            <span style="font-size: 9px; color: var(--text-muted);">NCR & South Logistics</span>
+          </div>
+
+          <!-- Mama Pina's -->
+          <div class="revenue-company-card" 
+               data-company="mamapina"
+               data-total="₱1,317,186,674"
+               data-items='[{"label":"Canolein (May-Dec)","val":"₱573.0M"},{"label":"Palm Oil (May-Dec)","val":"₱507.2M"},{"label":"Pancit Canton (May-Dec)","val":"₱138.1M"},{"label":"Pancit Bihon (May-Dec)","val":"₱98.9M"}]'
+               style="cursor: pointer; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">Mama Pina's</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱1.317B</span>
+            </div>
+            <span style="font-size: 9px; color: var(--text-muted);">Consumer Foods</span>
+          </div>
+
+
+          <!-- MEN2 Industrial -->
+          <div class="revenue-company-card" 
+               data-company="men2marikina"
+               data-total="₱50,000,000"
+               data-items='[{"label":"SeaOil","val":"₱50.0M"}]'
+               style="cursor: pointer; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">MEN2 Industrial</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱50.0M</span>
+            </div>
+            <span style="font-size: 9px; color: var(--text-muted);">Industrial Business & Logistics</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Right Column: Premium Interactive Breakdown Panel -->
+    <div class="glass-card revenue-hud-frame" style="display: flex; flex-direction: column; height: 100%; padding: 20px; border: 1.5px solid rgba(14, 165, 233, 0.25); border-radius: 14px; background: rgba(var(--rgb-dark-bg),0.3); text-align: left; justify-content: flex-start; overflow: hidden;">
+      
+      <!-- Company Details Header -->
+      <div style="border-bottom: 1px solid rgba(var(--rgb-glass),0.06); padding-bottom: 12px; margin-bottom: 15px;">
+        <span id="hudSectorLabel" style="font-size: 9px; font-weight: 800; color: var(--color-sky); background: rgba(14, 165, 233, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;">Technology & Solutions</span>
+        <h3 id="hudCompanyTitle" style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin: 10px 0 2px 0;">Vertex Technologies</h3>
+        <span id="hudCompanySub" style="font-size: 11px; color: var(--text-secondary);">Enterprise software platforms</span>
+      </div>
+
+      <!-- Large Total Indicator -->
+      <div style="background: rgba(0,0,0,0.15); border: 1px solid rgba(var(--rgb-glass),0.04); border-radius: 10px; padding: 14px; text-align: center; margin-bottom: 20px;">
+        <span style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Total Potential Revenue</span>
+        <h2 id="hudCompanyTotal" style="font-size: 28px; font-weight: 800; color: var(--text-primary); margin: 0; text-shadow: var(--ts-override, 0 0 15px rgba(var(--rgb-glass),0.15));">₱48,500,000</h2>
+      </div>
+
+      <!-- Breakdown List -->
+      <div style="flex-grow: 1; display: flex; flex-direction: column;">
+        <span style="font-size: 10.5px; font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 10px;">Pipeline Breakdown:</span>
+        <div id="hudBreakdownList" style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; max-height: 200px;">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<!-- Self-contained Interactivity Script -->
+<script>
+(function() {
+  const initRevenueHUD = () => {
+    const cards = document.querySelectorAll('.revenue-company-card');
+    const hudFrame = document.querySelector('.revenue-hud-frame');
+    const sectorLabel = document.getElementById('hudSectorLabel');
+    const companyTitle = document.getElementById('hudCompanyTitle');
+    const companySub = document.getElementById('hudCompanySub');
+    const companyTotal = document.getElementById('hudCompanyTotal');
+    const breakdownList = document.getElementById('hudBreakdownList');
+    
+    if (!cards.length || !hudFrame || !sectorLabel || !companyTitle || !companySub || !companyTotal || !breakdownList) {
+      setTimeout(initRevenueHUD, 100);
+      return;
+    }
+    
+    cards.forEach(c => {
+      c.addEventListener('click', () => {
+        // Remove active class styling from all cards
+        cards.forEach(x => {
+          x.classList.remove('active-tech', 'active-infra', 'active-fmcg');
+        });
+        
+        // Find division color accent based on its parent container context
+        let activeColor = '#0ea5e9'; // fallback cyan
+        let activeClass = 'active-tech';
+        let sectorText = 'Technology & Solutions';
+        const parentBg = c.parentElement.parentElement.style.background;
+        if (parentBg.includes('168')) {
+          activeColor = '#c084fc'; // purple (Tech)
+          activeClass = 'active-tech';
+          sectorText = 'Technology & Solutions';
+        } else if (parentBg.includes('52')) {
+          activeColor = '#34d399'; // green (Infra)
+          activeClass = 'active-infra';
+          sectorText = 'Infrastructure & Energy';
+        } else if (parentBg.includes('249')) {
+          activeColor = '#fb923c'; // orange (FMCG)
+          activeClass = 'active-fmcg';
+          sectorText = 'FMCG & Logistics';
+        }
+        
+        // Apply active card class
+        c.classList.add(activeClass);
+        
+        // Update HUD Header & border accents
+        hudFrame.style.borderColor = `${activeColor}40`;
+        hudFrame.style.boxShadow = `0 0 15px ${activeColor}15`;
+        sectorLabel.style.color = activeColor;
+        sectorLabel.style.background = `${activeColor}22`;
+        sectorLabel.textContent = sectorText;
+        
+        // Retrieve values
+        const titleStr = c.querySelector('strong').textContent;
+        const subStr = c.querySelector('span').textContent;
+        const totalStr = c.getAttribute('data-total');
+        const items = JSON.parse(c.getAttribute('data-items') || '[]');
+        
+        // Update details
+        companyTitle.textContent = titleStr;
+        companySub.textContent = subStr;
+        companyTotal.textContent = totalStr;
+        companyTotal.style.textShadow = `0 0 15px ${activeColor}40`;
+        
+        // Build breakdown items list with staggered spring animations
+        breakdownList.innerHTML = '';
+        items.forEach((item, idx) => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'hud-item-animated';
+          itemEl.style.display = 'flex';
+          itemEl.style.justifyContent = 'space-between';
+          itemEl.style.alignItems = 'flex-start';
+          itemEl.style.padding = '8px 10px';
+          itemEl.style.borderRadius = '6px';
+          itemEl.style.background = 'rgba(var(--rgb-glass),0.02)';
+          itemEl.style.borderLeft = `3px solid ${activeColor}`;
+          itemEl.style.opacity = '1'; // persistent visibility
+          
+          itemEl.innerHTML = `
+            <span style="font-size: 11px; color: var(--text-secondary); max-width: 78%; line-height: 1.35;">${item.label}</span>
+            <span style="font-size: 11px; font-weight: 700; color: var(--text-primary);">${item.val}</span>
+          `;
+          
+          // Apply stagger animation delay inline
+          itemEl.style.animationDelay = `${idx * 60}ms`;
+          
+          breakdownList.appendChild(itemEl);
+        });
+      });
+    });
+    
+    // Auto-click the first card to initialize the HUD display state
+    if (cards[0]) {
+      cards[0].click();
+    }
+  };
+  
+  // Launch once DOM loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initRevenueHUD();
+  } else {
+    document.addEventListener('DOMContentLoaded', initRevenueHUD);
+  }
+})();
+</script>
+
+<section class="slide">
+          <div class="slide-header">
+            <h2>Operational & Environmental Savings</h2>
+            <p>Quantifiable metrics demonstrating electricity savings, logistics fuel reductions, and rapid trade sales growth</p>
+          </div>
+          <div class="slide-content grid-3">
+            
+            <!-- Solar Savings Card -->
+            <div class="glass-card stat-card">
+              <div class="stat-header">
+                <span class="stat-icon">⚡</span>
+                <span class="badge green">Green Energy</span>
+              </div>
+              <div class="stat-number" id="solarSavings">Php 267,800</div>
+              <div class="stat-label">5-Month Solar Electricity Savings</div>
+              <div class="divider"></div>
+              <ul class="stat-bullets">
+                <li><strong>50 kW System Size</strong> deployed at Rael Kitz Corp</li>
+                <li>Generates ~<strong>5,200 kWh</strong> solar energy monthly</li>
+                <li>Estimated savings of <strong>Php 53,560.00</strong> per month</li>
+                <li>Reduces grid electricity dependency and carbon footprint</li>
+              </ul>
+            </div>
+
+            <!-- EV Savings Card -->
+            <div class="glass-card stat-card">
+              <div class="stat-header">
+                <span class="stat-icon">🚚</span>
+                <span class="badge green">Fleet Electrification</span>
+              </div>
+              <div class="stat-number" id="evSavings">Php 737,365</div>
+              <div class="stat-label">5-Month Transport Fuel Savings</div>
+              <div class="divider"></div>
+              <ul class="stat-bullets">
+                <li><strong>5 Electric Vehicles (EVs)</strong> successfully deployed</li>
+                <li>Displaced <strong>1,802.4 Liters</strong> of fuel per month</li>
+                <li>Savings of <strong>Php 147,473.15/month</strong> (at 81.82 Php/L)</li>
+                <li>Ensures logistics resilience against fuel price volatility</li>
+              </ul>
+            </div>
+
+            <!-- Mama Pina's Sales -->
+            <div class="glass-card stat-card">
+              <div class="stat-header">
+                <span class="stat-icon">📈</span>
+                <span class="badge orange">Commercial Trade</span>
+              </div>
+              <div class="stat-number" id="totalSales">Php 120M</div>
+              <div class="stat-label">Mama Pina's Cumulative Trade Sales</div>
+              <div class="divider"></div>
+              
+              <!-- Custom Interactive Mini Chart -->
+              <div class="mini-chart-container" style="margin-top: 15px;">
+                <div class="chart-bars">
+                  <div class="bar" style="height: 14%;" data-val="8M" title="Jan: 8M"><span>Jan</span></div>
+                  <div class="bar" style="height: 45%;" data-val="26M" title="Feb: 26M"><span>Feb</span></div>
+                  <div class="bar" style="height: 22%;" data-val="13M" title="Mar: 13M"><span>Mar</span></div>
+                  <div class="bar" style="height: 26%;" data-val="15M" title="Apr: 15M"><span>Apr</span></div>
+                  <div class="bar" style="height: 100%;" data-val="58M" title="May: 58M"><span>May</span></div>
+                </div>
+              </div>
+              <p class="chart-desc" style="font-size: 11.5px; margin-top: 12px; line-height: 1.4; color: var(--text-secondary);">Ramped from <strong>Php 8M (Jan)</strong> to <strong>Php 58M (May)</strong> showing rapid market demand scaling.</p>
+            </div>
+
           </div>
         </section>
 
@@ -147,7 +1265,6 @@
           </div>
           <iframe src="https://mp-expansion.netlify.app/" class="mp-embed-frame" title="Manufacturing Expansion Dashboard" allow="fullscreen" loading="lazy"></iframe>
         </section>
-
         <section class="slide expansion-status-slide" data-title="Current Manufacturing Expansion Status" data-section="MANUFACTURING EXPANSION / CURRENT STATUS">
           <div class="slide-heading">
             <div><p class="eyebrow">ON-SITE PROGRESS GALLERY</p><h2>Current Manufacturing <span>Expansion Status</span></h2></div>
@@ -167,51 +1284,357 @@
               <div class="expansion-photo-grid" id="expansionLogisticsGallery"></div>
             </section>
           </div>
+
+          <dialog class="photo-lightbox" id="photoLightbox" aria-label="Expanded manufacturing photo">
+            <div class="photo-lightbox-shell">
+              <button class="photo-lightbox-close" id="photoLightboxClose" type="button" aria-label="Close expanded photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+              <button class="photo-lightbox-nav is-previous" id="photoLightboxPrevious" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+              <figure>
+                <img id="photoLightboxImage" src="" alt="">
+              </figure>
+              <button class="photo-lightbox-nav is-next" id="photoLightboxNext" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+            </div>
+          </dialog>
         </section>
+<section class="slide" style="position: relative; overflow: hidden; background: radial-gradient(circle at 30% 50%, var(--slide-grad-1) 0%, var(--slide-grad-2) 100%);">
+  
 
-        <section class="slide demand-slide" data-title="O!Save Demand Impact for Palm Oil" data-section="O!SAVE CREDIT PLAN / RETAIL STORES DEMAND IMPACT">
-          <div class="slide-heading"><div><p class="eyebrow">RETAIL DEMAND INTEGRATION</p><h2>O!Save Demand Impact for <span>Palm Oil</span></h2></div><p>Supplying the rapid regional expansion of nationwide discount retail channels</p></div>
-          <div class="demand-reference-layout">
-            <section class="demand-column demand-table-column" aria-labelledby="oilRegionalDemandTitle">
-              <h3 id="oilRegionalDemandTitle">Regional Volume Demand</h3>
-              <p class="demand-column-description">Breakdown of monthly cases requested by regional distribution hubs</p>
-              <div class="demand-table-wrap">
-                <table class="oil-demand-table">
-                  <thead><tr><th scope="col">Warehouse Location</th><th scope="col">Quantity</th></tr></thead>
-                  <tbody id="oilDemandTable"></tbody>
-                </table>
-              </div>
-            </section>
 
-            <section class="demand-column demand-chart-column" aria-labelledby="oilDemandDistributionTitle">
-              <h3 id="oilDemandDistributionTitle">Demand Distribution</h3>
-              <p class="demand-column-description">Visual scaling of regional hub retail distribution volume</p>
-              <div class="oil-demand-chart" id="oilDemandChart" aria-label="Monthly oil demand distribution by regional hub"></div>
-            </section>
+  <div class="slide-header" style="flex: 0 0 auto; margin-bottom: 16px; position: relative; z-index: 10;">
+    <span class="badge" style="background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.4); font-size: 11px;">FINANCIAL SCHEMATIC</span>
+    <h2 style="font-size: 28px; font-weight: 800; color: var(--text-primary); margin-top: 8px; margin-bottom: 4px;">O!Save Capital Request</h2>
+    <p style="color: var(--text-secondary); font-size: 13px; margin: 0;">Strategic debt-to-asset conversion program reviewed with Banking Partners</p>
+  </div>
 
-            <section class="demand-column demand-impact-column" aria-labelledby="oilSupplyShareTitle">
-              <h3 id="oilSupplyShareTitle">O!Save Supply Share</h3>
-              <p class="demand-column-description">Production upgrade capacity impact on nationwide supply chain</p>
-              <div class="supply-gauge-box" role="img" aria-label="55 percent nationwide supply share">
-                <svg class="supply-gauge" viewBox="0 0 36 36" aria-hidden="true">
-                  <path class="supply-gauge-track" d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"></path>
-                  <path class="supply-gauge-value" d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"></path>
-                </svg>
-                <div><strong>55%</strong><span>Nationwide Share</span></div>
-              </div>
-              <div class="store-growth-tracker">
-                <h4>Store Expansion Trajectory</h4>
-                <div class="growth-timeline-vertical">
-                  <div class="growth-timeline-line" aria-hidden="true"></div>
-                  <div class="growth-timeline-item is-current"><i aria-hidden="true"></i><div><span>Current Staging</span><strong>900 Stores</strong></div></div>
-                  <div class="growth-timeline-item is-year-one"><i aria-hidden="true"></i><div><span>Year 1 Target</span><strong>2,000 Stores</strong></div></div>
-                  <div class="growth-timeline-item is-year-two"><i aria-hidden="true"></i><div><span>Year 2 Target</span><strong>4,000 Stores</strong></div></div>
-                </div>
-              </div>
-            </section>
+  <div class="slide-content grid-2-1" style="gap: 20px; align-items: start;">
+    
+    <!-- Left Column: Purpose & Allocation (No card border, seamless) -->
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div>
+        <h3 style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px;">Financing Purpose & Requirements</h3>
+        <div class="total-request-hero" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(14, 165, 233, 0.02) 100%); border: 1px solid rgba(14, 165, 233, 0.3); border-radius: 12px; padding: 16px 20px; text-align: left; box-shadow: 0 8px 32px rgba(0,0,0,0.2);">
+          <div class="request-val" id="totalRequestVal" style="font-size: 32px; font-weight: 800; color: var(--text-primary); line-height: 1;">Php 215,000,000</div>
+          <div class="request-label" style="font-size: 11px; color: var(--color-sky-light); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 6px; font-weight: 700;">Total Capital Request (Banking Partner Credit Lines)</div>
+        </div>
+      </div>
+      
+      <!-- Allocation Table (Seamless design) -->
+      <div>
+        <table class="allocation-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 2px solid rgba(var(--rgb-glass),0.08); font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">
+              <th style="padding: 10px 8px; font-weight: 700;">Capital Deployment Target</th>
+              <th style="padding: 10px 8px; font-weight: 700;">Asset Classification</th>
+              <th style="padding: 10px 8px; font-weight: 700; text-align: right;">Allocation</th>
+            </tr>
+          </thead>
+          <tbody style="font-size: 13px; color: var(--text-secondary);">
+            <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.04); transition: var(--transition-smooth);">
+              <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Pancit Bihon & Canton Lines</td>
+              <td style="padding: 10px 8px;"><span class="lbl-asset" style="background: rgba(14, 165, 233, 0.15); color: var(--color-sky); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700;">Core Machinery</span></td>
+              <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">P45,000,000.00</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.04); transition: var(--transition-smooth);">
+              <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Palm & Canola Oil Facilities</td>
+              <td style="padding: 10px 8px;"><span class="lbl-asset" style="background: rgba(14, 165, 233, 0.15); color: var(--color-sky); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700;">Machinery & Fixed</span></td>
+              <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">P20,000,000.00</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.04); transition: var(--transition-smooth);">
+              <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Raw Material Procurement</td>
+              <td style="padding: 10px 8px;"><span class="lbl-asset working" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700;">Working Capital</span></td>
+              <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">P100,000,000.00</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.04); transition: var(--transition-smooth);">
+              <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Warehouse & Ice Plant Facility</td>
+              <td style="padding: 10px 8px;"><span class="lbl-asset infra" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700;">Infrastructure</span></td>
+              <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">P50,000,000.00</td>
+            </tr>
+            <tr class="table-total" style="border-top: 2px solid rgba(var(--rgb-glass),0.15); font-weight: 700;">
+              <td style="padding: 12px 8px; color: var(--text-primary); font-size: 13.5px;">Total Program Budget</td>
+              <td style="padding: 12px 8px; color: var(--text-muted); font-size: 11px; text-transform: uppercase;">Combined Assets</td>
+              <td style="padding: 12px 8px; text-align: right; color: var(--color-sky); font-size: 15px; font-weight: 800;">P215,000,000.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Right Column: Funding Loop (Seamless card) -->
+    <div style="display: flex; flex-direction: column; gap: 20px; height: 100%;">
+      <div style="text-align: left;">
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">The Funding Loop</h3>
+        <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; margin: 0; font-style: italic;">
+          "By converting bank debt directly into top-tier operational capacity, we scale operating income to outpace interest frameworks."
+        </p>
+      </div>
+
+      <!-- Animated Coded Funding Loop Diagram -->
+      <div class="funding-loop-diagram" style="width: 100%; height: 210px; display: flex; align-items: center; justify-content: center; position: relative; background: rgba(var(--rgb-glass), 0.03); border-radius: 12px; border: 1px solid rgba(var(--rgb-glass),0.08); overflow: hidden; box-shadow: inset 0 4px 20px rgba(var(--rgb-glass), 0.05);">
+        <!-- SVG Circular Flow Path -->
+        <svg width="180" height="180" viewBox="0 0 180 180" style="position: absolute; transform: rotate(-45deg);">
+          <circle cx="90" cy="90" r="60" fill="none" stroke="rgba(var(--rgb-glass), 0.05)" stroke-width="3" />
+          <circle cx="90" cy="90" r="60" fill="none" stroke="url(#flowGradient)" stroke-width="3" stroke-dasharray="12 18" style="animation: flowLine 6s infinite linear;" />
+          <defs>
+            <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8" />
+              <stop offset="50%" stop-color="#c084fc" />
+              <stop offset="100%" stop-color="#fb7185" />
+            </linearGradient>
+          </defs>
+        </svg>
+        
+        <!-- Central Hub -->
+        <div class="loop-center" style="position: absolute; width: 50px; height: 50px; border-radius: 50%; background: var(--bg-card); border: 2px solid #38bdf8; display: flex; align-items: center; justify-content: center; z-index: 10; box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);">
+          <span style="font-size: 10px; font-weight: 800; color: var(--text-primary);">ROOCH</span>
+        </div>
+        
+        <!-- Node 1: Top (Banking Partner Funding) -->
+        <div class="loop-node node-top" title="Banking Partner Credit Line Injection" style="position: absolute; top: 10px; z-index: 12; display: flex; flex-direction: column; align-items: center;">
+          <div class="node-icon" style="width: 28px; height: 28px; border-radius: 50%; background: var(--bg-card); border: 1.5px solid #0ea5e9; display: flex; align-items: center; justify-content: center; font-size: 12px; box-shadow: 0 4px 10px rgba(var(--rgb-glass),0.15); animation: pulseGlowBlue 2s infinite ease-in-out;">🏦</div>
+          <span style="font-size: 8px; color: var(--text-secondary); margin-top: 3px; font-weight: 700;">Banking Partner Funding</span>
+        </div>
+
+        <!-- Node 2: Right (Industrial Assets) -->
+        <div class="loop-node node-right" title="Convert to productive tier-1 machinery" style="position: absolute; right: 10px; z-index: 12; display: flex; flex-direction: column; align-items: center;">
+          <div class="node-icon" style="width: 28px; height: 28px; border-radius: 50%; background: var(--bg-card); border: 1.5px solid #a855f7; display: flex; align-items: center; justify-content: center; font-size: 12px; box-shadow: 0 4px 10px rgba(var(--rgb-glass),0.15); animation: pulseGlowPurple 2.2s infinite ease-in-out;">⚙️</div>
+          <span style="font-size: 8px; color: var(--text-secondary); margin-top: 3px; font-weight: 700;">Tier-1 Assets</span>
+        </div>
+
+        <!-- Node 3: Bottom (Retail Sales) -->
+        <div class="loop-node node-bottom" title="Distribute to O!Save discount stores" style="position: absolute; bottom: 10px; z-index: 12; display: flex; flex-direction: column; align-items: center;">
+          <div class="node-icon" style="width: 28px; height: 28px; border-radius: 50%; background: var(--bg-card); border: 1.5px solid #f97316; display: flex; align-items: center; justify-content: center; font-size: 12px; box-shadow: 0 4px 10px rgba(var(--rgb-glass),0.15); animation: pulseGlowOrange 2.4s infinite ease-in-out;">🛒</div>
+          <span style="font-size: 8px; color: var(--text-secondary); margin-top: 3px; font-weight: 700;">Retail Sales</span>
+        </div>
+
+        <!-- Node 4: Left (Revenue Loop) -->
+        <div class="loop-node node-left" title="Capture high margins & service debt" style="position: absolute; left: 10px; z-index: 12; display: flex; flex-direction: column; align-items: center;">
+          <div class="node-icon" style="width: 28px; height: 28px; border-radius: 50%; background: var(--bg-card); border: 1.5px solid #10b981; display: flex; align-items: center; justify-content: center; font-size: 12px; box-shadow: 0 4px 10px rgba(var(--rgb-glass),0.15); animation: pulseGlowGreen 2.6s infinite ease-in-out;">💰</div>
+          <span style="font-size: 8px; color: var(--text-secondary); margin-top: 3px; font-weight: 700;">Revenue Loop</span>
+        </div>
+      </div>
+
+      <!-- Step List (Modern inline list) -->
+      <div class="step-list" style="display: flex; flex-direction: column; gap: 10px;">
+        <div class="step-item" style="display: flex; align-items: center; gap: 12px; background: rgba(var(--rgb-glass),0.01); border: 1px solid rgba(var(--rgb-glass),0.03); padding: 8px 12px; border-radius: 8px;">
+          <div class="step-num" style="width: 20px; height: 20px; border-radius: 50%; background: rgba(14, 165, 233, 0.2); border: 1px solid rgba(14, 165, 233, 0.4); color: var(--text-primary); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800;">1</div>
+          <div style="font-size: 12.5px;">
+            <strong style="color: var(--text-primary);">Capital Allocation:</strong> Assign credit lines directly into tier-1 machinery.
           </div>
-        </section>
+        </div>
+        <div class="step-item" style="display: flex; align-items: center; gap: 12px; background: rgba(var(--rgb-glass),0.01); border: 1px solid rgba(var(--rgb-glass),0.03); padding: 8px 12px; border-radius: 8px;">
+          <div class="step-num" style="width: 20px; height: 20px; border-radius: 50%; background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); color: var(--text-primary); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800;">2</div>
+          <div style="font-size: 12.5px;">
+            <strong style="color: var(--text-primary);">Asset Conversion:</strong> Convert raw inputs into productive assets.
+          </div>
+        </div>
+        <div class="step-item" style="display: flex; align-items: center; gap: 12px; background: rgba(var(--rgb-glass),0.01); border: 1px solid rgba(var(--rgb-glass),0.03); padding: 8px 12px; border-radius: 8px;">
+          <div class="step-num" style="width: 20px; height: 20px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: var(--text-primary); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800;">3</div>
+          <div style="font-size: 12.5px;">
+            <strong style="color: var(--text-primary);">Revenue Capture:</strong> Use nationwide channels to secure margins.
+          </div>
+        </div>
+      </div>
+    </div>
 
+  </div>
+</section>
+
+<section class="slide" style="position: relative; overflow: hidden; background: radial-gradient(circle at 50% 50%, var(--slide-grad-1) 0%, var(--slide-grad-2) 100%);">
+  
+  <!-- O!Save Map Backdrop Watermark -->
+  <div class="osave-backdrop" style="position: absolute; right: 2%; bottom: 2%; width: 50%; height: 80%; opacity: 0.06; pointer-events: none; z-index: 0; background-image: url('Presentation_Assets/Osave_Presentation/image9.png'); background-size: contain; background-repeat: no-repeat; background-position: bottom right; filter: brightness(1.5) contrast(0.95);"></div>
+
+  <div class="slide-header" style="position: relative; z-index: 2; margin-bottom: 30px;">
+    <span class="badge" style="background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.4); color: var(--color-sky); font-size: 11px;">RETAIL DEMAND INTEGRATION</span>
+    <h2 style="font-size: 32px; font-weight: 800; color: var(--text-primary); margin-top: 10px; margin-bottom: 5px;">O!Save Demand Impact</h2>
+    <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Supplying the rapid regional expansion of nationwide discount retail channels</p>
+  </div>
+
+  <div class="slide-content grid-3" style="gap: 40px; align-items: start; position: relative; z-index: 2;">
+    
+    <!-- Column 1: Monthly Demand Table (Borderless, Seamless) -->
+    <div style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+      <h3 style="font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 5px;">Regional Volume Demand</h3>
+      <p style="font-size: 12px; color: var(--text-secondary); margin: 0 0 10px 0; line-height: 1.4;">Breakdown of monthly cases requested by regional distribution hubs</p>
+      
+      <table class="allocation-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+          <tr style="border-bottom: 2px solid rgba(var(--rgb-glass),0.08); font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">
+            <th style="padding: 10px 8px; font-weight: 700;">Warehouse Location</th>
+            <th style="padding: 10px 8px; font-weight: 700; text-align: right;">Quantity</th>
+          </tr>
+        </thead>
+        <tbody style="font-size: 13px; color: var(--text-secondary);">
+          <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.03);">
+            <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Plaridel, Bulacan</td>
+            <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">6,888 cases</td>
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.03);">
+            <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Pampanga Province</td>
+            <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">4,980 cases</td>
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.03);">
+            <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Naga & Kawit Cavite</td>
+            <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">4,320 cases</td>
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.03);">
+            <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Villasis, Pangasinan</td>
+            <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">3,840 cases</td>
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.03);">
+            <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Meycauayan, Bulacan</td>
+            <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">3,408 cases</td>
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.03);">
+            <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Nueva Ecija</td>
+            <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">3,360 cases</td>
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(var(--rgb-glass),0.03);">
+            <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;">Taytay, Rizal</td>
+            <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">840 cases</td>
+          </tr>
+          <tr class="table-total" style="border-top: 2px solid rgba(var(--rgb-glass),0.12); font-weight: 700;">
+            <td style="padding: 12px 8px; color: var(--text-primary);">Total Monthly Demand</td>
+            <td style="padding: 12px 8px; text-align: right; color: var(--color-sky); font-weight: 800;">27,636 cases</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Column 2: Demand Distribution Graph (Glow Bar Chart) -->
+    <div style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+      <h3 style="font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 5px;">Demand Distribution</h3>
+      <p style="font-size: 12px; color: var(--text-secondary); margin: 0 0 10px 0; line-height: 1.4;">Visual scaling of regional hub retail distribution volume</p>
+
+      
+        <style>
+          .demand-bar-col { cursor: pointer; }
+          .demand-bar-col:hover .d-bar { filter: brightness(1.2); transform: scaleX(1.1); }
+          .demand-bar-col:hover .bar-val-popup { transform: scale(1.3) translateY(-4px); text-shadow: 0 0 10px currentColor; }
+          .bar-val-popup { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+          .d-bar { transition: height 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease, filter 0.3s ease !important; }
+        </style>
+<div class="demand-chart-container" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 20px; min-height: 330px; border: 1px solid rgba(var(--rgb-glass),0.04); box-shadow: inset 0 4px 20px rgba(0,0,0,0.3);">
+        <div class="demand-bars" style="display: flex; align-items: flex-end; justify-content: space-between; height: 210px; padding-bottom: 10px; border-bottom: 1px solid rgba(var(--rgb-glass),0.08); position: relative; margin-bottom: 12px;">
+            <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 0;"></div>
+            <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 25%;"></div>
+            <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 50%;"></div>
+            <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 75%;"></div>
+    
+            <div class="demand-bar-col" style="display: flex; flex-direction: column; align-items: center; width: 12%; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: #0ea5e9;">
+              <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">6.8K</span>
+              <div class="d-bar" data-height="100%" style="width: 100%; height: 0%; background: linear-gradient(180deg, rgba(14, 165, 233, 0.85) 0%, rgba(14, 165, 233, 0.1) 100%); border-top: 3px solid #0ea5e9; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(14, 165, 233, 0.35);"></div>
+              <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">PLR</span>
+            </div>
+
+            <div class="demand-bar-col" style="display: flex; flex-direction: column; align-items: center; width: 12%; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: #6366f1;">
+              <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">4.9K</span>
+              <div class="d-bar" data-height="72%" style="width: 100%; height: 0%; background: linear-gradient(180deg, rgba(99, 102, 241, 0.85) 0%, rgba(99, 102, 241, 0.1) 100%); border-top: 3px solid #6366f1; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(99, 102, 241, 0.35);"></div>
+              <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">PMP</span>
+            </div>
+
+            <div class="demand-bar-col" style="display: flex; flex-direction: column; align-items: center; width: 12%; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: #a855f7;">
+              <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">4.3K</span>
+              <div class="d-bar" data-height="62.7%" style="width: 100%; height: 0%; background: linear-gradient(180deg, rgba(168, 85, 247, 0.85) 0%, rgba(168, 85, 247, 0.1) 100%); border-top: 3px solid #a855f7; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);"></div>
+              <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">NAG</span>
+            </div>
+
+            <div class="demand-bar-col" style="display: flex; flex-direction: column; align-items: center; width: 12%; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: #d946ef;">
+              <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">3.8K</span>
+              <div class="d-bar" data-height="55.7%" style="width: 100%; height: 0%; background: linear-gradient(180deg, rgba(217, 70, 239, 0.85) 0%, rgba(217, 70, 239, 0.1) 100%); border-top: 3px solid #d946ef; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(217, 70, 239, 0.35);"></div>
+              <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">VIL</span>
+            </div>
+
+            <div class="demand-bar-col" style="display: flex; flex-direction: column; align-items: center; width: 12%; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: #f43f5e;">
+              <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">3.4K</span>
+              <div class="d-bar" data-height="49.5%" style="width: 100%; height: 0%; background: linear-gradient(180deg, rgba(244, 63, 94, 0.85) 0%, rgba(244, 63, 94, 0.1) 100%); border-top: 3px solid #f43f5e; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(244, 63, 94, 0.35);"></div>
+              <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">MEY</span>
+            </div>
+
+            <div class="demand-bar-col" style="display: flex; flex-direction: column; align-items: center; width: 12%; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: #f97316;">
+              <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">3.3K</span>
+              <div class="d-bar" data-height="48.7%" style="width: 100%; height: 0%; background: linear-gradient(180deg, rgba(249, 115, 22, 0.85) 0%, rgba(249, 115, 22, 0.1) 100%); border-top: 3px solid #f97316; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(249, 115, 22, 0.35);"></div>
+              <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">NVE</span>
+            </div>
+
+            <div class="demand-bar-col" style="display: flex; flex-direction: column; align-items: center; width: 12%; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: #10b981;">
+              <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">840</span>
+              <div class="d-bar" data-height="12.2%" style="width: 100%; height: 0%; background: linear-gradient(180deg, rgba(16, 185, 129, 0.85) 0%, rgba(16, 185, 129, 0.1) 100%); border-top: 3px solid #10b981; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);"></div>
+              <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">TAY</span>
+            </div>
+          </div>
+        
+        <div style="font-size: 9.5px; color: var(--text-muted); text-align: left; line-height: 1.4;">
+          <strong>Legend:</strong> PLR: Plaridel | PMP: Pampanga | NAG: Naga | VIL: Villasis | MEY: Meycauayan | NVE: Nueva Ecija | TAY: Taytay
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 3: Supply Impact & Store Growth (KPI & Vertical Timeline with Pixel-Perfect Alignment) -->
+    <div style="display: flex; flex-direction: column; gap: 20px; width: 100%;">
+      <h3 style="font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 5px;">O!Save Supply Share</h3>
+      <p style="font-size: 12px; color: var(--text-secondary); margin: 0 0 5px 0; line-height: 1.4;">Production upgrade capacity impact on nationwide supply chain</p>
+
+      <!-- SVG Circular Progress Gauge - Nested in Column 1 (60px alignment) -->
+      <div class="supply-gauge-box" style="display: grid; grid-template-columns: 60px 1fr; gap: 20px; align-items: center; background: rgba(14, 165, 233, 0.04); border: 1.5px dashed rgba(14, 165, 233, 0.2); padding: 18px; border-radius: 12px;">
+        <div style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="60" height="60" viewBox="0 0 36 36">
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(var(--rgb-glass),0.03)" stroke-width="3" />
+            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="55, 100" stroke-linecap="round" style="filter: drop-shadow(0 0 4px #0ea5e9);" />
+          </svg>
+        </div>
+        <div>
+          <span style="font-size: 26px; font-weight: 800; color: var(--text-primary); display: block; line-height: 1;">55%</span>
+          <span style="font-size: 11px; color: var(--text-secondary); display: block; margin-top: 4px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">Nationwide Share</span>
+        </div>
+      </div>
+
+      <div class="store-growth-tracker" style="margin-top: 10px;">
+        <h4 style="font-size: 13.5px; font-weight: 700; color: var(--text-primary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-sky);">Store Expansion Trajectory</h4>
+        
+        <!-- Glowing Vertical Timeline (Pixel-Perfect Alignment with SVG center) -->
+        <div class="growth-timeline-vertical" style="display: flex; flex-direction: column; gap: 20px; position: relative; width: 100%;">
+          <!-- Vertical line path - centered exactly inside the 60px column (at 29px for 2px width) -->
+          <div style="position: absolute; left: 29px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(180deg, #0ea5e9 0%, #06b6d4 50%, rgba(var(--rgb-glass),0.05) 100%);"></div>
+          
+          <!-- Node 1: Current -->
+          <div style="display: grid; grid-template-columns: 60px 1fr; gap: 20px; align-items: center; position: relative; z-index: 2;">
+            <div style="display: flex; justify-content: center; align-items: center; width: 60px;">
+              <div style="width: 10px; height: 10px; border-radius: 50%; background: #0ea5e9; box-shadow: 0 0 10px #0ea5e9; outline: 3px solid rgba(14, 165, 233, 0.25);"></div>
+            </div>
+            <div>
+              <span style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Current Staging</span>
+              <strong style="display: block; font-size: 14.5px; color: var(--text-primary); margin-top: 2px;">900 Stores</strong>
+            </div>
+          </div>
+
+          <!-- Node 2: Year 1 -->
+          <div style="display: grid; grid-template-columns: 60px 1fr; gap: 20px; align-items: center; position: relative; z-index: 2;">
+            <div style="display: flex; justify-content: center; align-items: center; width: 60px;">
+              <div style="width: 10px; height: 10px; border-radius: 50%; background: #06b6d4; box-shadow: 0 0 10px #06b6d4; outline: 3px solid rgba(6, 182, 212, 0.25);"></div>
+            </div>
+            <div>
+              <span style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Year 1 Target</span>
+              <strong style="display: block; font-size: 14.5px; color: var(--text-primary); margin-top: 2px;">2,000 Stores</strong>
+            </div>
+          </div>
+
+          <!-- Node 3: Year 2 -->
+          <div style="display: grid; grid-template-columns: 60px 1fr; gap: 20px; align-items: center; position: relative; z-index: 2;">
+            <div style="display: flex; justify-content: center; align-items: center; width: 60px;">
+              <div style="width: 10px; height: 10px; border-radius: 50%; background: rgba(var(--rgb-glass),0.08); border: 1px solid rgba(var(--rgb-glass),0.25); outline: 3px solid rgba(var(--rgb-glass),0.03);"></div>
+            </div>
+            <div>
+              <span style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">Year 2 Target</span>
+              <strong style="display: block; font-size: 14.5px; color: var(--text-primary); margin-top: 2px;">4,000 Stores</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
         <section class="slide demand-slide pancit" data-title="O!Save Demand Impact Pancit" data-section="O!SAVE CREDIT PLAN / PANCIT DEMAND IMPACT">
           <div class="slide-heading"><div><p class="eyebrow">PROPOSED MONTHLY SUPPLY ALLOCATION</p><h2>O!Save Demand Impact <span>Pancit</span></h2></div><p>Recurring Bihon and Canton supply allocation across seven regional distribution hubs</p></div>
           <div class="demand-reference-layout pancit-demand-reference">
@@ -240,7 +1663,6 @@
             </section>
           </div>
         </section>
-
         <section class="slide capacity-slide" data-title="Manufacturing Capacity Oils" data-section="MANUFACTURING CAPACITY / OILS">
           <div class="slide-heading"><div><p class="eyebrow">Capacity optimization</p><h2>Manufacturing Capacity <span>Oils</span></h2></div><div class="capacity-controls" id="oilCapacityTabs" role="tablist"></div></div>
           <div class="capacity-workspace">
@@ -363,7 +1785,6 @@
             </div>
           </div>
         </section>
-
         <section class="slide pancit-source-slide" data-title="Manufacturing Capacity Expansion" data-section="MANUFACTURING CAPACITY / PANCIT">
           <div class="pancit-source-header">
             <div class="pancit-source-header-copy">
@@ -412,7 +1833,712 @@
           </div>
 
         </section>
+<section class="slide">
+  <div class="slide-header" style="margin-bottom: 20px; text-align: left; width: 100%;">
+    <span class="badge" style="background: rgba(249, 115, 22, 0.15); border-color: rgba(249, 115, 22, 0.4); font-size: 11px; color: #fb923c;">LOGISTICS & SALES OPERATIONS</span>
+    <h2 style="font-size: 32px; font-weight: 800; color: var(--text-primary); margin-top: 10px; margin-bottom: 5px;">The Dealerover Program</h2>
+    <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Integrating regional FMCG distribution networks with the Dealerover digital execution middleware.</p>
+  </div>
+  
+  <div class="slide-content grid-2-1" style="grid-template-columns: 1.25fr 1fr; gap: 24px; align-items: stretch; text-align: left;">
+    
+    <!-- Left Column: Program Highlights & Towns Lists -->
+    <div style="display: flex; flex-direction: column; gap: 16px; justify-content: space-between; height: 100%;">
+      
+      <!-- Highlights Card (Objectives - enlarged to take up larger portion) -->
+      <div class="glass-card" style="padding: 22px 26px; border-radius: 12px; border: 1.5px solid rgba(249, 115, 22, 0.25); background: rgba(249, 115, 22, 0.02); display: flex; flex-direction: column; gap: 14px; flex-grow: 1.8; justify-content: center;">
+        <h3 style="font-size: 17.5px; font-weight: 800; color: #fb923c; margin: 0; display: flex; align-items: center; gap: 8px;">
+          ⭐ Program Highlights
+        </h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 6px;">
+          <!-- Highlight 1 -->
+          <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.5; color: var(--text-primary);">
+            <span style="font-size: 14px; color: #fb923c; margin-top: 2px;">⚡</span>
+            <span>Establish <strong>70 Authorized Roving Dealers</strong> across Pangasinan and La Union.</span>
+          </div>
+          <!-- Highlight 2 -->
+          <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.5; color: var(--text-primary);">
+            <span style="font-size: 14px; color: #fb923c; margin-top: 2px;">⚡</span>
+            <span>Achieve full market saturation through <strong>20,000+ active retail touchpoints</strong> in the downline.</span>
+          </div>
+          <!-- Highlight 3 -->
+          <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.5; color: var(--text-primary);">
+            <span style="font-size: 14px; color: #fb923c; margin-top: 2px;">⚡</span>
+            <span>Attain at least <strong>₱50 million</strong> in additional monthly revenue once all 70 dealers are fully operational.</span>
+          </div>
+          <!-- Highlight 4 -->
+          <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.5; color: var(--text-primary);">
+            <span style="font-size: 14px; color: #fb923c; margin-top: 2px;">⚡</span>
+            <span>Generate strong, <strong>high‑velocity cashflow</strong> driven by the Dealerover downline model.</span>
+          </div>
+        </div>
+      </div>
 
+      <!-- Sub-grid: Closed Deals & Scheduled Prospects as Bullet Lists -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex-grow: 1;">
+        
+        <!-- Closed Deals Bullets -->
+        <div class="glass-card" style="padding: 14px 18px; border-radius: 12px; border: 1.5px solid rgba(34, 197, 94, 0.25); background: rgba(34, 197, 94, 0.015); display: flex; flex-direction: column;">
+          <h4 style="font-size: 13px; font-weight: 800; color: #4ade80; margin: 0 0 10px 0; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid rgba(var(--rgb-glass),0.06); padding-bottom: 6px;">
+            🟢 Closed Deals
+          </h4>
+          <ul style="margin: 0; padding-left: 20px; color: var(--text-primary); font-size: 12px; line-height: 1.8; display: flex; flex-direction: column; gap: 2px;">
+            <li>San Carlos</li>
+            <li>Lingayen</li>
+            <li>Urdaneta</li>
+            <li>Villasis</li>
+            <li>Rosales</li>
+          </ul>
+        </div>
+
+        <!-- Prospects Bullets -->
+        <div class="glass-card" style="padding: 14px 18px; border-radius: 12px; border: 1.5px solid rgba(14, 165, 233, 0.25); background: rgba(14, 165, 233, 0.015); display: flex; flex-direction: column;">
+          <h4 style="font-size: 13px; font-weight: 800; color: var(--color-sky); margin: 0 0 10px 0; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid rgba(var(--rgb-glass),0.06); padding-bottom: 6px;">
+            🔵 July Scheduled Prospects
+          </h4>
+          <ul style="margin: 0; padding-left: 20px; color: var(--text-primary); font-size: 12px; line-height: 1.8; display: flex; flex-direction: column; gap: 2px;">
+            <li>Tayug</li>
+            <li>Bayambang</li>
+            <li>Malasiqui</li>
+          </ul>
+        </div>
+
+      </div>
+      
+    </div>
+
+    <!-- Right Column: Live Video Player Showcase -->
+    <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 16px; text-align: left; overflow: hidden; height: 100%; border: 1.5px solid rgba(249, 115, 22, 0.25); background: rgba(var(--rgb-dark-bg),0.3); border-radius: 14px;">
+      
+      <!-- Video Title overlay -->
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(var(--rgb-glass),0.06); padding-bottom: 8px; margin-bottom: 12px;">
+        <span style="font-size: 10.5px; font-weight: 800; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444; box-shadow: 0 0 8px #ef4444; display: inline-block; animation: pulse-led 1.2s infinite alternate;"></span>
+          Dealrover Roving Program - First Successful Opening
+        </span>
+        <span style="font-size: 9.5px; color: var(--text-muted); font-family: monospace;">HD_OFFLINE</span>
+      </div>
+
+      <!-- Video Player Frame -->
+      <div style="flex-grow: 1; border-radius: 8px; overflow: hidden; background: #000; border: 1px solid rgba(var(--rgb-glass),0.05); display: flex; align-items: center; justify-content: center; ">
+        <!-- HTML5 video element with local asset source, looping and autoplaying -->
+        <video controls autoplay loop muted style="width: 100%; height: 100%; object-fit: contain;">
+          <source src="Presentation_Assets/dealerover_opening.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<style>
+/* Modern Glass & Glow System for Vertex Slide */
+.vertex-tab {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.vertex-tab::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+.vertex-tab:hover {
+  transform: translateY(-1.5px) translateX(2px);
+  background: rgba(var(--rgb-glass), 0.03) !important;
+  border-color: rgba(56, 189, 248, 0.25) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.vertex-tab.active {
+  background: rgba(14, 165, 233, 0.05) !important;
+  border-color: rgba(14, 165, 233, 0.45) !important;
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.12), inset 0 0 8px rgba(14, 165, 233, 0.05) !important;
+}
+.vertex-tab.active::before {
+  background: #0ea5e9;
+  box-shadow: 0 0 8px #0ea5e9;
+}
+
+/* Hover effects for Deployed Systems List */
+.deploy-item {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+.deploy-item:hover {
+  transform: translateY(-2px);
+  background: rgba(14, 165, 233, 0.04) !important;
+  border-color: rgba(14, 165, 233, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.08);
+}
+
+/* Gallery thumbnails styling */
+.gal-thumb {
+  border-radius: 6px;
+  border: 1.5px solid rgba(var(--rgb-glass), 0.08);
+  background: #000;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 54px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.gal-thumb:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+.gal-thumb.active {
+  opacity: 1;
+  border-color: var(--color-sky-dark);
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.35);
+  transform: scale(1.03);
+}
+
+/* Scrollbar Customization */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.2);
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.45);
+}
+
+/* Image reveal keyframes */
+@keyframes tech-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px) brightness(0.85);
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+    transform: scale(1);
+  }
+}
+.tech-reveal-active {
+  animation: tech-reveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Blinking LED animation */
+@keyframes deploy-led-blink {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+.deploy-led {
+  animation: deploy-led-blink 1s ease-in-out infinite alternate;
+}
+</style>
+
+<section class="slide" style="position: relative; overflow: hidden;">
+  
+  <!-- Subtle decorative ambient background glows -->
+  <div style="position: absolute; right: -10%; top: -10%; width: 350px; height: 350px; border-radius: 50%; background: rgba(14, 165, 233, 0.05); filter: blur(80px); pointer-events: none; z-index: 1;"></div>
+  <div style="position: absolute; left: 20%; bottom: -10%; width: 280px; height: 280px; border-radius: 50%; background: rgba(168, 85, 247, 0.03); filter: blur(70px); pointer-events: none; z-index: 1;"></div>
+
+  <div class="slide-header" style="margin-bottom: 20px; text-align: left; width: 100%; position: relative; z-index: 2;">
+    <span class="badge" style="background: rgba(14, 165, 233, 0.1); border-color: rgba(14, 165, 233, 0.3); font-size: 11px; letter-spacing: 0.5px; color: var(--color-sky);">VERTEX PLATFORM DEPLOYMENTS</span>
+    <h2 style="font-size: 32px; font-weight: 800; color: var(--text-primary); margin-top: 10px; margin-bottom: 5px; text-shadow: var(--ts-override, 0 0 15px rgba(var(--rgb-glass),0.05));">Vertex Technologies</h2>
+    <p style="color: var(--text-secondary); font-size: 14.5px; margin: 0; line-height: 1.4;">Enterprise-scale software suites, automated financial ledger networks, and municipal service portals.</p>
+  </div>
+
+  <div class="slide-content" style="display: grid; grid-template-columns: 1fr 1.1fr 1.05fr; gap: 20px; align-items: stretch; text-align: left; position: relative; z-index: 2;">
+    
+    <!-- Column 1: Development Categories (Tabs & Stats) -->
+    <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <p style="color: var(--text-secondary); line-height: 1.5; font-size: 12px; margin: 0; padding-left: 2px;">
+          Vertex engineers highly custom, secure backend infrastructures spanning complex distributed ledger accounting networks and mobile automation systems.
+        </p>
+        
+        <div class="vertex-tabs" style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- ERP Tab -->
+          <div class="vertex-tab active" data-target="erp" 
+               data-color="14, 165, 233"
+               data-metric="VOS ERP: Active in corporate subsidiaries. Handles over Php 250M of consolidated transactions annually. Projected annual profit is Php 52M."
+               style="cursor: pointer; padding: 10px 14px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.04); display: flex; flex-direction: column; gap: 2px; padding-left: 18px;">
+            <strong style="font-size: 13px; color: var(--text-primary); letter-spacing: 0.2px;">VOS ERP Suite</strong>
+            <span style="font-size: 10.5px; color: var(--text-muted);">Consolidated Accounting & Inventory. Profit: ₱52M.</span>
+          </div>
+          
+          <!-- Dealer Tab -->
+          <div class="vertex-tab" data-target="dealer" 
+               data-color="56, 189, 248"
+               data-metric="Dealerover MRR: Scales monthly subscription rates across roving dealers in Pangasinan. Projected annual profit is Php 8.4M."
+               style="cursor: pointer; padding: 10px 14px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.04); display: flex; flex-direction: column; gap: 2px; padding-left: 18px;">
+            <strong style="font-size: 13px; color: var(--text-primary); letter-spacing: 0.2px;">Dealerover Sync</strong>
+            <span style="font-size: 10.5px; color: var(--text-muted);">Branch Stock Matching & Dispatch. Profit: ₱8.4M Yearly.</span>
+          </div>
+          
+          <!-- eLGU Tab -->
+          <div class="vertex-tab" data-target="elgu" 
+               data-color="34, 197, 94"
+               data-metric="eLGU Portals: Deployed in Mapandan and municipal councils. Digitizes permits and local taxes. Projected profit is Php 15M per town deployment."
+               style="cursor: pointer; padding: 10px 14px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.04); display: flex; flex-direction: column; gap: 2px; padding-left: 18px;">
+            <strong style="font-size: 13px; color: var(--text-primary); letter-spacing: 0.2px;">eLGU Digitalization</strong>
+            <span style="font-size: 10.5px; color: var(--text-muted);">Municipal Treasury Tax & Permit Portals. Profit: ₱15M/town.</span>
+          </div>
+          
+          <!-- SFA Tab -->
+          <div class="vertex-tab" data-target="sfa" 
+               data-color="249, 115, 22"
+               data-metric="SFA & Other Products: Mobile order booking. HRIS (Php 2M per deployment), and Aircon ERP (Php 800k per deployment) custom installations."
+               style="cursor: pointer; padding: 10px 14px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.04); display: flex; flex-direction: column; gap: 2px; padding-left: 18px;">
+            <strong style="font-size: 13px; color: var(--text-primary); letter-spacing: 0.2px;">SFA & Core Systems</strong>
+            <span style="font-size: 10.5px; color: var(--text-muted);">Mobile Sales. HRIS (₱2M/deploy), Aircon (₱800k/deploy).</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial Benchmark Alert Box -->
+      <div class="project-meta-box" id="vertexMetricCard" style="margin-top: 15px; padding: 14px; background: rgba(14, 165, 233, 0.03); border: 1.5px solid rgba(14, 165, 233, 0.2); border-radius: 12px; transition: all 0.3s ease; box-shadow: inset 0 0 10px rgba(14, 165, 233, 0.05);">
+        <h4 style="font-size: 9.5px; color: var(--color-sky); margin: 0 0 5px 0; text-transform: uppercase; font-weight: 800; letter-spacing: 0.8px; display: flex; align-items: center; gap: 6px;">
+          <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 6px #38bdf8;"></span>
+          Telemetry & Financial Impact
+        </h4>
+        <p id="vertexMetricText" style="font-size: 11.5px; color: var(--text-secondary); margin: 0; line-height: 1.5;">
+          VOS ERP: Active in corporate subsidiaries. Handles over Php 250M of consolidated transactions annually. Projected annual profit is Php 52M.
+        </p>
+      </div>
+    </div>
+
+    <!-- Column 2: Dashboard Screenshot Gallery -->
+    <div style="display: flex; flex-direction: column; justify-content: space-between; background: rgba(var(--rgb-glass),0.01); border: 1.5px solid rgba(var(--rgb-glass),0.04); border-radius: 16px; padding: 18px; height: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.15); backdrop-filter: blur(10px);">
+      <h3 id="galleryTitle" style="font-size: 13.5px; font-weight: 700; margin: 0 0 10px 0; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+        <span style="color: var(--color-sky-dark);">📋</span> VOS ERP Suite - Administration Dashboard
+      </h3>
+      
+      <!-- Gallery Preview Screen -->
+      <div id="galleryContainerFrame" class="gallery-preview-box" style="flex-grow: 1; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); border: 1.5px solid rgba(14, 165, 233, 0.25); border-radius: 10px; overflow: hidden; position: relative; max-height: 250px; margin-bottom: 12px; transition: border-color 0.4s ease, box-shadow 0.4s ease; box-shadow: 0 0 15px rgba(14, 165, 233, 0.1);">
+        <img id="galleryMainImg" src="Presentation_Assets/Vertex/voss_erp_dashboard.png" alt="VOS ERP Dashboard" style="max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; transition: transform 0.3s ease;">
+        <div class="zoom-indicator" style="position: absolute; bottom: 8px; right: 8px; background: rgba(var(--rgb-dark-bg),0.9); border: 1px solid rgba(var(--rgb-glass),0.08); padding: 4px 8px; border-radius: 5px; font-size: 9px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px; pointer-events: none; backdrop-filter: blur(8px);">
+          🔍 Click to Zoom
+        </div>
+      </div>
+
+      <!-- Gallery Thumbnails Container -->
+      <div class="gallery-thumbs-row" id="galleryThumbsRow" style="display: flex; gap: 8px; height: 40px; overflow-x: auto; padding-bottom: 2px;">
+        <!-- Hydrated dynamically by JavaScript based on active tab -->
+      </div>
+    </div>
+
+    <!-- Column 3: Premium Deployed Systems Registry -->
+    <div class="glass-card" style="display: flex; flex-direction: column; padding: 18px; border: 1.5px solid rgba(14, 165, 233, 0.25); background: rgba(var(--rgb-dark-bg),0.25); border-radius: 16px; height: 100%; overflow: hidden; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.2); backdrop-filter: blur(12px);">
+      
+      <!-- List Header with Pulse -->
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(var(--rgb-glass),0.06); padding-bottom: 8px; margin-bottom: 10px;">
+        <h3 style="font-size: 14px; font-weight: 800; color: var(--color-sky); margin: 0; display: flex; align-items: center; gap: 8px;">
+          🖥️ Deployed Systems
+        </h3>
+        <span style="font-size: 9px; color: #22c55e; font-weight: 700; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.25); padding: 2px 6px; border-radius: 4px; display: flex; align-items: center; gap: 4.5px; text-transform: uppercase; letter-spacing: 0.5px;">
+          <span class="deploy-led" style="display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 5px #22c55e;"></span>
+          Console Online
+        </span>
+      </div>
+      
+      <!-- Scrolling Systems Area -->
+      <div class="custom-scrollbar" style="flex-grow: 1; overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 7px; max-height: 300px;">
+        
+        <!-- Deployed System List Items -->
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">ERP</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Men2 Dagupan</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">ERP</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Men2 Marikina</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">ERP</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">RC2</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SYS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Aircon Tailorfit - DIVI</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">LGU</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Mapandan Municipal portal</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">ACC</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Rooch Subsidiary Ledgers</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #fb923c; background: rgba(249, 115, 22, 0.15); border: 1px solid rgba(249, 115, 22, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SFA</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">SFA Booking & Site Sales</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">HRM</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Human Resource Info System</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SYS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Hotel Management System</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #a855f7; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">IOT</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Smart Door Access Controller</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky-dark); background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SAAS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Dealerover - A2J Marketing</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky-dark); background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SAAS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Dealerover - Men2 Dagupan Dealer</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky-dark); background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SAAS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Dealerover - Jumapas (Mt. Prov)</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky-dark); background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SAAS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Dealerover - JELECX (Baguio)</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #a855f7; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">IND</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Industrial Distribution - MEN2</span>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+</section>
+
+<!-- Self-contained Interactive Script for Vertex showcase -->
+<script>
+(function() {
+  // Screenshot assets data map
+  const techAssets = {
+    erp: [
+      { img: 'Presentation_Assets/Vertex/voss_erp_dashboard.png', title: 'VOS ERP - Administration Dashboard', desc: 'Central dashboard tracking consolidated subsidiary books, capex flows, and corporate accounting modules.' },
+      { img: 'Presentation_Assets/Vertex/voss_erp_ledger.png', title: 'VOS ERP - General Ledger Module', desc: 'Automated double-entry general ledger bookkeeping, syncing corporate balance sheets.' },
+      { img: 'Presentation_Assets/Vertex/voss_erp_inventory.png', title: 'VOS ERP - Stock & Inventory Ledger', desc: 'Multi-subsidiary inventory logs showing cross-branch stock counts and warehouse transfers.' }
+    ],
+    dealer: [
+      { img: 'Presentation_Assets/Vertex/vosdealer_main_dashboard.jpg', title: 'Dealerover - Dispatch & Routing', desc: 'Cloud dashboard scheduling equipment deliveries and managing real-time driver dispatch sheets.' },
+      { img: 'Presentation_Assets/Vertex/vosdealer_scm_approval.jpg', title: 'Dealerover - SCM Order Approval', desc: 'Approval flow interface confirming warehouse parts dispatch and pricing tier locks.' },
+      { img: 'Presentation_Assets/Vertex/vosdealer_crm_dashboard.jpg', title: 'Dealerover - Customer Accounts CRM', desc: 'Subscriber billing accounts panel managing monthly recurrence rates and subscription billings.' }
+    ],
+    elgu: [
+      { img: 'Presentation_Assets/Vertex/elgu_mapandan_portal.jpg', title: 'eLGU - Mapandan Public Portal', desc: 'Citizen portal for automated building permits, property tax clearing, and business registration applications.' },
+      { img: 'Presentation_Assets/Vertex/elgu_admin_view.jpg', title: 'eLGU - Treasury Administrative Panel', desc: 'Municipal treasury dashboard tracking tax collection invoices and auditing pending business certificates.' },
+      { img: 'Presentation_Assets/Vertex/LGU Digitalization/4bff27fa-338e-439f-a76b-ecbd690e404d.jpg', title: 'eLGU - Digital Services List', desc: 'List of active digital services available on the portal, including building zoning permits, clearances, and local licensing.' }
+    ],
+    sfa: [
+      { img: 'Presentation_Assets/Vertex/sfa_site_sales_summary.jpg', title: 'SFA Mobile - Field Agent Summary', desc: 'Mobile sales order dashboard for field agents booking warehouse inventories on the road.' },
+      { img: 'Presentation_Assets/Vertex/sfa_booking_list.jpg', title: 'SFA Mobile - Order Booking Sheet', desc: 'Real-time order checkout sheets displaying booking values and automated shipping schedules.' },
+      { img: 'Presentation_Assets/Vertex/SFA Booking/Screenshot_20260328-102311.jpg', title: 'SFA Mobile - Real-time Checkout', desc: 'Real-time order checkout interface showing product list, quantity selections, and automated shipping schedules.' }
+    ]
+  };
+
+  const initVertexShowcase = () => {
+    const tabs = document.querySelectorAll('.vertex-tab');
+    const metricText = document.getElementById('vertexMetricText');
+    const metricCard = document.getElementById('vertexMetricCard');
+    const mainImg = document.getElementById('galleryMainImg');
+    const galleryTitle = document.getElementById('galleryTitle');
+    const thumbsRow = document.getElementById('galleryThumbsRow');
+    const galleryContainerFrame = document.getElementById('galleryContainerFrame');
+    
+    if (!tabs.length || !metricText || !mainImg || !galleryTitle || !thumbsRow || !galleryContainerFrame || !metricCard) {
+      setTimeout(initVertexShowcase, 100);
+      return;
+    }
+    
+    const updateGallery = (targetKey) => {
+      const screenshots = techAssets[targetKey] || [];
+      
+      // Clear thumbnails row
+      thumbsRow.innerHTML = '';
+      
+      screenshots.forEach((item, index) => {
+        const thumb = document.createElement('div');
+        thumb.className = `gal-thumb ${index === 0 ? 'active' : ''}`;
+        thumb.innerHTML = `<img src="${item.img}" alt="Thumbnail">`;
+        
+        thumb.addEventListener('click', () => {
+          // Remove active class from other thumbs
+          thumbsRow.querySelectorAll('.gal-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+          
+          // Smooth swap image
+          mainImg.classList.remove('tech-reveal-active');
+          void mainImg.offsetWidth; // force reflow
+          mainImg.src = item.img;
+          galleryTitle.textContent = item.title;
+          mainImg.classList.add('tech-reveal-active');
+        });
+        
+        thumbsRow.appendChild(thumb);
+      });
+      
+      // Auto-load first image of the target category
+      if (screenshots[0]) {
+        mainImg.classList.remove('tech-reveal-active');
+        void mainImg.offsetWidth;
+        mainImg.src = screenshots[0].img;
+        galleryTitle.textContent = screenshots[0].title;
+        mainImg.classList.add('tech-reveal-active');
+      }
+    };
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        // Remove active class from all tabs
+        tabs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        
+        // Update metric text
+        metricText.textContent = t.getAttribute('data-metric');
+        
+        // Extract RGB target color code and change glow/accent colors dynamically
+        const rgbColor = t.getAttribute('data-color');
+        galleryContainerFrame.style.borderColor = `rgba(${rgbColor}, 0.45)`;
+        galleryContainerFrame.style.boxShadow = `0 0 20px rgba(${rgbColor}, 0.15)`;
+        metricCard.style.borderColor = `rgba(${rgbColor}, 0.35)`;
+        metricCard.style.boxShadow = `inset 0 0 10px rgba(${rgbColor}, 0.05)`;
+        
+        // Update gallery category
+        const target = t.getAttribute('data-target');
+        updateGallery(target);
+      });
+    });
+
+    // Initialize first category on startup
+    updateGallery('erp');
+  };
+
+  // Launch once DOM loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initVertexShowcase();
+  } else {
+    document.addEventListener('DOMContentLoaded', initVertexShowcase);
+  }
+})();
+</script>
+<section class="slide title-slide" style="position: relative; overflow: hidden;">
+  
+  <div class="slide-header" style="margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; width: 100%;">
+    <div>
+      <span class="badge" style="background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.4); font-size: 11px;">SOLAR INSTALLATIONS PORTFOLIO</span>
+      <h2 style="font-size: 32px; font-weight: 800; color: var(--text-primary); margin-top: 10px; margin-bottom: 5px;">Hanvin Solar Installations</h2>
+      <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Click a project node to zoom in and explore the engineering blueprints, solar layout specs, and facility energy profiles.</p>
+    </div>
+
+    <!-- Floating Back to Overview Button (Shown when zoomed in) -->
+    <button id="exitHanvinPreziBtn" style="display: none; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 6px; background: rgba(14, 165, 233, 0.2); border: 1px solid rgba(14, 165, 233, 0.45); color: var(--text-primary); font-size: 12.5px; font-weight: 700; cursor: pointer; transition: var(--transition-smooth); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.15); z-index: 1000;">
+      ← Back to Overview
+    </button>
+  </div>
+
+  <div class="hanvin-prezi-container" id="hanvinPreziContainer" style="position: relative; width: 100%; overflow: hidden;">
+    
+    <!-- OVERVIEW: Four Floating Nodes (Active when no sub class is on container) -->
+    <div class="hanvin-prezi-overview" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; height: 100%; position: absolute; top: 0; left: 0; transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); z-index: 10;">
+      
+      <!-- Node 1: School -->
+      <div class="prezi-card-node hanvin-card-node" data-target="school" style="padding: 24px; border-radius: 16px; display: flex; align-items: center; gap: 20px; cursor: pointer; text-align: left;">
+        <div style="font-size: 32px; flex-shrink: 0; width: 50px; height: 50px; border-radius: 50%; background: rgba(99,102,241,0.1); border: 1px solid #0ea5e9; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(99,102,241,0.2);">☀️</div>
+        <div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">La Salette Campuses</h3>
+          <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Solar roof installations for Dagupan and Lingayen school campuses (₱7.6M total backlog).</p>
+        </div>
+      </div>
+
+      <!-- Node 2: LGU Mapandan -->
+      <div class="prezi-card-node hanvin-card-node" data-target="lgu" style="padding: 24px; border-radius: 16px; display: flex; align-items: center; gap: 20px; cursor: pointer; text-align: left;">
+        <div style="font-size: 32px; flex-shrink: 0; width: 50px; height: 50px; border-radius: 50%; background: rgba(99,102,241,0.1); border: 1px solid #0ea5e9; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(99,102,241,0.2);">🏛️</div>
+        <div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">Civic & Government Sites</h3>
+          <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.4; margin: 0;">High-capacity municipal grid solar at LGU Mapandan, Dagupan, Malabon, and BFAR (₱51.5M total backlog).</p>
+        </div>
+      </div>
+
+      <!-- Node 3: Warehouse -->
+      <div class="prezi-card-node hanvin-card-node" data-target="warehouse" style="padding: 24px; border-radius: 16px; display: flex; align-items: center; gap: 20px; cursor: pointer; text-align: left;">
+        <div style="font-size: 32px; flex-shrink: 0; width: 50px; height: 50px; border-radius: 50%; background: rgba(99,102,241,0.1); border: 1px solid #0ea5e9; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(99,102,241,0.2);">🏭</div>
+        <div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">MEN2 Warehouse & Cold Storage</h3>
+          <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Solar panel grid deployment at the MEN2 Warehouse Plant and Cold Storage (₱7.6M total backlog).</p>
+        </div>
+      </div>
+
+      <!-- Node 4: Offices -->
+      <div class="prezi-card-node hanvin-card-node" data-target="offices" style="padding: 24px; border-radius: 16px; display: flex; align-items: center; gap: 20px; cursor: pointer; text-align: left;">
+        <div style="font-size: 32px; flex-shrink: 0; width: 50px; height: 50px; border-radius: 50%; background: rgba(99,102,241,0.1); border: 1px solid #0ea5e9; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(99,102,241,0.2);">🏢</div>
+        <div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">MEN2 Office Headquarters</h3>
+          <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Solar roof installation at the main administrative office headquarters (₱3.8M backlog).</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DETAIL PANEL 1: La Sallete School -->
+    <div class="hanvin-details-pane hanvin-details-school" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 30px; width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0; transform: scale(0.9) translateY(40px); pointer-events: none; transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); z-index: 5;">
+      <!-- Specs (Left) -->
+      <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+        <div>
+          <span class="badge blue" style="margin-bottom: 12px;">SOLAR ROOF ARCHITECTURE</span>
+          <h3 style="font-size: 18px; color: var(--text-primary); margin-bottom: 10px;">La Salette School Campuses</h3>
+          <p style="color: var(--text-secondary); line-height: 1.5; font-size: 12.5px; margin-bottom: 20px;">
+            Educational campus solar power project focusing on modern photovoltaic arrays, battery storage banks, and safety setups for Dagupan and Lingayen.
+          </p>
+          <div class="bullet-item" style="margin-top: 15px;">
+            <div class="bullet-icon">🔧</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 13.5px;">High-Efficiency Solar Arrays</strong>
+              <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-top: 2px;">Rooftop panels designed specifically to withstand regional wind and solar exposure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Images (Right) -->
+      <div class="project-images" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; height: 100%;">
+        <div class="img-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(var(--rgb-glass),0.06); height: 100%; max-height: 280px; background: rgba(0,0,0,0.3);">
+          <img src="Presentation_Assets/Hanvin_Constructions/La_Sallette_School_1.png" alt="La Sallete School Campus Plan" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;">
+          <span class="img-label" style="position: absolute; bottom: 8px; left: 8px; background: rgba(var(--rgb-dark-bg),0.85); padding: 4px 8px; border-radius: 4px; font-size: 9.5px; color: var(--text-primary); border: 1px solid rgba(var(--rgb-glass),0.08);">Campus Site Plan</span>
+        </div>
+        <div class="img-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(var(--rgb-glass),0.06); height: 100%; max-height: 280px; background: rgba(0,0,0,0.3);">
+          <img src="Presentation_Assets/Hanvin_Constructions/La_Sallette_School_2.png" alt="La Sallete School Details" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;">
+          <span class="img-label" style="position: absolute; bottom: 8px; left: 8px; background: rgba(var(--rgb-dark-bg),0.85); padding: 4px 8px; border-radius: 4px; font-size: 9.5px; color: var(--text-primary); border: 1px solid rgba(var(--rgb-glass),0.08);">Facility Details</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAIL PANEL 2: LGU Mapandan -->
+    <div class="hanvin-details-pane hanvin-details-lgu" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 30px; width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0; transform: scale(0.9) translateY(40px); pointer-events: none; transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); z-index: 5;">
+      <!-- Specs (Left) -->
+      <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+        <div>
+          <span class="badge blue" style="margin-bottom: 12px;">CIVIC SOLAR SYSTEM</span>
+          <h3 style="font-size: 18px; color: var(--text-primary); margin-bottom: 10px;">Civic & Government Sites</h3>
+          <p style="color: var(--text-secondary); line-height: 1.5; font-size: 12.5px; margin-bottom: 20px;">
+            Municipal government and administrative solar installations designed to power transactions, lighting, and community services (LGU Mapandan, Dagupan, Malabon, and BFAR).
+          </p>
+          <div class="bullet-item" style="margin-top: 15px;">
+            <div class="bullet-icon">💡</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 13.5px;">SaaS Integration Flagship</strong>
+              <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-top: 2px;">Serves as the model solar deployment site paired with Vertex Technologies' eLGU Digitalization suite.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Images (Right) -->
+      <div class="project-images" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; height: 100%;">
+        <div class="img-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(var(--rgb-glass),0.06); height: 100%; max-height: 280px; background: rgba(0,0,0,0.3);">
+          <img src="Presentation_Assets/Hanvin_Constructions/LGU_Mapandan_1.jpeg" alt="LGU Mapandan Offices" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;">
+          <span class="img-label" style="position: absolute; bottom: 8px; left: 8px; background: rgba(var(--rgb-dark-bg),0.85); padding: 4px 8px; border-radius: 4px; font-size: 9.5px; color: var(--text-primary); border: 1px solid rgba(var(--rgb-glass),0.08);">Civic Offices Front</span>
+        </div>
+        <div class="img-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(var(--rgb-glass),0.06); height: 100%; max-height: 280px; background: rgba(0,0,0,0.3);">
+          <img src="Presentation_Assets/Hanvin_Constructions/LGU_Mapandan_2.jpeg" alt="LGU Mapandan Hall" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;">
+          <span class="img-label" style="position: absolute; bottom: 8px; left: 8px; background: rgba(var(--rgb-dark-bg),0.85); padding: 4px 8px; border-radius: 4px; font-size: 9.5px; color: var(--text-primary); border: 1px solid rgba(var(--rgb-glass),0.08);">Government Hall</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAIL PANEL 3: MEN2 Warehouse -->
+    <div class="hanvin-details-pane hanvin-details-warehouse" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 30px; width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0; transform: scale(0.9) translateY(40px); pointer-events: none; transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); z-index: 5;">
+      <!-- Specs (Left) -->
+      <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+        <div>
+          <span class="badge blue" style="margin-bottom: 12px;">INDUSTRIAL SOLAR ARRAY</span>
+          <h3 style="font-size: 18px; color: var(--text-primary); margin-bottom: 10px;">MEN2 Warehouse & Cold Storage</h3>
+          <p style="color: var(--text-secondary); line-height: 1.5; font-size: 12.5px; margin-bottom: 20px;">
+            Heavy-duty industrial solar grid built specifically to power high-volume inventory storage and refrigeration cooling cycles for the O!Save distribution loop.
+          </p>
+          <div class="bullet-item" style="margin-top: 15px;">
+            <div class="bullet-icon">📦</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 13.5px;">Logistical Footprint</strong>
+              <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-top: 2px;">Large clear-span metal roofs perfectly suited for continuous solar array orientation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Images (Right) -->
+      <div class="project-images" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; height: 100%;">
+        <div class="img-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(var(--rgb-glass),0.06); height: 100%; max-height: 280px; background: rgba(0,0,0,0.3);">
+          <img src="Presentation_Assets/Hanvin_Constructions/MEN2_Warehouse_1.png" alt="MEN2 Warehouse Shell" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;">
+          <span class="img-label" style="position: absolute; bottom: 8px; left: 8px; background: rgba(var(--rgb-dark-bg),0.85); padding: 4px 8px; border-radius: 4px; font-size: 9.5px; color: var(--text-primary); border: 1px solid rgba(var(--rgb-glass),0.08);">Warehouse Skeleton</span>
+        </div>
+        <div class="img-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(var(--rgb-glass),0.06); height: 100%; max-height: 280px; background: rgba(0,0,0,0.3);">
+          <img src="Presentation_Assets/Hanvin_Constructions/MEN2_Warehouse_2.png" alt="MEN2 Warehouse Floor" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;">
+          <span class="img-label" style="position: absolute; bottom: 8px; left: 8px; background: rgba(var(--rgb-dark-bg),0.85); padding: 4px 8px; border-radius: 4px; font-size: 9.5px; color: var(--text-primary); border: 1px solid rgba(var(--rgb-glass),0.08);">Storage Floor Layout</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAIL PANEL 4: MEN2 Offices -->
+    <div class="hanvin-details-pane hanvin-details-offices" style="display: grid; grid-template-columns: 1fr 1.8fr; gap: 30px; width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0; transform: scale(0.9) translateY(40px); pointer-events: none; transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); z-index: 5;">
+      <!-- Specs (Left) -->
+      <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+        <div>
+          <span class="badge blue" style="margin-bottom: 12px;">OFFICE HQ SOLAR DEPLOYMENT</span>
+          <h3 style="font-size: 18px; color: var(--text-primary); margin-bottom: 10px;">MEN2 Office Headquarters</h3>
+          <p style="color: var(--text-secondary); line-height: 1.5; font-size: 12.5px; margin-bottom: 20px;">
+            Modern office rooftop solar power grid built to offset baseline electricity consumption of operations and administration teams.
+          </p>
+          <div class="bullet-item" style="margin-top: 15px;">
+            <div class="bullet-icon">🎨</div>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 13.5px;">Corporate Energy Offset</strong>
+              <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-top: 2px;">Substantially lowers operational expenditures while supporting sustainable carbon reductions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Images (Right) -->
+      <div class="project-images" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; height: 100%;">
+        <div class="img-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(var(--rgb-glass),0.06); height: 100%; max-height: 280px; background: rgba(0,0,0,0.3);">
+          <img src="Presentation_Assets/Hanvin_Constructions/MEN2_Offices_1.png" alt="MEN2 Offices Facade" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;">
+          <span class="img-label" style="position: absolute; bottom: 8px; left: 8px; background: rgba(var(--rgb-dark-bg),0.85); padding: 4px 8px; border-radius: 4px; font-size: 9.5px; color: var(--text-primary); border: 1px solid rgba(var(--rgb-glass),0.08);">Administrative Facade</span>
+        </div>
+        <div class="img-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(var(--rgb-glass),0.06); height: 100%; max-height: 280px; background: rgba(0,0,0,0.3);">
+          <img src="Presentation_Assets/Hanvin_Constructions/MEN2_Offices_2.png" alt="MEN2 Offices Interior" style="width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;">
+          <span class="img-label" style="position: absolute; bottom: 8px; left: 8px; background: rgba(var(--rgb-dark-bg),0.85); padding: 4px 8px; border-radius: 4px; font-size: 9.5px; color: var(--text-primary); border: 1px solid rgba(var(--rgb-glass),0.08);">Office Interior</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
         <section class="slide capital-slide oil-capital-slide" data-title="Working Capital Trade Cycle Oils" data-section="WORKING CAPITAL TRADE CYCLE / OILS">
           <div class="slide-heading"><div><p class="eyebrow">Weekly purchase &rarr; import &rarr; production &rarr; O!Save &rarr; collection</p><h2>Working Capital Trade Cycle <span>Oils</span></h2></div><div class="headline-metric"><strong id="oilCapitalHeadline">PHP 201.07M</strong><span id="oilCapitalHeadlineLabel">3-month working capital</span></div></div>
           <div class="oil-capital-kpis" id="oilCapitalKpis" aria-label="Working capital summary"></div>
@@ -434,7 +2560,6 @@
             <section class="oil-insight-card cash-cycle-card"><div class="oil-card-title"><h3>Cash conversion cycle</h3><span>69 days total</span></div><div class="cash-cycle-bars" id="oilCashCycle"></div><p><strong>45-day DSO</strong> accounts for 65% of the cycle.</p></section>
           </div>
         </section>
-
         <section class="slide capital-slide pancit pancit-capital-slide oil-capital-slide" data-title="Working Capital Trade Cycle Pancit" data-section="WORKING CAPITAL TRADE CYCLE / PANCIT">
           <div class="slide-heading"><div><p class="eyebrow">Post-expansion operating cycle &rarr; materials &rarr; production &rarr; O!Save &rarr; collection</p><h2>Working Capital Trade Cycle <span>Pancit</span></h2></div><div class="headline-metric"><strong id="pancitCapitalHeadline">PHP 24.5M</strong><span id="pancitCapitalHeadlineLabel">operating cash requirement</span></div></div>
           <div class="oil-capital-kpis" id="pancitCapitalKpis" aria-label="Pancit working capital summary"></div>
@@ -456,49 +2581,84 @@
             <section class="oil-insight-card cash-cycle-card"><div class="oil-card-title"><h3>Cash conversion cycle</h3><span>45 days total</span></div><div class="pancit-cash-cycle"><strong>45 days</strong><i><b></b></i><span>Collection</span></div><p><strong>PHP 36.8M</strong> requirement supports the Pancit operating cycle.</p></section>
           </div>
         </section>
+<section class="slide" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; position: relative; background: radial-gradient(circle at 50% 50%, var(--slide-grad-1) 0%, var(--slide-grad-2) 100%);">
+  
+  <div style="max-width: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <span class="badge" style="background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.4); color: var(--color-sky); font-size: 11px; margin-bottom: 20px;">CONCLUDING SUMMARY</span>
+    
+    <h1 style="font-size: 72px; font-weight: 900; color: var(--text-primary); margin: 0 0 15px 0; letter-spacing: -1.5px; background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Q&A</h1>
+    
+    <p class="subtitle" style="font-size: 20px; color: var(--text-secondary); margin: 0 0 30px 0; font-weight: 500;">Thank you for your time and attention.</p>
+    
+    <div style="width: 80px; height: 2px; background: linear-gradient(90deg, transparent, #0ea5e9, transparent); margin-bottom: 30px;"></div>
+    
+    <div class="qa-details" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 35px; max-width: 580px;">
+        We invite queries regarding capital deployment phases, machinery procurement schedules, or joint software-hardware scaling pipelines.
+      </p>
+      
+      <div class="contact-info" style="display: flex; justify-content: center; gap: 30px; font-size: 14.5px; color: var(--color-sky); font-weight: 700;">
+        <span style="display: flex; align-items: center; gap: 8px;">📧 corporate@roochholding.com</span>
+        <span style="display: flex; align-items: center; gap: 8px;">🌐 www.roochholding.com</span>
+      </div>
+    </div>
+  </div>
 
-        <section class="slide qa-slide" data-title="Q&amp;A" data-section="ROOCH HOLDING INC. / Q&amp;A SESSION">
-          <div class="qa-content">
-            <span class="qa-badge">Concluding summary</span>
-            <h2>Q&amp;A</h2>
-            <p class="qa-subtitle">Thank you for your time and attention.</p>
-            <div class="qa-divider" aria-hidden="true"></div>
-            <p class="qa-prompt">We invite questions regarding capital deployment phases, machinery procurement schedules, or joint software-hardware scaling pipelines.</p>
-            <div class="qa-contact">
-              <a href="mailto:corporate@roochholding.com">corporate@roochholding.com</a>
-              <a href="https://www.roochholding.com">www.roochholding.com</a>
-            </div>
-          </div>
-        </section>
+</section>
       </div>
 
-      <footer class="controls">
-        <button class="nav-button" id="previousButton" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg><span>Previous</span></button>
-        <div class="progress-track" role="progressbar" aria-label="Presentation progress" aria-valuemin="1" aria-valuemax="12" aria-valuenow="1"><i id="progressBar"></i></div>
-        <button class="nav-button" id="nextButton" type="button" aria-label="Next slide"><span>Next</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6-1.41 1.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+      <!-- Navigation & Controls Footer -->
+      <footer class="controls-footer">
+        <button class="nav-btn prev-btn" id="prevBtn" disabled>
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          <span>Prev</span>
+        </button>
+        
+        <!-- Progress Dots -->
+        <div class="progress-dots" id="progressDots"></div>
+        
+        <button class="nav-btn next-btn" id="nextBtn">
+          <span>Next</span>
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
       </footer>
+
+      <!-- Progress Line Indicator at the bottom of the viewport -->
+      <div class="progress-line-bar" id="progressLineBar"></div>
+
     </main>
   </div>
 
-  <dialog class="company-dialog" id="companyDialog">
-    <button class="icon-button dialog-close" id="dialogClose" type="button" aria-label="Close">&times;</button>
-    <img id="dialogLogo" src="assets/logos/rooch.png" alt="">
-    <p class="eyebrow" id="dialogCategory"></p><h2 id="dialogTitle"></h2><p id="dialogDescription"></p><ul id="dialogPoints"></ul>
-  </dialog>
-
-  <dialog class="photo-lightbox" id="photoLightbox" aria-label="Expanded manufacturing photo">
-    <div class="photo-lightbox-shell">
-      <button class="photo-lightbox-close" id="photoLightboxClose" type="button" aria-label="Close expanded photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-      <button class="photo-lightbox-nav is-previous" id="photoLightboxPrevious" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-      <figure>
-        <img id="photoLightboxImage" src="" alt="">
-      </figure>
-      <button class="photo-lightbox-nav is-next" id="photoLightboxNext" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
-    </div>
-  </dialog>
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox-modal">
+    <span class="close-lightbox" id="closeLightbox">&times;</span>
+    <img class="lightbox-content" id="lightboxImg" alt="Enlarged Asset">
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
 
   <script src="three.min.js"></script>
+  <script src="config.js?v=fixed2"></script>
   <script src="presentation-data.js"></script>
-  <script src="app.js?v=20260716-2"></script>
+  <script src="app.js?v=prezi-v4"></script>
+  <!-- Live Reload Client Script -->
+  <script>
+    (function() {
+      let lastTimestamp = null;
+      function checkChanges() {
+        fetch('/watch')
+          .then(response => response.json())
+          .then(data => {
+            if (lastTimestamp === null) {
+              lastTimestamp = data.timestamp;
+            } else if (data.timestamp > lastTimestamp) {
+              console.log('Detecting file change. Reloading...');
+              window.location.reload();
+            }
+          })
+          .catch(err => console.log('Live reload watch offline.'));
+      }
+      setInterval(checkChanges, 1000);
+    })();
+  </script>
 </body>
 </html>

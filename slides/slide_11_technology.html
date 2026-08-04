@@ -1,0 +1,417 @@
+<style>
+/* Modern Glass & Glow System for Vertex Slide */
+.vertex-tab {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.vertex-tab::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+.vertex-tab:hover {
+  transform: translateY(-1.5px) translateX(2px);
+  background: rgba(var(--rgb-glass), 0.03) !important;
+  border-color: rgba(56, 189, 248, 0.25) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.vertex-tab.active {
+  background: rgba(14, 165, 233, 0.05) !important;
+  border-color: rgba(14, 165, 233, 0.45) !important;
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.12), inset 0 0 8px rgba(14, 165, 233, 0.05) !important;
+}
+.vertex-tab.active::before {
+  background: #0ea5e9;
+  box-shadow: 0 0 8px #0ea5e9;
+}
+
+/* Hover effects for Deployed Systems List */
+.deploy-item {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+.deploy-item:hover {
+  transform: translateY(-2px);
+  background: rgba(14, 165, 233, 0.04) !important;
+  border-color: rgba(14, 165, 233, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.08);
+}
+
+/* Gallery thumbnails styling */
+.gal-thumb {
+  border-radius: 6px;
+  border: 1.5px solid rgba(var(--rgb-glass), 0.08);
+  background: #000;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 54px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.gal-thumb:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+.gal-thumb.active {
+  opacity: 1;
+  border-color: var(--color-sky-dark);
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.35);
+  transform: scale(1.03);
+}
+
+/* Scrollbar Customization */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.2);
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.45);
+}
+
+/* Image reveal keyframes */
+@keyframes tech-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px) brightness(0.85);
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+    transform: scale(1);
+  }
+}
+.tech-reveal-active {
+  animation: tech-reveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Blinking LED animation */
+@keyframes deploy-led-blink {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+.deploy-led {
+  animation: deploy-led-blink 1s ease-in-out infinite alternate;
+}
+</style>
+
+<section class="slide" style="position: relative; overflow: hidden;">
+  
+  <!-- Subtle decorative ambient background glows -->
+  <div style="position: absolute; right: -10%; top: -10%; width: 350px; height: 350px; border-radius: 50%; background: rgba(14, 165, 233, 0.05); filter: blur(80px); pointer-events: none; z-index: 1;"></div>
+  <div style="position: absolute; left: 20%; bottom: -10%; width: 280px; height: 280px; border-radius: 50%; background: rgba(168, 85, 247, 0.03); filter: blur(70px); pointer-events: none; z-index: 1;"></div>
+
+  <div class="slide-header" style="margin-bottom: 20px; text-align: left; width: 100%; position: relative; z-index: 2;">
+    <span class="badge" style="background: rgba(14, 165, 233, 0.1); border-color: rgba(14, 165, 233, 0.3); font-size: 11px; letter-spacing: 0.5px; color: var(--color-sky);">VERTEX PLATFORM DEPLOYMENTS</span>
+    <h2 style="font-size: 32px; font-weight: 800; color: var(--text-primary); margin-top: 10px; margin-bottom: 5px; text-shadow: var(--ts-override, 0 0 15px rgba(var(--rgb-glass),0.05));">Vertex Technologies</h2>
+    <p style="color: var(--text-secondary); font-size: 14.5px; margin: 0; line-height: 1.4;">Enterprise-scale software suites, automated financial ledger networks, and municipal service portals.</p>
+  </div>
+
+  <div class="slide-content" style="display: grid; grid-template-columns: 1fr 1.1fr 1.05fr; gap: 20px; align-items: stretch; text-align: left; position: relative; z-index: 2;">
+    
+    <!-- Column 1: Development Categories (Tabs & Stats) -->
+    <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <p style="color: var(--text-secondary); line-height: 1.5; font-size: 12px; margin: 0; padding-left: 2px;">
+          Vertex engineers highly custom, secure backend infrastructures spanning complex distributed ledger accounting networks and mobile automation systems.
+        </p>
+        
+        <div class="vertex-tabs" style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- ERP Tab -->
+          <div class="vertex-tab active" data-target="erp" 
+               data-color="14, 165, 233"
+               data-metric="VOS ERP: Active in corporate subsidiaries. Handles over Php 250M of consolidated transactions annually. Projected annual profit is Php 52M."
+               style="cursor: pointer; padding: 10px 14px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.04); display: flex; flex-direction: column; gap: 2px; padding-left: 18px;">
+            <strong style="font-size: 13px; color: var(--text-primary); letter-spacing: 0.2px;">VOS ERP Suite</strong>
+            <span style="font-size: 10.5px; color: var(--text-muted);">Consolidated Accounting & Inventory. Profit: ₱52M.</span>
+          </div>
+          
+          <!-- Dealer Tab -->
+          <div class="vertex-tab" data-target="dealer" 
+               data-color="56, 189, 248"
+               data-metric="Dealerover MRR: Scales monthly subscription rates across roving dealers in Pangasinan. Projected annual profit is Php 8.4M."
+               style="cursor: pointer; padding: 10px 14px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.04); display: flex; flex-direction: column; gap: 2px; padding-left: 18px;">
+            <strong style="font-size: 13px; color: var(--text-primary); letter-spacing: 0.2px;">Dealerover Sync</strong>
+            <span style="font-size: 10.5px; color: var(--text-muted);">Branch Stock Matching & Dispatch. Profit: ₱8.4M Yearly.</span>
+          </div>
+          
+          <!-- eLGU Tab -->
+          <div class="vertex-tab" data-target="elgu" 
+               data-color="34, 197, 94"
+               data-metric="eLGU Portals: Deployed in Mapandan and municipal councils. Digitizes permits and local taxes. Projected profit is Php 15M per town deployment."
+               style="cursor: pointer; padding: 10px 14px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.04); display: flex; flex-direction: column; gap: 2px; padding-left: 18px;">
+            <strong style="font-size: 13px; color: var(--text-primary); letter-spacing: 0.2px;">eLGU Digitalization</strong>
+            <span style="font-size: 10.5px; color: var(--text-muted);">Municipal Treasury Tax & Permit Portals. Profit: ₱15M/town.</span>
+          </div>
+          
+          <!-- SFA Tab -->
+          <div class="vertex-tab" data-target="sfa" 
+               data-color="249, 115, 22"
+               data-metric="SFA & Other Products: Mobile order booking. HRIS (Php 2M per deployment), and Aircon ERP (Php 800k per deployment) custom installations."
+               style="cursor: pointer; padding: 10px 14px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.04); display: flex; flex-direction: column; gap: 2px; padding-left: 18px;">
+            <strong style="font-size: 13px; color: var(--text-primary); letter-spacing: 0.2px;">SFA & Core Systems</strong>
+            <span style="font-size: 10.5px; color: var(--text-muted);">Mobile Sales. HRIS (₱2M/deploy), Aircon (₱800k/deploy).</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial Benchmark Alert Box -->
+      <div class="project-meta-box" id="vertexMetricCard" style="margin-top: 15px; padding: 14px; background: rgba(14, 165, 233, 0.03); border: 1.5px solid rgba(14, 165, 233, 0.2); border-radius: 12px; transition: all 0.3s ease; box-shadow: inset 0 0 10px rgba(14, 165, 233, 0.05);">
+        <h4 style="font-size: 9.5px; color: var(--color-sky); margin: 0 0 5px 0; text-transform: uppercase; font-weight: 800; letter-spacing: 0.8px; display: flex; align-items: center; gap: 6px;">
+          <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 6px #38bdf8;"></span>
+          Telemetry & Financial Impact
+        </h4>
+        <p id="vertexMetricText" style="font-size: 11.5px; color: var(--text-secondary); margin: 0; line-height: 1.5;">
+          VOS ERP: Active in corporate subsidiaries. Handles over Php 250M of consolidated transactions annually. Projected annual profit is Php 52M.
+        </p>
+      </div>
+    </div>
+
+    <!-- Column 2: Dashboard Screenshot Gallery -->
+    <div style="display: flex; flex-direction: column; justify-content: space-between; background: rgba(var(--rgb-glass),0.01); border: 1.5px solid rgba(var(--rgb-glass),0.04); border-radius: 16px; padding: 18px; height: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.15); backdrop-filter: blur(10px);">
+      <h3 id="galleryTitle" style="font-size: 13.5px; font-weight: 700; margin: 0 0 10px 0; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+        <span style="color: var(--color-sky-dark);">📋</span> VOS ERP Suite - Administration Dashboard
+      </h3>
+      
+      <!-- Gallery Preview Screen -->
+      <div id="galleryContainerFrame" class="gallery-preview-box" style="flex-grow: 1; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); border: 1.5px solid rgba(14, 165, 233, 0.25); border-radius: 10px; overflow: hidden; position: relative; max-height: 250px; margin-bottom: 12px; transition: border-color 0.4s ease, box-shadow 0.4s ease; box-shadow: 0 0 15px rgba(14, 165, 233, 0.1);">
+        <img id="galleryMainImg" src="Presentation_Assets/Vertex/voss_erp_dashboard.png" alt="VOS ERP Dashboard" style="max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; transition: transform 0.3s ease;">
+        <div class="zoom-indicator" style="position: absolute; bottom: 8px; right: 8px; background: rgba(var(--rgb-dark-bg),0.9); border: 1px solid rgba(var(--rgb-glass),0.08); padding: 4px 8px; border-radius: 5px; font-size: 9px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px; pointer-events: none; backdrop-filter: blur(8px);">
+          🔍 Click to Zoom
+        </div>
+      </div>
+
+      <!-- Gallery Thumbnails Container -->
+      <div class="gallery-thumbs-row" id="galleryThumbsRow" style="display: flex; gap: 8px; height: 40px; overflow-x: auto; padding-bottom: 2px;">
+        <!-- Hydrated dynamically by JavaScript based on active tab -->
+      </div>
+    </div>
+
+    <!-- Column 3: Premium Deployed Systems Registry -->
+    <div class="glass-card" style="display: flex; flex-direction: column; padding: 18px; border: 1.5px solid rgba(14, 165, 233, 0.25); background: rgba(var(--rgb-dark-bg),0.25); border-radius: 16px; height: 100%; overflow: hidden; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.2); backdrop-filter: blur(12px);">
+      
+      <!-- List Header with Pulse -->
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(var(--rgb-glass),0.06); padding-bottom: 8px; margin-bottom: 10px;">
+        <h3 style="font-size: 14px; font-weight: 800; color: var(--color-sky); margin: 0; display: flex; align-items: center; gap: 8px;">
+          🖥️ Deployed Systems
+        </h3>
+        <span style="font-size: 9px; color: #22c55e; font-weight: 700; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.25); padding: 2px 6px; border-radius: 4px; display: flex; align-items: center; gap: 4.5px; text-transform: uppercase; letter-spacing: 0.5px;">
+          <span class="deploy-led" style="display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 5px #22c55e;"></span>
+          Console Online
+        </span>
+      </div>
+      
+      <!-- Scrolling Systems Area -->
+      <div class="custom-scrollbar" style="flex-grow: 1; overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 7px; max-height: 300px;">
+        
+        <!-- Deployed System List Items -->
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">ERP</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Men2 Dagupan</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">ERP</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Men2 Marikina</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">ERP</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">RC2</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SYS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Aircon Tailorfit - DIVI</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">LGU</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Mapandan Municipal portal</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">ACC</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Rooch Subsidiary Ledgers</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #fb923c; background: rgba(249, 115, 22, 0.15); border: 1px solid rgba(249, 115, 22, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SFA</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">SFA Booking & Site Sales</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">HRM</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Human Resource Info System</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SYS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Hotel Management System</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #a855f7; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">IOT</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Smart Door Access Controller</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky-dark); background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SAAS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Dealerover - A2J Marketing</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky-dark); background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SAAS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Dealerover - Men2 Dagupan Dealer</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky-dark); background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SAAS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Dealerover - Jumapas (Mt. Prov)</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: var(--color-sky-dark); background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">SAAS</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Dealerover - JELECX (Baguio)</span>
+        </div>
+        
+        <div class="deploy-item" style="display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.015); border: 1.5px solid rgba(var(--rgb-glass),0.03);">
+          <span style="font-size: 9.5px; font-weight: 800; color: #a855f7; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); padding: 2px 5px; border-radius: 4px; font-family: monospace;">IND</span>
+          <span style="font-size: 11px; color: rgba(var(--rgb-glass),0.9); font-weight: 500;">Industrial Distribution - MEN2</span>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+</section>
+
+<!-- Self-contained Interactive Script for Vertex showcase -->
+<script>
+(function() {
+  // Screenshot assets data map
+  const techAssets = {
+    erp: [
+      { img: 'Presentation_Assets/Vertex/voss_erp_dashboard.png', title: 'VOS ERP - Administration Dashboard', desc: 'Central dashboard tracking consolidated subsidiary books, capex flows, and corporate accounting modules.' },
+      { img: 'Presentation_Assets/Vertex/voss_erp_ledger.png', title: 'VOS ERP - General Ledger Module', desc: 'Automated double-entry general ledger bookkeeping, syncing corporate balance sheets.' },
+      { img: 'Presentation_Assets/Vertex/voss_erp_inventory.png', title: 'VOS ERP - Stock & Inventory Ledger', desc: 'Multi-subsidiary inventory logs showing cross-branch stock counts and warehouse transfers.' }
+    ],
+    dealer: [
+      { img: 'Presentation_Assets/Vertex/vosdealer_main_dashboard.jpg', title: 'Dealerover - Dispatch & Routing', desc: 'Cloud dashboard scheduling equipment deliveries and managing real-time driver dispatch sheets.' },
+      { img: 'Presentation_Assets/Vertex/vosdealer_scm_approval.jpg', title: 'Dealerover - SCM Order Approval', desc: 'Approval flow interface confirming warehouse parts dispatch and pricing tier locks.' },
+      { img: 'Presentation_Assets/Vertex/vosdealer_crm_dashboard.jpg', title: 'Dealerover - Customer Accounts CRM', desc: 'Subscriber billing accounts panel managing monthly recurrence rates and subscription billings.' }
+    ],
+    elgu: [
+      { img: 'Presentation_Assets/Vertex/elgu_mapandan_portal.jpg', title: 'eLGU - Mapandan Public Portal', desc: 'Citizen portal for automated building permits, property tax clearing, and business registration applications.' },
+      { img: 'Presentation_Assets/Vertex/elgu_admin_view.jpg', title: 'eLGU - Treasury Administrative Panel', desc: 'Municipal treasury dashboard tracking tax collection invoices and auditing pending business certificates.' },
+      { img: 'Presentation_Assets/Vertex/LGU Digitalization/4bff27fa-338e-439f-a76b-ecbd690e404d.jpg', title: 'eLGU - Digital Services List', desc: 'List of active digital services available on the portal, including building zoning permits, clearances, and local licensing.' }
+    ],
+    sfa: [
+      { img: 'Presentation_Assets/Vertex/sfa_site_sales_summary.jpg', title: 'SFA Mobile - Field Agent Summary', desc: 'Mobile sales order dashboard for field agents booking warehouse inventories on the road.' },
+      { img: 'Presentation_Assets/Vertex/sfa_booking_list.jpg', title: 'SFA Mobile - Order Booking Sheet', desc: 'Real-time order checkout sheets displaying booking values and automated shipping schedules.' },
+      { img: 'Presentation_Assets/Vertex/SFA Booking/Screenshot_20260328-102311.jpg', title: 'SFA Mobile - Real-time Checkout', desc: 'Real-time order checkout interface showing product list, quantity selections, and automated shipping schedules.' }
+    ]
+  };
+
+  const initVertexShowcase = () => {
+    const tabs = document.querySelectorAll('.vertex-tab');
+    const metricText = document.getElementById('vertexMetricText');
+    const metricCard = document.getElementById('vertexMetricCard');
+    const mainImg = document.getElementById('galleryMainImg');
+    const galleryTitle = document.getElementById('galleryTitle');
+    const thumbsRow = document.getElementById('galleryThumbsRow');
+    const galleryContainerFrame = document.getElementById('galleryContainerFrame');
+    
+    if (!tabs.length || !metricText || !mainImg || !galleryTitle || !thumbsRow || !galleryContainerFrame || !metricCard) {
+      setTimeout(initVertexShowcase, 100);
+      return;
+    }
+    
+    const updateGallery = (targetKey) => {
+      const screenshots = techAssets[targetKey] || [];
+      
+      // Clear thumbnails row
+      thumbsRow.innerHTML = '';
+      
+      screenshots.forEach((item, index) => {
+        const thumb = document.createElement('div');
+        thumb.className = `gal-thumb ${index === 0 ? 'active' : ''}`;
+        thumb.innerHTML = `<img src="${item.img}" alt="Thumbnail">`;
+        
+        thumb.addEventListener('click', () => {
+          // Remove active class from other thumbs
+          thumbsRow.querySelectorAll('.gal-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+          
+          // Smooth swap image
+          mainImg.classList.remove('tech-reveal-active');
+          void mainImg.offsetWidth; // force reflow
+          mainImg.src = item.img;
+          galleryTitle.textContent = item.title;
+          mainImg.classList.add('tech-reveal-active');
+        });
+        
+        thumbsRow.appendChild(thumb);
+      });
+      
+      // Auto-load first image of the target category
+      if (screenshots[0]) {
+        mainImg.classList.remove('tech-reveal-active');
+        void mainImg.offsetWidth;
+        mainImg.src = screenshots[0].img;
+        galleryTitle.textContent = screenshots[0].title;
+        mainImg.classList.add('tech-reveal-active');
+      }
+    };
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        // Remove active class from all tabs
+        tabs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        
+        // Update metric text
+        metricText.textContent = t.getAttribute('data-metric');
+        
+        // Extract RGB target color code and change glow/accent colors dynamically
+        const rgbColor = t.getAttribute('data-color');
+        galleryContainerFrame.style.borderColor = `rgba(${rgbColor}, 0.45)`;
+        galleryContainerFrame.style.boxShadow = `0 0 20px rgba(${rgbColor}, 0.15)`;
+        metricCard.style.borderColor = `rgba(${rgbColor}, 0.35)`;
+        metricCard.style.boxShadow = `inset 0 0 10px rgba(${rgbColor}, 0.05)`;
+        
+        // Update gallery category
+        const target = t.getAttribute('data-target');
+        updateGallery(target);
+      });
+    });
+
+    // Initialize first category on startup
+    updateGallery('erp');
+  };
+
+  // Launch once DOM loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initVertexShowcase();
+  } else {
+    document.addEventListener('DOMContentLoaded', initVertexShowcase);
+  }
+})();
+</script>

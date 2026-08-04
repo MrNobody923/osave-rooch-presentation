@@ -1,0 +1,333 @@
+<style>
+/* Premium Glassmorphic Company Card Hover and Active states */
+.revenue-company-card {
+  transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.revenue-company-card:hover {
+  transform: translateY(-3px);
+  background: rgba(var(--rgb-glass), 0.035) !important;
+  border-color: rgba(var(--rgb-glass), 0.15) !important;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+.revenue-company-card:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Custom sector-based active highlights */
+.revenue-company-card.active-tech {
+  background: rgba(168, 85, 247, 0.08) !important;
+  border-color: #c084fc !important;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.22) !important;
+}
+.revenue-company-card.active-infra {
+  background: rgba(52, 211, 153, 0.08) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 0 15px rgba(52, 211, 153, 0.22) !important;
+}
+.revenue-company-card.active-fmcg {
+  background: rgba(249, 115, 22, 0.08) !important;
+  border-color: #fb923c !important;
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.22) !important;
+}
+
+/* Staggered spring slide-in animation for HUD items */
+@keyframes spring-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.97);
+  }
+  70% {
+    transform: translateX(-3px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+.hud-item-animated {
+  animation: spring-slide-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.revenue-hud-frame {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+#hudSectorLabel {
+  transition: color 0.4s ease, background-color 0.4s ease;
+}
+#hudCompanyTotal {
+  transition: text-shadow 0.4s ease;
+}
+</style>
+
+<section class="slide">
+  <div class="revenue-header-container" style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%; gap: 15px; margin-bottom: 15px;">
+    <div class="slide-header" style="margin-bottom: 0;">
+      <h2>Potential Revenue Projections</h2>
+      <p>Forward-looking revenue pipelines and project backlogs across group subsidiaries</p>
+    </div>
+    <div style="background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 12px; padding: 8px 16px; text-align: right; white-space: nowrap; flex-shrink: 0; margin-bottom: 5px;">
+      <span style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 2px;">Total ROOCH Potential Revenue</span>
+      <strong id="roochTotalRevenue" style="font-size: 18px; color: var(--color-sky-dark); text-shadow: var(--ts-override, 0 0 10px rgba(14,165,233,0.3));">{{rooch_total}}</strong>
+    </div>
+  </div>
+  
+  <!-- Content Layout: 3 Columns of Companies on Left, 1 Dynamic HUD breakdown on Right -->
+  <div class="slide-content grid-2-1" style="grid-template-columns: 2.15fr 1fr; gap: 20px; align-items: stretch;">
+    
+    <!-- Left Column: 3 Columns side-by-side for the 3 sectors -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; align-items: stretch; height: 100%;">
+      
+      <!-- Sector 1: Tech & Solutions (Purple) -->
+      <div style="background: rgba(168, 85, 247, 0.02); border: 1.5px solid rgba(168, 85, 247, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #c084fc; background: rgba(168, 85, 247, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">Tech & Solutions</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow: visible;">
+          <!-- Vertex Card -->
+          <div class="revenue-company-card" 
+               data-company="vertex"
+               data-total="{{slide_04_revenue_total_24}}"
+               data-items='{{slide_04_revenue_items_17}}'
+               style="cursor: pointer; padding: 10px 12px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="font-size: 11.5px; color: var(--text-primary);">Vertex Tech</strong>
+              <span style="font-size: 11.5px; font-weight: 700; color: #c084fc;">₱41.2M</span>
+            </div>
+            <span style="font-size: 9.5px; color: var(--text-muted);">Software & Digitization</span>
+          </div>
+
+          <!-- MEN2 Solutions Card -->
+          <div class="revenue-company-card" 
+               data-company="men2solutions"
+               data-total="{{slide_04_revenue_total_25}}"
+               data-items='{{slide_04_revenue_items_18}}'
+               style="cursor: pointer; padding: 10px 12px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="font-size: 11.5px; color: var(--text-primary);">MEN2 Solutions</strong>
+              <span style="font-size: 11.5px; font-weight: 700; color: #c084fc;">₱0</span>
+            </div>
+            <span style="font-size: 9.5px; color: var(--text-muted);">Manpower Sourcing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sector 2: Infrastructure & Energy (Green) -->
+      <div style="background: rgba(52, 211, 153, 0.02); border: 1.5px solid rgba(52, 211, 153, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">Infra & Energy</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1; overflow: visible;">
+          <!-- Hanvins Card -->
+          <!-- Hanvins Card -->
+          <div class="revenue-company-card" 
+               data-company="hanvins"
+               data-total="{{slide_04_revenue_total_26}}"
+               data-items='{{slide_04_revenue_items_19}}'
+               style="cursor: pointer; padding: 10px 12px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">Hanvin (Solar Installations)</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #34d399;">₱70.5M</span>
+            </div>
+            <span style="font-size: 9.5px; color: var(--text-muted);">Solar Installations</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Sector 3: FMCG & Logistics (Orange) -->
+      <div style="background: rgba(249, 115, 22, 0.02); border: 1.5px solid rgba(249, 115, 22, 0.2); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; text-align: left; height: 100%;">
+        <span style="font-size: 9px; font-weight: 800; color: #fb923c; background: rgba(249, 115, 22, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: start; margin-bottom: 12px;">FMCG & Logistics</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1; overflow: visible;">
+          <!-- MEN2 Dagupan -->
+          <div class="revenue-company-card" 
+               data-company="men2dagupan"
+               data-total="{{slide_04_revenue_total_27}}"
+               data-items='{{slide_04_revenue_items_20}}'
+               style="cursor: pointer; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">MEN2 Dagupan</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱458.0M</span>
+            </div>
+            <span style="font-size: 9px; color: var(--text-muted);">North Logistics Hub</span>
+          </div>
+
+          <!-- MEN2 Manila -->
+          <div class="revenue-company-card" 
+               data-company="men2manila"
+               data-total="{{slide_04_revenue_total_28}}"
+               data-items='{{slide_04_revenue_items_21}}'
+               style="cursor: pointer; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">MEN2 Manila</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱90.0M</span>
+            </div>
+            <span style="font-size: 9px; color: var(--text-muted);">NCR & South Logistics</span>
+          </div>
+
+          <!-- Mama Pina's -->
+          <div class="revenue-company-card" 
+               data-company="mamapina"
+               data-total="{{slide_04_revenue_total_29}}"
+               data-items='{{slide_04_revenue_items_22}}'
+               style="cursor: pointer; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">Mama Pina's</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱1.317B</span>
+            </div>
+            <span style="font-size: 9px; color: var(--text-muted);">Consumer Foods</span>
+          </div>
+
+
+          <!-- MEN2 Industrial -->
+          <div class="revenue-company-card" 
+               data-company="men2marikina"
+               data-total="{{slide_04_revenue_total_30}}"
+               data-items='{{slide_04_revenue_items_23}}'
+               style="cursor: pointer; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <strong style="font-size: 11px; color: var(--text-primary);">MEN2 Industrial</strong>
+              <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱50.0M</span>
+            </div>
+            <span style="font-size: 9px; color: var(--text-muted);">Industrial Business & Logistics</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Right Column: Premium Interactive Breakdown Panel -->
+    <div class="glass-card revenue-hud-frame" style="display: flex; flex-direction: column; height: 100%; padding: 20px; border: 1.5px solid rgba(14, 165, 233, 0.25); border-radius: 14px; background: rgba(var(--rgb-dark-bg),0.3); text-align: left; justify-content: flex-start; overflow: hidden;">
+      
+      <!-- Company Details Header -->
+      <div style="border-bottom: 1px solid rgba(var(--rgb-glass),0.06); padding-bottom: 12px; margin-bottom: 15px;">
+        <span id="hudSectorLabel" style="font-size: 9px; font-weight: 800; color: var(--color-sky); background: rgba(14, 165, 233, 0.15); padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;">Technology & Solutions</span>
+        <h3 id="hudCompanyTitle" style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin: 10px 0 2px 0;">Vertex Technologies</h3>
+        <span id="hudCompanySub" style="font-size: 11px; color: var(--text-secondary);">Enterprise software platforms</span>
+      </div>
+
+      <!-- Large Total Indicator -->
+      <div style="background: rgba(0,0,0,0.15); border: 1px solid rgba(var(--rgb-glass),0.04); border-radius: 10px; padding: 14px; text-align: center; margin-bottom: 20px;">
+        <span style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Total Potential Revenue</span>
+        <h2 id="hudCompanyTotal" style="font-size: 28px; font-weight: 800; color: var(--text-primary); margin: 0; text-shadow: var(--ts-override, 0 0 15px rgba(var(--rgb-glass),0.15));">₱48,500,000</h2>
+      </div>
+
+      <!-- Breakdown List -->
+      <div style="flex-grow: 1; display: flex; flex-direction: column;">
+        <span style="font-size: 10.5px; font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 10px;">Pipeline Breakdown:</span>
+        <div id="hudBreakdownList" style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; max-height: 200px;">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<!-- Self-contained Interactivity Script -->
+<script>
+(function() {
+  const initRevenueHUD = () => {
+    const cards = document.querySelectorAll('.revenue-company-card');
+    const hudFrame = document.querySelector('.revenue-hud-frame');
+    const sectorLabel = document.getElementById('hudSectorLabel');
+    const companyTitle = document.getElementById('hudCompanyTitle');
+    const companySub = document.getElementById('hudCompanySub');
+    const companyTotal = document.getElementById('hudCompanyTotal');
+    const breakdownList = document.getElementById('hudBreakdownList');
+    
+    if (!cards.length || !hudFrame || !sectorLabel || !companyTitle || !companySub || !companyTotal || !breakdownList) {
+      setTimeout(initRevenueHUD, 100);
+      return;
+    }
+    
+    cards.forEach(c => {
+      c.addEventListener('click', () => {
+        // Remove active class styling from all cards
+        cards.forEach(x => {
+          x.classList.remove('active-tech', 'active-infra', 'active-fmcg');
+        });
+        
+        // Find division color accent based on its parent container context
+        let activeColor = '#0ea5e9'; // fallback cyan
+        let activeClass = 'active-tech';
+        let sectorText = 'Technology & Solutions';
+        const parentBg = c.parentElement.parentElement.style.background;
+        if (parentBg.includes('168')) {
+          activeColor = '#c084fc'; // purple (Tech)
+          activeClass = 'active-tech';
+          sectorText = 'Technology & Solutions';
+        } else if (parentBg.includes('52')) {
+          activeColor = '#34d399'; // green (Infra)
+          activeClass = 'active-infra';
+          sectorText = 'Infrastructure & Energy';
+        } else if (parentBg.includes('249')) {
+          activeColor = '#fb923c'; // orange (FMCG)
+          activeClass = 'active-fmcg';
+          sectorText = 'FMCG & Logistics';
+        }
+        
+        // Apply active card class
+        c.classList.add(activeClass);
+        
+        // Update HUD Header & border accents
+        hudFrame.style.borderColor = `${activeColor}40`;
+        hudFrame.style.boxShadow = `0 0 15px ${activeColor}15`;
+        sectorLabel.style.color = activeColor;
+        sectorLabel.style.background = `${activeColor}22`;
+        sectorLabel.textContent = sectorText;
+        
+        // Retrieve values
+        const titleStr = c.querySelector('strong').textContent;
+        const subStr = c.querySelector('span').textContent;
+        const totalStr = c.getAttribute('data-total');
+        const items = JSON.parse(c.getAttribute('data-items') || '[]');
+        
+        // Update details
+        companyTitle.textContent = titleStr;
+        companySub.textContent = subStr;
+        companyTotal.textContent = totalStr;
+        companyTotal.style.textShadow = `0 0 15px ${activeColor}40`;
+        
+        // Build breakdown items list with staggered spring animations
+        breakdownList.innerHTML = '';
+        items.forEach((item, idx) => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'hud-item-animated';
+          itemEl.style.display = 'flex';
+          itemEl.style.justifyContent = 'space-between';
+          itemEl.style.alignItems = 'flex-start';
+          itemEl.style.padding = '8px 10px';
+          itemEl.style.borderRadius = '6px';
+          itemEl.style.background = 'rgba(var(--rgb-glass),0.02)';
+          itemEl.style.borderLeft = `3px solid ${activeColor}`;
+          itemEl.style.opacity = '1'; // persistent visibility
+          
+          itemEl.innerHTML = `
+            <span style="font-size: 11px; color: var(--text-secondary); max-width: 78%; line-height: 1.35;">${item.label}</span>
+            <span style="font-size: 11px; font-weight: 700; color: var(--text-primary);">${item.val}</span>
+          `;
+          
+          // Apply stagger animation delay inline
+          itemEl.style.animationDelay = `${idx * 60}ms`;
+          
+          breakdownList.appendChild(itemEl);
+        });
+      });
+    });
+    
+    // Auto-click the first card to initialize the HUD display state
+    if (cards[0]) {
+      cards[0].click();
+    }
+  };
+  
+  // Launch once DOM loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initRevenueHUD();
+  } else {
+    document.addEventListener('DOMContentLoaded', initRevenueHUD);
+  }
+})();
+</script>
