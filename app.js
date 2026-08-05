@@ -1647,13 +1647,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (document.getElementById("pancitMaterialsRows")) document.getElementById("pancitMaterialsRows").innerHTML = pancit.materials.map(item => `<div class="oil-purchase-row"><span>${item.label}<small>${item.note}</small></span><strong>${item.value}</strong></div>`).join("");
       if (document.getElementById("pancitMaterialsInsight")) document.getElementById("pancitMaterialsInsight").innerHTML = pancit.materials.map(item => `<div class="blue"><span>${item.label}</span><strong>${item.value}</strong></div>`).join("");
 
-      const renderProductionRows = items => items.map(item => `<div class="pancit-production-row"><span class="label">${item.label}</span><div class="track"><i class="${item.tone}" style="width:${item.share}"></i></div><span class="pct">${item.share}</span></div>`).join("");
+      const renderProductionRows = (items, valueKey = "share") => items.map(item => `<div class="pancit-production-row"><span class="label">${item.label}</span><div class="track"><i class="${item.tone}" style="width:${item.share}"></i></div><span class="value">${item[valueKey]}</span></div>`).join("");
       if (document.getElementById("pancitMonthlyMixTotal")) document.getElementById("pancitMonthlyMixTotal").textContent = pancit.productionMixTotal;
       if (document.getElementById("pancitMonthlyMixRows")) document.getElementById("pancitMonthlyMixRows").innerHTML = renderProductionRows(pancit.productionMix);
       if (document.getElementById("pancitMonthlyMixVolumes")) document.getElementById("pancitMonthlyMixVolumes").innerHTML = pancit.productionMix.map(item => `<span>${item.summaryLabel}: ${item.volume}</span>`).join("");
       if (document.getElementById("pancitWeeklyAvailabilityTotal")) document.getElementById("pancitWeeklyAvailabilityTotal").textContent = pancit.weeklyProductionTotal;
       if (document.getElementById("pancitWeeklyAvailabilityRows")) document.getElementById("pancitWeeklyAvailabilityRows").innerHTML = renderProductionRows(pancit.weeklyProductionAvailability);
-      if (document.getElementById("pancitWeeklyOutputRows")) document.getElementById("pancitWeeklyOutputRows").innerHTML = renderProductionRows(pancit.weeklyProductionAvailability);
+      if (document.getElementById("pancitWeeklyOutputRows")) document.getElementById("pancitWeeklyOutputRows").innerHTML = renderProductionRows(pancit.weeklyProductionAvailability, "pieces");
 
       const selectStep = index => {
         document.querySelectorAll("#pancitCycleFlow .cycle-step").forEach((button, buttonIndex) => {

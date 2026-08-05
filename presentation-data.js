@@ -158,9 +158,9 @@ window.OSavePresentation = {
     ],
     weeklyProductionTotal: "335.9K Pcs",
     weeklyProductionAvailability: [
-      { label: "Bihon", share: "55.4%", tone: "green" },
-      { label: "Canton 300g", share: "26.7%", tone: "blue" },
-      { label: "Canton small", share: "17.8%", tone: "blue" }
+      { label: "Bihon", share: "55.4%", pieces: "186.1K", tone: "green" },
+      { label: "Canton 300g", share: "26.7%", pieces: "89.7K", tone: "blue" },
+      { label: "Canton small", share: "17.8%", pieces: "60.1K", tone: "blue" }
     ],
     cycle: [
       { label: "Bulk", sublabel: "Purchase", duration: "Quarterly", phase: "procurement", detail: "Quarterly materials purchasing starts the post-expansion Pancit operating cycle." },

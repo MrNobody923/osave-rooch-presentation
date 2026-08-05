@@ -5593,13 +5593,18 @@ body.present-mode .edge-click-zone:hover {
 .pancit-production-row .track { height: 7px; overflow: hidden; border-radius: 5px; background: rgba(16,42,67,.1); }
 .pancit-production-row .track i { display: block; height: 100%; border-radius: inherit; background: var(--blue); }
 .pancit-production-row .track i.green { background: var(--green); }
-.pancit-production-row .pct { color: var(--ink); font: 700 10px/1 var(--heading); white-space: nowrap; }
+.pancit-production-row .value { color: var(--ink); font: 700 10px/1 var(--heading); white-space: nowrap; }
 .pancit-production-volumes { display: flex; justify-content: space-between; gap: 5px; margin-top: 8px; color: var(--muted); font-size: 8px; line-height: 1.15; }
 .pancit-production-volumes span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pancit-weekly-output-card .pancit-production-total { margin-bottom: 3px; }
 .pancit-weekly-output-card .pancit-production-rows { gap: 5px; margin-top: 0; }
-.pancit-weekly-output-card .pancit-production-row .label { font-size: 8px; }
-.pancit-weekly-output-card .pancit-production-row .pct { font-size: 9px; }
+.pancit-weekly-output-card .oil-card-title h3 { font-size: 14px; }
+.pancit-weekly-output-card .oil-card-title span { font-size: 11px; }
+.pancit-weekly-output-card .pancit-production-total { font-size: 15px; }
+.pancit-weekly-output-card .pancit-production-total strong { font-size: 18px; }
+.pancit-weekly-output-card .pancit-production-rows { gap: 7px; }
+.pancit-weekly-output-card .pancit-production-row .label { font-size: 12px; }
+.pancit-weekly-output-card .pancit-production-row .value { font-size: 13px; }
 
 @media (max-width: 1100px) {
   .pancit-capital-slide .oil-insight-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -5608,6 +5613,12 @@ body.present-mode .edge-click-zone:hover {
 @media (max-width: 600px) {
   .pancit-capital-slide .oil-insight-grid { grid-template-columns: 1fr; }
   .pancit-production-row .label { font-size: 11px; }
+  .pancit-weekly-output-card .oil-card-title h3 { font-size: 15px; }
+  .pancit-weekly-output-card .oil-card-title span { font-size: 12px; }
+  .pancit-weekly-output-card .pancit-production-total { font-size: 16px; }
+  .pancit-weekly-output-card .pancit-production-total strong { font-size: 19px; }
+  .pancit-weekly-output-card .pancit-production-row .label { font-size: 13px; }
+  .pancit-weekly-output-card .pancit-production-row .value { font-size: 14px; }
 }
 
 /* Slide 18 table readability: enlarge both capacity tables on desktop and in presentation mode. */
