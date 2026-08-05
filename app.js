@@ -1542,41 +1542,55 @@ document.addEventListener('DOMContentLoaded', () => {
       updateOilSimulation(0);
     }
 
-    // 5. Current capacity summary cards
-    const renderCapacitySummaryCard = (item, valueLabels, rows, unitLabel) => `
-      <article class="capacity-summary-card">
-        <div class="capacity-summary-product-pill">${item.label}${item.size ? ` ${item.size}` : ""}</div>
-        <div class="capacity-summary-card-body">
-          <div class="capacity-summary-card-title"><span class="capacity-summary-current">Current Capacity</span><span class="capacity-summary-units">${unitLabel} pcs / case</span></div>
-          <div class="capacity-summary-columns"><span>${valueLabels[0]}</span><span>${valueLabels[1]}</span></div>
-          ${rows.map(([label, primary, secondary]) => `
-            <div class="capacity-summary-row"><span>${label}</span><strong>${formatNumber(primary)}</strong><strong>${formatNumber(secondary)}</strong></div>
-          `).join("")}
-        </div>
-      </article>`;
+    // 5. Current capacity tables
+    const renderCapacitySummaryTable = (title, rows) => {
+      const totals = rows.reduce((summary, row) => ({
+        cases: summary.cases + row.cases,
+        pieces: summary.pieces + row.pieces,
+        monthly: summary.monthly + row.monthly
+      }), { cases: 0, pieces: 0, monthly: 0 });
+
+      return `
+        <div class="capacity-summary-table-header"><strong>Current Capacity</strong><span>Current Production by Shift</span></div>
+        <div class="capacity-summary-table-wrap">
+          <table class="capacity-summary-table" aria-label="${title} current capacity">
+            <thead><tr><th scope="col">Product</th><th scope="col">Size</th><th scope="col">Shift</th><th scope="col">Produced Cases</th><th scope="col">Produced Pieces</th><th scope="col">Monthly Produced</th></tr></thead>
+            <tbody>${rows.map(row => `
+              <tr><td>${row.product}</td><td>${row.size}</td><td><em>${row.shift}</em></td><td>${formatNumber(row.cases)}</td><td>${formatNumber(row.pieces)}</td><td>${formatNumber(row.monthly)}</td></tr>
+            `).join("")}</tbody>
+            <tfoot><tr class="total-row"><td colspan="3"><strong>Total</strong></td><td>${formatNumber(totals.cases)}</td><td>${formatNumber(totals.pieces)}</td><td class="current-value">${formatNumber(totals.monthly)}</td></tr></tfoot>
+          </table>
+        </div>`;
+    };
+
+    const splitOilLabel = (label) => {
+      const match = String(label).match(/^(.*)\s+(\d+(?:\.\d+)?(?:mL|L))$/i);
+      return match ? { product: match[1], size: match[2] } : { product: label, size: "—" };
+    };
 
     if (data.oilCapacity && document.getElementById("oilCurrentCapacityCards")) {
-      document.getElementById("oilCurrentCapacityCards").innerHTML = data.oilCapacity.map(item => {
+      const rows = data.oilCapacity.flatMap(item => {
         const unitsPerCase = item.unitsPerCase || 1;
-        const [day, night, daily, monthly] = item.current;
-        return renderCapacitySummaryCard(item, ["Cases", "Bottles"], [
-          ["Day Shift", Math.round(day / unitsPerCase), day],
-          ["Night Shift", Math.round(night / unitsPerCase), night],
-          ["Daily Capacity", Math.round(daily / unitsPerCase), daily],
-          ["Monthly Potential", Math.round(monthly / unitsPerCase), monthly]
-        ], unitsPerCase);
-      }).join("");
+        const [day, night] = item.current;
+        const { product, size } = splitOilLabel(item.label);
+        return [
+          { product, size, shift: "Day Shift", cases: Math.round(day / unitsPerCase), pieces: day, monthly: day * 30 },
+          { product, size, shift: "Night Shift", cases: Math.round(night / unitsPerCase), pieces: night, monthly: night * 30 }
+        ];
+      });
+      document.getElementById("oilCurrentCapacityCards").innerHTML = renderCapacitySummaryTable("Oil", rows);
     }
 
     if (data.pancitCurrentCapacity && document.getElementById("pancitCurrentCapacityCards")) {
-      document.getElementById("pancitCurrentCapacityCards").innerHTML = data.pancitCurrentCapacity.map(item => {
-        const piecesPerCase = item.cases ? Math.round(item.pieces / item.cases) : 0;
-        return renderCapacitySummaryCard(item, ["Cases", "Pieces"], [
-          [item.shift, item.cases, item.pieces],
-          ["Daily Capacity", item.cases, Math.round(item.pieces * 1.2)],
-          ["Monthly Potential", item.cases * 30, item.monthly]
-        ], piecesPerCase);
-      }).join("");
+      const rows = data.pancitCurrentCapacity.map(item => ({
+        product: item.label,
+        size: item.size || "—",
+        shift: item.shift || "—",
+        cases: item.cases,
+        pieces: item.pieces,
+        monthly: item.monthly
+      }));
+      document.getElementById("pancitCurrentCapacityCards").innerHTML = renderCapacitySummaryTable("Pancit", rows);
     }
 
     // 6. Helper function for cycle step process flow
