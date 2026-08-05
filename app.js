@@ -1533,7 +1533,44 @@ document.addEventListener('DOMContentLoaded', () => {
       updateOilSimulation(0);
     }
 
-    // 5. Helper function for cycle step process flow
+    // 5. Current capacity summary cards
+    const renderCapacitySummaryCard = (item, valueLabels, rows, unitLabel) => `
+      <article class="capacity-summary-card">
+        <div class="capacity-summary-product-pill">${item.label}${item.size ? ` ${item.size}` : ""}</div>
+        <div class="capacity-summary-card-body">
+          <div class="capacity-summary-card-title">${unitLabel} pcs / case <span>Current Capacity</span></div>
+          <div class="capacity-summary-columns"><span>${valueLabels[0]}</span><span>${valueLabels[1]}</span></div>
+          ${rows.map(([label, primary, secondary]) => `
+            <div class="capacity-summary-row"><span>${label}</span><strong>${formatNumber(primary)}</strong><strong>${formatNumber(secondary)}</strong></div>
+          `).join("")}
+        </div>
+      </article>`;
+
+    if (data.oilCapacity && document.getElementById("oilCurrentCapacityCards")) {
+      document.getElementById("oilCurrentCapacityCards").innerHTML = data.oilCapacity.map(item => {
+        const unitsPerCase = item.unitsPerCase || 1;
+        const [day, night, daily, monthly] = item.current;
+        return renderCapacitySummaryCard(item, ["Cases", "Bottles"], [
+          ["Day Shift", Math.round(day / unitsPerCase), day],
+          ["Night Shift", Math.round(night / unitsPerCase), night],
+          ["Daily Capacity", Math.round(daily / unitsPerCase), daily],
+          ["Monthly Potential", Math.round(monthly / unitsPerCase), monthly]
+        ], unitsPerCase);
+      }).join("");
+    }
+
+    if (data.pancitCurrentCapacity && document.getElementById("pancitCurrentCapacityCards")) {
+      document.getElementById("pancitCurrentCapacityCards").innerHTML = data.pancitCurrentCapacity.map(item => {
+        const piecesPerCase = item.cases ? Math.round(item.pieces / item.cases) : 0;
+        return renderCapacitySummaryCard(item, ["Cases", "Pieces"], [
+          [item.shift, item.cases, item.pieces],
+          ["Daily Capacity", item.cases, Math.round(item.pieces * 1.2)],
+          ["Monthly Potential", item.cases * 30, item.monthly]
+        ], piecesPerCase);
+      }).join("");
+    }
+
+    // 6. Helper function for cycle step process flow
     function renderCycle(targetId, steps, options = {}) {
       const container = document.getElementById(targetId);
       if (!container) return;
@@ -1558,7 +1595,7 @@ document.addEventListener('DOMContentLoaded', () => {
       container.innerHTML = `<div class="cycle-track" aria-hidden="true"></div>${stepMarkup}`;
     }
 
-    // 6. Oil Working Capital Trade Cycle
+    // 7. Oil Working Capital Trade Cycle
     if (data.oilWorkingCapital && document.getElementById("oilCapitalHeadline")) {
       const oil = data.oilWorkingCapital;
       document.getElementById("oilCapitalHeadline").textContent = oil.headline.value;
@@ -1583,7 +1620,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 7. Pancit Working Capital Trade Cycle
+    // 8. Pancit Working Capital Trade Cycle
     if (data.pancitWorkingCapital && document.getElementById("pancitCapitalHeadline")) {
       const pancit = data.pancitWorkingCapital;
       document.getElementById("pancitCapitalHeadline").textContent = pancit.headline.value;

@@ -7,6 +7,8 @@ window.PresentationConfig = {
     { file: "slide_11_technology.html", title: "Technology Subsidiaries", section: "TECHNOLOGY SUBSIDIARIES / VERTEX SOFTWARE" },
     { file: "slide_04_revenue.html", title: "Potential Revenue", section: "ROOCH HOLDING INC. / POTENTIAL REVENUE PIPELINES" },
     { file: "slide_05_savings.html", title: "Group Savings & Sales", section: "ROOCH HOLDING INC. / GROUP SAVINGS & SALES" },
+    { file: "slide_06f_manufacturing_capacity_oils_current.html", title: "Manufacturing Capacity Oils (Current)", section: "CAPACITY OPTIMIZATION / OILS / CURRENT CAPACITY" },
+    { file: "slide_06g_manufacturing_capacity_pancit_current.html", title: "Manufacturing Capacity Pancit (Current)", section: "CAPACITY OPTIMIZATION / PANCIT / CURRENT CAPACITY" },
     { file: "slide_06b_manufacturing_capex_oil.html", title: "Canola & Palm Oil: Current + Incoming", section: "MANUFACTURING EXPANSION / CANOLA & PALM OIL LINE" },
     { file: "slide_06c_manufacturing_capex_oil_projected.html", title: "Canola & Palm Oil: Projected Equipment", section: "MANUFACTURING EXPANSION / CANOLA & PALM OIL CAPEX" },
     { file: "slide_06d_manufacturing_capex_noodle.html", title: "Noodle (Canton/Bihon): Current + Incoming", section: "MANUFACTURING EXPANSION / NOODLE LINE" },

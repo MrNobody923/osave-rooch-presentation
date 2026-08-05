@@ -88,9 +88,14 @@ window.OSavePresentation = {
     ["VIL", "Villasis", 8571], ["MEY", "Meycauayan", 8571], ["NVE", "Nueva Ecija", 8571], ["TAY", "Taytay", 8571]
   ],
   oilCapacity: [
-    { label: "Palm Oil 350mL", growth: "+336%", current: [12600, 7200, 19800, 594000], expanded: [43200, 43200, 86400, 2592000] },
-    { label: "Palm Oil 1L", growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] },
-    { label: "Canola Oil 1L", growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] }
+    { label: "Palm Oil 350mL", unitsPerCase: 36, growth: "+336%", current: [12600, 7200, 19800, 594000], expanded: [43200, 43200, 86400, 2592000] },
+    { label: "Palm Oil 1L", unitsPerCase: 12, growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] },
+    { label: "Canola Oil 1L", unitsPerCase: 12, growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] }
+  ],
+  pancitCurrentCapacity: [
+    { label: "Bihon", size: "454G", shift: "Day Shift", cases: 280, pieces: 5600, monthly: 201600 },
+    { label: "Canton", size: "300G", shift: "Day Shift", cases: 130, pieces: 2340, monthly: 84240 },
+    { label: "Canton", size: "100G", shift: "Day Shift", cases: 100, pieces: 800, monthly: 28800 }
   ],
   oilWorkingCapital: {
     headline: { value: "PHP 201.07M", label: "3-month working capital" },
