@@ -574,8 +574,9 @@ document.addEventListener('DOMContentLoaded', () => {
       animateCounter('totalRequestVal', 215000000, 'Php ', '');
     }
 
-    // Slide 10: O!Save Demand Impact (Index 9)
-    if (window.PresentationConfig.slides[slideIndex].file.includes("slide_09_demand")) {
+    // O!Save Demand Impact slides
+    const demandSlideFile = window.PresentationConfig.slides[slideIndex].file;
+    if (demandSlideFile.includes("slide_09_demand") || demandSlideFile.includes("slide_09b_demand_pancit")) {
       const dbars = document.querySelectorAll('.d-bar');
       dbars.forEach((bar) => {
         const heightVal = bar.getAttribute('data-height');
@@ -1176,6 +1177,13 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   const pad = (value) => String(value).padStart(2, "0");
   const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
+  const hexToRgba = (hex, alpha) => {
+    const normalized = String(hex).replace("#", "");
+    const expanded = normalized.length === 3 ? normalized.split("").map((character) => character + character).join("") : normalized;
+    const value = Number.parseInt(expanded, 16);
+    if (!Number.isFinite(value)) return `rgba(14, 165, 233, ${alpha})`;
+    return `rgba(${value >> 16}, ${(value >> 8) & 255}, ${value & 255}, ${alpha})`;
+  };
   const formatDuration = (value) => String(value).replace(/^(\d+)d$/, "$1 days");
 
   function initRoochInteractiveHandlers() {
@@ -1335,34 +1343,35 @@ document.addEventListener('DOMContentLoaded', () => {
       const maxPancitDemand = Math.max(...pancitRecurringDemand.map((item) => item.cases));
       
       document.getElementById("pancitDemandTable").innerHTML = `${data.pancitDemand.map((item) => `
-        <tr class="${item.isSample ? "pancit-sample-row" : ""}">
-          <td><span class="pancit-product-name">${item.product}</span><small>${item.size}</small>${item.isSample ? "<em>Initial sampling</em>" : ""}</td>
-          <td>${formatNumber(item.cases)}</td>
-          <td>${formatNumber(item.pieces)}</td>
+        <tr class="${item.isSample ? "pancit-sample-row" : ""}" style="border-bottom: 1px solid rgba(var(--rgb-glass),0.03);">
+          <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;"><span class="pancit-product-name">${item.product}</span><small>${item.size}</small>${item.isSample ? "<em>Initial sampling</em>" : ""}</td>
+          <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">${formatNumber(item.cases)}</td>
+          <td style="padding: 10px 8px; text-align: right; color: var(--text-primary); font-weight: 700;">${formatNumber(item.pieces)}</td>
         </tr>`).join("")}
-        <tr class="oil-demand-total">
-          <th scope="row">Recurring total</th>
-          <th>${formatNumber(pancitRecurringCases)}</th>
-          <th>${formatNumber(pancitRecurringPieces)}</th>
+        <tr class="table-total" style="border-top: 2px solid rgba(var(--rgb-glass),0.12); font-weight: 700;">
+          <td style="padding: 12px 8px; color: var(--text-primary);">Recurring Total</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--color-sky); font-weight: 800;">${formatNumber(pancitRecurringCases)}</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--color-sky); font-weight: 800;">${formatNumber(pancitRecurringPieces)}</td>
         </tr>`;
 
       if (document.getElementById("pancitDemandChart")) {
         document.getElementById("pancitDemandChart").innerHTML = `
-          <div class="demand-chart-plot">
-            <span class="demand-chart-gridline demand-chart-gridline-top" aria-hidden="true"></span>
-            <span class="demand-chart-gridline demand-chart-gridline-quarter" aria-hidden="true"></span>
-            <span class="demand-chart-gridline demand-chart-gridline-half" aria-hidden="true"></span>
-            <span class="demand-chart-gridline demand-chart-gridline-three-quarter" aria-hidden="true"></span>
-            <div class="demand-bars">
-              ${data.pancitDemand.map((item) => `
-                <div class="demand-bar-column ${item.isSample ? "is-sample" : ""}" role="img" aria-label="${item.product} ${item.size}: ${formatNumber(item.cases)} cases per month" style="--bar-height:${Math.max(item.isSample ? 1 : (item.cases / maxPancitDemand) * 100, 1)}%;--bar-color:${item.color}">
-                  <span class="demand-bar-value">${item.cases >= 1000 ? `${Math.round(item.cases / 1000)}K` : formatNumber(item.cases)}</span>
-                  <i class="demand-bar-fill"></i>
-                  <span class="demand-bar-label">${item.product} ${item.size}</span>
-                </div>`).join("")}
-            </div>
+          <div class="demand-bars" style="display: flex; align-items: flex-end; justify-content: space-between; height: 210px; padding-bottom: 10px; border-bottom: 1px solid rgba(var(--rgb-glass),0.08); position: relative; margin-bottom: 12px;">
+            <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 0;"></div>
+            <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 25%;"></div>
+            <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 50%;"></div>
+            <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 75%;"></div>
+            ${data.pancitDemand.map((item) => {
+              const barHeight = Math.max(item.isSample ? 1 : (item.cases / maxPancitDemand) * 100, 1);
+              return `
+                <div class="demand-bar-col ${item.isSample ? "is-sample" : ""}" role="img" aria-label="${item.product} ${item.size}: ${formatNumber(item.cases)} cases per month" style="display: flex; flex-direction: column; align-items: center; width: 30%; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: ${item.color};">
+                  <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">${item.cases >= 1000 ? `${Math.round(item.cases / 1000)}K` : formatNumber(item.cases)}</span>
+                  <div class="d-bar" data-height="${barHeight}%" style="width: 100%; height: 0%; background: linear-gradient(180deg, ${hexToRgba(item.color, 0.85)} 0%, ${hexToRgba(item.color, 0.1)} 100%); border-top: 3px solid ${item.color}; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px ${hexToRgba(item.color, 0.35)};"></div>
+                  <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">${item.product} ${item.size}</span>
+                </div>`;
+            }).join("")}
           </div>
-          <p class="demand-chart-legend"><strong>Legend:</strong> Bihon 454g: 40K | Canton 300g: 20K | Canton 100g: 1K sample</p>`;
+          <div style="font-size: 9.5px; color: var(--text-muted); text-align: left; line-height: 1.4;"><strong>Legend:</strong> Bihon 454g: 40K | Canton 300g: 20K | Canton 100g: 1K sample</div>`;
       }
 
       const recurringPiecesEl = document.getElementById("pancitRecurringPieces");
@@ -1371,7 +1380,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const warehousesEl = document.getElementById("pancitWarehouses");
       if (warehousesEl && data.pancitWarehouses) {
         warehousesEl.innerHTML = data.pancitWarehouses.map(([code, name, cases]) => `
-          <div class="warehouse-cell" role="img" aria-label="${name}: ${formatNumber(cases)} cases per month"><strong>${code}</strong><span>${name}</span><small>${formatNumber(cases)} cases / month</small></div>`).join("");
+          <div class="pancit-warehouse-row" role="img" aria-label="${name}: ${formatNumber(cases)} cases per month"><strong>${code}</strong><span>${name}</span><small>${formatNumber(cases)} cases / month</small></div>`).join("");
       }
     }
 
