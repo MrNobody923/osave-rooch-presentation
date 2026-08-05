@@ -1544,12 +1544,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Current capacity tables
     const renderCapacitySummaryTable = (title, rows) => {
-      const totals = rows.reduce((summary, row) => ({
-        cases: summary.cases + row.cases,
-        pieces: summary.pieces + row.pieces,
-        monthly: summary.monthly + row.monthly
-      }), { cases: 0, pieces: 0, monthly: 0 });
-
       return `
         <div class="capacity-summary-table-header"><strong>${title} Capacity</strong><span>Current Production by Shift</span></div>
         <div class="capacity-summary-table-wrap">
@@ -1558,7 +1552,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <tbody>${rows.map(row => `
               <tr><td>${row.product}</td><td>${row.size}</td><td><em>${row.shift}</em></td><td>${formatNumber(row.cases)}</td><td>${formatNumber(row.pieces)}</td><td>${formatNumber(row.monthly)}</td></tr>
             `).join("")}</tbody>
-            <tfoot><tr class="total-row"><td colspan="3"><strong>Total</strong></td><td>${formatNumber(totals.cases)}</td><td>${formatNumber(totals.pieces)}</td><td class="current-value">${formatNumber(totals.monthly)}</td></tr></tfoot>
           </table>
         </div>`;
     };
@@ -1654,9 +1647,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (document.getElementById("pancitMaterialsRows")) document.getElementById("pancitMaterialsRows").innerHTML = pancit.materials.map(item => `<div class="oil-purchase-row"><span>${item.label}<small>${item.note}</small></span><strong>${item.value}</strong></div>`).join("");
       if (document.getElementById("pancitMaterialsInsight")) document.getElementById("pancitMaterialsInsight").innerHTML = pancit.materials.map(item => `<div class="blue"><span>${item.label}</span><strong>${item.value}</strong></div>`).join("");
 
-      const mixColors = { blue: "#24a9e8", gold: "#f2c14e", green: "#45c486" };
-      if (document.getElementById("pancitMixBar")) document.getElementById("pancitMixBar").innerHTML = pancit.productionMix.map(item => `<i style="--size:${item.size};--tone:${mixColors[item.tone]}"></i>`).join("");
-      if (document.getElementById("pancitMixLegend")) document.getElementById("pancitMixLegend").innerHTML = pancit.productionMix.map(item => `<span><i style="--tone:${mixColors[item.tone]}"></i>${item.label} ${item.share}</span>`).join("");
+      const renderProductionRows = items => items.map(item => `<div class="pancit-production-row"><span class="label">${item.label}</span><div class="track"><i class="${item.tone}" style="width:${item.share}"></i></div><span class="pct">${item.share}</span></div>`).join("");
+      if (document.getElementById("pancitMonthlyMixTotal")) document.getElementById("pancitMonthlyMixTotal").textContent = pancit.productionMixTotal;
+      if (document.getElementById("pancitMonthlyMixRows")) document.getElementById("pancitMonthlyMixRows").innerHTML = renderProductionRows(pancit.productionMix);
+      if (document.getElementById("pancitMonthlyMixVolumes")) document.getElementById("pancitMonthlyMixVolumes").innerHTML = pancit.productionMix.map(item => `<span>${item.summaryLabel}: ${item.volume}</span>`).join("");
+      if (document.getElementById("pancitWeeklyAvailabilityTotal")) document.getElementById("pancitWeeklyAvailabilityTotal").textContent = pancit.weeklyProductionTotal;
+      if (document.getElementById("pancitWeeklyAvailabilityRows")) document.getElementById("pancitWeeklyAvailabilityRows").innerHTML = renderProductionRows(pancit.weeklyProductionAvailability);
+      if (document.getElementById("pancitWeeklyOutputRows")) document.getElementById("pancitWeeklyOutputRows").innerHTML = renderProductionRows(pancit.weeklyProductionAvailability);
 
       const selectStep = index => {
         document.querySelectorAll("#pancitCycleFlow .cycle-step").forEach((button, buttonIndex) => {

@@ -143,17 +143,24 @@ window.OSavePresentation = {
     kpis: [
       ["Quarterly materials", "PHP 73.5M", "post-expansion"],
       ["Monthly materials", "PHP 24.5M", "materials cadence"],
-      ["Weekly output", "363,600 pcs", "post-expansion"],
+      ["Weekly output", "335.9K Pcs", "post-expansion"],
       ["Collection", "45 days", "cash conversion"]
     ],
     materials: [
       { label: "Quarterly materials", value: "PHP 73.5M", note: "post-expansion" },
       { label: "Monthly materials", value: "PHP 24.5M", note: "materials cadence" }
     ],
+    productionMixTotal: "1.454M Pcs",
     productionMix: [
-      { label: "Bihon", share: "55.4%", size: "55.4%", tone: "blue" },
-      { label: "Canton 300g", share: "26.7%", size: "26.7%", tone: "gold" },
-      { label: "Canton small", share: "17.8%", size: "17.9%", tone: "green" }
+      { label: "Bihon (454g)", summaryLabel: "Bihon", share: "55.4%", size: "55.4%", volume: "806.4K", tone: "blue" },
+      { label: "Canton (300g)", summaryLabel: "Canton 300g", share: "26.7%", size: "26.7%", volume: "388.8K", tone: "green" },
+      { label: "Canton (small)", summaryLabel: "Canton sm", share: "17.8%", size: "17.8%", volume: "259.2K", tone: "blue" }
+    ],
+    weeklyProductionTotal: "335.9K Pcs",
+    weeklyProductionAvailability: [
+      { label: "Bihon", share: "55.4%", tone: "green" },
+      { label: "Canton 300g", share: "26.7%", tone: "blue" },
+      { label: "Canton small", share: "17.8%", tone: "blue" }
     ],
     cycle: [
       { label: "Bulk", sublabel: "Purchase", duration: "Quarterly", phase: "procurement", detail: "Quarterly materials purchasing starts the post-expansion Pancit operating cycle." },
