@@ -766,21 +766,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 2. Slide 12: Hanvin Prezi Zoom Nodes
-    const hanvinNode = e.target.closest('.hanvin-card-node');
-    if (hanvinNode) {
-      e.preventDefault();
-      const target = hanvinNode.getAttribute('data-target');
-      const container = document.getElementById('hanvinPreziContainer');
-      const exitBtn = document.getElementById('exitHanvinPreziBtn');
-      if (container && exitBtn) {
-        container.classList.remove('active-school', 'active-lgu', 'active-warehouse', 'active-offices');
-        container.classList.add(`active-${target}`);
-        exitBtn.style.display = 'flex';
-      }
-      return;
-    }
-
     // 3. Slide 11: Prezi Exit Zoom Button
     const exitPrezi = e.target.closest('#exitPreziBtn');
     if (exitPrezi) {
@@ -790,18 +775,6 @@ document.addEventListener('DOMContentLoaded', () => {
         container.classList.remove('active-vertex');
       }
       exitPrezi.style.display = 'none';
-      return;
-    }
-
-    // 4. Slide 12: Hanvin Prezi Exit Zoom Button
-    const exitHanvin = e.target.closest('#exitHanvinPreziBtn');
-    if (exitHanvin) {
-      e.preventDefault();
-      const container = document.getElementById('hanvinPreziContainer');
-      if (container) {
-        container.classList.remove('active-school', 'active-lgu', 'active-warehouse', 'active-offices');
-      }
-      exitHanvin.style.display = 'none';
       return;
     }
 
@@ -875,13 +848,6 @@ document.addEventListener('DOMContentLoaded', () => {
         exit11.style.display = 'none';
       }
       
-      // Reset Slide 12 Prezi
-      const container12 = document.getElementById('hanvinPreziContainer');
-      const exit12 = document.getElementById('exitHanvinPreziBtn');
-      if (container12 && exit12) {
-        container12.classList.remove('active-school', 'active-lgu', 'active-warehouse', 'active-offices');
-        exit12.style.display = 'none';
-      }
     }
   });
 
@@ -1686,6 +1652,17 @@ document.addEventListener('DOMContentLoaded', () => {
       slidesContainer.innerHTML = htmlContent;
       slides = document.querySelectorAll('.slide');
     }
+
+    // Keep the inlined presentation aligned with the configured navigation order.
+    const legacyHanvinSlide = slidesContainer.querySelector('[data-slide-key="hanvin"]');
+    if (legacyHanvinSlide) legacyHanvinSlide.remove();
+
+    const achievementsSlide = slidesContainer.querySelector('[data-slide-key="achievements"]');
+    const logisticsSlide = slidesContainer.querySelector('[data-slide-key="men2-dealerover"]');
+    if (achievementsSlide && logisticsSlide) {
+      slidesContainer.insertBefore(achievementsSlide, logisticsSlide);
+    }
+    slides = document.querySelectorAll('.slide');
     
     totalSlides = slides.length;
     

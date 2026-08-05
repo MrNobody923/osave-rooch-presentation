@@ -2,10 +2,9 @@ window.PresentationConfig = {
   slides: [
     { file: "slide_01_title.html", title: "Title", section: "ROOCH HOLDING INC. / TITLE SLIDE" },
     { file: "slide_02_structure.html", title: "Corporate Structure", section: "ROOCH HOLDING INC. / CORPORATE STRUCTURE" },
+    { file: "slide_04_achievements.html", title: "Key Achievements", section: "ROOCH HOLDING INC. / KEY ACHIEVEMENTS" },
     { file: "slide_10_logistics.html", title: "MEN2 & Dealerover", section: "MEN2 DISTRIBUTION / LOGISTICS & PLATFORM SYNC" },
     { file: "slide_11_technology.html", title: "Technology Subsidiaries", section: "TECHNOLOGY SUBSIDIARIES / VERTEX SOFTWARE" },
-    { file: "slide_12_hanvin.html", title: "Hanvin Constructions", section: "HANVIN CONSTRUCTIONS / SOLAR INSTALLATIONS" },
-    { file: "slide_04_achievements.html", title: "Key Achievements", section: "ROOCH HOLDING INC. / KEY ACHIEVEMENTS" },
     { file: "slide_04_revenue.html", title: "Potential Revenue", section: "ROOCH HOLDING INC. / POTENTIAL REVENUE PIPELINES" },
     { file: "slide_05_savings.html", title: "Group Savings & Sales", section: "ROOCH HOLDING INC. / GROUP SAVINGS & SALES" },
     { file: "slide_06b_manufacturing_capex_oil.html", title: "Canola & Palm Oil: Current + Incoming", section: "MANUFACTURING EXPANSION / CANOLA & PALM OIL LINE" },
