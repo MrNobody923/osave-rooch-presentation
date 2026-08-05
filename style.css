@@ -4548,6 +4548,7 @@ body.present-mode .edge-click-zone:hover {
 }
 .oil-capital-slide .slide-heading h2 { font-size: clamp(28px, 2.8vw, 44px); }
 .oil-capital-slide .slide-heading .eyebrow { font-size: 11px; line-height: 1.35; }
+.oil-capital-slide .oil-cycle-flow .cycle-track { inset: 32%; }
 .oil-capital-kpis { gap: 9px; }
 .oil-capital-kpis > div { min-height: 72px; padding: 11px 13px; gap: 4px; }
 .oil-capital-kpis span { font-size: 10px; line-height: 1.25; }
@@ -4616,8 +4617,8 @@ body.present-mode .edge-click-zone:hover {
   .oil-cycle-panel { min-height: 590px; }
   .oil-cycle-flow { width: min(100%, 350px); height: 410px; min-height: 410px; }
   .oil-cycle-flow .cycle-step { width: 96px; }
-  .oil-cycle-flow .cycle-step strong { font-size: 11px; }
-  .oil-cycle-flow .cycle-step small, .oil-cycle-flow .cycle-step span { font-size: 9px; }
+  .oil-cycle-flow .cycle-step strong { font-size: 12px; line-height: 1.2; }
+  .oil-cycle-flow .cycle-step small, .oil-cycle-flow .cycle-step span { font-size: 10px; line-height: 1.2; }
   .requirement-card > strong { font-size: 29px; }
   .cash-cycle-bars > div { grid-template-columns: 105px 1fr 26px; }
 }
@@ -4984,9 +4985,9 @@ body.present-mode .edge-click-zone:hover {
 @media (max-width: 600px) {
   .pancit-capital-slide .oil-cycle-flow { width: min(100%, 350px); height: 410px; min-height: 410px; }
   .pancit-capital-slide .oil-cycle-flow .cycle-step { width: 96px; }
-  .pancit-capital-slide .oil-cycle-flow .cycle-step strong { font-size: 11px; }
+  .pancit-capital-slide .oil-cycle-flow .cycle-step strong { font-size: 12px; line-height: 1.2; }
   .pancit-capital-slide .oil-cycle-flow .cycle-step small,
-  .pancit-capital-slide .oil-cycle-flow .cycle-step span { font-size: 9px; }
+  .pancit-capital-slide .oil-cycle-flow .cycle-step span { font-size: 10px; line-height: 1.2; }
 }
 
 /* ==========================================================================
@@ -5055,7 +5056,7 @@ body.present-mode .edge-click-zone:hover {
     inset: auto;
     top: 50%;
     left: 50%;
-    width: 40%;
+    width: 32%;
     height: auto;
     aspect-ratio: 1 / 1;
     transform: translate(-50%, -50%) rotate(-18deg);
@@ -5073,14 +5074,14 @@ body.present-mode .edge-click-zone:hover {
   }
 
   .oil-capital-slide .oil-cycle-flow .cycle-step strong {
-    font-size: 10px;
-    line-height: 1.15;
+    font-size: 13px;
+    line-height: 1.2;
   }
 
   .oil-capital-slide .oil-cycle-flow .cycle-step small,
   .oil-capital-slide .oil-cycle-flow .cycle-step span {
-    font-size: 9px;
-    line-height: 1.15;
+    font-size: 11px;
+    line-height: 1.2;
   }
 
   .oil-capital-slide .oil-summary-stack {
