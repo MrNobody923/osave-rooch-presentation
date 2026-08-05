@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
-    // Slide 6: O!Save Capital Request (Index 5)
+    // O!Save Capital Request
     if (window.PresentationConfig.slides[slideIndex].file.includes("slide_06_capital")) {
       animateCounter('totalRequestVal', 215000000, 'Php ', '');
     }
@@ -1712,6 +1712,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (achievementsSlide && logisticsSlide) {
       slidesContainer.insertBefore(achievementsSlide, logisticsSlide);
     }
+
+    const pancitDemandSlide = slidesContainer.querySelector('[data-title="O!Save Demand Impact Pancit"]');
+    const capitalRequestSlide = slidesContainer.querySelector('[data-title="O!Save Capital Request"]');
+    if (pancitDemandSlide && capitalRequestSlide) {
+      pancitDemandSlide.after(capitalRequestSlide);
+    }
+
     slides = document.querySelectorAll('.slide');
     
     totalSlides = slides.length;
