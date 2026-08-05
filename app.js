@@ -1538,7 +1538,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <article class="capacity-summary-card">
         <div class="capacity-summary-product-pill">${item.label}${item.size ? ` ${item.size}` : ""}</div>
         <div class="capacity-summary-card-body">
-          <div class="capacity-summary-card-title">${unitLabel} pcs / case <span>Current Capacity</span></div>
+          <div class="capacity-summary-card-title"><span class="capacity-summary-current">Current Capacity</span><span class="capacity-summary-units">${unitLabel} pcs / case</span></div>
           <div class="capacity-summary-columns"><span>${valueLabels[0]}</span><span>${valueLabels[1]}</span></div>
           ${rows.map(([label, primary, secondary]) => `
             <div class="capacity-summary-row"><span>${label}</span><strong>${formatNumber(primary)}</strong><strong>${formatNumber(secondary)}</strong></div>
