@@ -1,13 +1,20 @@
-<section class="slide capacity-summary-slide" data-title="Current Manufacturing Status: Oil" data-section="CAPACITY OPTIMIZATION / OILS / CURRENT CAPACITY">
+<section class="slide capacity-summary-slide capacity-summary-combined-slide" data-title="Current Manufacturing Status: Oil &amp; Pancit" data-section="CAPACITY OPTIMIZATION / OILS &amp; PANCIT / CURRENT CAPACITY">
   <div class="capacity-summary-shell">
     <div class="capacity-summary-heading">
       <div>
         <p class="eyebrow">Capacity optimization</p>
-        <h2>Current Manufacturing Status: <span>Oil</span></h2>
-        <p>Current production capacity by product, shift, and monthly potential.</p>
+        <h2>Current Manufacturing Status: <span>Oil &amp; Pancit</span></h2>
+        <p>Current production capacity across edible oils, Bihon, and Canton lines.</p>
       </div>
       <span class="capacity-summary-status">Current Capacity</span>
     </div>
-    <div class="capacity-summary-table-panel" id="oilCurrentCapacityCards" aria-live="polite"></div>
+    <div class="capacity-summary-combined-grid">
+      <section class="capacity-summary-line-panel" aria-label="Oil current capacity">
+        <div class="capacity-summary-table-panel" id="oilCurrentCapacityCards" aria-live="polite"></div>
+      </section>
+      <section class="capacity-summary-line-panel" aria-label="Pancit current capacity">
+        <div class="capacity-summary-table-panel" id="pancitCurrentCapacityCards" aria-live="polite"></div>
+      </section>
+    </div>
   </div>
 </section>

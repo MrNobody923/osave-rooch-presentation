@@ -1551,7 +1551,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }), { cases: 0, pieces: 0, monthly: 0 });
 
       return `
-        <div class="capacity-summary-table-header"><strong>Current Capacity</strong><span>Current Production by Shift</span></div>
+        <div class="capacity-summary-table-header"><strong>${title} Capacity</strong><span>Current Production by Shift</span></div>
         <div class="capacity-summary-table-wrap">
           <table class="capacity-summary-table" aria-label="${title} current capacity">
             <thead><tr><th scope="col">Product</th><th scope="col">Size</th><th scope="col">Shift</th><th scope="col">Produced Cases</th><th scope="col">Produced Pieces</th><th scope="col">Monthly Produced</th></tr></thead>
@@ -1637,7 +1637,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       };
       if (document.getElementById("oilCycleFlow")) {
-        renderCycle("oilCycleFlow", oil.cycle, { interactive: true, radius: 34 });
+        renderCycle("oilCycleFlow", oil.cycle, { interactive: true, radius: 42 });
         document.querySelectorAll("#oilCycleFlow .cycle-step").forEach(button => button.addEventListener("click", () => selectStep(Number(button.dataset.cycleIndex))));
         selectStep(0);
       }
@@ -1665,7 +1665,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       };
       if (document.getElementById("pancitCycleFlow")) {
-        renderCycle("pancitCycleFlow", pancit.cycle, { interactive: true, radius: 34 });
+        renderCycle("pancitCycleFlow", pancit.cycle, { interactive: true, radius: 42 });
         document.querySelectorAll("#pancitCycleFlow .cycle-step").forEach(button => button.addEventListener("click", () => selectStep(Number(button.dataset.cycleIndex))));
         selectStep(0);
       }
