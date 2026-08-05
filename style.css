@@ -5068,7 +5068,6 @@ body.present-mode .edge-click-zone:hover {
 .pancit-source-kpis > div:nth-child(n+2) strong { color: var(--green); }
 .pancit-source-kpis small { color: var(--muted); font-size: 12px; }
 .pancit-source-kpis small b { color: var(--green); }
-.pancit-source-kpis > div:only-child { grid-column: 1 / -1; }
 .source-badge { width: max-content; padding: 2px 9px; border: 1px solid rgba(22,131,87,.2); border-radius: 40px; color: var(--green) !important; background: rgba(22,131,87,.08); font-weight: 700; }
 .pancit-source-comparison { flex: 0 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) 168px minmax(0, 1fr); gap: 18px; align-items: stretch; }
 .pancit-source-panel { min-width: 0; min-height: clamp(390px, 48vh, 500px); display: flex; flex-direction: column; gap: 14px; padding: 18px 20px; border: 1px solid var(--line); background: var(--panel); }
@@ -5086,7 +5085,8 @@ body.present-mode .edge-click-zone:hover {
 .pancit-source-table th:nth-child(3), .pancit-source-table td:nth-child(3) { width: 14%; }
 .pancit-source-table th:nth-child(4), .pancit-source-table td:nth-child(4) { width: 12%; }
 .pancit-source-table th:nth-child(5), .pancit-source-table td:nth-child(5) { width: 15%; }
-.pancit-source-table th:nth-child(6), .pancit-source-table td:nth-child(6) { width: 31%; }
+.pancit-source-table th:nth-child(6), .pancit-source-table td:nth-child(6) { width: 14%; }
+.pancit-source-table th:nth-child(7), .pancit-source-table td:nth-child(7) { width: 17%; }
 .pancit-source-table th:nth-child(n+4), .pancit-source-table td:nth-child(n+4) { text-align: right; }
 .pancit-source-table tr:last-child td { border-bottom: 0; }
 .pancit-source-table tfoot td { padding-top: 12px; border-top: 2px solid rgba(22,131,87,.35); border-bottom: 0; color: var(--ink); background: rgba(22,131,87,.05); font-weight: 800; }
@@ -5596,47 +5596,10 @@ body.present-mode .edge-click-zone:hover {
 .pancit-production-row .pct { color: var(--ink); font: 700 10px/1 var(--heading); white-space: nowrap; }
 .pancit-production-volumes { display: flex; justify-content: space-between; gap: 5px; margin-top: 8px; color: var(--muted); font-size: 8px; line-height: 1.15; }
 .pancit-production-volumes span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pancit-weekly-output-card .oil-card-title h3 { font-size: 13px; line-height: 1.2; }
-.pancit-weekly-output-card .oil-card-title > span { font-size: 9px; }
-.pancit-weekly-output-card .pancit-production-total { margin-bottom: 5px; font-size: 13px; }
-.pancit-weekly-output-card .pancit-production-total strong { font-size: 17px; }
+.pancit-weekly-output-card .pancit-production-total { margin-bottom: 3px; }
 .pancit-weekly-output-card .pancit-production-rows { gap: 5px; margin-top: 0; }
-.pancit-weekly-output-card .pancit-production-row .label { font-size: 10px; }
-.pancit-weekly-output-card .pancit-production-row .pct { font-size: 10px; }
-.pancit-weekly-output-card .pancit-production-volumes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: center;
-  gap: 4px;
-  margin-top: 6px;
-  overflow: hidden;
-  font-size: 9px;
-  white-space: nowrap;
-}
-.pancit-weekly-output-card .pancit-production-volumes span {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-}
-
-@media (max-width: 600px) {
-  .pancit-weekly-output-card .oil-card-title h3 { font-size: 12px; }
-  .pancit-weekly-output-card .oil-card-title > span { font-size: 8px; }
-  .pancit-weekly-output-card .pancit-production-total { font-size: 12px; }
-  .pancit-weekly-output-card .pancit-production-total strong { font-size: 16px; }
-  .pancit-weekly-output-card .pancit-production-row .label,
-  .pancit-weekly-output-card .pancit-production-row .pct { font-size: 9px; }
-  .pancit-weekly-output-card .pancit-production-volumes { font-size: 8px; }
-}
-
-body.present-mode .pancit-weekly-output-card .oil-card-title h3 { font-size: 15px; }
-body.present-mode .pancit-weekly-output-card .oil-card-title > span { font-size: 10px; }
-body.present-mode .pancit-weekly-output-card .pancit-production-total { font-size: 15px; }
-body.present-mode .pancit-weekly-output-card .pancit-production-total strong { font-size: 20px; }
-body.present-mode .pancit-weekly-output-card .pancit-production-row .label,
-body.present-mode .pancit-weekly-output-card .pancit-production-row .pct { font-size: 12px; }
-body.present-mode .pancit-weekly-output-card .pancit-production-volumes { font-size: 10px; }
+.pancit-weekly-output-card .pancit-production-row .label { font-size: 8px; }
+.pancit-weekly-output-card .pancit-production-row .pct { font-size: 9px; }
 
 @media (max-width: 1100px) {
   .pancit-capital-slide .oil-insight-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

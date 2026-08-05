@@ -1654,7 +1654,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (document.getElementById("pancitWeeklyAvailabilityTotal")) document.getElementById("pancitWeeklyAvailabilityTotal").textContent = pancit.weeklyProductionTotal;
       if (document.getElementById("pancitWeeklyAvailabilityRows")) document.getElementById("pancitWeeklyAvailabilityRows").innerHTML = renderProductionRows(pancit.weeklyProductionAvailability);
       if (document.getElementById("pancitWeeklyOutputRows")) document.getElementById("pancitWeeklyOutputRows").innerHTML = renderProductionRows(pancit.weeklyProductionAvailability);
-      if (document.getElementById("pancitWeeklyOutputVolumes")) document.getElementById("pancitWeeklyOutputVolumes").innerHTML = pancit.weeklyProductionAvailability.map(item => `<span>${item.summaryLabel}: ${item.volume}</span>`).join("");
 
       const selectStep = index => {
         document.querySelectorAll("#pancitCycleFlow .cycle-step").forEach((button, buttonIndex) => {
