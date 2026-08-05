@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     jcbs: {
-      title: "JCBS / MEN2 Industrial",
+      title: "JCBS",
       subtitle: "Industrial Business & Engineering",
       desc: "Specialized service division focused on industrial plant services, boiler/extruder operations, heavy machinery uptime, and key partnerships to scale manufacturing infrastructure.",
       bullets: [
@@ -627,7 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (lightbox && lightboxImg && lightboxCaption && closeLightbox) {
     document.addEventListener('click', (e) => {
-      const img = e.target.closest('.img-box img, .upgrade-thumb img, .chart-visualization img, .flex-center img');
+      const img = e.target.closest('.img-box img, .upgrade-thumb img, .chart-visualization img, .flex-center img, .gallery-preview-box img');
       if (img) {
         lightbox.style.display = 'block';
         lightboxImg.src = img.src;
@@ -1570,19 +1570,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (document.getElementById("oilOutputTable")) document.getElementById("oilOutputTable").innerHTML = oil.products.map(item => `<div class="${item.tone}"><span>${item.label}</span><strong>${item.daily}<small>/ day</small></strong><b>${item.weekly}<small>/ week</small></b></div>`).join("");
       if (document.getElementById("oilCashCycle")) document.getElementById("oilCashCycle").innerHTML = oil.cashCycle.map(item => `<div class="${item.tone}"><span>${item.label}</span><i><b style="width:${item.share}%"></b></i><strong>${item.days}d</strong></div>`).join("");
 
-      const detail = document.getElementById("oilCycleDetail");
       const selectStep = index => {
-        const step = oil.cycle[index];
-        if (detail && step) {
-          detail.innerHTML = `<span>Step ${pad(index + 1)}</span><div><strong>${step.label} ${step.sublabel}</strong><p>${step.detail}</p></div>`;
-        }
         document.querySelectorAll("#oilCycleFlow .cycle-step").forEach((button, buttonIndex) => {
           button.classList.toggle("is-selected", buttonIndex === index);
           button.setAttribute("aria-pressed", String(buttonIndex === index));
         });
       };
       if (document.getElementById("oilCycleFlow")) {
-        renderCycle("oilCycleFlow", oil.cycle, { interactive: true, radius: 38 });
+        renderCycle("oilCycleFlow", oil.cycle, { interactive: true, radius: 34 });
         document.querySelectorAll("#oilCycleFlow .cycle-step").forEach(button => button.addEventListener("click", () => selectStep(Number(button.dataset.cycleIndex))));
         selectStep(0);
       }
@@ -1603,19 +1598,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (document.getElementById("pancitMixBar")) document.getElementById("pancitMixBar").innerHTML = pancit.productionMix.map(item => `<i style="--size:${item.size};--tone:${mixColors[item.tone]}"></i>`).join("");
       if (document.getElementById("pancitMixLegend")) document.getElementById("pancitMixLegend").innerHTML = pancit.productionMix.map(item => `<span><i style="--tone:${mixColors[item.tone]}"></i>${item.label} ${item.share}</span>`).join("");
 
-      const detail = document.getElementById("pancitCycleDetail");
       const selectStep = index => {
-        const step = pancit.cycle[index];
-        if (detail && step) {
-          detail.innerHTML = `<span>Step ${pad(index + 1)}</span><div><strong>${step.label} ${step.sublabel}</strong><p>${step.detail}</p></div>`;
-        }
         document.querySelectorAll("#pancitCycleFlow .cycle-step").forEach((button, buttonIndex) => {
           button.classList.toggle("is-selected", buttonIndex === index);
           button.setAttribute("aria-pressed", String(buttonIndex === index));
         });
       };
       if (document.getElementById("pancitCycleFlow")) {
-        renderCycle("pancitCycleFlow", pancit.cycle, { interactive: true, radius: 38 });
+        renderCycle("pancitCycleFlow", pancit.cycle, { interactive: true, radius: 34 });
         document.querySelectorAll("#pancitCycleFlow .cycle-step").forEach(button => button.addEventListener("click", () => selectStep(Number(button.dataset.cycleIndex))));
         selectStep(0);
       }

@@ -2916,13 +2916,13 @@ body.present-mode .edge-click-zone:hover {
 .mfg-status-dot.is-existing { background: #45c486; box-shadow: 0 0 0 4px rgba(69,196,134,.12); }
 .mfg-status-dot.is-incoming { background: #24a9e8; box-shadow: 0 0 0 4px rgba(36,169,232,.12); }
 .mfg-asset-list { flex: 1; min-height: 0; display: grid; grid-auto-rows: minmax(0,1fr); gap: 8px; padding-top: 10px; overflow-y: auto; }
-.mfg-asset-row { min-width: 0; display: grid; grid-template-columns: 46px minmax(0,1fr) auto; align-items: center; gap: 10px; padding: 8px; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; background: rgba(255,255,255,.02); }
-.mfg-asset-row img, .mfg-projected-card img { width: 46px; height: 46px; object-fit: cover; border-radius: 6px; background: rgba(255,255,255,.05); }
+.mfg-asset-row { min-width: 0; display: grid; grid-template-columns: 128px minmax(0,1fr) minmax(110px,auto); align-items: center; gap: 16px; padding: 12px; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; background: rgba(255,255,255,.02); }
+.mfg-asset-row img, .mfg-projected-card img { width: 128px; height: 128px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,.05); }
 .mfg-asset-row h4, .mfg-projected-card h4 { margin: 0; color: var(--ink); font: 700 11px/1.2 var(--heading); }
 .mfg-asset-row p, .mfg-projected-card p { margin: 3px 0 0; color: var(--muted); font-size: 9px; line-height: 1.25; }
 .mfg-asset-row > strong, .mfg-projected-card > strong { color: var(--blue-soft); font-size: 9px; text-align: right; white-space: nowrap; }
-.mfg-projected-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); grid-auto-rows: minmax(0,1fr); gap: 10px; overflow-y: auto; padding-right: 2px; }
-.mfg-projected-card { min-width: 0; display: grid; grid-template-columns: 42px minmax(0,1fr) auto; align-items: center; gap: 9px; padding: 9px; border: 1px solid var(--line); border-radius: 9px; background: rgba(255,255,255,.018); }
+.mfg-projected-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); grid-auto-rows: minmax(152px,1fr); gap: 10px; overflow-y: auto; padding-right: 2px; }
+.mfg-projected-card { min-width: 0; display: grid; grid-template-columns: 128px minmax(0,1fr) minmax(110px,auto); align-items: center; gap: 16px; padding: 12px; border: 1px solid var(--line); border-radius: 9px; background: rgba(255,255,255,.018); }
 .mfg-projected-card > div { min-width: 0; }
 .mfg-projected-card .mfg-category { display: inline-block; margin-bottom: 4px; padding: 2px 5px; border-radius: 4px; font-size: 8px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .mfg-category.is-blowing { color: #c084fc; background: rgba(168,85,247,.12); }
@@ -2944,16 +2944,55 @@ body.present-mode .edge-click-zone:hover {
   .mfg-current-grid { grid-template-columns: 1fr; flex: none; }
   .mfg-asset-section { min-height: 270px; }
   .mfg-projected-grid { grid-template-columns: 1fr; flex: none; grid-auto-rows: auto; }
-  .mfg-projected-card { min-height: 72px; }
+  .mfg-projected-card { min-height: 152px; }
 }
 @media (max-width: 600px) {
   .mfg-capex-panel { padding: 12px; }
-  .mfg-asset-row { grid-template-columns: 38px minmax(0,1fr); }
-  .mfg-asset-row img, .mfg-projected-card img { width: 38px; height: 38px; }
+  .mfg-asset-row { grid-template-columns: 56px minmax(0,1fr); }
+  .mfg-asset-row img, .mfg-projected-card img { width: 56px; height: 56px; }
   .mfg-asset-row > strong, .mfg-projected-card > strong { grid-column: 2; text-align: left; }
-  .mfg-projected-card { grid-template-columns: 38px minmax(0,1fr); }
+  .mfg-projected-card { grid-template-columns: 56px minmax(0,1fr); }
   .mfg-package-card { grid-template-columns: 1fr; }
   .mfg-package-card > strong { grid-column: 1; text-align: left; }
+}
+
+/* Keep the projected equipment inventory visible on desktop without an inner scrollbar. */
+@media (min-width: 1281px) {
+  .mfg-projected-panel .mfg-projected-grid {
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    grid-auto-rows: minmax(0,1fr);
+    gap: 8px;
+    overflow: hidden;
+  }
+  .mfg-projected-panel .mfg-projected-card:not(.mfg-package-card) {
+    grid-template-columns: 128px minmax(0,1fr) minmax(88px,auto);
+    gap: 8px;
+    padding: 8px;
+    min-height: 0;
+  }
+  .mfg-projected-panel .mfg-projected-card:not(.mfg-package-card) img {
+    width: 128px;
+    height: 128px;
+  }
+}
+
+@media (min-width: 821px) and (max-width: 1280px) {
+  .mfg-projected-panel .mfg-projected-grid {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    grid-auto-rows: minmax(0,1fr);
+    gap: 8px;
+    overflow: hidden;
+  }
+  .mfg-projected-panel .mfg-projected-card:not(.mfg-package-card) {
+    grid-template-columns: 96px minmax(0,1fr) minmax(84px,auto);
+    gap: 8px;
+    padding: 8px;
+    min-height: 0;
+  }
+  .mfg-projected-panel .mfg-projected-card:not(.mfg-package-card) img {
+    width: 96px;
+    height: 96px;
+  }
 }
 
 /* Current manufacturing expansion gallery */
@@ -3243,10 +3282,6 @@ body.present-mode .edge-click-zone:hover {
 .oil-cycle-flow .cycle-step.is-selected i { color: white; background: var(--blue); box-shadow: 0 0 0 4px rgba(36,169,232,.14); transform: scale(1.08); }
 .oil-cycle-flow .cycle-step.revenue.is-selected i { background: var(--green); box-shadow: 0 0 0 4px rgba(69,196,134,.14); }
 .oil-cycle-flow .cycle-step:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
-.oil-cycle-detail { min-height: 52px; padding: 8px 10px; display: grid; grid-template-columns: auto 1fr; gap: 9px; align-items: start; border-left: 3px solid var(--blue); background: rgba(36,169,232,.07); }
-.oil-cycle-detail > span { width: 44px; padding: 4px 5px; color: var(--blue); background: rgba(36,169,232,.12); font-size: 8px; font-weight: 700; text-align: center; text-transform: uppercase; }
-.oil-cycle-detail strong { display: block; font: 700 10px var(--heading); }
-.oil-cycle-detail p { margin: 3px 0 0; color: var(--muted); font-size: 8px; line-height: 1.35; }
 .oil-summary-stack { min-height: 0; display: grid; grid-template-rows: auto auto 1fr; gap: 7px; }
 .pancit-capital-slide .oil-summary-stack { grid-template-rows: repeat(3, minmax(0, 1fr)); }
 .oil-summary-card { padding: 9px 11px; }
@@ -4239,10 +4274,6 @@ body.present-mode .edge-click-zone:hover {
 .oil-cycle-flow .cycle-step strong { font-size: 12px; line-height: 1.25; }
 .oil-cycle-flow .cycle-step small { min-height: 22px; font-size: 10px; line-height: 1.2; }
 .oil-cycle-flow .cycle-step span { font-size: 10px; line-height: 1.2; }
-.oil-cycle-detail { min-height: 64px; padding: 10px 12px; gap: 11px; }
-.oil-cycle-detail > span { width: 50px; padding: 5px 6px; font-size: 9px; }
-.oil-cycle-detail strong { font-size: 12px; line-height: 1.25; }
-.oil-cycle-detail p { margin-top: 4px; font-size: 10px; line-height: 1.4; }
 .oil-summary-stack { gap: 9px; }
 .oil-summary-card { padding: 12px 14px; }
 .requirement-card { padding: 15px 16px; }
@@ -4692,3 +4723,255 @@ body.present-mode .edge-click-zone:hover {
 
 .video-container { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: #000; }
 .video-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+
+/* Keep the desktop working-capital slides inside the presentation viewport. */
+@media (min-width: 821px) {
+  .oil-capital-slide {
+    display: grid !important;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    gap: clamp(6px, 0.8vw, 12px);
+    padding-block: clamp(10px, 1.25vw, 20px) !important;
+    overflow-y: hidden !important;
+  }
+
+  .oil-capital-slide .slide-heading {
+    min-height: 0;
+    padding-bottom: clamp(4px, 0.6vw, 8px);
+  }
+
+  .oil-capital-slide .oil-capital-kpis > div {
+    min-height: 0;
+    padding: clamp(5px, 0.6vw, 8px) clamp(7px, 0.8vw, 10px);
+  }
+
+  .oil-capital-slide .oil-capital-dashboard {
+    min-height: 0;
+    height: auto;
+    flex: none;
+  }
+
+  .oil-capital-slide .oil-cycle-panel {
+    min-height: 0;
+    padding: clamp(8px, 0.8vw, 12px);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .oil-capital-slide .oil-cycle-flow {
+    width: min(100%, 320px, calc(100dvh - 500px));
+    height: auto;
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+  }
+
+  .oil-capital-slide .oil-cycle-flow .cycle-track {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%) rotate(-18deg);
+  }
+
+  .oil-capital-slide .oil-cycle-flow .cycle-step {
+    width: min(100px, 25%);
+  }
+
+  .oil-capital-slide .oil-cycle-flow .cycle-step i {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 5px;
+    font-size: 9px;
+  }
+
+  .oil-capital-slide .oil-cycle-flow .cycle-step strong {
+    font-size: 10px;
+    line-height: 1.15;
+  }
+
+  .oil-capital-slide .oil-cycle-flow .cycle-step small,
+  .oil-capital-slide .oil-cycle-flow .cycle-step span {
+    font-size: 9px;
+    line-height: 1.15;
+  }
+
+  .oil-capital-slide .oil-summary-stack {
+    min-height: 0;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .oil-capital-slide .oil-summary-card,
+  .oil-capital-slide .oil-insight-card {
+    min-height: 0;
+    padding: clamp(6px, 0.7vw, 10px);
+    overflow: hidden;
+  }
+
+  .oil-capital-slide .oil-summary-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .oil-capital-slide .oil-summary-card > [id] {
+    flex: 1;
+    display: grid;
+    align-content: space-evenly;
+  }
+
+  .oil-capital-slide .pancit-summary-value {
+    flex: 1;
+    align-content: center;
+  }
+
+  .oil-capital-slide .oil-card-title {
+    min-width: 0;
+    gap: 6px;
+  }
+
+  .oil-capital-slide .oil-card-title h3 {
+    min-width: 0;
+    font-size: 11px;
+    line-height: 1.15;
+  }
+
+  .oil-capital-slide .oil-card-title > span {
+    max-width: 42%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 9px;
+  }
+
+  .oil-capital-slide .requirement-card {
+    padding: 9px 11px;
+  }
+
+  .oil-capital-slide .requirement-card > span,
+  .oil-capital-slide .requirement-card > small,
+  .oil-capital-slide .requirement-card > div span {
+    font-size: 9px;
+    line-height: 1.15;
+  }
+
+  .oil-capital-slide .requirement-card > strong {
+    margin: 3px 0;
+    font-size: 24px;
+  }
+
+  .oil-capital-slide .requirement-card > div {
+    margin-top: 7px;
+    padding-top: 6px;
+  }
+
+  .oil-capital-slide .requirement-card > div b {
+    font-size: 13px;
+  }
+
+  .oil-capital-slide .oil-purchase-row,
+  .oil-capital-slide .oil-product-row {
+    padding: 6px 0;
+    gap: 8px;
+  }
+
+  .oil-capital-slide .oil-purchase-row span,
+  .oil-capital-slide .oil-product-row span,
+  .oil-capital-slide .oil-purchase-row strong,
+  .oil-capital-slide .oil-product-row strong {
+    font-size: 9px;
+    line-height: 1.15;
+  }
+
+  .oil-capital-slide .oil-purchase-row small,
+  .oil-capital-slide .oil-product-row small {
+    font-size: 8px;
+    line-height: 1.15;
+  }
+
+  .oil-capital-slide .oil-card-total {
+    margin-top: 6px;
+    font-size: 9px;
+  }
+
+  .oil-capital-slide .oil-output-table {
+    gap: 3px;
+    margin-top: 4px;
+  }
+
+  .oil-capital-slide .oil-output-table > div {
+    padding: 3px 5px;
+  }
+
+  .oil-capital-slide .oil-output-table span {
+    font-size: 7px;
+  }
+
+  .oil-capital-slide .oil-output-table strong,
+  .oil-capital-slide .oil-output-table b {
+    font-size: 8px;
+  }
+
+  .oil-capital-slide .oil-output-table small {
+    font-size: 6px;
+  }
+
+  .oil-capital-slide .cash-cycle-bars {
+    gap: 2px;
+    margin-top: 4px;
+  }
+
+  .oil-capital-slide .cash-cycle-bars > div {
+    grid-template-columns: 90px minmax(0, 1fr) 22px;
+    gap: 5px;
+  }
+
+  .oil-capital-slide .cash-cycle-bars span,
+  .oil-capital-slide .cash-cycle-bars strong {
+    font-size: 7px;
+    line-height: 1.1;
+  }
+
+  .oil-capital-slide .cash-cycle-bars i {
+    height: 4px;
+  }
+
+  .oil-capital-slide .cash-cycle-card > p {
+    margin-top: 4px;
+    font-size: 7px;
+    line-height: 1.15;
+  }
+
+  .oil-capital-slide .pancit-mix-legend {
+    gap: 4px;
+    margin-top: 6px;
+  }
+
+  .oil-capital-slide .pancit-mix-legend span {
+    font-size: 8px;
+    line-height: 1.15;
+  }
+
+  .oil-capital-slide .pancit-cash-cycle {
+    margin-top: 8px;
+  }
+
+  .oil-capital-slide .pancit-cash-cycle strong {
+    font-size: 16px;
+  }
+
+  .oil-capital-slide .pancit-cash-cycle i {
+    height: 6px;
+  }
+
+  .oil-capital-slide .oil-insight-grid {
+    min-height: 0;
+  }
+
+  .oil-capital-slide .shipment-chart {
+    height: clamp(42px, 6vh, 60px);
+  }
+
+  .oil-capital-slide .shipment-bars {
+    height: clamp(30px, 4.5vh, 42px);
+  }
+}
