@@ -173,7 +173,7 @@
       
       <!-- Gallery Preview Screen -->
       <div id="galleryContainerFrame" class="gallery-preview-box" style="flex-grow: 1; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.5); border: 1.5px solid rgba(14, 165, 233, 0.25); border-radius: 10px; overflow: hidden; position: relative; max-height: 250px; margin-bottom: 12px; transition: border-color 0.4s ease, box-shadow 0.4s ease; box-shadow: 0 0 15px rgba(14, 165, 233, 0.1);">
-        <img id="galleryMainImg" src="Presentation_Assets/Vertex/voss_erp_dashboard.png" alt="VOS ERP Dashboard" style="max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; transition: transform 0.3s ease;">
+        <img id="galleryMainImg" data-src="Presentation_Assets/Vertex/voss_erp_dashboard.png" alt="VOS ERP Dashboard" loading="lazy" decoding="async" style="max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; transition: transform 0.3s ease;">
         <div class="zoom-indicator" style="position: absolute; bottom: 8px; right: 8px; background: rgba(var(--rgb-dark-bg),0.9); border: 1px solid rgba(var(--rgb-glass),0.08); padding: 4px 8px; border-radius: 5px; font-size: 9px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px; pointer-events: none; backdrop-filter: blur(8px);">
           🔍 Click to Zoom
         </div>
@@ -195,24 +195,24 @@
   // Screenshot assets data map
   const techAssets = {
     erp: [
-      { img: 'Presentation_Assets/Vertex/voss_erp_dashboard.png', title: 'VOS ERP - Administration Dashboard', desc: 'Central dashboard tracking consolidated subsidiary books, capex flows, and corporate accounting modules.' },
-      { img: 'Presentation_Assets/Vertex/voss_erp_ledger.png', title: 'VOS ERP - General Ledger Module', desc: 'Automated double-entry general ledger bookkeeping, syncing corporate balance sheets.' },
-      { img: 'Presentation_Assets/Vertex/voss_erp_inventory.png', title: 'VOS ERP - Stock & Inventory Ledger', desc: 'Multi-subsidiary inventory logs showing cross-branch stock counts and warehouse transfers.' }
+      { img: 'Presentation_Assets/Vertex/voss_erp_dashboard.png', thumbnail: 'assets/optimized/technology/voss-erp-dashboard.jpg', title: 'VOS ERP - Administration Dashboard', desc: 'Central dashboard tracking consolidated subsidiary books, capex flows, and corporate accounting modules.' },
+      { img: 'Presentation_Assets/Vertex/voss_erp_ledger.png', thumbnail: 'assets/optimized/technology/voss-erp-ledger.jpg', title: 'VOS ERP - General Ledger Module', desc: 'Automated double-entry general ledger bookkeeping, syncing corporate balance sheets.' },
+      { img: 'Presentation_Assets/Vertex/voss_erp_inventory.png', thumbnail: 'assets/optimized/technology/voss-erp-inventory.jpg', title: 'VOS ERP - Stock & Inventory Ledger', desc: 'Multi-subsidiary inventory logs showing cross-branch stock counts and warehouse transfers.' }
     ],
     dealer: [
-      { img: 'Presentation_Assets/Vertex/vosdealer_main_dashboard.jpg', title: 'Dealerover - Dispatch & Routing', desc: 'Cloud dashboard scheduling equipment deliveries and managing real-time driver dispatch sheets.' },
-      { img: 'Presentation_Assets/Vertex/vosdealer_scm_approval.jpg', title: 'Dealerover - SCM Order Approval', desc: 'Approval flow interface confirming warehouse parts dispatch and pricing tier locks.' },
-      { img: 'Presentation_Assets/Vertex/vosdealer_crm_dashboard.jpg', title: 'Dealerover - Customer Accounts CRM', desc: 'Subscriber billing accounts panel managing monthly recurrence rates and subscription billings.' }
+      { img: 'Presentation_Assets/Vertex/vosdealer_main_dashboard.jpg', thumbnail: 'assets/optimized/technology/vosdealer-main-dashboard.jpg', title: 'Dealerover - Dispatch & Routing', desc: 'Cloud dashboard scheduling equipment deliveries and managing real-time driver dispatch sheets.' },
+      { img: 'Presentation_Assets/Vertex/vosdealer_scm_approval.jpg', thumbnail: 'assets/optimized/technology/vosdealer-scm-approval.jpg', title: 'Dealerover - SCM Order Approval', desc: 'Approval flow interface confirming warehouse parts dispatch and pricing tier locks.' },
+      { img: 'Presentation_Assets/Vertex/vosdealer_crm_dashboard.jpg', thumbnail: 'assets/optimized/technology/vosdealer-crm-dashboard.jpg', title: 'Dealerover - Customer Accounts CRM', desc: 'Subscriber billing accounts panel managing monthly recurrence rates and subscription billings.' }
     ],
     elgu: [
-      { img: 'Presentation_Assets/Vertex/elgu_mapandan_portal.jpg', title: 'eLGU - Mapandan Public Portal', desc: 'Citizen portal for automated building permits, property tax clearing, and business registration applications.' },
-      { img: 'Presentation_Assets/Vertex/elgu_admin_view.jpg', title: 'eLGU - Treasury Administrative Panel', desc: 'Municipal treasury dashboard tracking tax collection invoices and auditing pending business certificates.' },
-      { img: 'Presentation_Assets/Vertex/LGU Digitalization/4bff27fa-338e-439f-a76b-ecbd690e404d.jpg', title: 'eLGU - Digital Services List', desc: 'List of active digital services available on the portal, including building zoning permits, clearances, and local licensing.' }
+      { img: 'Presentation_Assets/Vertex/elgu_mapandan_portal.jpg', thumbnail: 'assets/optimized/technology/elgu-mapandan-portal.jpg', title: 'eLGU - Mapandan Public Portal', desc: 'Citizen portal for automated building permits, property tax clearing, and business registration applications.' },
+      { img: 'Presentation_Assets/Vertex/elgu_admin_view.jpg', thumbnail: 'assets/optimized/technology/elgu-admin-view.jpg', title: 'eLGU - Treasury Administrative Panel', desc: 'Municipal treasury dashboard tracking tax collection invoices and auditing pending business certificates.' },
+      { img: 'Presentation_Assets/Vertex/LGU Digitalization/4bff27fa-338e-439f-a76b-ecbd690e404d.jpg', thumbnail: 'assets/optimized/technology/elgu-services.jpg', title: 'eLGU - Digital Services List', desc: 'List of active digital services available on the portal, including building zoning permits, clearances, and local licensing.' }
     ],
     sfa: [
-      { img: 'Presentation_Assets/Vertex/sfa_site_sales_summary.jpg', title: 'SFA Mobile - Field Agent Summary', desc: 'Mobile sales order dashboard for field agents booking warehouse inventories on the road.' },
-      { img: 'Presentation_Assets/Vertex/sfa_booking_list.jpg', title: 'SFA Mobile - Order Booking Sheet', desc: 'Real-time order checkout sheets displaying booking values and automated shipping schedules.' },
-      { img: 'Presentation_Assets/Vertex/SFA Booking/Screenshot_20260328-102311.jpg', title: 'SFA Mobile - Real-time Checkout', desc: 'Real-time order checkout interface showing product list, quantity selections, and automated shipping schedules.' }
+      { img: 'Presentation_Assets/Vertex/sfa_site_sales_summary.jpg', thumbnail: 'assets/optimized/technology/sfa-site-sales-summary.jpg', title: 'SFA Mobile - Field Agent Summary', desc: 'Mobile sales order dashboard for field agents booking warehouse inventories on the road.' },
+      { img: 'Presentation_Assets/Vertex/sfa_booking_list.jpg', thumbnail: 'assets/optimized/technology/sfa-booking-list.jpg', title: 'SFA Mobile - Order Booking Sheet', desc: 'Real-time order checkout sheets displaying booking values and automated shipping schedules.' },
+      { img: 'Presentation_Assets/Vertex/SFA Booking/Screenshot_20260328-102311.jpg', thumbnail: 'assets/optimized/technology/sfa-checkout.jpg', title: 'SFA Mobile - Real-time Checkout', desc: 'Real-time order checkout interface showing product list, quantity selections, and automated shipping schedules.' }
     ]
   };
 
@@ -239,7 +239,7 @@
       screenshots.forEach((item, index) => {
         const thumb = document.createElement('div');
         thumb.className = `gal-thumb ${index === 0 ? 'active' : ''}`;
-        thumb.innerHTML = `<img src="${item.img}" alt="Thumbnail">`;
+        thumb.innerHTML = `<img src="${item.thumbnail || item.img}" alt="Thumbnail" loading="lazy" decoding="async">`;
         
         thumb.addEventListener('click', () => {
           // Remove active class from other thumbs
@@ -249,7 +249,15 @@
           // Smooth swap image
           mainImg.classList.remove('tech-reveal-active');
           void mainImg.offsetWidth; // force reflow
-          mainImg.src = item.img;
+          const ownerSlide = mainImg.closest('.slide');
+          const shouldLoad = !ownerSlide || ownerSlide.classList.contains('is-active');
+          if (shouldLoad) {
+            mainImg.src = item.img;
+            mainImg.removeAttribute('data-src');
+          } else {
+            mainImg.dataset.src = item.img;
+            mainImg.removeAttribute('src');
+          }
           galleryTitle.textContent = item.title;
           mainImg.classList.add('tech-reveal-active');
         });
@@ -261,7 +269,15 @@
       if (screenshots[0]) {
         mainImg.classList.remove('tech-reveal-active');
         void mainImg.offsetWidth;
-        mainImg.src = screenshots[0].img;
+        const ownerSlide = mainImg.closest('.slide');
+        const shouldLoad = !ownerSlide || ownerSlide.classList.contains('is-active');
+        if (shouldLoad) {
+          mainImg.src = screenshots[0].img;
+          mainImg.removeAttribute('data-src');
+        } else {
+          mainImg.dataset.src = screenshots[0].img;
+          mainImg.removeAttribute('src');
+        }
         galleryTitle.textContent = screenshots[0].title;
         mainImg.classList.add('tech-reveal-active');
       }

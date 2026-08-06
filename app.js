@@ -84,6 +84,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function hydrateDeferredImages(slideIndex, isActive = false) {
+    const slide = slides[slideIndex];
+    if (!slide) return;
+
+    slide.querySelectorAll('img[data-src]').forEach((image, imageIndex) => {
+      if (!image.getAttribute('src')) {
+        image.setAttribute('src', image.dataset.src);
+      }
+      image.loading = isActive ? 'eager' : 'lazy';
+      image.decoding = 'async';
+      if (isActive && imageIndex === 0) {
+        image.setAttribute('fetchpriority', 'high');
+      }
+      image.dataset.loaded = 'true';
+    });
+  }
+
   // Core Slide Transition Function
   function goToSlide(index) {
     if (index < 0 || index >= totalSlides) return;
@@ -165,6 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Trigger Slide-Specific Features (like counting animation)
     triggerSlideScripts(currentSlideIndex);
+
+    // Load the active slide immediately and warm the adjacent slide without
+    // making all presentation images compete during initial page startup.
+    hydrateDeferredImages(currentSlideIndex, true);
+    hydrateDeferredImages(currentSlideIndex - 1);
+    hydrateDeferredImages(currentSlideIndex + 1);
   }
 
   // Button Click Listeners
@@ -631,7 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const img = e.target.closest('.img-box img, .upgrade-thumb img, .chart-visualization img, .flex-center img, .gallery-preview-box img');
       if (img) {
         lightbox.style.display = 'block';
-        lightboxImg.src = img.src;
+        lightboxImg.src = img.dataset.fullSrc || img.src;
         lightboxCaption.textContent = img.alt || img.getAttribute('title') || 'Visual Asset';
       }
     });
@@ -658,33 +681,33 @@ document.addEventListener('DOMContentLoaded', () => {
     erp: {
       metric: "VOS ERP: Active in 5 corporate subsidiaries. Handles over Php 250M of consolidated transactions annually.",
       images: [
-        { src: "Presentation_Assets/Vertex/voss_erp_dashboard.png", title: "VOS ERP Suite - Administration Dashboard", desc: "VOS ERP serves as the enterprise core, providing automated ledgers, capex planning, real-time inventory matching, and payroll integration." },
-        { src: "Presentation_Assets/Vertex/voss_erp_ledger.png", title: "VOS ERP Suite - General Ledger Module", desc: "Automated general ledger tracking and reporting, syncing accounts payable/receivable across holding operations." },
-        { src: "Presentation_Assets/Vertex/voss_erp_inventory.png", title: "VOS ERP Suite - Stock & Inventory Ledger", desc: "Real-time multi-warehouse inventory management, handling SKU tracking and cross-branch stock transfers." }
+        { src: "Presentation_Assets/Vertex/voss_erp_dashboard.png", thumbnail: "assets/optimized/technology/voss-erp-dashboard.jpg", title: "VOS ERP Suite - Administration Dashboard", desc: "VOS ERP serves as the enterprise core, providing automated ledgers, capex planning, real-time inventory matching, and payroll integration." },
+        { src: "Presentation_Assets/Vertex/voss_erp_ledger.png", thumbnail: "assets/optimized/technology/voss-erp-ledger.jpg", title: "VOS ERP Suite - General Ledger Module", desc: "Automated general ledger tracking and reporting, syncing accounts payable/receivable across holding operations." },
+        { src: "Presentation_Assets/Vertex/voss_erp_inventory.png", thumbnail: "assets/optimized/technology/voss-erp-inventory.jpg", title: "VOS ERP Suite - Stock & Inventory Ledger", desc: "Real-time multi-warehouse inventory management, handling SKU tracking and cross-branch stock transfers." }
       ]
     },
     dealer: {
       metric: "Dealerover Sync: Integrated with MEN2 distribution hubs. Over 1,200 active dealer subscribers synced.",
       images: [
-        { src: "Presentation_Assets/Vertex/vosdealer_main_dashboard.jpg", title: "Dealerover - Main SCM Dashboard", desc: "Main portal for Supply Chain Management, coordinating branch replenishment orders and stock logistics." },
-        { src: "Presentation_Assets/Vertex/vosdealer_crm_dashboard.jpg", title: "Dealerover - Customer CRM Portal", desc: "CRM interface for dealer registrations, distributor order tracking, and field client profiling." },
-        { src: "Presentation_Assets/Vertex/vosdealer_scm_approval.jpg", title: "Dealerover - Purchase Order Approvals", desc: "Authorized approval workflow for procurement, stock transfers, and distributor billing." }
+        { src: "Presentation_Assets/Vertex/vosdealer_main_dashboard.jpg", thumbnail: "assets/optimized/technology/vosdealer-main-dashboard.jpg", title: "Dealerover - Main SCM Dashboard", desc: "Main portal for Supply Chain Management, coordinating branch replenishment orders and stock logistics." },
+        { src: "Presentation_Assets/Vertex/vosdealer_crm_dashboard.jpg", thumbnail: "assets/optimized/technology/vosdealer-crm-dashboard.jpg", title: "Dealerover - Customer CRM Portal", desc: "CRM interface for dealer registrations, distributor order tracking, and field client profiling." },
+        { src: "Presentation_Assets/Vertex/vosdealer_scm_approval.jpg", thumbnail: "assets/optimized/technology/vosdealer-scm-approval.jpg", title: "Dealerover - Purchase Order Approvals", desc: "Authorized approval workflow for procurement, stock transfers, and distributor billing." }
       ]
     },
     elgu: {
       metric: "eLGU Municipal Portals: Live in Mapandan, Pangasinan. Decreased business permit processing times by 75%.",
       images: [
-        { src: "Presentation_Assets/Vertex/elgu_mapandan_portal.jpg", title: "eLGU - Municipal Portal Homepage", desc: "Citizen-facing portal for Bayan ng Mapandan, enabling online business permits, tax processing, and local clearances." },
-        { src: "Presentation_Assets/Vertex/elgu_admin_view.jpg", title: "eLGU - Administration Point-of-View", desc: "Backoffice admin system for municipal assessors to review tax filings, business licenses, and civil registry requests." },
-        { src: "Presentation_Assets/Vertex/LGU Digitalization/4bff27fa-338e-439f-a76b-ecbd690e404d.jpg", title: "eLGU - Digital Services List", desc: "List of active digital services available on the portal, including building zoning permits, clearances, and local licensing." }
+        { src: "Presentation_Assets/Vertex/elgu_mapandan_portal.jpg", thumbnail: "assets/optimized/technology/elgu-mapandan-portal.jpg", title: "eLGU - Municipal Portal Homepage", desc: "Citizen-facing portal for Bayan ng Mapandan, enabling online business permits, tax processing, and local clearances." },
+        { src: "Presentation_Assets/Vertex/elgu_admin_view.jpg", thumbnail: "assets/optimized/technology/elgu-admin-view.jpg", title: "eLGU - Administration Point-of-View", desc: "Backoffice admin system for municipal assessors to review tax filings, business licenses, and civil registry requests." },
+        { src: "Presentation_Assets/Vertex/LGU Digitalization/4bff27fa-338e-439f-a76b-ecbd690e404d.jpg", thumbnail: "assets/optimized/technology/elgu-services.jpg", title: "eLGU - Digital Services List", desc: "List of active digital services available on the portal, including building zoning permits, clearances, and local licensing." }
       ]
     },
     sfa: {
       metric: "SFA Mobile: Deployed to 80+ field logistics agents. Automates booking, inventory audits, and daily cash collection reconciliation.",
       images: [
-        { src: "Presentation_Assets/Vertex/sfa_booking_list.jpg", title: "SFA - Mobile Distributor Booking App", desc: "Mobile Sales Force Automation app used by field agents to log distributor orders and track dealer inventory in real-time." },
-        { src: "Presentation_Assets/Vertex/sfa_site_sales_summary.jpg", title: "SFA - Site Sales Performance Summary", desc: "Mobile summary dashboard showing daily sales achievements, customer logs, and delivery booking statuses." },
-        { src: "Presentation_Assets/Vertex/SFA Booking/Screenshot_20260328-102311.jpg", title: "SFA Mobile - Real-time Checkout", desc: "Real-time order checkout interface showing product list, quantity selections, and automated shipping schedules." }
+        { src: "Presentation_Assets/Vertex/sfa_booking_list.jpg", thumbnail: "assets/optimized/technology/sfa-booking-list.jpg", title: "SFA - Mobile Distributor Booking App", desc: "Mobile Sales Force Automation app used by field agents to log distributor orders and track dealer inventory in real-time." },
+        { src: "Presentation_Assets/Vertex/sfa_site_sales_summary.jpg", thumbnail: "assets/optimized/technology/sfa-site-sales-summary.jpg", title: "SFA - Site Sales Performance Summary", desc: "Mobile summary dashboard showing daily sales achievements, customer logs, and delivery booking statuses." },
+        { src: "Presentation_Assets/Vertex/SFA Booking/Screenshot_20260328-102311.jpg", thumbnail: "assets/optimized/technology/sfa-checkout.jpg", title: "SFA Mobile - Real-time Checkout", desc: "Real-time order checkout interface showing product list, quantity selections, and automated shipping schedules." }
       ]
     }
   };
@@ -707,8 +730,10 @@ document.addEventListener('DOMContentLoaded', () => {
         thumb.setAttribute('data-desc', imgData.desc);
         
         const img = document.createElement('img');
-        img.src = imgData.src;
+        img.src = imgData.thumbnail || imgData.src;
         img.alt = imgData.title;
+        img.loading = "lazy";
+        img.decoding = "async";
         
         thumb.appendChild(img);
         galleryThumbsRow.appendChild(thumb);
@@ -723,7 +748,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setMainImage(src, title, desc) {
     if (galleryMainImg) {
-      galleryMainImg.src = src;
+      const ownerSlide = galleryMainImg.closest('.slide');
+      const shouldLoad = !ownerSlide || ownerSlide.classList.contains('is-active');
+      if (shouldLoad) {
+        galleryMainImg.src = src;
+        galleryMainImg.removeAttribute('data-src');
+      } else {
+        galleryMainImg.dataset.src = src;
+        galleryMainImg.removeAttribute('src');
+      }
       galleryMainImg.alt = title;
       galleryMainImg.setAttribute('title', desc);
     }
@@ -1272,7 +1305,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.type = "button";
         button.className = "expansion-photo";
         button.setAttribute("aria-label", `Expand ${photo.title}`);
-        image.src = photo.src;
+        image.dataset.src = photo.thumbnail || photo.src;
         image.alt = photo.title;
         image.loading = "lazy";
         image.decoding = "async";

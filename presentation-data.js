@@ -7,38 +7,38 @@ window.OSavePresentation = {
       id: "oil",
       title: "Oil",
       photos: [
-        { src: "assets/manufacturing-status/oil-refilling-1.jpg", title: "Oil Refilling 1" },
-        { src: "assets/manufacturing-status/oil-machines.jpg", title: "Oil Machines" },
-        { src: "assets/manufacturing-status/oil-tank.jpg", title: "Oil Tank" },
-        { src: "assets/manufacturing-status/oil-label-heating.jpg", title: "Label Heating Area" },
-        { src: "assets/manufacturing-status/oil-machine-1.jpg", title: "Oil Machine 1" },
-        { src: "assets/manufacturing-status/oil-machine-2.jpg", title: "Oil Machine 2" },
-        { src: "assets/manufacturing-status/oil-machine-3.jpg", title: "Oil Machine 3" }
+        { src: "assets/manufacturing-status/oil-refilling-1.jpg", thumbnail: "assets/manufacturing-status/optimized/oil-refilling-1.jpg", title: "Oil Refilling 1" },
+        { src: "assets/manufacturing-status/oil-machines.jpg", thumbnail: "assets/manufacturing-status/optimized/oil-machines.jpg", title: "Oil Machines" },
+        { src: "assets/manufacturing-status/oil-tank.jpg", thumbnail: "assets/manufacturing-status/optimized/oil-tank.jpg", title: "Oil Tank" },
+        { src: "assets/manufacturing-status/oil-label-heating.jpg", thumbnail: "assets/manufacturing-status/optimized/oil-label-heating.jpg", title: "Label Heating Area" },
+        { src: "assets/manufacturing-status/oil-machine-1.jpg", thumbnail: "assets/manufacturing-status/optimized/oil-machine-1.jpg", title: "Oil Machine 1" },
+        { src: "assets/manufacturing-status/oil-machine-2.jpg", thumbnail: "assets/manufacturing-status/optimized/oil-machine-2.jpg", title: "Oil Machine 2" },
+        { src: "assets/manufacturing-status/oil-machine-3.jpg", thumbnail: "assets/manufacturing-status/optimized/oil-machine-3.jpg", title: "Oil Machine 3" }
       ]
     },
     {
       id: "pancit",
       title: "Pancit",
       photos: [
-        { src: "assets/manufacturing-status/pancit-1.jpg", title: "Pancit Expansion 1" },
-        { src: "assets/manufacturing-status/pancit-2.jpg", title: "Pancit Expansion 2" },
-        { src: "assets/manufacturing-status/pancit-3.jpg", title: "Pancit Expansion 3" },
-        { src: "assets/manufacturing-status/pancit-machine-5.jpg", title: "Pancit Packaging Machines" },
-        { src: "assets/manufacturing-status/pancit-machine-6.jpg", title: "Pancit Mixing Line" }
+        { src: "assets/manufacturing-status/pancit-1.jpg", thumbnail: "assets/manufacturing-status/optimized/pancit-1.jpg", title: "Pancit Expansion 1" },
+        { src: "assets/manufacturing-status/pancit-2.jpg", thumbnail: "assets/manufacturing-status/optimized/pancit-2.jpg", title: "Pancit Expansion 2" },
+        { src: "assets/manufacturing-status/pancit-3.jpg", thumbnail: "assets/manufacturing-status/optimized/pancit-3.jpg", title: "Pancit Expansion 3" },
+        { src: "assets/manufacturing-status/pancit-machine-5.jpg", thumbnail: "assets/manufacturing-status/optimized/pancit-machine-5.jpg", title: "Pancit Packaging Machines" },
+        { src: "assets/manufacturing-status/pancit-machine-6.jpg", thumbnail: "assets/manufacturing-status/optimized/pancit-machine-6.jpg", title: "Pancit Mixing Line" }
       ]
     },
     {
       id: "logistics",
       title: "Logistics & Warehouse",
       photos: [
-        { src: "assets/manufacturing-status/logistics-cold-storage-1.jpg", title: "Cold Storage 1" },
-        { src: "assets/manufacturing-status/logistics-cold-storage-2.jpg", title: "Cold Storage 2" },
-        { src: "assets/manufacturing-status/logistics-construction-6.jpg", title: "Cold Storage Construction 6" },
-        { src: "assets/manufacturing-status/logistics-construction-3.jpg", title: "Cold Storage Construction 3" },
-        { src: "assets/manufacturing-status/logistics-construction-4.jpg", title: "Cold Storage Construction 4" },
-        { src: "assets/manufacturing-status/logistics-driveway-1.jpg", title: "Facility Driveway 1" },
-        { src: "assets/manufacturing-status/logistics-driveway-2.jpg", title: "Facility Driveway 2" },
-        { src: "assets/manufacturing-status/logistics-driveway-3.jpg", title: "Facility Driveway 3" }
+        { src: "assets/manufacturing-status/logistics-cold-storage-1.jpg", thumbnail: "assets/manufacturing-status/optimized/logistics-cold-storage-1.jpg", title: "Cold Storage 1" },
+        { src: "assets/manufacturing-status/logistics-cold-storage-2.jpg", thumbnail: "assets/manufacturing-status/optimized/logistics-cold-storage-2.jpg", title: "Cold Storage 2" },
+        { src: "assets/manufacturing-status/logistics-construction-6.jpg", thumbnail: "assets/manufacturing-status/optimized/logistics-construction-6.jpg", title: "Cold Storage Construction 6" },
+        { src: "assets/manufacturing-status/logistics-construction-3.jpg", thumbnail: "assets/manufacturing-status/optimized/logistics-construction-3.jpg", title: "Cold Storage Construction 3" },
+        { src: "assets/manufacturing-status/logistics-construction-4.jpg", thumbnail: "assets/manufacturing-status/optimized/logistics-construction-4.jpg", title: "Cold Storage Construction 4" },
+        { src: "assets/manufacturing-status/logistics-driveway-1.jpg", thumbnail: "assets/manufacturing-status/optimized/logistics-driveway-1.jpg", title: "Facility Driveway 1" },
+        { src: "assets/manufacturing-status/logistics-driveway-2.jpg", thumbnail: "assets/manufacturing-status/optimized/logistics-driveway-2.jpg", title: "Facility Driveway 2" },
+        { src: "assets/manufacturing-status/logistics-driveway-3.jpg", thumbnail: "assets/manufacturing-status/optimized/logistics-driveway-3.jpg", title: "Facility Driveway 3" }
       ]
     }
   ],
