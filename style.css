@@ -449,6 +449,84 @@ body {
 .badge.green { background: var(--green-gradient); }
 .badge.purple { background: var(--purple-gradient); }
 
+/* ROOCH vision and mission slide */
+.rooch-vision-mission-slide .slide-header {
+  margin-bottom: 20px;
+}
+
+.rooch-vision-mission-slide .slide-header h2 {
+  font-size: clamp(26px, 2.4vw, 32px);
+  line-height: 1.15;
+}
+
+.rooch-vision-mission-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.rooch-vision-mission-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  flex: 1 1 0;
+  min-height: 0;
+  padding: 24px 28px;
+  border-radius: 12px;
+}
+
+.rooch-vision-mission-row h3 {
+  margin: 0;
+  font-size: clamp(24px, 1.85vw, 26px);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.rooch-vision-mission-row p {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(20px, 1.55vw, 22px);
+  line-height: 1.55;
+}
+
+.rooch-vision-row {
+  border: 1.5px solid rgba(14, 165, 233, 0.28);
+  background: rgba(14, 165, 233, 0.025);
+}
+
+.rooch-vision-row h3 {
+  color: var(--color-sky);
+}
+
+.rooch-mission-row {
+  border: 1.5px solid rgba(168, 85, 247, 0.28);
+  background: rgba(168, 85, 247, 0.025);
+}
+
+.rooch-mission-row h3 {
+  color: #c084fc;
+}
+
+@media (max-width: 700px) {
+  .rooch-vision-mission-slide {
+    padding: 18px 20px !important;
+  }
+
+  .rooch-vision-mission-row {
+    gap: 10px;
+    flex: 0 0 auto;
+    padding: 18px 20px;
+  }
+
+  .rooch-vision-mission-row p {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+}
+
 /* Typography and helper classes */
 .gradient-text {
   background: var(--primary-gradient);
