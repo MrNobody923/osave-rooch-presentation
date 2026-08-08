@@ -60,8 +60,8 @@ window.OSavePresentation = {
     { group: "Infra & Energy", title: "La Sallette Solar", subtitle: "Hanvin - Campus solar offset", image: "assets/achievements/la-sallette-source.png", caption: "La Sallette Solar: High-throughput school campus solar deployment completed, delivering off-grid power offsets for academic classrooms." },
     { group: "Infra & Energy", title: "Men2 Dagupan Warehouse", subtitle: "Hanvin - Logistics facility shell", image: "assets/achievements/men2-warehouse-source.png", caption: "MEN2 Warehouse Manila: Completed logistics facility shell design and structural foundation engineering in Metro Manila." },
     { group: "Infra & Energy", title: "Men2 Dagupan Offices", subtitle: "Hanvin - Office interior & facade", image: "assets/achievements/men2-offices-source.png", caption: "MEN2 Offices Manila: Delivered completed corporate office interior fit-out and modern exterior building facade." },
-    { group: "FMCG & Logistics", title: "Foodsphere Frozen", subtitle: "MEN2 Dagupan - La Union", image: "assets/achievements/foodsphere-source.jpg", caption: "MEN2 Dagupan: Successfully engaged with Foodsphere Inc. (Frozen) in La Union, securing storage and distribution operations." },
-    { group: "FMCG & Logistics", title: "Dealerover Opening", subtitle: "MEN2 Dagupan - San Carlos", image: "assets/achievements/dealerover-opening-source.jpg", caption: "MEN2 Dagupan (Dealerover Launch): First live opening of Dealerover digital middleware tracking routines in San Carlos, syncing logistics." },
+    { group: "FMCG & Logistics", title: "Foodsphere Frozen", subtitle: "MEN2 Dagupan", image: "assets/achievements/foodsphere-source.jpg", caption: "MEN2 Dagupan: Successfully engaged with Foodsphere Inc. (Frozen) in La Union, securing storage and distribution operations." },
+    { group: "FMCG & Logistics", title: "Dealerover Opening", subtitle: "MEN2 Dagupan", image: "assets/achievements/dealerover-opening-source.jpg", caption: "MEN2 Dagupan (Dealerover Launch): First live opening of Dealerover digital middleware tracking routines in San Carlos, syncing logistics." },
     { group: "FMCG & Logistics", title: "Kopiko Engagement", subtitle: "MEN2 Dagupan - Pangasinan", image: null, caption: "MEN2 Dagupan: Successfully engaged with ECOSSENTIALS FOODS CORP (KOPIKO) in Pangasinan to handle regional food trade distribution." },
     { group: "FMCG & Logistics", title: "Federated Onboarding", subtitle: "MEN2 Manila - Commenced Mar 2026", image: null, caption: "MEN2 Manila (Federated): Commenced regional distribution partnership in March 2026, targeting a potential volume of 6M." },
     { group: "FMCG & Logistics", title: "Fitrite Integration", subtitle: "MEN2 Manila - Commenced Mar 2026", image: null, caption: "MEN2 Manila (Fitrite): Commenced brand distribution in March 2026, with an estimated potential volume of 3-5M." },
@@ -79,7 +79,7 @@ window.OSavePresentation = {
     { region: "Taytay, Rizal", code: "TAY", cases: 840, color: "#059669" }
   ],
   pancitDemand: [
-    { product: "Bihon", size: "454g", cases: 40000, pieces: 960000, isSample: false, color: "#0284c7" },
+    { product: "Bihon", size: "454g", cases: 40000, pieces: 800000, isSample: false, color: "#0284c7" },
     { product: "Canton", size: "300g", cases: 20000, pieces: 360000, isSample: false, color: "#d97706" },
     { product: "Canton", size: "100g", cases: 1000, pieces: 8000, isSample: true, color: "#059669" }
   ],
@@ -94,8 +94,7 @@ window.OSavePresentation = {
   ],
   pancitCurrentCapacity: [
     { label: "Bihon", size: "454G", shift: "Day Shift", cases: 280, pieces: 5600, monthly: 201600 },
-    { label: "Canton", size: "300G", shift: "Day Shift", cases: 130, pieces: 2340, monthly: 84240 },
-    { label: "Canton", size: "100G", shift: "Day Shift", cases: 100, pieces: 800, monthly: 28800 }
+    { label: "Canton", size: "300G", shift: "Day Shift", cases: 130, pieces: 2340, monthly: 84240 }
   ],
   oilWorkingCapital: {
     headline: { value: "PHP 201.07M", label: "3-month working capital" },

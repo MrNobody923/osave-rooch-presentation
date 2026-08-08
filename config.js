@@ -1,8 +1,8 @@
 window.PresentationConfig = {
   slides: [
     { file: "slide_01_title.html", title: "Rooch Holdings Inc.", section: "ROOCH HOLDING INC. / TITLE SLIDE" },
-    { file: "slide_02_history.html", title: "From Challenges to Opportunities", section: "ROOCH HOLDING INC. / COMPANY HISTORY" },
-    { file: "slide_01b_vision_mission.html", title: "Vision & Mission", section: "ROOCH HOLDINGS INC. / VISION & MISSION" },
+    { file: "slide_02_history.html", title: "Origin", section: "ROOCH HOLDING INC. / COMPANY HISTORY" },
+    { file: "slide_01b_vision_mission.html", title: "Tagline, Vision, & Mission", section: "ROOCH HOLDINGS INC. / FOOD. TECHNOLOGY. ENERGY. DELIVERED." },
     { file: "slide_02_structure.html", title: "Corporate Structure", section: "ROOCH HOLDING INC. / CORPORATE STRUCTURE" },
     { file: "slide_04_achievements.html", title: "Key Achievements", section: "ROOCH HOLDING INC. / KEY ACHIEVEMENTS" },
     { file: "slide_10_logistics.html", title: "MEN2 & Dealerover", section: "MEN2 DISTRIBUTION / LOGISTICS & PLATFORM SYNC" },
