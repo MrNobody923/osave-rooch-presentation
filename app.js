@@ -1388,8 +1388,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </tr>`;
 
       if (document.getElementById("pancitDemandChart")) {
+        const colWidth = data.pancitDemand.length <= 2 ? "38%" : "30%";
         document.getElementById("pancitDemandChart").innerHTML = `
-          <div class="demand-bars" style="display: flex; align-items: flex-end; justify-content: space-between; height: 210px; padding-bottom: 10px; border-bottom: 1px solid rgba(var(--rgb-glass),0.08); position: relative; margin-bottom: 12px;">
+          <div class="demand-bars" style="display: flex; align-items: flex-end; justify-content: space-around; height: 210px; padding-bottom: 10px; border-bottom: 1px solid rgba(var(--rgb-glass),0.08); position: relative; margin-bottom: 12px;">
             <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 0;"></div>
             <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 25%;"></div>
             <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 50%;"></div>
@@ -1397,14 +1398,14 @@ document.addEventListener('DOMContentLoaded', () => {
             ${data.pancitDemand.map((item) => {
               const barHeight = Math.max(item.isSample ? 1 : (item.cases / maxPancitDemand) * 100, 1);
               return `
-                <div class="demand-bar-col ${item.isSample ? "is-sample" : ""}" role="img" aria-label="${item.product} ${item.size}: ${formatNumber(item.cases)} cases per month" style="display: flex; flex-direction: column; align-items: center; width: 30%; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: ${item.color};">
+                <div class="demand-bar-col ${item.isSample ? "is-sample" : ""}" role="img" aria-label="${item.product} ${item.size}: ${formatNumber(item.cases)} cases per month" style="display: flex; flex-direction: column; align-items: center; width: ${colWidth}; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: ${item.color};">
                   <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">${item.cases >= 1000 ? `${Math.round(item.cases / 1000)}K` : formatNumber(item.cases)}</span>
                   <div class="d-bar" data-height="${barHeight}%" style="width: 100%; height: 0%; background: linear-gradient(180deg, ${hexToRgba(item.color, 0.85)} 0%, ${hexToRgba(item.color, 0.1)} 100%); border-top: 3px solid ${item.color}; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px ${hexToRgba(item.color, 0.35)};"></div>
                   <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">${item.product} ${item.size}</span>
                 </div>`;
             }).join("")}
           </div>
-          <div style="font-size: 9.5px; color: var(--text-muted); text-align: left; line-height: 1.4;"><strong>Legend:</strong> Bihon 454g: 40K | Canton 300g: 20K | Canton 100g: 1K sample</div>`;
+          <div style="font-size: 9.5px; color: var(--text-muted); text-align: left; line-height: 1.4;"><strong>Legend:</strong> ${data.pancitDemand.map((item) => `${item.product} ${item.size}: ${item.cases >= 1000 ? `${Math.round(item.cases / 1000)}K` : formatNumber(item.cases)}${item.isSample ? " sample" : ""}`).join(" | ")}</div>`;
       }
 
       const recurringPiecesEl = document.getElementById("pancitRecurringPieces");
@@ -1703,6 +1704,158 @@ document.addEventListener('DOMContentLoaded', () => {
         selectStep(0);
       }
     }
+
+    // Capacity Expansion Real-Time Dynamic Computation
+    window.updateCapacityOutputs = function() {
+      const hoursEl = document.getElementById('capHoursSlider');
+      const daysEl = document.getElementById('capDaysSlider');
+      const bihonDaysEl = document.getElementById('capBihonDaysSlider');
+      const cantonDaysEl = document.getElementById('capCantonDaysSlider');
+
+      if (!hoursEl || !daysEl || !bihonDaysEl || !cantonDaysEl) return;
+
+      const hours = parseInt(hoursEl.value, 10) || 24;
+      const monthlyLimit = parseInt(daysEl.value, 10) || 30;
+
+      bihonDaysEl.max = monthlyLimit;
+      cantonDaysEl.max = monthlyLimit;
+
+      if (parseInt(bihonDaysEl.value, 10) > monthlyLimit) {
+        bihonDaysEl.value = monthlyLimit;
+      }
+      if (parseInt(cantonDaysEl.value, 10) > monthlyLimit) {
+        cantonDaysEl.value = monthlyLimit;
+      }
+
+      const bihonDays = parseInt(bihonDaysEl.value, 10) || 0;
+      const cantonDays = parseInt(cantonDaysEl.value, 10) || 0;
+
+      const setTxt = (id, txt) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = txt;
+      };
+
+      setTxt('capHoursVal', hours + ' hrs');
+      setTxt('capDaysVal', monthlyLimit + ' days');
+      setTxt('capBihonDaysVal', bihonDays + 'd');
+      setTxt('capCantonDaysVal', cantonDays + 'd');
+      
+      const maxAllocated = Math.max(bihonDays, cantonDays);
+      setTxt('capScheduleBadge', maxAllocated + '/' + monthlyLimit + 'd');
+
+      const hoursRatio = hours / 24;
+      const bihonRatio = bihonDays / 30;
+      const cantonRatio = cantonDays / 30;
+
+      // Bihon
+      const bihonCases = Math.round(560 * hoursRatio);
+      const bihonDayBuffer = Math.round(13440 * hoursRatio * bihonRatio);
+      const bihonDayMonthly = Math.round(403200 * hoursRatio * bihonRatio);
+
+      const bihonNightCases = Math.round(560 * hoursRatio);
+      const bihonNightBuffer = Math.round(13440 * hoursRatio * bihonRatio);
+      const bihonNightMonthly = Math.round(403200 * hoursRatio * bihonRatio);
+      const bihonTotalOutput = bihonDayMonthly + bihonNightMonthly;
+
+      // Canton
+      const cantonCases = Math.round(300 * hoursRatio);
+      const cantonDayBuffer = Math.round(6480 * hoursRatio * cantonRatio);
+      const cantonDayMonthly = Math.round(194400 * hoursRatio * cantonRatio);
+
+      const cantonNightCases = Math.round(300 * hoursRatio);
+      const cantonNightBuffer = Math.round(6480 * hoursRatio * cantonRatio);
+      const cantonNightMonthly = Math.round(194400 * hoursRatio * cantonRatio);
+      const cantonTotalOutput = cantonDayMonthly + cantonNightMonthly;
+
+      // Totals
+      const totalCases = bihonCases * 2 + cantonCases * 2;
+      const totalBuffer = bihonDayBuffer + bihonNightBuffer + cantonDayBuffer + cantonNightBuffer;
+      const totalMonthlyOutput = bihonTotalOutput + cantonTotalOutput;
+
+      // Update Table
+      setTxt('capBihonDayCases', bihonCases.toLocaleString());
+      setTxt('capBihonDayBuffer', bihonDayBuffer.toLocaleString());
+      setTxt('capBihonDayMonthly', bihonDayMonthly.toLocaleString());
+      setTxt('capBihonNightCases', bihonNightCases.toLocaleString());
+      setTxt('capBihonNightBuffer', bihonNightBuffer.toLocaleString());
+      setTxt('capBihonNightMonthly', bihonNightMonthly.toLocaleString());
+
+      setTxt('capCantonDayCases', cantonCases.toLocaleString());
+      setTxt('capCantonDayBuffer', cantonDayBuffer.toLocaleString());
+      setTxt('capCantonDayMonthly', cantonDayMonthly.toLocaleString());
+      setTxt('capCantonNightCases', cantonNightCases.toLocaleString());
+      setTxt('capCantonNightBuffer', cantonNightBuffer.toLocaleString());
+      setTxt('capCantonNightMonthly', cantonNightMonthly.toLocaleString());
+
+      setTxt('capTotalCases', totalCases.toLocaleString());
+      setTxt('capTotalBuffer', totalBuffer.toLocaleString());
+      setTxt('capTotalMonthly', totalMonthlyOutput.toLocaleString());
+
+      // Update KPIs
+      setTxt('capKpiExpandedMonthly', totalMonthlyOutput.toLocaleString());
+      
+      const currentBaseOutput = 285840;
+      const productionIncrease = totalMonthlyOutput - currentBaseOutput;
+      const increaseEl = document.getElementById('capKpiIncrease');
+      if (increaseEl) {
+        increaseEl.textContent = (productionIncrease >= 0 ? '+' : '') + productionIncrease.toLocaleString();
+      }
+
+      const growthPercent = Math.round(((totalMonthlyOutput - currentBaseOutput) / currentBaseOutput) * 100);
+      const growthEl = document.getElementById('capKpiGrowth');
+      if (growthEl) {
+        growthEl.textContent = (growthPercent >= 0 ? '+' : '') + growthPercent + '%';
+      }
+      const badgeEl = document.getElementById('capKpiGrowthBadge');
+      if (badgeEl) {
+        if (growthPercent >= 0) {
+          badgeEl.textContent = '↑ Increase';
+          badgeEl.style.background = 'rgba(34, 197, 94, 0.2)';
+          badgeEl.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+          badgeEl.style.color = '#4ade80';
+        } else {
+          badgeEl.textContent = '↓ Decrease';
+          badgeEl.style.background = 'rgba(239, 68, 68, 0.2)';
+          badgeEl.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+          badgeEl.style.color = '#f87171';
+        }
+      }
+
+      // Update Bottom Bar Chart
+      const maxVal = Math.max(1200000, totalMonthlyOutput);
+      
+      const bihonExpCol = document.getElementById('capChartBihonExpCol') || (document.getElementById('capChartBihonExpBar') && document.getElementById('capChartBihonExpBar').parentElement);
+      const bihonExpVal = document.getElementById('capChartBihonExpVal');
+      if (bihonExpCol) {
+        const pct = Math.min(100, Math.max(0, (bihonTotalOutput / maxVal) * 100));
+        bihonExpCol.style.height = pct + '%';
+      }
+      if (bihonExpVal) {
+        bihonExpVal.textContent = Math.round(bihonTotalOutput / 1000) + 'K';
+      }
+
+      const cantonExpCol = document.getElementById('capChartCantonExpCol') || (document.getElementById('capChartCantonExpBar') && document.getElementById('capChartCantonExpBar').parentElement);
+      const cantonExpVal = document.getElementById('capChartCantonExpVal');
+      if (cantonExpCol) {
+        const pct = Math.min(100, Math.max(0, (cantonTotalOutput / maxVal) * 100));
+        cantonExpCol.style.height = pct + '%';
+      }
+      if (cantonExpVal) {
+        cantonExpVal.textContent = Math.round(cantonTotalOutput / 1000) + 'K';
+      }
+
+      const totalExpCol = document.getElementById('capChartTotalExpCol') || (document.getElementById('capChartTotalExpBar') && document.getElementById('capChartTotalExpBar').parentElement);
+      const totalExpVal = document.getElementById('capChartTotalExpVal');
+      if (totalExpCol) {
+        const pct = Math.min(100, Math.max(0, (totalMonthlyOutput / maxVal) * 100));
+        totalExpCol.style.height = pct + '%';
+      }
+      if (totalExpVal) {
+        totalExpVal.textContent = Math.round(totalMonthlyOutput / 1000).toLocaleString() + 'K';
+      }
+    };
+
+    window.updateCapacityOutputs();
   }
 
 

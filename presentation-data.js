@@ -80,8 +80,7 @@ window.OSavePresentation = {
   ],
   pancitDemand: [
     { product: "Bihon", size: "454g", cases: 40000, pieces: 800000, isSample: false, color: "#0284c7" },
-    { product: "Canton", size: "300g", cases: 20000, pieces: 360000, isSample: false, color: "#d97706" },
-    { product: "Canton", size: "100g", cases: 1000, pieces: 8000, isSample: true, color: "#059669" }
+    { product: "Canton", size: "300g", cases: 20000, pieces: 360000, isSample: false, color: "#d97706" }
   ],
   pancitWarehouses: [
     ["PLR", "Plaridel", 8572], ["PMP", "Pampanga", 8572], ["NAG", "Naga & Kawit", 8572],
