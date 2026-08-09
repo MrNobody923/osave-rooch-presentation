@@ -1822,7 +1822,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Update Bottom Bar Chart
-      const maxVal = Math.max(1200000, totalMonthlyOutput);
+      const maxVal = Math.max(1350000, totalMonthlyOutput);
       
       const bihonExpCol = document.getElementById('capChartBihonExpCol') || (document.getElementById('capChartBihonExpBar') && document.getElementById('capChartBihonExpBar').parentElement);
       const bihonExpVal = document.getElementById('capChartBihonExpVal');
