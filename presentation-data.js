@@ -104,6 +104,22 @@ window.OSavePresentation = {
       ["Weekly units", "331,007", "available for O!Save"],
       ["Fixed DSO", "45 days", "from goods receipt"]
     ],
+    weeklyProductionTotal: "331.0K Units",
+    productionMixTotal: "1.419M Units",
+    materials: [
+      { label: "Palm Oil", value: "6 cont/wk (USD 168.99K)", note: "24 cont/mo (USD 675.96K)" },
+      { label: "Canola Oil", value: "3 cont/wk (USD 101.26K)", note: "12 cont/mo (USD 405.06K)" }
+    ],
+    productionMix: [
+      { label: "Palm Oil 350mL", tone: "blue", share: "51.6%", volume: "732.6K Units", summaryLabel: "Palm Oil 350mL" },
+      { label: "Palm Oil 1L", tone: "sky", share: "26.2%", volume: "371.8K Units", summaryLabel: "Palm Oil 1L" },
+      { label: "Canola Oil 1L", tone: "green", share: "22.2%", volume: "314.1K Units", summaryLabel: "Canola Oil 1L" }
+    ],
+    weeklyProductionAvailability: [
+      { label: "Palm Oil 350mL", tone: "blue", share: "51.6%", pieces: "170.9K Units", summaryLabel: "Palm Oil 350mL" },
+      { label: "Palm Oil 1L", tone: "sky", share: "26.2%", pieces: "86.8K Units", summaryLabel: "Palm Oil 1L" },
+      { label: "Canola Oil 1L", tone: "green", share: "22.2%", pieces: "73.3K Units", summaryLabel: "Canola Oil 1L" }
+    ],
     purchases: [
       { label: "Palm oil", containers: "6 containers / week", weekly: "USD 168,990", monthly: "24 containers / month" },
       { label: "Canola oil", containers: "3 containers / week", weekly: "USD 101,265", monthly: "12 containers / month" }
@@ -137,26 +153,26 @@ window.OSavePresentation = {
     ]
   },
   pancitWorkingCapital: {
-    headline: { value: "PHP 24.5M", label: "operating cash requirement" },
+    headline: { value: "PHP 25.3M", label: "operating cash requirement" },
     kpis: [
-      ["Quarterly materials", "PHP 73.5M", "post-expansion"],
-      ["Monthly materials", "PHP 24.5M", "materials cadence"],
-      ["Weekly output", "335.9K Pcs", "post-expansion"],
+      ["Quarterly materials", "PHP 76.0M", "post-expansion"],
+      ["Monthly materials", "PHP 25.3M", "materials cadence"],
+      ["Weekly output", "278.9K Pcs", "post-expansion"],
       ["Collection", "45 days", "cash conversion"]
     ],
     materials: [
-      { label: "Quarterly materials", value: "PHP 73.5M", note: "post-expansion" },
-      { label: "Monthly materials", value: "PHP 24.5M", note: "materials cadence" }
+      { label: "Quarterly materials", value: "PHP 76.0M", note: "post-expansion" },
+      { label: "Monthly materials", value: "PHP 25.3M", note: "materials cadence" }
     ],
     productionMixTotal: "1.195M Pcs",
     productionMix: [
-      { label: "Bihon (454g)", summaryLabel: "Bihon", share: "67.5%", size: "67.5%", volume: "806.4K", tone: "blue" },
-      { label: "Canton (300g)", summaryLabel: "Canton 300g", share: "32.5%", size: "32.5%", volume: "388.8K", tone: "green" }
+      { label: "Bihon (454g)", summaryLabel: "Bihon (454g)", share: "67.5%", size: "67.5%", volume: "806.4K", tone: "green" },
+      { label: "Canton (300g)", summaryLabel: "Canton (300g)", share: "32.5%", size: "32.5%", volume: "388.8K", tone: "blue" }
     ],
-    weeklyProductionTotal: "298.8K Pcs",
+    weeklyProductionTotal: "278.9K Pcs",
     weeklyProductionAvailability: [
-      { label: "Bihon", share: "67.5%", pieces: "201.6K", tone: "green" },
-      { label: "Canton 300g", share: "32.5%", pieces: "97.2K", tone: "blue" }
+      { label: "Bihon (454g)", share: "67.5%", pieces: "188.2K Pcs", tone: "green" },
+      { label: "Canton (300g)", share: "32.5%", pieces: "90.7K Pcs", tone: "blue" }
     ],
     cycle: [
       { label: "Bulk", sublabel: "Purchase", duration: "Quarterly", phase: "procurement", detail: "Quarterly materials purchasing starts the post-expansion Pancit operating cycle." },

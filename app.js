@@ -1662,8 +1662,25 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById("oilCapitalHeadline").textContent = oil.headline.value;
       if (document.getElementById("oilCapitalHeadlineLabel")) document.getElementById("oilCapitalHeadlineLabel").textContent = oil.headline.label;
       if (document.getElementById("oilCapitalKpis")) document.getElementById("oilCapitalKpis").innerHTML = oil.kpis.map(([label, value, note]) => `<div><span>${label}</span><strong>${value}</strong><small>${note}</small></div>`).join("");
+      if (document.getElementById("oilCollectionDays")) document.getElementById("oilCollectionDays").textContent = oil.kpis[4][1];
       if (document.getElementById("oilPurchaseRows")) document.getElementById("oilPurchaseRows").innerHTML = oil.purchases.map(item => `<div class="oil-purchase-row"><span>${item.label}<small>${item.monthly}</small></span><strong>${item.containers}<small>${item.weekly}</small></strong></div>`).join("");
       if (document.getElementById("oilProductRows")) document.getElementById("oilProductRows").innerHTML = oil.products.map(item => `<div class="oil-product-row ${item.tone}"><span>${item.label}<small>${item.daily} / day</small></span><strong>${item.weekly}<small>units / week</small></strong></div>`).join("");
+      if (oil.materials && document.getElementById("oilMaterialsRows")) document.getElementById("oilMaterialsRows").innerHTML = oil.materials.map(item => `<div class="oil-purchase-row"><span>${item.label}<small>${item.note}</small></span><strong>${item.value}</strong></div>`).join("");
+      if (oil.materials && document.getElementById("oilMaterialsInsight")) document.getElementById("oilMaterialsInsight").innerHTML = oil.materials.map(item => `<div class="blue"><span>${item.label}</span><strong>${item.value}</strong></div>`).join("");
+
+      const renderProductionRows = (items, valueKey = "share") => items.map(item => `<div class="pancit-production-row"><span class="label">${item.label}</span><div class="track"><i class="${item.tone}" style="width:${item.share}"></i></div><span class="value">${item[valueKey]}</span></div>`).join("");
+      if (oil.productionMix) {
+        if (document.getElementById("oilWeeklyOutput")) document.getElementById("oilWeeklyOutput").textContent = oil.weeklyProductionTotal;
+        if (document.getElementById("oilMonthlyOutput")) document.getElementById("oilMonthlyOutput").textContent = oil.productionMixTotal;
+        if (document.getElementById("oilMonthlyOutputRows")) document.getElementById("oilMonthlyOutputRows").innerHTML = renderProductionRows(oil.productionMix, "volume");
+        if (document.getElementById("oilMonthlyMixTotal")) document.getElementById("oilMonthlyMixTotal").textContent = oil.productionMixTotal;
+        if (document.getElementById("oilMonthlyMixRows")) document.getElementById("oilMonthlyMixRows").innerHTML = renderProductionRows(oil.productionMix);
+        if (document.getElementById("oilMonthlyMixVolumes")) document.getElementById("oilMonthlyMixVolumes").innerHTML = oil.productionMix.map(item => `<span>${item.summaryLabel}: ${item.volume}</span>`).join("");
+        if (document.getElementById("oilWeeklyAvailabilityTotal")) document.getElementById("oilWeeklyAvailabilityTotal").textContent = oil.weeklyProductionTotal;
+        if (document.getElementById("oilWeeklyAvailabilityRows")) document.getElementById("oilWeeklyAvailabilityRows").innerHTML = renderProductionRows(oil.weeklyProductionAvailability);
+        if (document.getElementById("oilWeeklyOutputRows")) document.getElementById("oilWeeklyOutputRows").innerHTML = renderProductionRows(oil.weeklyProductionAvailability, "pieces");
+      }
+
       if (document.getElementById("oilShipmentChart")) {
         const shipmentPeak = Math.max(1, ...oil.shipments.flatMap(([, palm, canola]) => [palm, canola]));
         document.getElementById("oilShipmentChart").innerHTML = oil.shipments.map(([week, palm, canola]) => `<div class="shipment-week"><div class="shipment-bars"><i class="palm" style="--bar:${palm};--bar-ratio:${palm / shipmentPeak}"></i><i class="canola" style="--bar:${canola};--bar-ratio:${canola / shipmentPeak}"></i></div><span>${week}</span><strong>${palm + canola}</strong></div>`).join("");
@@ -1696,6 +1713,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (document.getElementById("pancitMaterialsInsight")) document.getElementById("pancitMaterialsInsight").innerHTML = pancit.materials.map(item => `<div class="blue"><span>${item.label}</span><strong>${item.value}</strong></div>`).join("");
 
       const renderProductionRows = (items, valueKey = "share") => items.map(item => `<div class="pancit-production-row"><span class="label">${item.label}</span><div class="track"><i class="${item.tone}" style="width:${item.share}"></i></div><span class="value">${item[valueKey]}</span></div>`).join("");
+      if (document.getElementById("pancitMonthlyOutput")) document.getElementById("pancitMonthlyOutput").textContent = pancit.productionMixTotal;
+      if (document.getElementById("pancitMonthlyOutputRows")) document.getElementById("pancitMonthlyOutputRows").innerHTML = renderProductionRows(pancit.productionMix, "volume");
       if (document.getElementById("pancitMonthlyMixTotal")) document.getElementById("pancitMonthlyMixTotal").textContent = pancit.productionMixTotal;
       if (document.getElementById("pancitMonthlyMixRows")) document.getElementById("pancitMonthlyMixRows").innerHTML = renderProductionRows(pancit.productionMix);
       if (document.getElementById("pancitMonthlyMixVolumes")) document.getElementById("pancitMonthlyMixVolumes").innerHTML = pancit.productionMix.map(item => `<span>${item.summaryLabel}: ${item.volume}</span>`).join("");
