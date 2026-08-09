@@ -1453,7 +1453,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const daysInput = document.getElementById("oil-input-days");
         if (!hoursInput || !daysInput) return;
 
-        const hours = parseInt(hoursInput.value);
+        const hours = Math.min(16, Math.max(6, parseInt(hoursInput.value) || 16));
         const totalDays = parseInt(daysInput.value);
 
         if (document.getElementById("oil-val-hours")) document.getElementById("oil-val-hours").textContent = `${hours} hours`;
@@ -1496,13 +1496,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const calcs = OIL_KEYS.map((k, i) => computeScenario(OIL_RATES[k], skuDays[i], hours, totalDays));
         const compactNumber = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
 
+        const OIL_DEMAND_VALUES = { p350: 394416, p1L: 200160, c1L: 240192 };
         const BASELINE_PCT = 30;
         calcs.forEach((calc, i) => {
           const p = OIL_KEYS[i];
           const currBar = document.getElementById(`oil-bar-${p}-curr`);
           const expBar = document.getElementById(`oil-bar-${p}-exp`);
+          const demandBar = document.getElementById(`oil-bar-${p}-demand`);
           const currValue = document.getElementById(`oil-value-${p}-curr`);
           const expValue = document.getElementById(`oil-value-${p}-exp`);
+          const demandValue = document.getElementById(`oil-value-${p}-demand`);
           if (currBar) {
             currBar.style.height = `${BASELINE_PCT}%`;
             currBar.setAttribute("aria-label", `Current allocated output: ${calc.currActualMixed.toLocaleString()} bottles`);
@@ -1513,8 +1516,16 @@ document.addEventListener('DOMContentLoaded', () => {
             expBar.style.height = `${expPct}%`;
             expBar.setAttribute("aria-label", `Expanded allocated output: ${calc.expActualMixed.toLocaleString()} bottles`);
           }
+          if (demandBar) {
+            const demVal = OIL_DEMAND_VALUES[p] || 0;
+            const ratio = calc.currActualMixed > 0 ? demVal / calc.currActualMixed : 1;
+            const demandPct = Math.max(BASELINE_PCT, Math.min(100, BASELINE_PCT * ratio));
+            demandBar.style.height = `${demandPct}%`;
+            demandBar.setAttribute("aria-label", `O!Save Demand: ${demVal.toLocaleString()} bottles`);
+          }
           if (currValue) currValue.textContent = compactNumber.format(calc.currActualMixed);
           if (expValue) expValue.textContent = compactNumber.format(calc.expActualMixed);
+          if (demandValue) demandValue.textContent = compactNumber.format(OIL_DEMAND_VALUES[p]);
         });
 
         const c = calcs[selectedIndex];
@@ -1737,7 +1748,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!hoursEl || !daysEl || !bihonDaysEl || !cantonDaysEl) return;
 
-      const hours = parseInt(hoursEl.value, 10) || 24;
+      const hours = parseInt(hoursEl.value, 10) || 16;
       const monthlyLimit = parseInt(daysEl.value, 10) || 30;
 
       bihonDaysEl.max = monthlyLimit;
@@ -1766,7 +1777,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const maxAllocated = Math.max(bihonDays, cantonDays);
       setTxt('capScheduleBadge', maxAllocated + '/' + monthlyLimit + 'd');
 
-      const hoursRatio = hours / 24;
+      const hoursRatio = hours / 16;
       const bihonRatio = bihonDays / 30;
       const cantonRatio = cantonDays / 30;
 
@@ -1939,7 +1950,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Update Bottom Bar Chart
-      const maxVal = Math.max(1350000, totalMonthlyOutput);
+      const maxVal = 1000000;
       
       const bihonExpCol = document.getElementById('capChartBihonExpCol') || (document.getElementById('capChartBihonExpBar') && document.getElementById('capChartBihonExpBar').parentElement);
       const bihonExpVal = document.getElementById('capChartBihonExpVal');
