@@ -7008,13 +7008,13 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   border-radius: 50% !important;
   overflow: hidden !important;
   position: absolute;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25) 0%, rgba(14, 165, 233, 0.15) 45%, rgba(15, 23, 42, 0.4) 100%) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 2px solid rgba(125, 211, 252, 0.7) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.08) 35%, rgba(14, 165, 233, 0.15) 70%, rgba(255, 255, 255, 0.35) 100%) !important;
+  backdrop-filter: blur(16px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(200%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.85) !important;
   outline: none !important;
-  box-shadow: 0 0 30px rgba(14, 165, 233, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.5) !important;
-  animation: glassOrbPulse 3s infinite ease-in-out !important;
+  box-shadow: 0 0 30px rgba(14, 165, 233, 0.5), inset 0 0 16px rgba(255, 255, 255, 0.8), inset 0 0 30px rgba(14, 165, 233, 0.35) !important;
+  animation: glassMirrorPulse 3s infinite ease-in-out !important;
   padding: 6px !important;
 }
 
@@ -7024,7 +7024,7 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.6)) brightness(1.1) !important;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 15px rgba(56, 189, 248, 0.6)) brightness(1.15) !important;
   transform-style: preserve-3d !important;
   transform-origin: center center !important;
   animation: rooch3DHorizontalSpin 8s linear infinite !important;
@@ -7039,18 +7039,18 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   }
 }
 
-@keyframes glassOrbPulse {
+@keyframes glassMirrorPulse {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(14, 165, 233, 0.4), inset 0 0 12px rgba(255, 255, 255, 0.4);
-    border-color: rgba(14, 165, 233, 0.6);
+    box-shadow: 0 0 25px rgba(14, 165, 233, 0.4), inset 0 0 14px rgba(255, 255, 255, 0.7);
+    border-color: rgba(255, 255, 255, 0.75);
   }
   50% {
-    box-shadow: 0 0 45px rgba(56, 189, 248, 0.95), 0 0 65px rgba(255, 255, 255, 0.6), inset 0 0 25px rgba(255, 255, 255, 0.8);
-    border-color: rgba(125, 211, 252, 0.95);
+    box-shadow: 0 0 50px rgba(56, 189, 248, 0.9), 0 0 70px rgba(255, 255, 255, 0.7), inset 0 0 25px rgba(255, 255, 255, 0.95);
+    border-color: rgba(255, 255, 255, 1);
   }
 }
 
-/* Glass Surface Curved Specular Glare (Top Curve Reflection) */
+/* Glass Mirror Specular Curved Reflection Dome (Top Highlight) */
 #threeSunOverlay::before, .flowchart-root-orb::before {
   content: '' !important;
   display: block !important;
@@ -7059,49 +7059,49 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   left: 0 !important;
   right: 0 !important;
   height: 55% !important;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.3) 45%, transparent 70%) !important;
   border-radius: 50% 50% 0 0 !important;
   pointer-events: none !important;
   z-index: 9 !important;
 }
 
-/* Sweeping Light Reflection Beam (Top to Bottom Glass Reflection) */
+/* Glass Mirror Reflecting Light Beam (Top-to-Bottom Mirror Reflection Sweep) */
 #threeSunOverlay::after, .flowchart-root-orb::after {
   content: '' !important;
   display: block !important;
   position: absolute !important;
-  top: -60% !important;
+  top: -70% !important;
   left: -20% !important;
   width: 140% !important;
-  height: 60% !important;
+  height: 70% !important;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.4) 35%,
-    rgba(255, 255, 255, 0.95) 50%,
-    rgba(255, 255, 255, 0.4) 65%,
+    rgba(255, 255, 255, 0.3) 25%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.3) 75%,
     transparent 100%
   ) !important;
-  transform: translateY(-120%) rotate(-15deg) !important;
-  animation: glassReflectTopToBottom 3.2s infinite ease-in-out !important;
+  transform: translateY(-130%) rotate(-20deg) !important;
+  animation: glassMirrorLightReflection 3.2s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
   pointer-events: none !important;
   z-index: 10 !important;
 }
 
-@keyframes glassReflectTopToBottom {
+@keyframes glassMirrorLightReflection {
   0% {
-    transform: translateY(-120%) rotate(-15deg);
+    transform: translateY(-130%) rotate(-20deg);
     opacity: 0;
   }
-  20% {
-    opacity: 0.9;
+  15% {
+    opacity: 1;
   }
-  70% {
-    transform: translateY(220%) rotate(-15deg);
-    opacity: 0.9;
+  65% {
+    transform: translateY(220%) rotate(-20deg);
+    opacity: 1;
   }
   100% {
-    transform: translateY(220%) rotate(-15deg);
+    transform: translateY(220%) rotate(-20deg);
     opacity: 0;
   }
 }
