@@ -3,7 +3,7 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  
+
   // DOM Element Selectors
   const slidesContainer = document.getElementById('slidesContainer');
   let slides = document.querySelectorAll('.slide');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSidebarNavigation();
 
   const themeToggleBtn = document.getElementById('themeToggleBtn');
-  
+
   let isLightMode = localStorage.getItem('theme') === 'light';
   if (isLightMode) {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  
+
   // Slide names for section indicator heading mapping
   const slideSections = window.PresentationConfig ? window.PresentationConfig.slides.map(s => s.section) : [];
 
@@ -104,13 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Core Slide Transition Function
   function goToSlide(index) {
     if (index < 0 || index >= totalSlides) return;
-    
+
     currentSlideIndex = index;
     isTitleSlideActive = (index === 0);
-    
+
     // Slide container translateX offset translation
     slidesContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-    
+
     // Update Slide active classes (for animations trigger & video play/pause control)
     slides.forEach((slide, idx) => {
       const videos = slide.querySelectorAll('video');
@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!pdfViewerModal || !pdfViewerIframe) return;
       pdfViewerTitle.textContent = name;
       pdfViewerIframe.src = path;
-      
+
       const fallback = document.getElementById('pdfFallbackLink');
       if (fallback) fallback.href = path;
 
@@ -580,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
       animateCounter('solarSavings', 267800, 'Php ', '');
       animateCounter('evSavings', 737365, 'Php ', '');
       animateCounter('totalSales', 120, 'Php ', 'M');
-      
+
       // Trigger bar chart entry animations
       const bars = document.querySelectorAll('.bar');
       bars.forEach((bar) => {
@@ -591,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
       });
     }
-    
+
     // O!Save Capital Request
     if (window.PresentationConfig.slides[slideIndex].file.includes("slide_06_capital")) {
       animateCounter('totalRequestVal', 215000000, 'Php ', '');
@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateNumber(currentTime) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
+
       // Easing out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
       const currentValue = Math.floor(start + (targetValue - start) * easeProgress);
@@ -728,13 +728,13 @@ document.addEventListener('DOMContentLoaded', () => {
         thumb.setAttribute('data-img', imgData.src);
         thumb.setAttribute('data-title', imgData.title);
         thumb.setAttribute('data-desc', imgData.desc);
-        
+
         const img = document.createElement('img');
         img.src = imgData.thumbnail || imgData.src;
         img.alt = imgData.title;
         img.loading = "lazy";
         img.decoding = "async";
-        
+
         thumb.appendChild(img);
         galleryThumbsRow.appendChild(thumb);
       });
@@ -842,7 +842,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function exitPresentMode() {
     document.body.classList.remove('present-mode');
     if (document.fullscreenElement) {
-      document.exitFullscreen().catch(err => {});
+      document.exitFullscreen().catch(err => { });
     }
   }
 
@@ -873,7 +873,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' || e.key === 'Esc') {
       exitPresentMode();
-      
+
       // Reset Slide 11 Prezi
       const container11 = document.getElementById('preziContainer');
       const exit11 = document.getElementById('exitPreziBtn');
@@ -881,14 +881,14 @@ document.addEventListener('DOMContentLoaded', () => {
         container11.classList.remove('active-vertex');
         exit11.style.display = 'none';
       }
-      
+
     }
   });
 
   /* ==========================================================================
      Three.js 3D WebGL Solar System (Title Slide)
      ========================================================================== */
-  
+
   function initThreeSolarSystem() {
     if (typeof THREE === 'undefined') {
       setTimeout(initThreeSolarSystem, 100);
@@ -924,11 +924,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Central Sun (glowing mesh sphere - segment count reduced for performance)
     const sunGeometry = new THREE.SphereGeometry(1.1, 16, 16);
-    const sunMaterial = new THREE.MeshBasicMaterial({ 
-      color: 0x0ea5e9, 
-      wireframe: true, 
-      transparent: true, 
-      opacity: 0.18 
+    const sunMaterial = new THREE.MeshBasicMaterial({
+      color: 0x0ea5e9,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.18
     });
     const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
     solarGroup.add(sunMesh);
@@ -953,7 +953,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const line = new THREE.Line(geometry, material);
       solarGroup.add(line);
     }
-    
+
     create3DOrbit(3.2); // Inner orbit
     create3DOrbit(5.0); // Middle orbit
     create3DOrbit(6.8); // Outer orbit
@@ -961,10 +961,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Planets configuration (radius, speed, size, color, HTML label id)
     const planets = [
       { id: 'lbl-hanvins', radius: 3.2, angle: 0, speed: 0.007, size: 0.22, color: 0x0ea5e9 },
-      
+
       { id: 'lbl-vertex', radius: 5.0, angle: 0, speed: 0.005, size: 0.22, color: 0x38bdf8 },
       { id: 'lbl-men2solutions', radius: 5.0, angle: Math.PI, speed: 0.005, size: 0.20, color: 0xc084fc },
-      
+
       { id: 'lbl-men2parent', radius: 6.8, angle: 0, speed: 0.0035, size: 0.24, color: 0xf97316 },
       { id: 'lbl-mamapina', radius: 6.8, angle: Math.PI, speed: 0.0035, size: 0.18, color: 0x7dd3fc }
     ];
@@ -972,7 +972,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create 3D spheres for each planet (invisible coordinates anchors)
     planets.forEach(p => {
       const geometry = new THREE.SphereGeometry(p.size, 8, 8);
-      const material = new THREE.MeshBasicMaterial({ 
+      const material = new THREE.MeshBasicMaterial({
         transparent: true,
         opacity: 0.0
       });
@@ -994,7 +994,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Moon 3D meshes (invisible anchors)
     moons.forEach(m => {
       const geometry = new THREE.SphereGeometry(m.size, 8, 8);
-      const material = new THREE.MeshBasicMaterial({ 
+      const material = new THREE.MeshBasicMaterial({
         transparent: true,
         opacity: 0.0
       });
@@ -1044,7 +1044,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!element) return;
       const pos = new THREE.Vector3();
       mesh.getWorldPosition(pos);
-      
+
       // Calculate depth scaling factor based on Z (goes from -radius to +radius)
       let scale = 1.0;
       let zIndex = 10; // Sun sits at zIndex 10
@@ -1053,12 +1053,12 @@ document.addEventListener('DOMContentLoaded', () => {
         scale = 0.7 + depthFactor * 0.45; // scale from 0.7x to 1.15x
         zIndex = pos.z > 0 ? 20 : 8; // Bring in front of Sun (zIndex 20) or behind Sun (zIndex 8)
       }
-      
+
       pos.project(camera);
-      
+
       const x = (pos.x * 0.5 + 0.5) * width;
       const y = (pos.y * -0.5 + 0.5) * height;
-      
+
       element.style.left = `${x}px`;
       element.style.top = `${y}px`;
       element.style.transform = `translate(-50%, -50%) scale(${scale})`;
@@ -1374,7 +1374,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const pancitRecurringCases = pancitRecurringDemand.reduce((total, item) => total + item.cases, 0);
       const pancitRecurringPieces = pancitRecurringDemand.reduce((total, item) => total + item.pieces, 0);
       const maxPancitDemand = Math.max(...pancitRecurringDemand.map((item) => item.cases));
-      
+
       document.getElementById("pancitDemandTable").innerHTML = `${data.pancitDemand.map((item) => `
         <tr class="${item.isSample ? "pancit-sample-row" : ""}" style="border-bottom: 1px solid rgba(var(--rgb-glass),0.03);">
           <td style="padding: 10px 8px; color: var(--text-primary); font-weight: 600;"><span class="pancit-product-name">${item.product}</span><small>${item.size}</small>${item.isSample ? "<em>Initial sampling</em>" : ""}</td>
@@ -1396,14 +1396,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 50%;"></div>
             <div style="position: absolute; width: 100%; border-top: 1px dashed rgba(var(--rgb-glass),0.05); top: 75%;"></div>
             ${data.pancitDemand.map((item) => {
-              const barHeight = Math.max(item.isSample ? 1 : (item.cases / maxPancitDemand) * 100, 1);
-              return `
+          const barHeight = Math.max(item.isSample ? 1 : (item.cases / maxPancitDemand) * 100, 1);
+          return `
                 <div class="demand-bar-col ${item.isSample ? "is-sample" : ""}" role="img" aria-label="${item.product} ${item.size}: ${formatNumber(item.cases)} cases per month" style="display: flex; flex-direction: column; align-items: center; width: ${colWidth}; height: 100%; justify-content: flex-end; position: relative; z-index: 2; color: ${item.color};">
                   <span class="bar-val-popup" style="font-size: 9px; font-weight: 800; margin-bottom: 8px;">${item.cases >= 1000 ? `${Math.round(item.cases / 1000)}K` : formatNumber(item.cases)}</span>
                   <div class="d-bar" data-height="${barHeight}%" style="width: 100%; height: 0%; background: linear-gradient(180deg, ${hexToRgba(item.color, 0.85)} 0%, ${hexToRgba(item.color, 0.1)} 100%); border-top: 3px solid ${item.color}; border-radius: 6px 6px 0 0; box-shadow: 0 0 15px ${hexToRgba(item.color, 0.35)};"></div>
                   <span class="bar-lbl-under" style="font-size: 9px; color: var(--text-secondary); margin-top: 10px; font-weight: 700;">${item.product} ${item.size}</span>
                 </div>`;
-            }).join("")}
+        }).join("")}
           </div>
           <div style="font-size: 9.5px; color: var(--text-muted); text-align: left; line-height: 1.4;"><strong>Legend:</strong> ${data.pancitDemand.map((item) => `${item.product} ${item.size}: ${item.cases >= 1000 ? `${Math.round(item.cases / 1000)}K` : formatNumber(item.cases)}${item.isSample ? " sample" : ""}`).join(" | ")}</div>`;
       }
@@ -1422,10 +1422,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (data.oilCapacity && document.getElementById("oilCapacityTabs")) {
       const OIL_RATES = {
         p350: { fixedCurrDay: 12600, fixedCurrNight: 7200, expHourly: 7200 },
-        p1L:  { fixedCurrDay: 4800,  fixedCurrNight: 3600, expHourly: 1800 },
-        c1L:  { fixedCurrDay: 4800,  fixedCurrNight: 3600, expHourly: 1800 }
+        p1L: { fixedCurrDay: 4800, fixedCurrNight: 3600, expHourly: 1800 },
+        c1L: { fixedCurrDay: 4800, fixedCurrNight: 3600, expHourly: 1800 }
       };
-      const OIL_KEYS = ["p350","p1L","c1L"];
+      const OIL_KEYS = ["p350", "p1L", "c1L"];
       const capacityTabs = [];
       let selectedOilIndex = 0;
 
@@ -1474,14 +1474,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mixC1L) mixC1L.max = totalDays;
 
         let d_p350 = mixP350 ? parseInt(mixP350.value) : 10;
-        let d_p1L  = mixP1L ? parseInt(mixP1L.value) : 10;
-        let d_c1L  = mixC1L ? parseInt(mixC1L.value) : 10;
+        let d_p1L = mixP1L ? parseInt(mixP1L.value) : 10;
+        let d_c1L = mixC1L ? parseInt(mixC1L.value) : 10;
         let sum = d_p350 + d_p1L + d_c1L;
         const warning = document.getElementById("oil-mix-warning");
         if (sum !== totalDays) {
           if (warning) warning.hidden = false;
-          if (sum === 0) { d_p350 = Math.floor(totalDays/3); d_p1L = Math.floor(totalDays/3); d_c1L = totalDays - d_p350 - d_p1L; }
-          else { const f = totalDays / sum; d_p350 = Math.round(d_p350*f); d_p1L = Math.round(d_p1L*f); d_c1L = totalDays - d_p350 - d_p1L; }
+          if (sum === 0) { d_p350 = Math.floor(totalDays / 3); d_p1L = Math.floor(totalDays / 3); d_c1L = totalDays - d_p350 - d_p1L; }
+          else { const f = totalDays / sum; d_p350 = Math.round(d_p350 * f); d_p1L = Math.round(d_p1L * f); d_c1L = totalDays - d_p350 - d_p1L; }
           if (mixP350) mixP350.value = d_p350;
           if (mixP1L) mixP1L.value = d_p1L;
           if (mixC1L) mixC1L.value = d_c1L;
@@ -1580,7 +1580,7 @@ document.addEventListener('DOMContentLoaded', () => {
         capacityTabs.push(button);
       });
 
-      ["oil-input-hours","oil-input-days","oil-mix-p350","oil-mix-p1L","oil-mix-c1L"].forEach(id => {
+      ["oil-input-hours", "oil-input-days", "oil-mix-p350", "oil-mix-p1L", "oil-mix-c1L"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener("input", () => updateOilSimulation(selectedOilIndex));
       });
@@ -1718,7 +1718,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.activePancitFilter = 'all';
 
-    window.setPancitFilter = function(filter) {
+    window.setPancitFilter = function (filter) {
       window.activePancitFilter = filter;
       document.querySelectorAll('.pancit-filter-btn').forEach(btn => {
         const isSelected = btn.getAttribute('data-filter') === filter;
@@ -1740,7 +1740,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Capacity Expansion Real-Time Dynamic Computation
-    window.updateCapacityOutputs = function() {
+    window.updateCapacityOutputs = function () {
       const hoursEl = document.getElementById('capHoursSlider');
       const daysEl = document.getElementById('capDaysSlider');
       const bihonDaysEl = document.getElementById('capBihonDaysSlider');
@@ -1773,7 +1773,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTxt('capDaysVal', monthlyLimit + ' days');
       setTxt('capBihonDaysVal', bihonDays + 'd');
       setTxt('capCantonDaysVal', cantonDays + 'd');
-      
+
       const maxAllocated = Math.max(bihonDays, cantonDays);
       setTxt('capScheduleBadge', maxAllocated + '/' + monthlyLimit + 'd');
 
@@ -1836,7 +1836,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       setTxt('capKpiExpandedMonthly', activeExpandedMonthly.toLocaleString());
-      
+
       const productionIncrease = activeExpandedMonthly - activeBaseCurrent;
       const increaseEl = document.getElementById('capKpiIncrease');
       if (increaseEl) {
@@ -1951,7 +1951,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Update Bottom Bar Chart
       const maxVal = 1000000;
-      
+
       const bihonExpCol = document.getElementById('capChartBihonExpCol') || (document.getElementById('capChartBihonExpBar') && document.getElementById('capChartBihonExpBar').parentElement);
       const bihonExpVal = document.getElementById('capChartBihonExpVal');
       if (bihonExpCol) {
@@ -1989,7 +1989,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function loadSlides() {
     slides = document.querySelectorAll('.slide');
-    
+
     // If slides are not pre-inlined in HTML, fetch them dynamically
     if (slides.length === 0) {
       let htmlContent = "";
@@ -1997,7 +1997,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const resp = await fetch(`project_data.json?t=${Date.now()}`, { cache: 'no-store' });
         if (resp.ok) projectData = await resp.json();
-      } catch(e) {}
+      } catch (e) { }
 
       for (const name of slideNamesToLoad) {
         try {
@@ -2034,9 +2034,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     slides = document.querySelectorAll('.slide');
-    
+
     totalSlides = slides.length;
-    
+
     checkWidth();
     initSidebarNavigation();
     initProgressDots();
