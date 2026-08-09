@@ -141,7 +141,7 @@ window.OSavePresentation = {
     kpis: [
       ["Quarterly materials", "PHP 73.5M", "post-expansion"],
       ["Monthly materials", "PHP 24.5M", "materials cadence"],
-      ["Weekly output", "335.9K Pcs", "post-expansion"],
+      ["Weekly output", "278.9K Pcs", "post-expansion"],
       ["Collection", "45 days", "cash conversion"]
     ],
     materials: [
@@ -153,10 +153,16 @@ window.OSavePresentation = {
       { label: "Bihon (454g)", summaryLabel: "Bihon", share: "67.5%", size: "67.5%", volume: "806.4K", tone: "blue" },
       { label: "Canton (300g)", summaryLabel: "Canton 300g", share: "32.5%", size: "32.5%", volume: "388.8K", tone: "green" }
     ],
-    weeklyProductionTotal: "298.8K Pcs",
+    weeklyProductionTotal: "278.9K Pcs",
     weeklyProductionAvailability: [
-      { label: "Bihon", share: "67.5%", pieces: "201.6K", tone: "green" },
-      { label: "Canton 300g", share: "32.5%", pieces: "97.2K", tone: "blue" }
+      { label: "Bihon (454g)", share: "67.5%", pieces: "188.16K Pcs", tone: "green" },
+      { label: "Canton (300g)", share: "32.5%", pieces: "90.72K Pcs", tone: "blue" }
+    ],
+    inventoryMonitoring: [
+      { product: "Bihon", size: "454G", shift: "DAY SHIFT", cases: "560.00", buffer: "672.00", pcs: "13,440.00", weekly: "94,080.00", monthly: "403,200.00" },
+      { product: "Bihon", size: "454G", shift: "NIGHT SHIFT", cases: "560.00", buffer: "672.00", pcs: "13,440.00", weekly: "94,080.00", monthly: "403,200.00" },
+      { product: "Canton", size: "300G", shift: "DAY SHIFT", cases: "300.00", buffer: "360.00", pcs: "6,480.00", weekly: "45,360.00", monthly: "194,400.00" },
+      { product: "Canton", size: "300G", shift: "NIGHT SHIFT", cases: "300.00", buffer: "360.00", pcs: "6,480.00", weekly: "45,360.00", monthly: "194,400.00" }
     ],
     cycle: [
       { label: "Bulk", sublabel: "Purchase", duration: "Quarterly", phase: "procurement", detail: "Quarterly materials purchasing starts the post-expansion Pancit operating cycle." },
