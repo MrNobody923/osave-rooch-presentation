@@ -7032,69 +7032,104 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   }
 }
 
+#threeSunOverlay, .flowchart-root-orb, .interactive-flow-card[data-company="rooch"] {
+  perspective: 1200px !important;
+}
+
 #threeSunOverlay img, .flowchart-root-orb img {
   position: relative !important;
   z-index: 2 !important;
   transform-style: preserve-3d !important;
   transform-origin: center center !important;
-  animation: rooch3DThickHorizontalSpin 8s linear infinite, logoLightIllumination 3s ease-in-out infinite !important;
+  animation: rooch3DThickHorizontalSpin 8s linear infinite !important;
 }
 
 @keyframes rooch3DThickHorizontalSpin {
   0% {
-    transform: rotateY(0deg) scaleX(1);
+    transform: rotateX(8deg) rotateY(0deg) scaleX(1);
     filter: 
-      drop-shadow(-3px 0 0 #b45309)
-      drop-shadow(-6px 0 0 #d97706)
-      drop-shadow(-9px 0 0 #f59e0b)
-      drop-shadow(3px 0 0 #b45309)
-      drop-shadow(6px 0 0 #d97706)
-      drop-shadow(9px 0 0 #f59e0b)
-      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+      drop-shadow(-2px 1px 0 #78350f)
+      drop-shadow(-4px 2px 0 #92400e)
+      drop-shadow(-6px 3px 0 #b45309)
+      drop-shadow(-8px 4px 0 #d97706)
+      drop-shadow(-10px 5px 0 #f59e0b)
+      drop-shadow(-12px 6px 0 #fbbf24)
+      drop-shadow(2px 1px 0 #78350f)
+      drop-shadow(4px 2px 0 #92400e)
+      drop-shadow(6px 3px 0 #b45309)
+      drop-shadow(8px 4px 0 #d97706)
+      drop-shadow(10px 5px 0 #f59e0b)
+      drop-shadow(12px 6px 0 #fbbf24)
+      drop-shadow(0 12px 25px rgba(0, 0, 0, 0.75))
+      drop-shadow(0 0 20px rgba(14, 165, 233, 0.4));
   }
   25% {
-    transform: rotateY(90deg) scaleX(0.42);
+    transform: rotateX(8deg) rotateY(90deg) scaleX(0.55);
     filter: 
-      drop-shadow(0 3px 0 #b45309)
-      drop-shadow(0 6px 0 #d97706)
-      drop-shadow(0 9px 0 #f59e0b)
-      drop-shadow(0 -3px 0 #b45309)
-      drop-shadow(0 -6px 0 #d97706)
-      drop-shadow(0 -9px 0 #f59e0b)
-      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+      drop-shadow(0 3px 0 #78350f)
+      drop-shadow(0 6px 0 #92400e)
+      drop-shadow(0 9px 0 #b45309)
+      drop-shadow(0 12px 0 #d97706)
+      drop-shadow(0 15px 0 #f59e0b)
+      drop-shadow(0 -3px 0 #78350f)
+      drop-shadow(0 -6px 0 #92400e)
+      drop-shadow(0 -9px 0 #b45309)
+      drop-shadow(0 -12px 0 #d97706)
+      drop-shadow(0 -15px 0 #f59e0b)
+      drop-shadow(0 14px 30px rgba(0, 0, 0, 0.85))
+      drop-shadow(0 0 30px rgba(56, 189, 248, 0.6));
   }
   50% {
-    transform: rotateY(180deg) scaleX(1);
+    transform: rotateX(8deg) rotateY(180deg) scaleX(1);
     filter: 
-      drop-shadow(3px 0 0 #b45309)
-      drop-shadow(6px 0 0 #d97706)
-      drop-shadow(9px 0 0 #f59e0b)
-      drop-shadow(-3px 0 0 #b45309)
-      drop-shadow(-6px 0 0 #d97706)
-      drop-shadow(-9px 0 0 #f59e0b)
-      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+      drop-shadow(2px 1px 0 #78350f)
+      drop-shadow(4px 2px 0 #92400e)
+      drop-shadow(6px 3px 0 #b45309)
+      drop-shadow(8px 4px 0 #d97706)
+      drop-shadow(10px 5px 0 #f59e0b)
+      drop-shadow(12px 6px 0 #fbbf24)
+      drop-shadow(-2px 1px 0 #78350f)
+      drop-shadow(-4px 2px 0 #92400e)
+      drop-shadow(-6px 3px 0 #b45309)
+      drop-shadow(-8px 4px 0 #d97706)
+      drop-shadow(-10px 5px 0 #f59e0b)
+      drop-shadow(-12px 6px 0 #fbbf24)
+      drop-shadow(0 12px 25px rgba(0, 0, 0, 0.75))
+      drop-shadow(0 0 20px rgba(14, 165, 233, 0.4));
   }
   75% {
-    transform: rotateY(270deg) scaleX(0.42);
+    transform: rotateX(8deg) rotateY(270deg) scaleX(0.55);
     filter: 
-      drop-shadow(0 -3px 0 #b45309)
-      drop-shadow(0 -6px 0 #d97706)
-      drop-shadow(0 -9px 0 #f59e0b)
-      drop-shadow(0 3px 0 #b45309)
-      drop-shadow(0 6px 0 #d97706)
-      drop-shadow(0 9px 0 #f59e0b)
-      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+      drop-shadow(0 -3px 0 #78350f)
+      drop-shadow(0 -6px 0 #92400e)
+      drop-shadow(0 -9px 0 #b45309)
+      drop-shadow(0 -12px 0 #d97706)
+      drop-shadow(0 -15px 0 #f59e0b)
+      drop-shadow(0 3px 0 #78350f)
+      drop-shadow(0 6px 0 #92400e)
+      drop-shadow(0 9px 0 #b45309)
+      drop-shadow(0 12px 0 #d97706)
+      drop-shadow(0 15px 0 #f59e0b)
+      drop-shadow(0 14px 30px rgba(0, 0, 0, 0.85))
+      drop-shadow(0 0 30px rgba(56, 189, 248, 0.6));
   }
   100% {
-    transform: rotateY(360deg) scaleX(1);
+    transform: rotateX(8deg) rotateY(360deg) scaleX(1);
     filter: 
-      drop-shadow(-3px 0 0 #b45309)
-      drop-shadow(-6px 0 0 #d97706)
-      drop-shadow(-9px 0 0 #f59e0b)
-      drop-shadow(3px 0 0 #b45309)
-      drop-shadow(6px 0 0 #d97706)
-      drop-shadow(9px 0 0 #f59e0b)
-      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+      drop-shadow(-2px 1px 0 #78350f)
+      drop-shadow(-4px 2px 0 #92400e)
+      drop-shadow(-6px 3px 0 #b45309)
+      drop-shadow(-8px 4px 0 #d97706)
+      drop-shadow(-10px 5px 0 #f59e0b)
+      drop-shadow(-12px 6px 0 #fbbf24)
+      drop-shadow(2px 1px 0 #78350f)
+      drop-shadow(4px 2px 0 #92400e)
+      drop-shadow(6px 3px 0 #b45309)
+      drop-shadow(8px 4px 0 #d97706)
+      drop-shadow(10px 5px 0 #f59e0b)
+      drop-shadow(12px 6px 0 #fbbf24)
+      drop-shadow(0 12px 25px rgba(0, 0, 0, 0.75))
+      drop-shadow(0 0 20px rgba(14, 165, 233, 0.4));
   }
 }
 
