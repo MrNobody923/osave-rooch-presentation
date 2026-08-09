@@ -7008,21 +7008,11 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   border-radius: 50% !important;
   overflow: hidden !important;
   position: absolute;
-  background: radial-gradient(circle at 35% 35%, #fffbeb 0%, #fef3c7 25%, #f59e0b 60%, #b45309 85%, #78350f 100%) !important;
-  border: 3.5px solid #facc15 !important;
-  outline: 1.5px solid #92400e !important;
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.5), inset 0 0 0 3px #d97706, inset 0 0 12px rgba(255, 255, 255, 0.8), inset 0 0 18px rgba(120, 53, 15, 0.85) !important;
-  perspective: 1000px !important;
-  transform-style: preserve-3d !important;
-  padding: 10px !important;
-}
-
-#threeSunOverlay {
-  animation: roochSunCoinSpin 7.5s linear infinite !important;
-}
-
-.flowchart-root-orb {
-  animation: roochOrbCoinSpin 7.5s linear infinite !important;
+  background: transparent !important;
+  border: 2.5px solid #0ea5e9 !important;
+  outline: none !important;
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.4) !important;
+  padding: 0 !important;
 }
 
 #threeSunOverlay img, .flowchart-root-orb img {
@@ -7031,19 +7021,13 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
-  filter: drop-shadow(1px 1px 1px #78350f) drop-shadow(-1px -1px 1px #fef3c7) brightness(1.1) contrast(1.1) !important;
+  filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.4)) !important;
+  transform-style: preserve-3d !important;
+  transform-origin: center center !important;
+  animation: rooch3DHorizontalSpin 8s linear infinite !important;
 }
 
-@keyframes roochSunCoinSpin {
-  0% {
-    transform: translate(-50%, -50%) rotateY(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotateY(360deg);
-  }
-}
-
-@keyframes roochOrbCoinSpin {
+@keyframes rooch3DHorizontalSpin {
   0% {
     transform: rotateY(0deg);
   }
