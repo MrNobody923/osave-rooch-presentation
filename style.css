@@ -13763,10 +13763,11 @@ body.present-mode .capital-request-slide .funding-loop-diagram>svg {
 .oil-capital-slide .headline-metric {
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-end !important;
+  align-items: flex-start !important;
   justify-content: center !important;
-  text-align: right !important;
+  text-align: left !important;
   gap: 2px !important;
+  margin-top: 4px !important;
 }
 
 .oil-capital-slide .headline-metric strong {
