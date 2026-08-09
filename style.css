@@ -7050,7 +7050,7 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   }
 }
 
-/* Glass Mirror Specular Curved Reflection Dome (Top Highlight) */
+/* Glass Specular Curved Reflection Dome (Static Gloss Highlight) */
 #threeSunOverlay::before, .flowchart-root-orb::before {
   content: '' !important;
   display: block !important;
@@ -7059,51 +7059,10 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   left: 0 !important;
   right: 0 !important;
   height: 55% !important;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.3) 45%, transparent 70%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.25) 45%, transparent 70%) !important;
   border-radius: 50% 50% 0 0 !important;
   pointer-events: none !important;
   z-index: 9 !important;
-}
-
-/* Glass Mirror Reflecting Light Beam (Top-to-Bottom Mirror Reflection Sweep) */
-#threeSunOverlay::after, .flowchart-root-orb::after {
-  content: '' !important;
-  display: block !important;
-  position: absolute !important;
-  top: -70% !important;
-  left: -20% !important;
-  width: 140% !important;
-  height: 70% !important;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.3) 25%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 0.3) 75%,
-    transparent 100%
-  ) !important;
-  transform: translateY(-130%) rotate(-20deg) !important;
-  animation: glassMirrorLightReflection 3.2s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
-  pointer-events: none !important;
-  z-index: 10 !important;
-}
-
-@keyframes glassMirrorLightReflection {
-  0% {
-    transform: translateY(-130%) rotate(-20deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  65% {
-    transform: translateY(220%) rotate(-20deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(220%) rotate(-20deg);
-    opacity: 0;
-  }
 }
 
 
