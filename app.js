@@ -1705,6 +1705,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    window.activePancitFilter = 'all';
+
+    window.setPancitFilter = function(filter) {
+      window.activePancitFilter = filter;
+      document.querySelectorAll('.pancit-filter-btn').forEach(btn => {
+        const isSelected = btn.getAttribute('data-filter') === filter;
+        if (isSelected) {
+          btn.style.background = '#0ea5e9';
+          btn.style.color = '#fff';
+          btn.style.fontWeight = '700';
+          btn.style.boxShadow = '0 0 10px rgba(14, 165, 233, 0.4)';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.color = '#94a3b8';
+          btn.style.fontWeight = '600';
+          btn.style.boxShadow = 'none';
+        }
+      });
+      if (window.updateCapacityOutputs) {
+        window.updateCapacityOutputs();
+      }
+    };
+
     // Capacity Expansion Real-Time Dynamic Computation
     window.updateCapacityOutputs = function() {
       const hoursEl = document.getElementById('capHoursSlider');
@@ -1772,7 +1795,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const totalBuffer = bihonDayBuffer + bihonNightBuffer + cantonDayBuffer + cantonNightBuffer;
       const totalMonthlyOutput = bihonTotalOutput + cantonTotalOutput;
 
-      // Update Table
+      // Update Table Rows
       setTxt('capBihonDayCases', bihonCases.toLocaleString());
       setTxt('capBihonDayBuffer', bihonDayBuffer.toLocaleString());
       setTxt('capBihonDayMonthly', bihonDayMonthly.toLocaleString());
@@ -1787,21 +1810,29 @@ document.addEventListener('DOMContentLoaded', () => {
       setTxt('capCantonNightBuffer', cantonNightBuffer.toLocaleString());
       setTxt('capCantonNightMonthly', cantonNightMonthly.toLocaleString());
 
-      setTxt('capTotalCases', totalCases.toLocaleString());
-      setTxt('capTotalBuffer', totalBuffer.toLocaleString());
-      setTxt('capTotalMonthly', totalMonthlyOutput.toLocaleString());
+      // Filter-specific computation logic
+      const filter = window.activePancitFilter || 'all';
 
-      // Update KPIs
-      setTxt('capKpiExpandedMonthly', totalMonthlyOutput.toLocaleString());
+      let activeBaseCurrent = 285840;
+      let activeExpandedMonthly = totalMonthlyOutput;
+
+      if (filter === 'bihon') {
+        activeBaseCurrent = 201600;
+        activeExpandedMonthly = bihonTotalOutput;
+      } else if (filter === 'canton') {
+        activeBaseCurrent = 84240;
+        activeExpandedMonthly = cantonTotalOutput;
+      }
+
+      setTxt('capKpiExpandedMonthly', activeExpandedMonthly.toLocaleString());
       
-      const currentBaseOutput = 285840;
-      const productionIncrease = totalMonthlyOutput - currentBaseOutput;
+      const productionIncrease = activeExpandedMonthly - activeBaseCurrent;
       const increaseEl = document.getElementById('capKpiIncrease');
       if (increaseEl) {
         increaseEl.textContent = (productionIncrease >= 0 ? '+' : '') + productionIncrease.toLocaleString();
       }
 
-      const growthPercent = Math.round(((totalMonthlyOutput - currentBaseOutput) / currentBaseOutput) * 100);
+      const growthPercent = activeBaseCurrent > 0 ? Math.round((productionIncrease / activeBaseCurrent) * 100) : 0;
       const growthEl = document.getElementById('capKpiGrowth');
       if (growthEl) {
         growthEl.textContent = (growthPercent >= 0 ? '+' : '') + growthPercent + '%';
@@ -1819,6 +1850,92 @@ document.addEventListener('DOMContentLoaded', () => {
           badgeEl.style.borderColor = 'rgba(239, 68, 68, 0.4)';
           badgeEl.style.color = '#f87171';
         }
+      }
+
+      // Header badges
+      const badgeTag = document.getElementById('capBreakdownBadgeTag');
+      if (badgeTag) {
+        if (filter === 'bihon') badgeTag.textContent = 'Bihon 454G';
+        else if (filter === 'canton') badgeTag.textContent = 'Canton 300G';
+        else badgeTag.textContent = 'All Products';
+      }
+      const badgeSub = document.getElementById('capBreakdownBadgeSub');
+      if (badgeSub) {
+        if (filter === 'bihon') badgeSub.textContent = 'Bihon Capacity Breakdown';
+        else if (filter === 'canton') badgeSub.textContent = 'Canton Capacity Breakdown';
+        else badgeSub.textContent = 'Bihon & Canton Capacity Breakdown';
+      }
+
+      // Row highlighting & dimming
+      const currentBihon = document.getElementById('capCurrentRowBihon');
+      const currentCanton = document.getElementById('capCurrentRowCanton');
+      if (currentBihon) {
+        currentBihon.style.opacity = (filter === 'all' || filter === 'bihon') ? '1' : '0.25';
+        currentBihon.style.filter = (filter === 'all' || filter === 'bihon') ? 'none' : 'grayscale(0.8)';
+      }
+      if (currentCanton) {
+        currentCanton.style.opacity = (filter === 'all' || filter === 'canton') ? '1' : '0.25';
+        currentCanton.style.filter = (filter === 'all' || filter === 'canton') ? 'none' : 'grayscale(0.8)';
+      }
+
+      const rowBihonDay = document.getElementById('capRowBihonDay');
+      const rowBihonNight = document.getElementById('capRowBihonNight');
+      const rowCantonDay = document.getElementById('capRowCantonDay');
+      const rowCantonNight = document.getElementById('capRowCantonNight');
+
+      if (rowBihonDay) {
+        rowBihonDay.style.opacity = (filter === 'all' || filter === 'bihon') ? '1' : '0.25';
+        rowBihonDay.style.filter = (filter === 'all' || filter === 'bihon') ? 'none' : 'grayscale(0.8)';
+      }
+      if (rowBihonNight) {
+        rowBihonNight.style.opacity = (filter === 'all' || filter === 'bihon') ? '1' : '0.25';
+        rowBihonNight.style.filter = (filter === 'all' || filter === 'bihon') ? 'none' : 'grayscale(0.8)';
+      }
+      if (rowCantonDay) {
+        rowCantonDay.style.opacity = (filter === 'all' || filter === 'canton') ? '1' : '0.25';
+        rowCantonDay.style.filter = (filter === 'all' || filter === 'canton') ? 'none' : 'grayscale(0.8)';
+      }
+      if (rowCantonNight) {
+        rowCantonNight.style.opacity = (filter === 'all' || filter === 'canton') ? '1' : '0.25';
+        rowCantonNight.style.filter = (filter === 'all' || filter === 'canton') ? 'none' : 'grayscale(0.8)';
+      }
+
+      // Total Row label & value
+      const totalLabelEl = document.getElementById('capTotalRowLabel');
+      if (totalLabelEl) {
+        if (filter === 'bihon') totalLabelEl.textContent = 'BIHON TOTAL';
+        else if (filter === 'canton') totalLabelEl.textContent = 'CANTON TOTAL';
+        else totalLabelEl.textContent = 'TOTAL';
+      }
+      if (filter === 'bihon') {
+        setTxt('capTotalCases', (bihonCases * 2).toLocaleString());
+        setTxt('capTotalBuffer', (bihonDayBuffer + bihonNightBuffer).toLocaleString());
+        setTxt('capTotalMonthly', bihonTotalOutput.toLocaleString());
+      } else if (filter === 'canton') {
+        setTxt('capTotalCases', (cantonCases * 2).toLocaleString());
+        setTxt('capTotalBuffer', (cantonDayBuffer + cantonNightBuffer).toLocaleString());
+        setTxt('capTotalMonthly', cantonTotalOutput.toLocaleString());
+      } else {
+        setTxt('capTotalCases', totalCases.toLocaleString());
+        setTxt('capTotalBuffer', totalBuffer.toLocaleString());
+        setTxt('capTotalMonthly', totalMonthlyOutput.toLocaleString());
+      }
+
+      // Chart Groups Highlight & Scale
+      const groupBihon = document.getElementById('capChartGroupBihon');
+      const groupCanton = document.getElementById('capChartGroupCanton');
+      const groupTotal = document.getElementById('capChartGroupTotal');
+
+      if (groupBihon) {
+        groupBihon.style.opacity = (filter === 'all' || filter === 'bihon') ? '1' : '0.25';
+        groupBihon.style.transform = (filter === 'bihon') ? 'scale(1.04)' : 'scale(1)';
+      }
+      if (groupCanton) {
+        groupCanton.style.opacity = (filter === 'all' || filter === 'canton') ? '1' : '0.25';
+        groupCanton.style.transform = (filter === 'canton') ? 'scale(1.04)' : 'scale(1)';
+      }
+      if (groupTotal) {
+        groupTotal.style.opacity = (filter === 'all') ? '1' : '0.25';
       }
 
       // Update Bottom Bar Chart
