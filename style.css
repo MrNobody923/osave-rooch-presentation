@@ -484,7 +484,7 @@ body {
 
 .rooch-vision-mission-row h3 {
   margin: 0;
-  font-size: clamp(24px, 1.85vw, 26px);
+  font-size: clamp(18px, 1.3vw, 20px);
   line-height: 1.1;
   font-weight: 800;
   letter-spacing: 0.8px;
@@ -493,8 +493,8 @@ body {
 .rooch-vision-mission-row p {
   margin: 0;
   color: var(--text-primary);
-  font-size: clamp(20px, 1.55vw, 22px);
-  line-height: 1.55;
+  font-size: clamp(14.5px, 1.05vw, 16.5px);
+  line-height: 1.6;
 }
 
 .rooch-vision-row {
@@ -527,7 +527,7 @@ body {
   }
 
   .rooch-vision-mission-row p {
-    font-size: 20px;
+    font-size: 14.5px;
     line-height: 1.5;
   }
 }
