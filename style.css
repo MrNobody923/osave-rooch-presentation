@@ -14011,3 +14011,9 @@ body.present-mode .capital-request-slide .funding-loop-diagram>svg {
     margin-bottom: 0 !important;
   }
 }
+
+/* Ensure Total ROOCH Potential Revenue badge is not blocked by Exit Present Mode button */
+body.present-mode .rooch-total-revenue-badge,
+.revenue-header-container .rooch-total-revenue-badge {
+  margin-right: 180px !important;
+}
