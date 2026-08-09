@@ -1,4 +1,4 @@
-<section class="slide capital-slide pancit pancit-capital-slide oil-capital-slide"
+<section class="slide capital-slide oil-capital-slide"
   data-title="Working Capital Trade Cycle Oils" data-section="WORKING CAPITAL TRADE CYCLE / OILS">
   <div class="slide-heading">
     <div>
@@ -25,102 +25,108 @@
         <div class="oil-cycle-legend"><span class="procurement">Procurement</span><span class="revenue">Revenue</span>
         </div>
       </div>
-      <div class="cycle-flow oil-cycle-flow" id="oilCycleFlow" role="list" aria-label="Edible oil trade cycle"></div>
+      <div class="cycle-flow oil-cycle-flow" id="oilCycleFlow" role="list" aria-label="Edible oil trade cycle">
+      </div>
     </section>
     <aside class="oil-summary-stack" aria-label="Oil working capital details">
       <section class="oil-summary-card">
         <div class="oil-card-title">
-          <h3>Materials cadence</h3><span>Import / weekly</span>
+          <h3>Working capital requirement</h3><span>PHP 201.07M</span>
         </div>
-        <div id="oilMaterialsRows">
-          <div class="oil-purchase-row"><span>Palm Oil<small>24 cont/mo (USD 675.96K)</small></span><strong>6 cont/wk<small>(USD 168.99K)</small></strong></div>
-          <div class="oil-purchase-row"><span>Canola Oil<small>12 cont/mo (USD 405.06K)</small></span><strong>3 cont/wk<small>(USD 101.26K)</small></strong></div>
-        </div>
+        <p class="pancit-production-total"
+          style="font-size: clamp(10px, 0.75vw, 12px); color: var(--muted); margin-bottom: 2px;">3-month rolling
+          edible-oils import</p>
+        <div class="pancit-summary-value"><strong style="font-size: clamp(16px, 1.3vw, 20px);">PHP
+            67.02M</strong><span>Monthly PHP</span></div>
       </section>
-      <section class="oil-summary-card pancit-weekly-output-card">
+      <section class="oil-summary-card">
         <div class="oil-card-title">
-          <h3>Weekly output</h3><span>Production</span>
+          <h3>Weekly purchase</h3><span>Every 7 days</span>
         </div>
-        <p class="pancit-production-total">Total <strong id="oilWeeklyOutput">331.0K Units</strong></p>
-        <div class="pancit-production-rows" id="oilWeeklyOutputRows" aria-label="Weekly Oil production output">
-          <div class="pancit-production-row"><span class="label">Palm 350mL</span><div class="track"><i class="blue" style="width:51.6%"></i></div><span class="value">170.9K Units</span></div>
-          <div class="pancit-production-row"><span class="label">Palm 1L</span><div class="track"><i class="sky" style="width:26.2%"></i></div><span class="value">86.8K Units</span></div>
-          <div class="pancit-production-row"><span class="label">Canola 1L</span><div class="track"><i class="green" style="width:22.2%"></i></div><span class="value">73.3K Units</span></div>
-        </div>
-        <div class="pancit-production-volumes" id="oilWeeklyOutputVolumes">
-          <span>Palm 350mL: 170.9K Units</span>
-          <span>Palm 1L: 86.8K Units</span>
-          <span>Canola 1L: 73.3K Units</span>
-        </div>
-      </section>
-      <section class="oil-summary-card pancit-monthly-output-card">
-        <div class="oil-card-title">
-          <h3>Monthly output</h3><span>Production</span>
-        </div>
-        <p class="pancit-production-total">Total <strong id="oilMonthlyOutput">1.419M Units</strong></p>
-        <div class="pancit-production-rows" id="oilMonthlyOutputRows" aria-label="Monthly Oil production output">
-          <div class="pancit-production-row"><span class="label">Palm 350mL</span><div class="track"><i class="green" style="width:51.6%"></i></div><span class="value">732.6K Units</span></div>
-          <div class="pancit-production-row"><span class="label">Palm 1L</span><div class="track"><i class="sky" style="width:26.2%"></i></div><span class="value">371.8K Units</span></div>
-          <div class="pancit-production-row"><span class="label">Canola 1L</span><div class="track"><i class="blue" style="width:22.2%"></i></div><span class="value">314.1K Units</span></div>
-        </div>
-        <div class="pancit-production-volumes" id="oilMonthlyOutputVolumes">
-          <span>Palm 350mL: 732.6K Units</span>
-          <span>Palm 1L: 371.8K Units</span>
-          <span>Canola 1L: 314.1K Units</span>
+        <div id="oilPurchaseRows">
+          <div class="oil-purchase-row"><span>Palm oil<small>24 containers / month</small></span><strong>6
+              containers / week<small>USD 168,990</small></strong></div>
+          <div class="oil-purchase-row"><span>Canola oil<small>12 containers / month</small></span><strong>3
+              containers / week<small>USD 101,265</small></strong></div>
         </div>
       </section>
       <section class="oil-summary-card">
         <div class="oil-card-title">
-          <h3>Collection cycle</h3><span>Receivable</span>
+          <h3>Weekly available for sale</h3><span>O!Save</span>
         </div>
-        <div class="pancit-summary-value"><strong id="oilCollectionDays">45 days</strong><span>cash conversion</span>
+        <div id="oilProductRows">
+          <div class="oil-product-row blue"><span>Palm Oil 350mL<small>24,421.44 /
+                day</small></span><strong>170,950.06<small>units / week</small></strong></div>
+          <div class="oil-product-row sky"><span>Palm Oil 1L<small>12,394 /
+                day</small></span><strong>86,759.58<small>units / week</small></strong></div>
+          <div class="oil-product-row green"><span>Canola Oil 1L<small>10,471 /
+                day</small></span><strong>73,297.80<small>units / week</small></strong></div>
         </div>
+        <div class="oil-card-total"><span>Total / week</span><strong>331,007.44 units</strong></div>
       </section>
     </aside>
   </div>
   <div class="oil-insight-grid">
-    <section class="oil-insight-card pancit-production-card">
-      <div class="oil-card-title">
-        <h3>Production Mix (Monthly)</h3><span>By volume</span>
-      </div>
-      <p class="pancit-production-total">Total <strong id="oilMonthlyMixTotal">1.419M Units</strong></p>
-      <div class="pancit-production-rows" id="oilMonthlyMixRows" aria-label="Monthly Oil production mix">
-        <div class="pancit-production-row"><span class="label">Palm 350mL</span><div class="track"><i class="blue" style="width:51.6%"></i></div><span class="value">51.6%</span></div>
-        <div class="pancit-production-row"><span class="label">Palm 1L</span><div class="track"><i class="sky" style="width:26.2%"></i></div><span class="value">26.2%</span></div>
-        <div class="pancit-production-row"><span class="label">Canola 1L</span><div class="track"><i class="green" style="width:22.2%"></i></div><span class="value">22.2%</span></div>
-      </div>
-      <div class="pancit-production-volumes" id="oilMonthlyMixVolumes">
-        <span>Palm Oil 350mL: 732.6K Units</span>
-        <span>Palm Oil 1L: 371.8K Units</span>
-        <span>Canola Oil 1L: 314.1K Units</span>
-      </div>
-    </section>
-    <section class="oil-insight-card pancit-production-card">
-      <div class="oil-card-title">
-        <h3>Weekly Production Availability</h3><span>Available for delivery</span>
-      </div>
-      <p class="pancit-production-total">Total <strong id="oilWeeklyAvailabilityTotal">331.0K Units</strong></p>
-      <div class="pancit-production-rows" id="oilWeeklyAvailabilityRows" aria-label="Weekly Oil production availability">
-        <div class="pancit-production-row"><span class="label">Palm 350mL</span><div class="track"><i class="blue" style="width:51.6%"></i></div><span class="value">51.6%</span></div>
-        <div class="pancit-production-row"><span class="label">Palm 1L</span><div class="track"><i class="sky" style="width:26.2%"></i></div><span class="value">26.2%</span></div>
-        <div class="pancit-production-row"><span class="label">Canola 1L</span><div class="track"><i class="green" style="width:22.2%"></i></div><span class="value">22.2%</span></div>
-      </div>
-    </section>
     <section class="oil-insight-card">
       <div class="oil-card-title">
-        <h3>Materials cadence</h3><span>Quarterly / monthly</span>
+        <h3>Weekly container shipments</h3><span>Palm 6 + Canola 3</span>
       </div>
-      <div class="oil-output-table" id="oilMaterialsInsight">
-        <div class="blue"><span>Palm Oil Cadence</span><strong>6 cont/wk</strong></div>
-        <div class="blue"><span>Canola Oil Cadence</span><strong>3 cont/wk</strong></div>
+      <div class="shipment-chart" id="oilShipmentChart" aria-label="Weekly container shipments chart">
+        <div class="shipment-week">
+          <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+              style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 22</span><strong>9</strong>
+        </div>
+        <div class="shipment-week">
+          <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+              style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 23</span><strong>9</strong>
+        </div>
+        <div class="shipment-week">
+          <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+              style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 24</span><strong>9</strong>
+        </div>
+        <div class="shipment-week">
+          <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+              style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 25</span><strong>9</strong>
+        </div>
+        <div class="shipment-week">
+          <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+              style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 26</span><strong>9</strong>
+        </div>
+        <div class="shipment-week">
+          <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+              style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 27</span><strong>9</strong>
+        </div>
       </div>
     </section>
+
+    <section class="oil-insight-card">
+      <div class="oil-card-title">
+        <h3>SKU output</h3><span>Daily / weekly units</span>
+      </div>
+      <div class="oil-output-table" id="oilOutputTable">
+        <div class="blue"><span>Palm Oil 350mL</span><strong>24,421.44<small>/ day</small></strong><b>170,950.06<small>/
+              week</small></b></div>
+        <div class="sky"><span>Palm Oil 1L</span><strong>12,394<small>/ day</small></strong><b>86,759.58<small>/
+              week</small></b></div>
+        <div class="green"><span>Canola Oil 1L</span><strong>10,471<small>/ day</small></strong><b>73,297.80<small>/
+              week</small></b></div>
+      </div>
+    </section>
+
     <section class="oil-insight-card cash-cycle-card">
       <div class="oil-card-title">
-        <h3>Cash conversion cycle</h3><span>45 days total</span>
+        <h3>Cash conversion cycle</h3><span>69 days total</span>
       </div>
-      <div class="pancit-cash-cycle"><strong>45 days</strong><i><b></b></i><span>Collection</span></div>
-      <p><strong>PHP 201.07M</strong> 3-month requirement supports the Oils operating cycle.</p>
+      <div class="cash-cycle-bars" id="oilCashCycle">
+        <div class="blue"><span>Purchase order</span><i><b style="width:7.2%"></b></i><strong>5d</strong></div>
+        <div class="sky"><span>Weekly shipment</span><i><b style="width:10.1%"></b></i><strong>7d</strong></div>
+        <div class="mid"><span>Warehouse</span><i><b style="width:11.6%"></b></i><strong>8d</strong></div>
+        <div class="mint"><span>Daily production</span><i><b style="width:1.4%"></b></i><strong>1d</strong></div>
+        <div class="green"><span>Delivery to O!Save</span><i><b style="width:4.3%"></b></i><strong>3d</strong></div>
+        <div class="deep-green"><span>Collection (fixed DSO)</span><i><b
+              style="width:65.2%"></b></i><strong>45d</strong></div>
+      </div>
+      <p class="cash-cycle-note"><strong>45-day DSO</strong> accounts for 65% of the cycle.</p>
     </section>
   </div>
 </section>

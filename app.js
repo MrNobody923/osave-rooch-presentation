@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressLineBar = document.getElementById('progressLineBar');
   const sectionIndicator = document.getElementById('sectionIndicator');
   let navItems = document.querySelectorAll('.nav-item');
-  let currentSlideIndex = 0;
-  let isTitleSlideActive = true;
+  let currentSlideIndex = 21;
+  let isTitleSlideActive = false;
   let totalSlides = slides.length;
 
   function initSidebarNavigation() {
@@ -1496,7 +1496,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const calcs = OIL_KEYS.map((k, i) => computeScenario(OIL_RATES[k], skuDays[i], hours, totalDays));
         const compactNumber = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
 
-        const OIL_DEMAND_VALUES = { p350: 394416, p1L: 200160, c1L: 240192 };
+        const OIL_DEMAND_VALUES = { p350: 394416, p1L: 200160, c1L: 200160 };
         const BASELINE_PCT = 30;
         calcs.forEach((calc, i) => {
           const p = OIL_KEYS[i];

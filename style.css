@@ -404,6 +404,10 @@ body {
 grid-template-columns: repeat(3, 1fr);
 }
 
+
+grid-template-columns: repeat(3, 1fr);
+}
+
 .grid-2 {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -5699,14 +5703,14 @@ body.present-mode .edge-click-zone:hover {
 
 /* Working capital trade cycle: Oils */
 .oil-capital-slide {
-  gap: 10px;
-  padding-block: clamp(18px, 2.2vw, 34px);
+  gap: 6px;
+  padding-block: clamp(4px, 0.8vh, 12px);
   overflow-y: auto;
 }
 
 .oil-capital-slide .slide-heading {
   flex: 0 0 auto;
-  padding-bottom: 10px;
+  padding-bottom: 2px;
 }
 
 .oil-capital-slide .slide-heading h2 {
@@ -5869,17 +5873,23 @@ body.present-mode .edge-click-zone:hover {
 
 .oil-summary-stack {
   min-height: 0;
-  display: grid;
-  grid-template-rows: auto auto 1fr;
-  gap: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .pancit-capital-slide .oil-summary-stack {
-  grid-template-rows: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .oil-summary-card {
-  padding: 9px 11px;
+  padding: 6px 10px;
 }
 
 .requirement-card {
@@ -5973,7 +5983,7 @@ body.present-mode .edge-click-zone:hover {
 }
 
 .oil-insight-grid {
-  flex: 0 0 auto;
+  flex: a0 0 uto;
   display: grid;
   grid-template-columns: .82fr 1.05fr 1.3fr;
   gap: 10px;
@@ -10023,9 +10033,11 @@ body.present-mode .edge-click-zone:hover {
 }
 
 .oil-capital-slide .oil-summary-stack {
-  grid-template-rows: repeat(4, auto);
-  align-content: start;
-  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .oil-capital-slide .oil-insight-grid {
@@ -11714,14 +11726,18 @@ body.present-mode .edge-click-zone:hover {
   }
 
   .oil-capital-slide .oil-cycle-flow .cycle-step strong {
-    font-size: 14px;
-    line-height: 1.2;
+    font-size: clamp(11px, 0.9vw, 13px);
+    line-height: 1.15;
   }
 
   .oil-capital-slide .oil-cycle-flow .cycle-step small,
   .oil-capital-slide .oil-cycle-flow .cycle-step span {
-    font-size: 12px;
-    line-height: 1.2;
+    font-size: clamp(9px, 0.75vw, 11px);
+    line-height: 1.15;
+  }
+
+  .oil-capital-slide .oil-cycle-flow .cycle-step[data-cycle-index="4"] {
+    transform: translate(-50%, -65%) !important;
   }
 
   .oil-capital-slide .oil-summary-stack {
@@ -11750,7 +11766,15 @@ body.present-mode .edge-click-zone:hover {
 
   .oil-capital-slide .pancit-summary-value {
     flex: 1;
-    align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .oil-capital-slide .pancit-summary-value strong,
+  .oil-capital-slide .pancit-summary-value span {
+    display: block;
   }
 
   .oil-capital-slide .oil-card-title {
@@ -12648,7 +12672,7 @@ body.present-mode .edge-click-zone:hover {
   }
 
   .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars i {
-    min-width: 0;
+    min-width: 6px;
   }
 }
 
@@ -13423,7 +13447,8 @@ body.present-mode .capital-request-slide .funding-loop-diagram>svg {
 
   .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-insight-grid {
     min-height: 0;
-    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
     align-items: stretch;
   }
 
@@ -13757,4 +13782,231 @@ body.present-mode .capital-request-slide .funding-loop-diagram>svg {
   margin: 0 !important;
   color: var(--muted) !important;
   white-space: nowrap !important;
+}
+
+/* ==========================================================================
+   WORKING CAPITAL TRADE CYCLE OILS BOTTOM INSIGHT GRID DESIGN
+   ========================================================================== */
+
+@media (min-width: 821px) {
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-insight-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1.25fr 1.35fr !important;
+    gap: clamp(8px, 1vw, 14px) !important;
+    min-height: 0 !important;
+    align-items: stretch !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-insight-card {
+    background: rgba(var(--rgb-glass), 0.04) !important;
+    border: 1px solid rgba(var(--rgb-glass), 0.15) !important;
+    border-radius: 8px !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    padding: clamp(8px, 1vh, 12px) clamp(10px, 1vw, 14px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-card-title {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-bottom: clamp(4px, 0.6vh, 8px) !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-card-title h3 {
+    font-size: clamp(11px, 0.85vw, 13px) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-card-title>span {
+    font-size: clamp(9px, 0.65vw, 10px) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: #38bdf8 !important;
+    background: rgba(56, 189, 248, 0.12) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    padding: 2px 8px !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+    max-width: none !important;
+  }
+
+  /* 1. Weekly Container Shipments Chart */
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .shipment-chart {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: clamp(4px, 0.6vw, 8px) !important;
+    height: clamp(75px, 10vh, 100px) !important;
+    align-items: flex-end !important;
+    margin-top: clamp(4px, 0.6vh, 8px) !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .shipment-week {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    position: relative !important;
+    height: 100% !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .shipment-week strong {
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: clamp(8px, 0.65vw, 10px) !important;
+    color: rgba(226, 232, 240, 0.6) !important;
+    font-weight: 600 !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .shipment-bars {
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    width: 100% !important;
+    height: calc(100% - 16px) !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .shipment-bars i.palm {
+    width: clamp(3px, 0.35vw, 5px) !important;
+    height: calc(85% * var(--bar-ratio, 0)) !important;
+    background: #38bdf8 !important;
+    border-radius: 1px !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .shipment-bars i.canola {
+    width: clamp(3px, 0.35vw, 5px) !important;
+    height: calc(85% * var(--bar-ratio, 0)) !important;
+    background: #34d399 !important;
+    border-radius: 1px !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .shipment-week span {
+    font-size: clamp(8px, 0.65vw, 10px) !important;
+    color: rgba(226, 232, 240, 0.6) !important;
+    margin-top: 4px !important;
+  }
+
+  /* 2. SKU Output Table */
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-output-table {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: clamp(4px, 0.6vh, 8px) !important;
+    margin-top: clamp(4px, 0.6vh, 8px) !important;
+    height: auto !important;
+    padding-block-end: 0 !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-output-table>div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: clamp(6px, 0.8vh, 10px) clamp(10px, 1vw, 14px) !important;
+    background: rgba(var(--rgb-glass), 0.03) !important;
+    border: 1px solid rgba(var(--rgb-glass), 0.06) !important;
+    border-radius: 6px !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-output-table span {
+    font-size: clamp(10px, 0.75vw, 12px) !important;
+    color: rgba(226, 232, 240, 0.7) !important;
+    font-weight: 500 !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-output-table strong {
+    font-size: clamp(10px, 0.75vw, 12px) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    margin-left: auto !important;
+    margin-right: 10px !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-output-table strong small {
+    font-size: clamp(8px, 0.6vw, 10px) !important;
+    color: rgba(226, 232, 240, 0.5) !important;
+    font-weight: 400 !important;
+    margin-left: 2px !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-output-table b {
+    font-size: clamp(11px, 0.85vw, 13px) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .oil-output-table b small {
+    font-size: clamp(8px, 0.6vw, 10px) !important;
+    color: rgba(226, 232, 240, 0.5) !important;
+    font-weight: 400 !important;
+    margin-left: 2px !important;
+  }
+
+  /* 3. Cash Conversion Cycle Bars */
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: clamp(3px, 0.5vh, 6px) !important;
+    margin-top: clamp(4px, 0.6vh, 8px) !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars>div {
+    display: grid !important;
+    grid-template-columns: clamp(90px, 8vw, 120px) 1fr clamp(20px, 1.5vw, 26px) !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars span {
+    font-size: clamp(9px, 0.7vw, 11px) !important;
+    color: rgba(226, 232, 240, 0.8) !important;
+    white-space: nowrap !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars i {
+    display: block !important;
+    height: 4px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars i b {
+    display: block !important;
+    height: 100% !important;
+    background: #38bdf8 !important;
+    border-radius: 2px !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars .green i b,
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars .mint i b,
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars .deep-green i b {
+    background: #34d399 !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-bars strong {
+    font-size: clamp(9px, 0.7vw, 11px) !important;
+    color: rgba(226, 232, 240, 0.6) !important;
+    text-align: right !important;
+  }
+
+  .oil-capital-slide[data-title="Working Capital Trade Cycle Oils"] .cash-cycle-note {
+    margin-top: clamp(4px, 0.6vh, 8px) !important;
+    font-size: clamp(9px, 0.65vw, 10px) !important;
+    color: #34d399 !important;
+    text-align: right !important;
+    margin-bottom: 0 !important;
+  }
 }

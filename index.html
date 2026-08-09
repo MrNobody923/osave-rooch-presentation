@@ -3,6 +3,26 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>
+    window.addEventListener('error', function (e) {
+      if (e && e.message && e.message.includes('ResizeObserver')) return;
+      var div = document.createElement('div');
+      div.id = 'error-banner';
+      div.style.position = 'fixed';
+      div.style.top = '0';
+      div.style.left = '0';
+      div.style.width = '100%';
+      div.style.background = 'red';
+      div.style.color = 'white';
+      div.style.zIndex = '999999';
+      div.style.padding = '10px';
+      div.style.fontSize = '16px';
+      div.style.fontFamily = 'monospace';
+      div.style.wordBreak = 'break-all';
+      div.innerHTML = 'Error: ' + e.message + ' at ' + e.filename + ':' + e.lineno;
+      document.documentElement.appendChild(div);
+    });
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ROOCH Holding Inc. - Interactive Presentation</title>
   <!-- Google Fonts -->
@@ -12,7 +32,41 @@
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=1.0.2">
+  <style>
+    /* Direct layout overrides to prevent caching and tighten vertical space */
+    .oil-capital-slide {
+      gap: 6px !important;
+      padding-block: clamp(4px, 0.8vh, 12px) !important;
+    }
+
+    .oil-capital-slide .slide-heading {
+      padding-bottom: 2px !important;
+    }
+
+    .oil-summary-stack,
+    .oil-capital-slide .oil-summary-stack,
+    .pancit-capital-slide .oil-summary-stack {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 5px !important;
+      height: 100% !important;
+      justify-content: space-between !important;
+      grid-template-rows: none !important;
+    }
+
+    .oil-summary-card {
+      padding: 6px 10px !important;
+    }
+
+    .oil-insight-card {
+      padding: 6px 10px !important;
+    }
+
+    .oil-capital-dashboard {
+      min-height: 0 !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -422,7 +476,7 @@
                       <path d="M8 9l-2 1.5L8 12M16 9l2 1.5L16 12" />
                     </svg>
                   </div>
-                  <div class="stage-title">HANVIN Solar <span class="sub">• Renewable</span></div>
+                  <div class="stage-title">HANVINS<span class="sub">• Renewable</span></div>
                 </div>
                 <div class="stage-desc">
                   <li>Established to reduce electricity costs</li>
@@ -1288,10 +1342,12 @@
               style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; position: relative; overflow: visible; width: 100%; height: 100%; box-sizing: border-box;">
 
               <!-- Flowchart Container -->
-              <div class="flowchart-container" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+              <div class="flowchart-container"
+                style="width: 100%; display: flex; flex-direction: column; align-items: center;">
 
                 <!-- Root Node: ROOCH Parent -->
-                <div class="flowchart-root" style="position: relative; z-index: 10; margin-top: 4px; margin-bottom: 0; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div class="flowchart-root"
+                  style="position: relative; z-index: 10; margin-top: 4px; margin-bottom: 0; display: flex; flex-direction: column; align-items: center; gap: 6px;">
                   <div class="root-card interactive-flow-card" data-company="rooch"
                     style="display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; background: transparent; border: none; box-shadow: none; padding: 0;"
                     title="ROOCH Holding Inc.">
@@ -1301,25 +1357,38 @@
                         style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                   </div>
-                  <span style="font-size: 10px; font-weight: 700; color: rgba(56,189,248,0.85); text-transform: uppercase; letter-spacing: 0.06em;">ROOCH Holding Inc.</span>
+                  <span
+                    style="font-size: 10px; font-weight: 700; color: rgba(56,189,248,0.85); text-transform: uppercase; letter-spacing: 0.06em;">ROOCH
+                    Holding Inc.</span>
                 </div>
 
                 <!-- Vertical Stem from ROOCH Parent -->
-                <div style="width: 2px; height: 14px; background: linear-gradient(180deg, #38bdf8, #0ea5e9); box-shadow: 0 0 8px rgba(56,189,248,0.5); margin: 0 auto; flex-shrink: 0;"></div>
+                <div
+                  style="width: 2px; height: 14px; background: linear-gradient(180deg, #38bdf8, #0ea5e9); box-shadow: 0 0 8px rgba(56,189,248,0.5); margin: 0 auto; flex-shrink: 0;">
+                </div>
 
                 <!-- Spanning Tree Connector (Horizontal Crossbar + 3 Vertical Branch Drops) -->
-                <div class="flowchart-tree-connector" style="position: relative; width: 66.66%; height: 16px; margin: 0 auto; flex-shrink: 0;">
+                <div class="flowchart-tree-connector"
+                  style="position: relative; width: 66.66%; height: 16px; margin: 0 auto; flex-shrink: 0;">
                   <!-- Top Horizontal Crossbar -->
-                  <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #fb923c 0%, #34d399 50%, #c084fc 100%); box-shadow: 0 0 8px rgba(56,189,248,0.35);"></div>
-                  
+                  <div
+                    style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #fb923c 0%, #c084fc 50%, #34d399 100%); box-shadow: 0 0 8px rgba(56,189,248,0.35);">
+                  </div>
+
                   <!-- Left Vertical Drop into FMCG & Logistics -->
-                  <div style="position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: #fb923c; box-shadow: 0 0 6px rgba(249,115,22,0.4);"></div>
+                  <div
+                    style="position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: #fb923c; box-shadow: 0 0 6px rgba(249,115,22,0.4);">
+                  </div>
 
-                  <!-- Center Vertical Drop into Infra & Energy -->
-                  <div style="position: absolute; top: 0; left: 50%; width: 2px; height: 100%; transform: translateX(-50%); background: #34d399; box-shadow: 0 0 6px rgba(52,211,153,0.4);"></div>
+                  <!-- Center Vertical Drop into Tech & Solutions -->
+                  <div
+                    style="position: absolute; top: 0; left: 50%; width: 2px; height: 100%; transform: translateX(-50%); background: #c084fc; box-shadow: 0 0 6px rgba(168,85,247,0.4);">
+                  </div>
 
-                  <!-- Right Vertical Drop into Tech & Solutions -->
-                  <div style="position: absolute; top: 0; right: 0; width: 2px; height: 100%; background: #c084fc; box-shadow: 0 0 6px rgba(168,85,247,0.4);"></div>
+                  <!-- Right Vertical Drop into Infra & Energy -->
+                  <div
+                    style="position: absolute; top: 0; right: 0; width: 2px; height: 100%; background: #34d399; box-shadow: 0 0 6px rgba(52,211,153,0.4);">
+                  </div>
                 </div>
 
                 <!-- Divisions & Subsidiary Groups (3-Column grid) -->
@@ -1333,7 +1402,9 @@
                       style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.35); color: #fb923c; margin-bottom: 12px; box-shadow: 0 0 8px rgba(249,115,22,0.2);">
                       FMCG &amp; LOGISTICS
                     </div>
-                    <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3) 50%, transparent); margin-bottom: 12px;"></div>
+                    <div
+                      style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3) 50%, transparent); margin-bottom: 12px;">
+                    </div>
 
                     <div class="subsidiary-cards" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
                       <!-- MEN2 Dagupan -->
@@ -1341,11 +1412,15 @@
                         style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
                         <div class="sub-icon-header"
                           style="background: rgba(var(--rgb-glass),0.03); overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                          <img src="Presentation_Assets/Logos/logo_1.png" alt="MEN2 Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                          <img src="Presentation_Assets/Logos/logo_1.png" alt="MEN2 Logo"
+                            style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="flex-grow: 1; text-align: left;">
-                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2 Dagupan</h4>
-                          <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">North Logistics</span>
+                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2
+                            Dagupan</h4>
+                          <span class="sub-field"
+                            style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">North
+                            Logistics</span>
                         </div>
                       </div>
 
@@ -1354,11 +1429,15 @@
                         style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
                         <div class="sub-icon-header"
                           style="background: transparent; overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                          <img src="Presentation_Assets/Logos/mamapina_logo.png" alt="Mama Pina Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                          <img src="Presentation_Assets/Logos/mamapina_logo.png" alt="Mama Pina Logo"
+                            style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="flex-grow: 1; text-align: left;">
-                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">Mama Pina's</h4>
-                          <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">Consumer Foods</span>
+                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">Mama
+                            Pina's</h4>
+                          <span class="sub-field"
+                            style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">Consumer
+                            Foods</span>
                         </div>
                       </div>
 
@@ -1367,11 +1446,15 @@
                         style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
                         <div class="sub-icon-header"
                           style="background: rgba(var(--rgb-glass),0.03); overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                          <img src="Presentation_Assets/Logos/logo_1.png" alt="MEN2 Logo" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: hue-rotate(180deg);">
+                          <img src="Presentation_Assets/Logos/logo_1.png" alt="MEN2 Logo"
+                            style="max-width: 100%; max-height: 100%; object-fit: contain; filter: hue-rotate(180deg);">
                         </div>
                         <div style="flex-grow: 1; text-align: left;">
-                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2 Marikina</h4>
-                          <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">South Logistics</span>
+                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2
+                            Marikina</h4>
+                          <span class="sub-field"
+                            style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">South
+                            Logistics</span>
                         </div>
                       </div>
 
@@ -1380,62 +1463,48 @@
                         style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;">
                         <div class="sub-icon-header"
                           style="background: transparent; overflow: hidden; padding: 2px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                          <img src="Presentation_Assets/Logos/jcbs_logo.png" alt="JCBS Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                          <img src="Presentation_Assets/Logos/jcbs_logo.png" alt="JCBS Logo"
+                            style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="flex-grow: 1; text-align: left;">
-                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">JCBS</h4>
-                          <span class="sub-field" style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">Industrial Business &amp; Engineering</span>
+                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">JCBS
+                          </h4>
+                          <span class="sub-field"
+                            style="font-size: 8px; font-weight: 600; color: #f97316; text-transform: uppercase;">Industrial
+                            Business &amp; Engineering</span>
                         </div>
                       </div>
 
                     </div>
                   </div>
 
-                  <!-- Column 2: Infrastructure & Energy (Emerald/Green - Center) -->
-                  <div class="flowchart-group energy-group"
-                    style="order: 2; display: flex; flex-direction: column; align-items: center;">
-                    <div class="group-title-node"
-                      style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.35); color: #34d399; margin-bottom: 12px; box-shadow: 0 0 8px rgba(52,211,153,0.2);">
-                      INFRA &amp; ENERGY
-                    </div>
-                    <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.3) 50%, transparent); margin-bottom: 12px;"></div>
-
-                    <div class="subsidiary-cards" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                      <!-- Hanvins Card -->
-                      <div class="sub-flow-card interactive-flow-card" data-company="hanvins"
-                        style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease;">
-                        <div class="sub-icon-header"
-                          style="background: transparent; overflow: hidden; padding: 2px; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                          <img src="Presentation_Assets/Logos/hanvin_logo.png" alt="Hanvins Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                        </div>
-                        <div style="flex-grow: 1; text-align: left;">
-                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">Hanvin Solar</h4>
-                          <span class="sub-field" style="font-size: 8.5px; font-weight: 600; color: #34d399; text-transform: uppercase;">Solar Installations, Systems &amp; Technology</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Column 3: Tech & Solutions (Purple - Right) -->
+                  <!-- Column 2: Tech & Solutions (Purple - Center) -->
                   <div class="flowchart-group tech-group"
-                    style="order: 3; display: flex; flex-direction: column; align-items: center;">
+                    style="order: 2; display: flex; flex-direction: column; align-items: center;">
                     <div class="group-title-node"
                       style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.35); color: #c084fc; margin-bottom: 12px; box-shadow: 0 0 8px rgba(168,85,247,0.2);">
                       TECH &amp; SOLUTIONS
                     </div>
-                    <div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3) 50%, transparent); margin-bottom: 12px;"></div>
+                    <div
+                      style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3) 50%, transparent); margin-bottom: 12px;">
+                    </div>
 
-                    <div class="subsidiary-cards" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                    <div class="subsidiary-cards"
+                      style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
                       <!-- Vertex Card -->
                       <div class="sub-flow-card interactive-flow-card" data-company="vertex"
                         style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease;">
                         <div class="sub-icon-header"
                           style="background: transparent; overflow: hidden; padding: 2px; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                          <img src="Presentation_Assets/Logos/vertex_logo.png" alt="Vertex Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                          <img src="Presentation_Assets/Logos/vertex_logo.png" alt="Vertex Logo"
+                            style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
                         <div style="flex-grow: 1; text-align: left;">
-                          <h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin: 0;">Vertex Tech</h4>
-                          <span class="sub-field" style="font-size: 8.5px; font-weight: 600; color: #a855f7; text-transform: uppercase;">Software &amp; Digitization</span>
+                          <h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin: 0;">Vertex
+                            Tech</h4>
+                          <span class="sub-field"
+                            style="font-size: 8.5px; font-weight: 600; color: #a855f7; text-transform: uppercase;">Software
+                            &amp; Digitization</span>
                         </div>
                       </div>
 
@@ -1447,8 +1516,43 @@
                           🛠️
                         </div>
                         <div style="flex-grow: 1; text-align: left;">
-                          <h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2 Solutions</h4>
-                          <span class="sub-field" style="font-size: 8.5px; font-weight: 600; color: #c084fc; text-transform: uppercase;">Manpower Sourcing</span>
+                          <h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin: 0;">MEN2
+                            Solutions</h4>
+                          <span class="sub-field"
+                            style="font-size: 8.5px; font-weight: 600; color: #c084fc; text-transform: uppercase;">Manpower
+                            Sourcing</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Column 3: Infrastructure & Energy (Emerald/Green - Right) -->
+                  <div class="flowchart-group energy-group"
+                    style="order: 3; display: flex; flex-direction: column; align-items: center;">
+                    <div class="group-title-node"
+                      style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; border-radius: 20px; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.35); color: #34d399; margin-bottom: 12px; box-shadow: 0 0 8px rgba(52,211,153,0.2);">
+                      INFRA &amp; ENERGY
+                    </div>
+                    <div
+                      style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.3) 50%, transparent); margin-bottom: 12px;">
+                    </div>
+
+                    <div class="subsidiary-cards"
+                      style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                      <!-- Hanvins Card -->
+                      <div class="sub-flow-card interactive-flow-card" data-company="hanvins"
+                        style="cursor: pointer; position: relative; background: rgba(var(--rgb-glass), 0.015); border: 1.5px solid var(--glass-border); padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 12px; transition: all 0.3s ease;">
+                        <div class="sub-icon-header"
+                          style="background: transparent; overflow: hidden; padding: 2px; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                          <img src="Presentation_Assets/Logos/hanvin_logo.png" alt="Hanvins Logo"
+                            style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                        <div style="flex-grow: 1; text-align: left;">
+                          <h4 style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin: 0;">Hanvins
+                          </h4>
+                          <span class="sub-field"
+                            style="font-size: 8.5px; font-weight: 600; color: #34d399; text-transform: uppercase;">Solar
+                            Installations, Systems &amp; Technology</span>
                         </div>
                       </div>
                     </div>
@@ -1804,7 +1908,7 @@
                 INSTALLATIONS, SYSTEMS AND TECHNOLOGY PORTFOLIO</span>
               <h2
                 style="font-size: 32px; font-weight: 800; color: var(--text-primary); margin-top: 10px; margin-bottom: 5px;">
-                Hanvin Solar Installations, Systems and Technology</h2>
+                Hanvins Installations, Systems and Technology</h2>
               <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">Click a project node to zoom in and
                 explore the engineering blueprints, solar layout specs, and facility energy profiles.</p>
             </div>
@@ -2568,7 +2672,7 @@
                 style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 2px;">Total
                 ROOCH Potential Revenue</span>
               <strong id="roochTotalRevenue"
-                style="font-size: 18px; color: var(--color-sky-dark); text-shadow: var(--ts-override, 0 0 10px rgba(14,165,233,0.3));">₱977,082,943</strong>
+                style="font-size: 18px; color: var(--color-sky-dark); text-shadow: var(--ts-override, 0 0 10px rgba(14,165,233,0.3));">₱962,082,943</strong>
             </div>
           </div>
 
@@ -2628,8 +2732,7 @@
                     style="cursor: pointer; padding: 10px 12px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
                     <div
                       style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                      <strong style="font-size: 11px; color: var(--text-primary);">Hanvin (Solar Installations, Systems
-                        and Technology)</strong>
+                      <strong style="font-size: 11px; color: var(--text-primary);">Hanvins</strong>
                       <span style="font-size: 11px; font-weight: 700; color: #34d399;">₱70.5M</span>
                     </div>
                     <span style="font-size: 9.5px; color: var(--text-muted);">Solar Installations, Systems and
@@ -2660,13 +2763,13 @@
                   </div>
 
                   <!-- MEN2 Manila -->
-                  <div class="revenue-company-card" data-company="men2manila" data-total="₱142,315,000"
-                    data-items='[{"label":"Dever Product","val":"₱49,815,000.00"},{"label":"Green Life Coconut Juice","val":"₱67,500,000.00"},{"label":"Mama Pina&#39;s","val":"₱25,000,000.00"}]'
+                  <div class="revenue-company-card" data-company="men2manila" data-total="₱127,315,000"
+                    data-items='[{"label":"Dever Product","val":"₱49,815,000.00"},{"label":"Green Life Coconut Juice","val":"₱67,500,000.00"},{"label":"Mama Pina&#39;s","val":"₱10,000,000.00"}]'
                     style="cursor: pointer; padding: 8px 10px; border-radius: 8px; background: rgba(var(--rgb-glass),0.02); border: 1.5px solid rgba(var(--rgb-glass),0.05);">
                     <div
                       style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
                       <strong style="font-size: 11px; color: var(--text-primary);">MEN2 Manila</strong>
-                      <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱142.3M</span>
+                      <span style="font-size: 11px; font-weight: 700; color: #fb923c;">₱127.3M</span>
                     </div>
                     <span style="font-size: 9px; color: var(--text-muted);">NCR & South Logistics</span>
                   </div>
@@ -4152,8 +4255,8 @@
                         <div class="chart-bar expanded" id="oil-bar-c1L-exp" style="height:50%"></div>
                       </div>
                       <div class="chart-series"><span class="chart-bar-value" id="oil-value-c1L-demand"
-                          style="color:#facc15;">240.2K</span>
-                        <div class="chart-bar demand" id="oil-bar-c1L-demand" style="height:85%"></div>
+                          style="color:#facc15;">200.2K</span>
+                        <div class="chart-bar demand" id="oil-bar-c1L-demand" style="height:71%"></div>
                       </div>
                     </div>
                     <div class="chart-label">Canola 1L</div>
@@ -5025,7 +5128,7 @@
           })();
         </script>
 
-        <section class="slide capital-slide pancit pancit-capital-slide oil-capital-slide"
+        <section class="slide capital-slide oil-capital-slide"
           data-title="Working Capital Trade Cycle Oils" data-section="WORKING CAPITAL TRADE CYCLE / OILS">
           <div class="slide-heading">
             <div>
@@ -5049,110 +5152,117 @@
                   <h3 id="oilCyclePanelTitle">Trade cycle process flow</h3>
                   <p>Select a stage to review its operating detail</p>
                 </div>
-                <div class="oil-cycle-legend"><span class="procurement">Procurement</span><span class="revenue">Revenue</span>
+                <div class="oil-cycle-legend"><span class="procurement">Procurement</span><span
+                    class="revenue">Revenue</span>
                 </div>
               </div>
-              <div class="cycle-flow oil-cycle-flow" id="oilCycleFlow" role="list" aria-label="Edible oil trade cycle"></div>
+              <div class="cycle-flow oil-cycle-flow" id="oilCycleFlow" role="list" aria-label="Edible oil trade cycle">
+              </div>
             </section>
             <aside class="oil-summary-stack" aria-label="Oil working capital details">
               <section class="oil-summary-card">
                 <div class="oil-card-title">
-                  <h3>Materials cadence</h3><span>Import / weekly</span>
+                  <h3>Working capital requirement</h3><span>PHP 201.07M</span>
                 </div>
-                <div id="oilMaterialsRows">
-                  <div class="oil-purchase-row"><span>Palm Oil<small>24 cont/mo (USD 675.96K)</small></span><strong>6 cont/wk<small>(USD 168.99K)</small></strong></div>
-                  <div class="oil-purchase-row"><span>Canola Oil<small>12 cont/mo (USD 405.06K)</small></span><strong>3 cont/wk<small>(USD 101.26K)</small></strong></div>
-                </div>
+                <p class="pancit-production-total"
+                  style="font-size: clamp(10px, 0.75vw, 12px); color: var(--muted); margin-bottom: 2px;">3-month rolling
+                  edible-oils import</p>
+                <div class="pancit-summary-value"><strong style="font-size: clamp(16px, 1.3vw, 20px);">PHP
+                    67.02M</strong><span>Monthly PHP</span></div>
               </section>
-              <section class="oil-summary-card pancit-weekly-output-card">
+              <section class="oil-summary-card">
                 <div class="oil-card-title">
-                  <h3>Weekly output</h3><span>Production</span>
+                  <h3>Weekly purchase</h3><span>Every 7 days</span>
                 </div>
-                <p class="pancit-production-total">Total <strong id="oilWeeklyOutput">331.0K Units</strong></p>
-                <div class="pancit-production-rows" id="oilWeeklyOutputRows" aria-label="Weekly Oil production output">
-                  <div class="pancit-production-row"><span class="label">Palm 350mL</span><div class="track"><i class="blue" style="width:51.6%"></i></div><span class="value">170.9K Units</span></div>
-                  <div class="pancit-production-row"><span class="label">Palm 1L</span><div class="track"><i class="sky" style="width:26.2%"></i></div><span class="value">86.8K Units</span></div>
-                  <div class="pancit-production-row"><span class="label">Canola 1L</span><div class="track"><i class="green" style="width:22.2%"></i></div><span class="value">73.3K Units</span></div>
-                </div>
-                <div class="pancit-production-volumes" id="oilWeeklyOutputVolumes">
-                  <span>Palm 350mL: 170.9K Units</span>
-                  <span>Palm 1L: 86.8K Units</span>
-                  <span>Canola 1L: 73.3K Units</span>
-                </div>
-              </section>
-              <section class="oil-summary-card pancit-monthly-output-card">
-                <div class="oil-card-title">
-                  <h3>Monthly output</h3><span>Production</span>
-                </div>
-                <p class="pancit-production-total">Total <strong id="oilMonthlyOutput">1.419M Units</strong></p>
-                <div class="pancit-production-rows" id="oilMonthlyOutputRows" aria-label="Monthly Oil production output">
-                  <div class="pancit-production-row"><span class="label">Palm 350mL</span><div class="track"><i class="green" style="width:51.6%"></i></div><span class="value">732.6K Units</span></div>
-                  <div class="pancit-production-row"><span class="label">Palm 1L</span><div class="track"><i class="sky" style="width:26.2%"></i></div><span class="value">371.8K Units</span></div>
-                  <div class="pancit-production-row"><span class="label">Canola 1L</span><div class="track"><i class="blue" style="width:22.2%"></i></div><span class="value">314.1K Units</span></div>
-                </div>
-                <div class="pancit-production-volumes" id="oilMonthlyOutputVolumes">
-                  <span>Palm 350mL: 732.6K Units</span>
-                  <span>Palm 1L: 371.8K Units</span>
-                  <span>Canola 1L: 314.1K Units</span>
+                <div id="oilPurchaseRows">
+                  <div class="oil-purchase-row"><span>Palm oil<small>24 containers / month</small></span><strong>6
+                      containers / week<small>USD 168,990</small></strong></div>
+                  <div class="oil-purchase-row"><span>Canola oil<small>12 containers / month</small></span><strong>3
+                      containers / week<small>USD 101,265</small></strong></div>
                 </div>
               </section>
               <section class="oil-summary-card">
                 <div class="oil-card-title">
-                  <h3>Collection cycle</h3><span>Receivable</span>
+                  <h3>Weekly available for sale</h3><span>O!Save</span>
                 </div>
-                <div class="pancit-summary-value"><strong id="oilCollectionDays">45 days</strong><span>cash conversion</span>
+                <div id="oilProductRows">
+                  <div class="oil-product-row blue"><span>Palm Oil 350mL<small>24,421.44 /
+                        day</small></span><strong>170,950.06<small>units / week</small></strong></div>
+                  <div class="oil-product-row sky"><span>Palm Oil 1L<small>12,394 /
+                        day</small></span><strong>86,759.58<small>units / week</small></strong></div>
+                  <div class="oil-product-row green"><span>Canola Oil 1L<small>10,471 /
+                        day</small></span><strong>73,297.80<small>units / week</small></strong></div>
                 </div>
+                <div class="oil-card-total"><span>Total / week</span><strong>331,007.44 units</strong></div>
               </section>
             </aside>
           </div>
           <div class="oil-insight-grid">
-            <section class="oil-insight-card pancit-production-card">
+            <section class="oil-insight-card">
               <div class="oil-card-title">
-                <h3>Production Mix (Monthly)</h3><span>By volume</span>
+                <h3>Weekly container shipments</h3><span>Palm 6 + Canola 3</span>
               </div>
-              <p class="pancit-production-total">Total <strong id="oilMonthlyMixTotal">1.419M Units</strong></p>
-              <div class="pancit-production-rows" id="oilMonthlyMixRows" aria-label="Monthly Oil production mix">
-                <div class="pancit-production-row"><span class="label">Palm 350mL</span><div class="track"><i class="blue" style="width:51.6%"></i></div><span class="value">51.6%</span></div>
-                <div class="pancit-production-row"><span class="label">Palm 1L</span><div class="track"><i class="sky" style="width:26.2%"></i></div><span class="value">26.2%</span></div>
-                <div class="pancit-production-row"><span class="label">Canola 1L</span><div class="track"><i class="green" style="width:22.2%"></i></div><span class="value">22.2%</span></div>
-              </div>
-              <div class="pancit-production-volumes" id="oilMonthlyMixVolumes">
-                <span>Palm Oil 350mL: 732.6K Units</span>
-                <span>Palm Oil 1L: 371.8K Units</span>
-                <span>Canola Oil 1L: 314.1K Units</span>
-              </div>
-            </section>
-            <section class="oil-insight-card pancit-production-card">
-              <div class="oil-card-title">
-                <h3>Weekly Production Availability</h3><span>Available for delivery</span>
-              </div>
-              <p class="pancit-production-total">Total <strong id="oilWeeklyAvailabilityTotal">331.0K Units</strong></p>
-              <div class="pancit-production-rows" id="oilWeeklyAvailabilityRows" aria-label="Weekly Oil production availability">
-                <div class="pancit-production-row"><span class="label">Palm 350mL</span><div class="track"><i class="blue" style="width:51.6%"></i></div><span class="value">51.6%</span></div>
-                <div class="pancit-production-row"><span class="label">Palm 1L</span><div class="track"><i class="sky" style="width:26.2%"></i></div><span class="value">26.2%</span></div>
-                <div class="pancit-production-row"><span class="label">Canola 1L</span><div class="track"><i class="green" style="width:22.2%"></i></div><span class="value">22.2%</span></div>
+              <div class="shipment-chart" id="oilShipmentChart" aria-label="Weekly container shipments chart">
+                <div class="shipment-week">
+                  <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+                      style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 22</span><strong>9</strong>
+                </div>
+                <div class="shipment-week">
+                  <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+                      style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 23</span><strong>9</strong>
+                </div>
+                <div class="shipment-week">
+                  <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+                      style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 24</span><strong>9</strong>
+                </div>
+                <div class="shipment-week">
+                  <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+                      style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 25</span><strong>9</strong>
+                </div>
+                <div class="shipment-week">
+                  <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+                      style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 26</span><strong>9</strong>
+                </div>
+                <div class="shipment-week">
+                  <div class="shipment-bars"><i class="palm" style="--bar:6;--bar-ratio:1"></i><i class="canola"
+                      style="--bar:3;--bar-ratio:0.5"></i></div><span>Wk 27</span><strong>9</strong>
+                </div>
               </div>
             </section>
             <section class="oil-insight-card">
               <div class="oil-card-title">
-                <h3>Materials cadence</h3><span>Quarterly / monthly</span>
+                <h3>SKU output</h3><span>Daily / weekly units</span>
               </div>
-              <div class="oil-output-table" id="oilMaterialsInsight">
-                <div class="blue"><span>Palm Oil Cadence</span><strong>6 cont/wk</strong></div>
-                <div class="blue"><span>Canola Oil Cadence</span><strong>3 cont/wk</strong></div>
+              <div class="oil-output-table" id="oilOutputTable">
+                <div class="blue"><span>Palm Oil 350mL</span><strong>24,421.44<small>/
+                      day</small></strong><b>170,950.06<small>/ week</small></b></div>
+                <div class="sky"><span>Palm Oil 1L</span><strong>12,394<small>/ day</small></strong><b>86,759.58<small>/
+                      week</small></b></div>
+                <div class="green"><span>Canola Oil 1L</span><strong>10,471<small>/
+                      day</small></strong><b>73,297.80<small>/ week</small></b></div>
               </div>
             </section>
             <section class="oil-insight-card cash-cycle-card">
               <div class="oil-card-title">
-                <h3>Cash conversion cycle</h3><span>45 days total</span>
+                <h3>Cash conversion cycle</h3><span>69 days total</span>
               </div>
-              <div class="pancit-cash-cycle"><strong>45 days</strong><i><b></b></i><span>Collection</span></div>
-              <p><strong>PHP 201.07M</strong> 3-month requirement supports the Oils operating cycle.</p>
+              <div class="cash-cycle-bars" id="oilCashCycle">
+                <div class="blue"><span>Purchase order</span><i><b style="width:7.2%"></b></i><strong>5d</strong></div>
+                <div class="sky"><span>Weekly shipment</span><i><b style="width:10.1%"></b></i><strong>7d</strong></div>
+                <div class="mid"><span>Warehouse</span><i><b style="width:11.6%"></b></i><strong>8d</strong></div>
+                <div class="mint"><span>Daily production</span><i><b style="width:1.4%"></b></i><strong>1d</strong>
+                </div>
+                <div class="green"><span>Delivery to O!Save</span><i><b style="width:4.3%"></b></i><strong>3d</strong>
+                </div>
+                <div class="deep-green"><span>Collection (fixed DSO)</span><i><b
+                      style="width:65.2%"></b></i><strong>45d</strong></div>
+              </div>
+              <p class="cash-cycle-note"><strong>45-day DSO</strong> accounts for 65% of the cycle.</p>
             </section>
           </div>
         </section>
-        <section class="slide capital-slide pancit pancit-capital-slide oil-capital-slide"
-          data-title="Working Capital Trade Cycle Pancit" data-section="WORKING CAPITAL TRADE CYCLE / PANCIT">
+        <section class="slide capital-slide pancit pancit-capital-slide" data-title="Working Capital Trade Cycle Pancit"
+          data-section="WORKING CAPITAL TRADE CYCLE / PANCIT">
           <div class="slide-heading">
             <div>
               <p class="eyebrow">Post-expansion operating cycle &rarr; materials &rarr; production &rarr; O!Save &rarr;
@@ -5200,8 +5310,12 @@
                 <p class="pancit-production-total">Total <strong id="pancitMonthlyOutput">1.195M Pcs</strong></p>
                 <div class="pancit-production-rows" id="pancitMonthlyOutputRows"
                   aria-label="Monthly Pancit production output">
-                  <div class="pancit-production-row"><span class="label">Bihon (454g)</span><div class="track"><i class="green" style="width:67.5%"></i></div><span class="value">806.4K</span></div>
-                  <div class="pancit-production-row"><span class="label">Canton (300g)</span><div class="track"><i class="blue" style="width:32.5%"></i></div><span class="value">388.8K</span></div>
+                  <div class="pancit-production-row"><span class="label">Bihon (454g)</span>
+                    <div class="track"><i class="green" style="width:67.5%"></i></div><span class="value">806.4K</span>
+                  </div>
+                  <div class="pancit-production-row"><span class="label">Canton (300g)</span>
+                    <div class="track"><i class="blue" style="width:32.5%"></i></div><span class="value">388.8K</span>
+                  </div>
                 </div>
               </section>
               <section class="oil-summary-card">
@@ -5243,7 +5357,6 @@
                 <h3>Cash conversion cycle</h3><span>45 days total</span>
               </div>
               <div class="pancit-cash-cycle"><strong>45 days</strong><i><b></b></i><span>Collection</span></div>
-              <p><strong>PHP 38.0M</strong> requirement supports the Pancit operating cycle.</p>
             </section>
           </div>
         </section>
