@@ -7008,14 +7008,14 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   border-radius: 50% !important;
   overflow: hidden !important;
   position: absolute;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.08) 35%, rgba(14, 165, 233, 0.15) 70%, rgba(255, 255, 255, 0.35) 100%) !important;
-  backdrop-filter: blur(16px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(200%) !important;
-  border: 2px solid rgba(255, 255, 255, 0.85) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(14, 165, 233, 0.1) 70%, rgba(255, 255, 255, 0.2) 100%) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
   outline: none !important;
-  box-shadow: 0 0 30px rgba(14, 165, 233, 0.5), inset 0 0 16px rgba(255, 255, 255, 0.8), inset 0 0 30px rgba(14, 165, 233, 0.35) !important;
-  animation: glassMirrorPulse 3s infinite ease-in-out !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 0 12px rgba(255, 255, 255, 0.6) !important;
   padding: 6px !important;
+  animation: none !important;
 }
 
 #threeSunOverlay img, .flowchart-root-orb img {
@@ -7024,7 +7024,7 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 15px rgba(56, 189, 248, 0.6)) brightness(1.15) !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) !important;
   transform-style: preserve-3d !important;
   transform-origin: center center !important;
   animation: rooch3DHorizontalSpin 8s linear infinite !important;
@@ -7039,18 +7039,7 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   }
 }
 
-@keyframes glassMirrorPulse {
-  0%, 100% {
-    box-shadow: 0 0 25px rgba(14, 165, 233, 0.4), inset 0 0 14px rgba(255, 255, 255, 0.7);
-    border-color: rgba(255, 255, 255, 0.75);
-  }
-  50% {
-    box-shadow: 0 0 50px rgba(56, 189, 248, 0.9), 0 0 70px rgba(255, 255, 255, 0.7), inset 0 0 25px rgba(255, 255, 255, 0.95);
-    border-color: rgba(255, 255, 255, 1);
-  }
-}
-
-/* Glass Specular Curved Reflection Dome (Static Gloss Highlight) */
+/* Glossy Curved Glass Top Specular Sheen (Gloss Finish) */
 #threeSunOverlay::before, .flowchart-root-orb::before {
   content: '' !important;
   display: block !important;
@@ -7058,8 +7047,8 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  height: 55% !important;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.25) 45%, transparent 70%) !important;
+  height: 50% !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.15) 60%, transparent 100%) !important;
   border-radius: 50% 50% 0 0 !important;
   pointer-events: none !important;
   z-index: 9 !important;
