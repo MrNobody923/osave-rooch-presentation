@@ -7008,11 +7008,14 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   border-radius: 50% !important;
   overflow: hidden !important;
   position: absolute;
-  background: transparent !important;
-  border: 2.5px solid #0ea5e9 !important;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25) 0%, rgba(14, 165, 233, 0.15) 45%, rgba(15, 23, 42, 0.4) 100%) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 2px solid rgba(125, 211, 252, 0.7) !important;
   outline: none !important;
-  box-shadow: 0 0 20px rgba(14, 165, 233, 0.4) !important;
-  padding: 0 !important;
+  box-shadow: 0 0 30px rgba(14, 165, 233, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.5) !important;
+  animation: glassOrbPulse 3s infinite ease-in-out !important;
+  padding: 6px !important;
 }
 
 #threeSunOverlay img, .flowchart-root-orb img {
@@ -7021,7 +7024,7 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.4)) !important;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.6)) brightness(1.1) !important;
   transform-style: preserve-3d !important;
   transform-origin: center center !important;
   animation: rooch3DHorizontalSpin 8s linear infinite !important;
@@ -7036,22 +7039,18 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   }
 }
 
-@keyframes logoLightIllumination {
-  0% {
-    filter: brightness(1) drop-shadow(0 0 8px rgba(14, 165, 233, 0.4));
+@keyframes glassOrbPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.4), inset 0 0 12px rgba(255, 255, 255, 0.4);
+    border-color: rgba(14, 165, 233, 0.6);
   }
-  30% {
-    filter: brightness(1.4) drop-shadow(0 0 22px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 35px rgba(255, 255, 255, 0.75));
-  }
-  60% {
-    filter: brightness(1) drop-shadow(0 0 8px rgba(14, 165, 233, 0.4));
-  }
-  100% {
-    filter: brightness(1) drop-shadow(0 0 8px rgba(14, 165, 233, 0.4));
+  50% {
+    box-shadow: 0 0 45px rgba(56, 189, 248, 0.95), 0 0 65px rgba(255, 255, 255, 0.6), inset 0 0 25px rgba(255, 255, 255, 0.8);
+    border-color: rgba(125, 211, 252, 0.95);
   }
 }
 
-/* Glass Surface Curved Specular Glare */
+/* Glass Surface Curved Specular Glare (Top Curve Reflection) */
 #threeSunOverlay::before, .flowchart-root-orb::before {
   content: '' !important;
   display: block !important;
@@ -7060,13 +7059,13 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
   left: 0 !important;
   right: 0 !important;
   height: 50% !important;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%) !important;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.15) 60%, transparent 100%) !important;
   border-radius: 50% 50% 0 0 !important;
   pointer-events: none !important;
   z-index: 9 !important;
 }
 
-/* Sweeping Light Reflection Beam (Left to Right) */
+/* Sweeping Light Reflection Beam (Left to Right Shine) */
 #threeSunOverlay::after, .flowchart-root-orb::after {
   content: '' !important;
   display: block !important;
@@ -7085,20 +7084,29 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
     transparent 70%,
     transparent 100%
   ) !important;
-  transform: translateX(-150%) !important;
-  animation: shineLightLeftToRight 3s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: translateX(-150%) rotate(25deg) !important;
+  animation: shineLightLeftToRight 3.5s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
   pointer-events: none !important;
   z-index: 10 !important;
 }
 
 @keyframes shineLightLeftToRight {
   0% {
-    transform: translateX(-150%);
+    transform: translateX(-150%) rotate(25deg);
     opacity: 0;
   }
   15% {
     opacity: 1;
   }
+  65% {
+    transform: translateX(150%) rotate(25deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(150%) rotate(25deg);
+    opacity: 0;
+  }
+}
   45% {
     transform: translateX(150%);
     opacity: 1;
