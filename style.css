@@ -7042,24 +7042,59 @@ body.present-mode .capital-request-slide .funding-loop-diagram > svg {
 
 @keyframes rooch3DThickHorizontalSpin {
   0% {
-    transform: rotateY(0deg);
-    filter: drop-shadow(-4px 0 0 #b45309) drop-shadow(4px 0 0 #d97706) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+    transform: rotateY(0deg) scaleX(1);
+    filter: 
+      drop-shadow(-3px 0 0 #b45309)
+      drop-shadow(-6px 0 0 #d97706)
+      drop-shadow(-9px 0 0 #f59e0b)
+      drop-shadow(3px 0 0 #b45309)
+      drop-shadow(6px 0 0 #d97706)
+      drop-shadow(9px 0 0 #f59e0b)
+      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
   }
   25% {
-    transform: rotateY(90deg);
-    filter: drop-shadow(0 4px 0 #b45309) drop-shadow(0 -4px 0 #d97706) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+    transform: rotateY(90deg) scaleX(0.42);
+    filter: 
+      drop-shadow(0 3px 0 #b45309)
+      drop-shadow(0 6px 0 #d97706)
+      drop-shadow(0 9px 0 #f59e0b)
+      drop-shadow(0 -3px 0 #b45309)
+      drop-shadow(0 -6px 0 #d97706)
+      drop-shadow(0 -9px 0 #f59e0b)
+      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
   }
   50% {
-    transform: rotateY(180deg);
-    filter: drop-shadow(4px 0 0 #b45309) drop-shadow(-4px 0 0 #d97706) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+    transform: rotateY(180deg) scaleX(1);
+    filter: 
+      drop-shadow(3px 0 0 #b45309)
+      drop-shadow(6px 0 0 #d97706)
+      drop-shadow(9px 0 0 #f59e0b)
+      drop-shadow(-3px 0 0 #b45309)
+      drop-shadow(-6px 0 0 #d97706)
+      drop-shadow(-9px 0 0 #f59e0b)
+      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
   }
   75% {
-    transform: rotateY(270deg);
-    filter: drop-shadow(0 -4px 0 #b45309) drop-shadow(0 4px 0 #d97706) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+    transform: rotateY(270deg) scaleX(0.42);
+    filter: 
+      drop-shadow(0 -3px 0 #b45309)
+      drop-shadow(0 -6px 0 #d97706)
+      drop-shadow(0 -9px 0 #f59e0b)
+      drop-shadow(0 3px 0 #b45309)
+      drop-shadow(0 6px 0 #d97706)
+      drop-shadow(0 9px 0 #f59e0b)
+      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
   }
   100% {
-    transform: rotateY(360deg);
-    filter: drop-shadow(-4px 0 0 #b45309) drop-shadow(4px 0 0 #d97706) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+    transform: rotateY(360deg) scaleX(1);
+    filter: 
+      drop-shadow(-3px 0 0 #b45309)
+      drop-shadow(-6px 0 0 #d97706)
+      drop-shadow(-9px 0 0 #f59e0b)
+      drop-shadow(3px 0 0 #b45309)
+      drop-shadow(6px 0 0 #d97706)
+      drop-shadow(9px 0 0 #f59e0b)
+      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
   }
 }
 
