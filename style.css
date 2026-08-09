@@ -4694,8 +4694,11 @@ body.present-mode .edge-click-zone:hover {
 }
 
 .capacity-main .oil-chart-row {
-  flex: 0 0 auto !important;
-  min-height: auto !important;
+  flex: 1 !important;
+  min-height: 220px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
   margin-top: 0 !important;
 }
 .vis-hidden { display: none; }
