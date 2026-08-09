@@ -497,6 +497,12 @@ body {
   line-height: 1.6;
 }
 
+.rooch-mission-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .rooch-vision-row {
   border: 1.5px solid rgba(14, 165, 233, 0.28);
   background: rgba(14, 165, 233, 0.025);
